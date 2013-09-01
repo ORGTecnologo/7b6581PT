@@ -25,7 +25,31 @@
 			
 			+ Generalidades
 			
-			+ 
+			+ Casos de estudio
+				
+				+ Amazon MarketPlace
+				
+				+ Google Play Store
+				
+				+ PedidosYa
+				
+			+ Smartphones
+				
+				+ Generalidades
+				
+				+ Casos de estudio
+					
+					+ 
+					
+				+ Plataformas
+				
+					+ iOS
+					
+					+ Windows Phone
+					
+					+ Android
+			
+		+ Smartphones
 	
 	+ Conclusiones
 	
