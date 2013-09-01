@@ -1,0 +1,40 @@
+
+### ESQUELETO DEL DOCUMENTO FINAL ###
+
+[INTRODUCCION AL DOCUMENTO]
+	+ Portada
+
+	+ Página de aprobación
+
+	+ Índice
+
+	+ Resumen
+
+	+ Palabras clave
+	
+	+ Tabla de cuadros e ilustraciones
+	
+
+[DESARROLLO DEL DOCUMENTO]
+	
+	+ Introducción
+	
+	+ Estado del arte
+		
+		+ Market places
+			
+			+ Generalidades
+			
+			+ 
+	
+	+ Conclusiones
+	
+	+ Bibliografía
+	
+	+ Notas
+	
+	+ Glosario
+	
+	+ Anexos
+	
+	
