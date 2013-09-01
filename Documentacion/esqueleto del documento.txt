@@ -43,23 +43,22 @@
 				
 				+ PedidosYa
 				
-			+ Smartphones
-				
-				+ Generalidades
-				
-				+ Casos de estudio
-					
-					+ 
-					
-				+ Plataformas
-				
-					+ iOS
-					
-					+ Windows Phone
-					
-					+ Android
-			
 		+ Smartphones
+			
+			+ Generalidades
+			
+			+ Casos de estudio
+				
+				+ 
+				
+			+ Plataformas
+			
+				+ iOS
+				
+				+ Windows Phone
+				
+				+ Android
+			
 	
 	+ Conclusiones
 	
