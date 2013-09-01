@@ -17,13 +17,23 @@
 
 [DESARROLLO DEL DOCUMENTO]
 	
-	+ Introducción
+	+ Introducción	
+		
+		+ Generalidades
+		
+		+ Antecedentes
+		
+		+ Objetivos del proyecto
+		
+		+ Organización del documento
 	
 	+ Estado del arte
 		
 		+ Market places
 			
 			+ Generalidades
+			
+			+ Comercio Electronico
 			
 			+ Casos de estudio
 				
