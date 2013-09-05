@@ -1,4 +1,4 @@
-
+﻿
 ### ESQUELETO DEL DOCUMENTO FINAL ###
 
 [INTRODUCCION AL DOCUMENTO]
@@ -49,8 +49,11 @@
 			
 			+ Casos de estudio
 				
-				+ 
+				+ Google Play
 				
+				+
+				
+
 			+ Plataformas
 			
 				+ iOS
