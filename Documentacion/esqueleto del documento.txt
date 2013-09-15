@@ -1,0 +1,76 @@
+﻿
+### ESQUELETO DEL DOCUMENTO FINAL ###
+
+[INTRODUCCION AL DOCUMENTO]
+	+ Portada
+
+	+ Página de aprobación
+
+	+ Índice
+
+	+ Resumen
+
+	+ Palabras clave
+	
+	+ Tabla de cuadros e ilustraciones
+	
+
+[DESARROLLO DEL DOCUMENTO]
+	
+	+ Introducción	
+		
+		+ Generalidades
+		
+		+ Antecedentes
+		
+		+ Objetivos del proyecto
+		
+		+ Organización del documento
+	
+	+ Estado del arte
+		
+		+ Market places
+			
+			+ Generalidades
+			
+			+ Comercio Electronico
+			
+			+ Casos de estudio
+				
+				+ Amazon MarketPlace
+				
+				+ Google Play Store
+				
+				+ PedidosYa
+				
+		+ Smartdevices
+			
+			+ Generalidades
+			
+			+ Casos de estudio
+				
+				+ Google Play
+				
+				+
+				
+
+			+ Plataformas
+			
+				+ iOS
+				
+				+ Windows Phone
+				
+				+ Android
+			
+	
+	+ Conclusiones
+	
+	+ Bibliografía
+	
+	+ Notas
+	
+	+ Glosario
+	
+	+ Anexos
+	
+	

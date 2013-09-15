@@ -1,0 +1,78 @@
+
+
+
+
+- Sacar el punteo.... redactar
+
+- Nombres propios, empresas, cualkier cosa identificable con referencia.
+
+- Alguna informacion sobre las persona
+
+- Palabras en ingles concursiva
+
+- Sobre marketplaces, menos particular y mas generales
+
+- Sacar principales problemas encontrados
+
+- retocar redaccion
+
+- link a cada empresa nombrada
+
+- poner datos en las imagenes
+
+- Definiciones en el glosario
+
+- buscar en NIST defe
+
+- chequear formato de bibliografia
+
+- imgenes entre parrafos, no embebida
+
+- argumentar el por que de las fotos
+
+- coherencia en los datos (modelos de negocio)
+
+- imagenes en Ingles
+
+- evaluar el como encarar el tema (desde uruguay para afuera o desde afuera hacia uruguay)
+
+- Hacer los pasajes entre los diferentes temas tratados
+
+- Linea de tiempo
+
+- hablar generalidades sobre maketplaces en moviles
+	- entrada en el comercio
+	- como influyen
+	- crecimiento de popularidad
+
+- priorizar 
+	- android
+	- ios
+	- windows phone
+	
+- para cada uno de los anteriores
+	- por que estan presentes como caso de estudio
+
+- agregar graficas para argumentar todo
+
+
+generalidades
+tecnicismos
+hasta el desarrollo y accesibilidad para el desarrollo
+nivel mas fino en caso android 
+	- arquitectura
+	- 
+	
+	
+- sacar generalidades de los casos particulares
+
+- plan de proyecto
+	- en que vamos a avanzar en las dos primeras semanas del desarrollo
+	
+- JavaEE como plataforma para desarrollar marketplaces
+
+- leer sobre GIT y su uso posta
+
+- hacer formulario para registro de horas dedicadas en google excel
+
+- 
