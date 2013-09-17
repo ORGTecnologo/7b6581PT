@@ -11,3 +11,16 @@ Command-line arguments:  -data /home/mauricio/GitHub/7b6581PT/Implementacion/Mod
 
 !ENTRY org.savara.tools.common 4 0 2013-09-15 02:27:28.950
 !MESSAGE startup class must implement org.eclipse.ui.IStartup
+!SESSION 2013-09-15 21:23:20.606 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_UY
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.ui 4 4 2013-09-15 21:23:51.711
+!MESSAGE Bad extension specification
+
+!ENTRY org.savara.tools.common 4 0 2013-09-15 21:23:51.784
+!MESSAGE startup class must implement org.eclipse.ui.IStartup

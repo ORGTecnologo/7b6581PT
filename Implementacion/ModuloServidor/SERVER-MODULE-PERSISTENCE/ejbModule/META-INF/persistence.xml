@@ -5,6 +5,7 @@
       	<jta-data-source>java:jboss/postgresDS</jta-data-source>
       	
 		<class>tecinf.persistencia.entities.UsuarioEntity</class>
+		<class>tecinf.persistencia.entities.RolEntity</class>
 		
 		<properties>
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
