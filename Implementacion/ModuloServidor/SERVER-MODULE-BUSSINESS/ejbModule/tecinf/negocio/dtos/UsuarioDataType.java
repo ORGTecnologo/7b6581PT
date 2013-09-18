@@ -1,6 +1,10 @@
 package tecinf.negocio.dtos;
 
-public class UsuarioDataType {
+import java.io.Serializable;
+
+public class UsuarioDataType implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private String usuario;
 	private String contrasenia;

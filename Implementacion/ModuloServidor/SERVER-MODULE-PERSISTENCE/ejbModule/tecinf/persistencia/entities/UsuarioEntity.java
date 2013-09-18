@@ -19,8 +19,10 @@ import javax.persistence.Table;
 @NamedQueries( {
 	
 	@NamedQuery(name = "UsuarioEntity.findAll", 
-			query = "SELECT e FROM UsuarioEntity e " +
-					"ORDER BY e.usuario") ,
+			query = "SELECT e FROM UsuarioEntity e ORDER BY e.usuario") ,
+					
+	@NamedQuery(name = "UsuarioEntity.findById", 
+		query = "SELECT e FROM UsuarioEntity e WHERE e.usuario = :id") ,
 })
 
 

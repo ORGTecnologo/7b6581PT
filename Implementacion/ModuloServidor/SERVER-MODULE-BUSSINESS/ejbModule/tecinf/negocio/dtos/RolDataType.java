@@ -1,6 +1,10 @@
 package tecinf.negocio.dtos;
 
-public class RolDataType {
+import java.io.Serializable;
+
+public class RolDataType implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private String descripcion;

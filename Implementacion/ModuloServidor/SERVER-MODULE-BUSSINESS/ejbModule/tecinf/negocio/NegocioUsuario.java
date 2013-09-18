@@ -11,4 +11,6 @@ public interface NegocioUsuario {
 	
 	public List<UsuarioDataType> obtenerTodos();
 	
+	public void modificarUsuario(UsuarioDataType u) throws Exception;
+	
 }
