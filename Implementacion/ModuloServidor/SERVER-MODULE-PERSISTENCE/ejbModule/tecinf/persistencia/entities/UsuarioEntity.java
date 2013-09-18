@@ -1,16 +1,33 @@
 package tecinf.persistencia.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
+
 @Entity
 @Table(name="usuarios")
-public class UsuarioEntity {
+
+@NamedQueries( {
 	
+	@NamedQuery(name = "UsuarioEntity.findAll", 
+			query = "SELECT e FROM UsuarioEntity e " +
+					"ORDER BY e.usuario") ,
+})
+
+
+public class UsuarioEntity implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name="usuario", length=30)
 	private String usuario;
@@ -24,8 +41,8 @@ public class UsuarioEntity {
 	@Column(name="apellidos",length=100)
 	private String apellidos;
 	
-	@OneToOne
-	@Column(name="id_rol")
+	@OneToOne()
+	@JoinColumn(name="id_rol", nullable=false)
 	private RolEntity rol;
 	
 	public String getUsuario() {
