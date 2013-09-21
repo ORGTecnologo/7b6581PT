@@ -75,19 +75,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td>PELO</td>
-					<td>ALE</td>
-					<td>FONTES</td>
-					<td>CAPO</td>
-				</tr>	
-				<tr>
-					<td>PELO</td>
-					<td>ALE</td>
-					<td>FONTES</td>
-					<td>CAPO</td>
-				</tr>				
-<!-- ESTO ES LO QUE CARGO MEDIANTE JAVASCRIPT -->
+			<!-- ESTO ES LO QUE CARGO MEDIANTE JAVASCRIPT -->
 			</tbody>
 		</table>
 	</div>
