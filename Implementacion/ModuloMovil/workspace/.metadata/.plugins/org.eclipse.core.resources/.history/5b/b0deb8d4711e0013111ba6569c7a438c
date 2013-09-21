@@ -1,0 +1,33 @@
+package com.desarrollog4.proyecto;
+
+import org.w3c.dom.Text;
+
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.Menu;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+public class MainActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		LinearLayout linearlayout= new LinearLayout(this);
+		TextView textview= new TextView(this);
+		textview.setText(R.string.hello_world);
+		linearlayout.addView(textview);
+		
+		setContentView(linearlayout);
+		//setContentView(R.layout.activity_main);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+}
