@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SERVER-MODULE">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="SERVER-MODULE-PERSISTENCE.jar" deploy-path="/" handle="module:/resource/SERVER-MODULE-PERSISTENCE/SERVER-MODULE-PERSISTENCE">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="SERVER-MODULE-SERVICES.war" deploy-path="/" handle="module:/resource/SERVER-MODULE-SERVICES/SERVER-MODULE-SERVICES">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

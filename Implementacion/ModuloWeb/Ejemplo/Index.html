@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es" style="background-color: black;">
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta charset="utf-8">
+<title>Proyecto Tecnologo</title>
+
+<head>
+<script type="text/javascript" src='jquery-1.10.1.min.js'></script>
+<script type="text/javascript" src='demo.js'></script>
+<link rel="stylesheet" href="animations.css">
+<style type="text/css">
+	html {
+		height: 100%;
+		width: 100%;
+	}
+	body {
+		font-family: 'PT Sans', Tahoma, Arial, serif; line-height: 13px
+	}
+
+	#object{
+		visibility: hidden;
+	}
+
+	#Naranja{
+		max-width: 10%;
+	}
+
+	th {
+		background: brown;
+		text-decoration-color: inherit;
+	}
+
+	td {
+		background: darkgray;
+		font-family: monospace;
+		text-align: center;
+	}
+</style>
+
+<script>
+	$(window).scroll(function() {
+		$('#object').each(function(){
+		var imagePos = $(this).offset().top;
+
+		var topOfWindow = $(window).scrollTop();
+			if (imagePos < topOfWindow+400) {
+				$(this).addClass("slideUp");
+			}
+		});
+	});	
+</script>
+</head>
+
+<body>
+</body>
+	<img id="object" class="bigEntrance" src="Naranja.jpg"><p style="color: bisque;font-size: xx-large;">Proyecto Tecnologo V0.1</p>
+	<div id="pendorcho_tabla">
+		<a href="#" onclick="actualizarTabla();" style="color: green;">Actualizar Tabla de Usuarios</a> 
+		<a href="#" onclick="guardarCambios();" style="color: yellow;">Guardar Cambios</a>
+		<br>
+		<table id="usersTable">
+			<br>
+			<colgroup>
+				<col class="nick" />
+				<col class="nombre" />
+				<col class="apellido" />
+				<col class="descripcion" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th>USUARIO</th>
+					<th>NOMBRE</th>
+					<th>APELLIDO</th>
+					<th>DESCRIPCION</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!-- ESTO ES LO QUE CARGO MEDIANTE JAVASCRIPT -->
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
