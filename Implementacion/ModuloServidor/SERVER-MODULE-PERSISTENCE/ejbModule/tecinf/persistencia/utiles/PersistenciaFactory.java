@@ -2,6 +2,8 @@ package tecinf.persistencia.utiles;
 
 import java.util.Hashtable;
 
+import tecinf.persistencia.daos.ParametroValorDao;
+import tecinf.persistencia.daos.ParametroValorDaoImpl;
 import tecinf.persistencia.daos.RolDao;
 import tecinf.persistencia.daos.RolDaoImpl;
 import tecinf.persistencia.daos.UsuarioDao;
@@ -22,6 +24,11 @@ public class PersistenciaFactory {
 		return (RolDao) lookup(RolDaoImpl.class.getSimpleName(),RolDao.class.getName());
 	}
 	
+	public static ParametroValorDao getParametroValorDao() throws NamingException{
+		return (ParametroValorDao) lookup(ParametroValorDaoImpl.class.getSimpleName(),ParametroValorDao.class.getName());
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static Object lookup(String beanName, String viewClassName) throws NamingException{
 		final Hashtable jndiProperties = new Hashtable();
 		jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");

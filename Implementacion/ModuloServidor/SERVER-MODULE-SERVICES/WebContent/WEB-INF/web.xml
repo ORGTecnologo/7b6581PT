@@ -15,7 +15,7 @@
 	</context-param>
  
 	<listener>
-		<listener-class>
+		<listener-class> 
 			org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap
 		</listener-class>
 	</listener>
@@ -31,14 +31,5 @@
 		<servlet-name>resteasy-servlet</servlet-name>
 		<url-pattern>/restws/*</url-pattern>
 	</servlet-mapping>
-  
-  
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-  </welcome-file-list>
+  	
 </web-app>
