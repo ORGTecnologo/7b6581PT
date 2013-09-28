@@ -1,0 +1,43 @@
+
+- no usar Marketplace, usar sistema.
+
+- login con facebook, twitter.
+
+- formas de pagos: paypal
+
+- casos de uso:
+	- abm de administradores
+	- abm proveedores
+	- abm 
+
+- el proveedor puede sugerir precios y lo calculamos (tanto cuando quiere cobrar el, como lo que quiere que le salga al usuario cliente).
+
+- Calificacion de proveedores
+
+- Sistema de reclamos: el administrador podra ver reclamos sobre productos
+
+- El administrador debe aprobar los contenidos a subir
+
+- Reclamos:
+	- mal funcionamiento
+	- contenido inapropiado
+
+- Twiter Boostrap
+
+- El proveedor deberá tener un contacto tecnico.
+
+- posibilidad de promociones
+
+- Los usuarios podran preguntar sobre productos que los usuarios ya compradores de el producto en cuestion, podran responder.
+
+- todos los diagramas y contratos casos de uso de uso considerando los flujos principales.
+
+- integracion con facebook para compartir contenidos.
+
+- poner timestamp para sesion de aplicacion android
+
+- primer quincena de octubre los casos de uso mas importantes IMPLEMENTADOS.
+
+- hacer documentos de etapa de análisis.
+
+- 
