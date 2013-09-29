@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/application_6.xsd" version="6">
+  <display-name>SERVER-MODULE</display-name>
+  <module>
+    <ejb>SERVER-MODULE-PERSISTENCE.jar</ejb>
+  </module>
+  <module>
+    <ejb>SERVER-MODULE-BUSSINESS.jar</ejb>
+  </module>
+  <module>
+    <web>
+      <web-uri>SERVER-MODULE-SERVICES.war</web-uri>
+      <context-root>SERVER-MODULE-SERVICES</context-root>
+    </web>
+  </module>
+  <module>
+    <web>
+      <web-uri>SERVER-MODULE-PRESENTATION.war</web-uri>
+      <context-root>SERVER-MODULE-PRESENTATION</context-root>
+    </web>
+  </module>
+</application>
