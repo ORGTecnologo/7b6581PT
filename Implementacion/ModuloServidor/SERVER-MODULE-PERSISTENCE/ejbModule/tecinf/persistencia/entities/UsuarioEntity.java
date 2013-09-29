@@ -1,6 +1,7 @@
 package tecinf.persistencia.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,10 +43,23 @@ public class UsuarioEntity implements Serializable {
 
 	@Column(name="apellidos",length=100)
 	private String apellidos;
+
+	@Column(name="fecha_nacimiento")
+	private Date fechaNacimiento;
 	
-	@OneToOne()
-	@JoinColumn(name="id_rol", nullable=false)
-	private RolEntity rol;
+	@Column(name="telefono_movil")
+	private String telefonoMovil;
+	
+	@Column(name="correo_electronico",nullable=false)
+	private String correoElectronico;
+	
+	@OneToOne
+	@JoinColumn(name="id_sexo",nullable=false)
+	private SexoUsuarioEntity sexo;
+	
+	@OneToOne
+	@JoinColumn(name="id_estado",nullable=false)
+	private EstadoUsuarioEntity estadoUsuario;
 	
 	public String getUsuario() {
 		return usuario;
@@ -53,14 +67,6 @@ public class UsuarioEntity implements Serializable {
 
 	public void setUsuario(String usuario) {
 		this.usuario = usuario;
-	}
-
-	public String getNombres() {
-		return nombres;
-	}
-
-	public void setNombres(String nombres) {
-		this.nombres = nombres;
 	}
 
 	public String getContrasenia() {
@@ -71,20 +77,48 @@ public class UsuarioEntity implements Serializable {
 		this.contrasenia = contrasenia;
 	}
 
+	public String getNombres() {
+		return nombres;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
+
 	public String getApellidos() {
 		return apellidos;
 	}
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
+	}	
+
+	public SexoUsuarioEntity getSexo() {
+		return sexo;
 	}
 
-	public RolEntity getRol() {
-		return rol;
+	public void setSexo(SexoUsuarioEntity sexo) {
+		this.sexo = sexo;
 	}
 
-	public void setRol(RolEntity rol) {
-		this.rol = rol;
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public String getTelefonoMovil() {
+		return telefonoMovil;
+	}
+
+	public void setTelefonoMovil(String telefonoMovil) {
+		this.telefonoMovil = telefonoMovil;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 			
 }

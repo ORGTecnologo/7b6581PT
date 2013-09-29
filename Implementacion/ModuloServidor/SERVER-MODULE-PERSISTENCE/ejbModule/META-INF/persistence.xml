@@ -6,8 +6,14 @@
       	<jta-data-source>java:jboss/postgresDS</jta-data-source>
       	
 		<class>tecinf.persistencia.entities.UsuarioEntity</class>
-		<class>tecinf.persistencia.entities.RolEntity</class>
 		<class>tecinf.persistencia.entities.ParametroValorEntity</class>
+		<class>tecinf.persistencia.entities.SexoUsuarioEntity</class>
+		<class>tecinf.persistencia.entities.UsuarioClienteEntity</class>
+		<class>tecinf.persistencia.entities.TipoRegistroEntity</class>
+		<class>tecinf.persistencia.entities.AuditoriaEntity</class>
+		<class>tecinf.persistencia.entities.AuditoriaOperacion</class>
+		<class>tecinf.persistencia.entities.UsuarioProveedorEntity</class>
+		<class>tecinf.persistencia.entities.EstadoUsuarioEntity</class>
 		
 		<properties>
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
@@ -15,7 +21,8 @@
 			<property name="hibernate.jdbc.batch_size" value="50" />
 			<property name="hibernate.order_inserts" value="true" />
 			<property name="hibernate.order_updates" value="true" />
-         	<property name="hibernate.hbm2ddl.auto" value="update"/>
+         	<!--  <property name="hibernate.hbm2ddl.auto" value="update"/>  -->
+         	<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
       	</properties>
 	</persistence-unit>
 </persistence>
