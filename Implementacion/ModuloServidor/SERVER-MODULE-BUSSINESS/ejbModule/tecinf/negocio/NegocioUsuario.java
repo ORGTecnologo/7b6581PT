@@ -13,4 +13,6 @@ public interface NegocioUsuario {
 	
 	public void modificarUsuario(UsuarioDataType u) throws Exception;
 	
+	public Boolean loginUsuario(String usuario, String contrasenia);
+	
 }

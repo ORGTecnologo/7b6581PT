@@ -59,5 +59,10 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		
 	}
 	
+	public Boolean loginUsuario(String usuario, String contrasenia){
+		
+		
+		return true;
+	}
 	
 }
