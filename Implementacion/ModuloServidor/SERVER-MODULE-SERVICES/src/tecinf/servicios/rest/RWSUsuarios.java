@@ -45,6 +45,8 @@ public class RWSUsuarios {
 	public String login(LoginDataType dt) throws NamingException { 
 		Gson gson = new Gson();
 		
+		//Cambio
+		
 		NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
 		if (negocioUsuario.loginUsuario(dt.getUsuario(), dt.getContrasenia()))
 			return gson.toJson(EnumRespuestas.RESPUESTA_OK);
