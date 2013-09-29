@@ -45,7 +45,7 @@ public class RWSUsuarios {
 	public String login(LoginDataType dt) throws NamingException { 
 		Gson gson = new Gson();
 		
-		//Cambio
+		//Cambio otro cambio
 		
 		NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
 		if (negocioUsuario.loginUsuario(dt.getUsuario(), dt.getContrasenia()))
