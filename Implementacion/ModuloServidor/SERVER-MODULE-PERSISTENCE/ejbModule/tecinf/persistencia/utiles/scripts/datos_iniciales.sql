@@ -32,3 +32,7 @@ Insert into auditoria_operacion (id , descripcion) values (3 , 'Alta');
 Insert into auditoria_operacion (id , descripcion) values (4 , 'Baja');
 Insert into auditoria_operacion (id , descripcion) values (5 , 'Modificación');
 Insert into auditoria_operacion (id , descripcion) values (6 , 'Publicación');
+
+-- Objetos definidos para la auditoria
+Insert into auditoria_objeto (id , descripcion) values (1 , 'Usuario');
+Insert into auditoria_objeto (id , descripcion) values (2 , 'Contenido');

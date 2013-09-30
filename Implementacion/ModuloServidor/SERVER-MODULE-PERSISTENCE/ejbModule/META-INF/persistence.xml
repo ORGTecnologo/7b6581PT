@@ -18,6 +18,10 @@
 		<class>tecinf.persistencia.entities.CategoriaReclamoEntity</class>
 		<class>tecinf.persistencia.entities.ReclamoEntity</class>
 		<class>tecinf.persistencia.entities.PromocionEntity</class>
+		<class>tecinf.persistencia.entities.EstadoVersionContenidoEntity</class>
+		<class>tecinf.persistencia.entities.CategoriaContenidoEntity</class>
+		<class>tecinf.persistencia.entities.ContenidoEntity</class>
+		<class>tecinf.persistencia.entities.SubCategoriaContenido</class>
 		
 		<properties>
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
@@ -26,7 +30,7 @@
 			<property name="hibernate.order_inserts" value="true" />
 			<property name="hibernate.order_updates" value="true" />
          	<!--  <property name="hibernate.hbm2ddl.auto" value="update"/>  -->
-         	<property name="hibernate.hbm2ddl.auto" value="update"/>
+         	<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
       	</properties>
 	</persistence-unit>
 </persistence>
