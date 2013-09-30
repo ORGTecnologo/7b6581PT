@@ -11,9 +11,13 @@
 		<class>tecinf.persistencia.entities.UsuarioClienteEntity</class>
 		<class>tecinf.persistencia.entities.TipoRegistroEntity</class>
 		<class>tecinf.persistencia.entities.AuditoriaEntity</class>
-		<class>tecinf.persistencia.entities.AuditoriaOperacion</class>
+		<class>tecinf.persistencia.entities.AuditoriaOperacionEntity</class>
 		<class>tecinf.persistencia.entities.UsuarioProveedorEntity</class>
 		<class>tecinf.persistencia.entities.EstadoUsuarioEntity</class>
+		<class>tecinf.persistencia.entities.AuditoriaObjetoEntity</class>
+		<class>tecinf.persistencia.entities.CategoriaReclamoEntity</class>
+		<class>tecinf.persistencia.entities.ReclamoEntity</class>
+		<class>tecinf.persistencia.entities.PromocionEntity</class>
 		
 		<properties>
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
@@ -22,7 +26,7 @@
 			<property name="hibernate.order_inserts" value="true" />
 			<property name="hibernate.order_updates" value="true" />
          	<!--  <property name="hibernate.hbm2ddl.auto" value="update"/>  -->
-         	<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+         	<property name="hibernate.hbm2ddl.auto" value="update"/>
       	</properties>
 	</persistence-unit>
 </persistence>
