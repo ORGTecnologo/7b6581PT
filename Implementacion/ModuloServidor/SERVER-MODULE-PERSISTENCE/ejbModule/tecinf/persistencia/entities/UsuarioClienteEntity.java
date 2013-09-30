@@ -1,5 +1,7 @@
 package tecinf.persistencia.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -15,8 +17,10 @@ import javax.persistence.Table;
 @NamedQueries( {
 	
 })
-public class UsuarioClienteEntity {
+public class UsuarioClienteEntity implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@Column(name="id")
 	private String id;
@@ -29,10 +33,10 @@ public class UsuarioClienteEntity {
 	@JoinColumn(nullable=false)
 	private TipoRegistroEntity tipoRegistro;
 	
-	@Column(name="ruta_imagen_perfil")
+	@Column(name="ruta_imagen_perfil", length=255)
 	private String rutaImagenPerfil;
 	
-	@Column(name="sitio_web")
+	@Column(name="sitio_web", length=100, nullable=false)
 	private String sitioWeb;
 
 	public String getId() {

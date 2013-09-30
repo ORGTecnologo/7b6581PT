@@ -35,13 +35,13 @@ public class UsuarioEntity implements Serializable {
 	@Column(name="usuario", length=30)
 	private String usuario;
 	
-	@Column(name="contrasenia",length=40)
+	@Column(name="contrasenia",length=40, nullable=false)
 	private String contrasenia;
 	
-	@Column(name="nombres",length=100)
+	@Column(name="nombres",length=100, nullable=false)
 	private String nombres;
 
-	@Column(name="apellidos",length=100)
+	@Column(name="apellidos",length=100, nullable=false)
 	private String apellidos;
 
 	@Column(name="fecha_nacimiento")

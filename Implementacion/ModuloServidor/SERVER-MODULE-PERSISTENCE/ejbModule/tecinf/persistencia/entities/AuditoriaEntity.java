@@ -1,5 +1,6 @@
 package tecinf.persistencia.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,10 +16,11 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="auditoria")
-public class AuditoriaEntity {
+public class AuditoriaEntity implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
-	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator =	"auditoria_secuencia") 
 	@SequenceGenerator(name = "auditoria_secuencia", sequenceName = "auditoria_seq", allocationSize = 1)
 	private Integer id;
@@ -32,7 +34,11 @@ public class AuditoriaEntity {
 	
 	@OneToOne
 	@JoinColumn(name="id_operacion",nullable=false)
-	private AuditoriaOperacion operacion;
+	private AuditoriaOperacionEntity operacion;
+	
+	@OneToOne
+	@JoinColumn(name="id_objeto",nullable=false)
+	private AuditoriaObjetoEntity objeto;
 	
 	
 }

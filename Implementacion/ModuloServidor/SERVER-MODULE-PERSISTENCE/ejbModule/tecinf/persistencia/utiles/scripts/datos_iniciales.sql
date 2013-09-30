@@ -24,3 +24,11 @@ Insert into estados_usuario (id , descripcion) values ('R', 'Rechazado');
 insert into sexo_usuario(id,descripcion) values (1,'Masculino');
 insert into sexo_usuario(id,descripcion) values (2,'Femenino');
 insert into sexo_usuario(id,descripcion) values (3,'NoSabeNoContesta');
+
+-- Operaciones definidas para la auditoria
+Insert into auditoria_operacion (id , descripcion) values (1 , 'Login');
+Insert into auditoria_operacion (id , descripcion) values (2 , 'Logout');
+Insert into auditoria_operacion (id , descripcion) values (3 , 'Alta');
+Insert into auditoria_operacion (id , descripcion) values (4 , 'Baja');
+Insert into auditoria_operacion (id , descripcion) values (5 , 'Modificación');
+Insert into auditoria_operacion (id , descripcion) values (6 , 'Publicación');

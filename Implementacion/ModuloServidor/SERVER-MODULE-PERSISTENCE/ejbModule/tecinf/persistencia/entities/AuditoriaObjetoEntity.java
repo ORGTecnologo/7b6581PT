@@ -1,18 +1,22 @@
 package tecinf.persistencia.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="auditoria_operacion")
-public class AuditoriaOperacion {
+@Table(name="auditoria_objeto")
+public class AuditoriaObjetoEntity implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	private Integer id;
 	
-	@Column(name="descripcion")
+	@Column(name="descripcion", length=50, nullable=false)
 	private String descripcion;
 
 	public String getDescripcion() {
@@ -30,5 +34,6 @@ public class AuditoriaOperacion {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-		
+	
+	
 }

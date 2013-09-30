@@ -1,5 +1,7 @@
 package tecinf.persistencia.entities;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,12 +9,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="tipos_registro")
-public class TipoRegistroEntity {
-	
+public class TipoRegistroEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	private Integer id;
 	
-	@Column(nullable=false)
+	@Column(name="descripcion",nullable=false, length=50)
 	private String descripcion;
 
 	public Integer getId() {
