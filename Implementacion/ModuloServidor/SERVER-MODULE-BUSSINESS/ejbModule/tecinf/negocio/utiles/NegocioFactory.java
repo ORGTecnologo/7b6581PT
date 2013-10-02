@@ -15,7 +15,8 @@ public class NegocioFactory {
 		return (NegocioUsuario)lookup(NegocioUsuarioImpl.class.getSimpleName(), NegocioUsuario.class.getName());
 	}
 	
-	private static Object lookup(String beanName, String viewClassName) throws NamingException{
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	private static Object lookup(String beanName, String viewClassName) throws NamingException{		
 		final Hashtable jndiProperties = new Hashtable();
 		jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
 		final Context context = new InitialContext(jndiProperties);		 

@@ -8,9 +8,7 @@ import javax.naming.NamingException;
 
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.utiles.DataTypesFactory;
-import tecinf.persistencia.daos.RolDao;
 import tecinf.persistencia.daos.UsuarioDao;
-import tecinf.persistencia.entities.RolEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.utiles.PersistenciaFactory;
 
@@ -18,12 +16,10 @@ import tecinf.persistencia.utiles.PersistenciaFactory;
 public class NegocioUsuarioImpl implements NegocioUsuario  {
 	
 	private UsuarioDao usuarioDao = null;
-	private RolDao rolDao = null;
 	
 	public NegocioUsuarioImpl() throws NamingException{
 		
 		usuarioDao = PersistenciaFactory.getUsuarioDao();
-		rolDao = PersistenciaFactory.getRolDao();
 		
 	}
 	
@@ -46,11 +42,6 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		if (ue == null)
 			throw new Exception("El usuario no existe");
 		
-		RolEntity re = (u.getRol() == null ? null : rolDao.findById(u.getRol().getId()) );
-		if (re == null)
-			throw new Exception("El rol no existe");
-		
-		ue.setRol(re);
 		ue.setApellidos(u.getApellidos());
 		ue.setContrasenia(u.getContrasenia());
 		ue.setNombres(u.getNombres());
@@ -59,5 +50,10 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		
 	}
 	
+	public Boolean loginUsuario(String usuario, String contrasenia){
+		
+		
+		return true;
+	}
 	
 }
