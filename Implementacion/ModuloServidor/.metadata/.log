@@ -5161,3 +5161,1474 @@ java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/Mod
 
 !ENTRY org.eclipse.emf.common.ui 2 0 2013-09-18 21:03:20.691
 !MESSAGE Failed to create image directory /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.emf.common.ui/emf-common-ui-images
+!SESSION 2013-09-28 15:16:28.032 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -data /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.ui 4 4 2013-09-28 15:16:41.839
+!MESSAGE Bad extension specification
+
+!ENTRY org.savara.tools.common 4 0 2013-09-28 15:16:41.855
+!MESSAGE startup class must implement org.eclipse.ui.IStartup
+
+!ENTRY org.eclipse.wst.sse.core 2 2 2013-09-28 15:16:46.924
+!MESSAGE Could not write task tags scanned list to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+
+!ENTRY org.eclipse.wst.sse.core 2 2 2013-09-28 15:16:47.695
+!MESSAGE Could not write task tags scanned list to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+
+!ENTRY org.eclipse.wst.sse.core 2 2 2013-09-28 15:16:48.345
+!MESSAGE Could not write task tags scanned list to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+
+!ENTRY org.eclipse.wst.sse.core 2 2 2013-09-28 15:16:48.356
+!MESSAGE Could not write task tags scanned list to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+
+!ENTRY org.eclipse.wst.xml.core 4 4 2013-09-28 15:16:48.609
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.xml.core/default_catalog.xml (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.xml.core/default_catalog.xml (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogWriter.getOutputStream(CatalogWriter.java:349)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogWriter.write(CatalogWriter.java:54)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog$CatalogLS.save(Catalog.java:54)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog$DefaultCatalogLS.load(Catalog.java:81)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog.load(Catalog.java:654)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogSet.lookupOrCreateCatalog(CatalogSet.java:41)
+	at org.eclipse.wst.xml.core.internal.XMLCorePlugin.getDefaultXMLCatalog(XMLCorePlugin.java:77)
+	at org.eclipse.wst.xml.core.internal.catalog.XMLCatalogURIResolverExtension.resolve(XMLCatalogURIResolverExtension.java:35)
+	at org.eclipse.wst.common.uriresolver.internal.ExtensibleURIResolver.resolve(ExtensibleURIResolver.java:85)
+	at org.eclipse.wst.xml.core.internal.validation.ValidatorHelper$MyContentHandler.startElement(ValidatorHelper.java:286)
+	at org.apache.xerces.parsers.AbstractSAXParser.startElement(Unknown Source)
+	at org.apache.xerces.impl.dtd.XMLDTDValidator.startElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentScannerImpl$ContentDispatcher.scanRootElementHook(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.eclipse.wst.xml.core.internal.validation.ValidatorHelper.computeValidationInformation(ValidatorHelper.java:164)
+	at org.eclipse.wst.xml.core.internal.validation.XMLValidator.validate(XMLValidator.java:333)
+	at org.eclipse.wst.xml.core.internal.validation.eclipse.Validator.validate(Validator.java:93)
+	at org.eclipse.wst.xml.core.internal.validation.core.AbstractNestedValidator.validate(AbstractNestedValidator.java:281)
+	at org.eclipse.wst.xml.core.internal.validation.core.AbstractNestedValidator.validate(AbstractNestedValidator.java:86)
+	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
+	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:810)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:327)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:69)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:49)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.deltaBuild(ValBuilderJob.java:211)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:179)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.wst.xml.core 4 4 2013-09-28 15:16:48.918
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.xml.core/system_catalog.xml (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.xml.core/system_catalog.xml (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogWriter.getOutputStream(CatalogWriter.java:349)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogWriter.write(CatalogWriter.java:54)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog$CatalogLS.save(Catalog.java:54)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog$SystemCatalogLS.load(Catalog.java:398)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog.load(Catalog.java:654)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogSet.lookupOrCreateCatalog(CatalogSet.java:41)
+	at org.eclipse.wst.xml.core.internal.catalog.NextCatalog.getReferencedCatalog(NextCatalog.java:42)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog.resolveSubordinateCatalogs(Catalog.java:724)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog$InternalResolver.resolveSystem(Catalog.java:295)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog.resolveSystem(Catalog.java:753)
+	at org.eclipse.wst.xml.core.internal.catalog.XMLCatalogURIResolverExtension.resolve(XMLCatalogURIResolverExtension.java:46)
+	at org.eclipse.wst.common.uriresolver.internal.ExtensibleURIResolver.resolve(ExtensibleURIResolver.java:85)
+	at org.eclipse.wst.xml.core.internal.validation.ValidatorHelper$MyContentHandler.startElement(ValidatorHelper.java:286)
+	at org.apache.xerces.parsers.AbstractSAXParser.startElement(Unknown Source)
+	at org.apache.xerces.impl.dtd.XMLDTDValidator.startElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentScannerImpl$ContentDispatcher.scanRootElementHook(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.eclipse.wst.xml.core.internal.validation.ValidatorHelper.computeValidationInformation(ValidatorHelper.java:164)
+	at org.eclipse.wst.xml.core.internal.validation.XMLValidator.validate(XMLValidator.java:333)
+	at org.eclipse.wst.xml.core.internal.validation.eclipse.Validator.validate(Validator.java:93)
+	at org.eclipse.wst.xml.core.internal.validation.core.AbstractNestedValidator.validate(AbstractNestedValidator.java:281)
+	at org.eclipse.wst.xml.core.internal.validation.core.AbstractNestedValidator.validate(AbstractNestedValidator.java:86)
+	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
+	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:810)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:327)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:69)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:49)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.deltaBuild(ValBuilderJob.java:211)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:179)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.egit.core 4 4 2013-09-28 15:17:35.034
+!MESSAGE Could not delete file /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PRESENTATION/org.eclipse.egit.core
+!STACK 0
+java.io.IOException: Could not delete file /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PRESENTATION/org.eclipse.egit.core
+	at org.eclipse.jgit.util.FileUtils.delete(FileUtils.java:180)
+	at org.eclipse.egit.core.project.GitProjectData.deletePropertyFiles(GitProjectData.java:384)
+	at org.eclipse.egit.core.project.GitProjectData.delete(GitProjectData.java:225)
+	at org.eclipse.egit.core.op.ConnectProviderOperation.execute(ConnectProviderOperation.java:129)
+	at org.eclipse.egit.core.internal.job.JobUtil$1.run(JobUtil.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.egit.core 4 0 2013-09-28 15:17:35.034
+!MESSAGE Saving Git team provider data to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PRESENTATION/org.eclipse.egit.core/GitProjectData.properties failed.
+!STACK 1
+org.eclipse.core.runtime.CoreException: Saving Git team provider data to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PRESENTATION/org.eclipse.egit.core/GitProjectData.properties failed.
+	at org.eclipse.egit.core.project.GitProjectData.store(GitProjectData.java:429)
+	at org.eclipse.egit.core.op.ConnectProviderOperation.execute(ConnectProviderOperation.java:125)
+	at org.eclipse.egit.core.internal.job.JobUtil$1.run(JobUtil.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.io.IOException: No existe el archivo o el directorio
+	at java.io.UnixFileSystem.createFileExclusively(Native Method)
+	at java.io.File.createTempFile(File.java:1879)
+	at org.eclipse.egit.core.project.GitProjectData.store(GitProjectData.java:401)
+	... 3 more
+!SUBENTRY 2 org.eclipse.egit.core 4 0 2013-09-28 15:17:35.035
+!MESSAGE Saving Git team provider data to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PRESENTATION/org.eclipse.egit.core/GitProjectData.properties failed.
+!STACK 0
+java.io.IOException: No existe el archivo o el directorio
+	at java.io.UnixFileSystem.createFileExclusively(Native Method)
+	at java.io.File.createTempFile(File.java:1879)
+	at org.eclipse.egit.core.project.GitProjectData.store(GitProjectData.java:401)
+	at org.eclipse.egit.core.op.ConnectProviderOperation.execute(ConnectProviderOperation.java:125)
+	at org.eclipse.egit.core.internal.job.JobUtil$1.run(JobUtil.java:50)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.core.resources 4 2 2013-09-28 15:17:35.035
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Problems while saving variables and containers
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3303)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3546)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/variablesAndContainers.dat (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3231)
+	... 9 more
+!SUBENTRY 1 org.eclipse.wst.jsdt.core 4 4 2013-09-28 15:17:35.035
+!MESSAGE Problems while saving variables and containers
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/variablesAndContainers.dat (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3231)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3546)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.wst.jsdt.core 4 4 2013-09-28 15:17:35.035
+!MESSAGE Problems while saving variables and containers
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/variablesAndContainers.dat (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3231)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3546)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.jdt.launching 4 4 2013-09-28 15:17:35.081
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jdt.launching/.install.xml (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jdt.launching/.install.xml (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin.writeInstallInfo(LaunchingPlugin.java:1079)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin.access$0(LaunchingPlugin.java:1051)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin$1.saving(LaunchingPlugin.java:544)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.core.resources 4 2 2013-09-28 15:17:35.085
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Problems while saving timestamps
+	at org.eclipse.jdt.internal.core.DeltaProcessingState.saveExternalLibTimeStamps(DeltaProcessingState.java:583)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4308)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+Caused by: java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.DeltaProcessingState.saveExternalLibTimeStamps(DeltaProcessingState.java:569)
+	... 9 more
+!SUBENTRY 1 org.eclipse.jdt.core 4 4 2013-09-28 15:17:35.085
+!MESSAGE Problems while saving timestamps
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.DeltaProcessingState.saveExternalLibTimeStamps(DeltaProcessingState.java:569)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4308)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+!SUBENTRY 1 org.eclipse.jdt.core 4 4 2013-09-28 15:17:35.085
+!MESSAGE Problems while saving timestamps
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jdt.core/externalLibsTimeStamps (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.DeltaProcessingState.saveExternalLibTimeStamps(DeltaProcessingState.java:569)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4308)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.core.resources 4 568 2013-09-28 15:17:35.090
+!MESSAGE Could not write metadata for '/'.
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.root/.markers.snap (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:136)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:45)
+	at org.eclipse.core.internal.localstore.SafeChunkyOutputStream.<init>(SafeChunkyOutputStream.java:41)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSnap(SaveManager.java:1709)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1167)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1109)
+	at org.eclipse.core.internal.resources.DelayedSnapshotJob.run(DelayedSnapshotJob.java:51)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.wst.common.modulecore 4 0 2013-09-28 15:17:36.170
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.common.modulecore/dependencyCache.index (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.common.modulecore/dependencyCache.index (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.common.componentcore.internal.builder.DependencyGraphImpl.persist(DependencyGraphImpl.java:903)
+	at org.eclipse.wst.common.componentcore.internal.builder.DependencyGraphImpl.access$9(DependencyGraphImpl.java:881)
+	at org.eclipse.wst.common.componentcore.internal.builder.DependencyGraphImpl$PersistJob$1.run(DependencyGraphImpl.java:860)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.wst.common.componentcore.internal.builder.DependencyGraphImpl$PersistJob.run(DependencyGraphImpl.java:858)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.epp.mpc.core 4 4 2013-09-28 15:17:51.483
+!MESSAGE Cannot parse XML at URL http://marketplace.eclipse.org/featured/api/p?product=org.eclipse.epp.package.jee.product&os=linux&runtime.version=3.9.0.v20130326-1255&client=org.eclipse.epp.mpc.core&java.version=1.7.0_25&product.version=2.0.0.20130613-0530&ws=gtk&platform.version=4.3.0.v20130605-2000&nl=es_ES
+!STACK 0
+org.xml.sax.SAXParseException; lineNumber: 1; columnNumber: 1; El contenido no está permitido en el prólogo.
+	at com.sun.org.apache.xerces.internal.parsers.AbstractSAXParser.parse(AbstractSAXParser.java:1236)
+	at com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser.parse(SAXParserImpl.java:568)
+	at org.eclipse.epp.internal.mpc.core.service.RemoteMarketplaceService.processRequest(RemoteMarketplaceService.java:148)
+	at org.eclipse.epp.internal.mpc.core.service.RemoteMarketplaceService.processRequest(RemoteMarketplaceService.java:80)
+	at org.eclipse.epp.internal.mpc.core.service.DefaultMarketplaceService.featured(DefaultMarketplaceService.java:327)
+	at org.eclipse.epp.internal.mpc.core.service.DefaultMarketplaceService.featured(DefaultMarketplaceService.java:305)
+	at org.eclipse.epp.internal.mpc.core.service.CachingMarketplaceService$3.doSearch(CachingMarketplaceService.java:140)
+	at org.eclipse.epp.internal.mpc.core.service.CachingMarketplaceService.performSearch(CachingMarketplaceService.java:120)
+	at org.eclipse.epp.internal.mpc.core.service.CachingMarketplaceService.featured(CachingMarketplaceService.java:137)
+	at org.eclipse.epp.internal.mpc.ui.catalog.MarketplaceDiscoveryStrategy.performDiscovery(MarketplaceDiscoveryStrategy.java:148)
+	at org.eclipse.equinox.internal.p2.discovery.Catalog.performDiscovery(Catalog.java:85)
+	at org.eclipse.epp.internal.mpc.ui.catalog.MarketplaceCatalog.performDiscovery(MarketplaceCatalog.java:276)
+	at org.eclipse.equinox.internal.p2.ui.discovery.wizards.CatalogViewer$6.run(CatalogViewer.java:569)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.equinox.p2.discovery 4 0 2013-09-28 15:17:53.972
+!MESSAGE MarketplaceDiscoveryStrategy failed with an error
+!STACK 1
+org.eclipse.core.runtime.CoreException: Cannot complete request to http://marketplace.eclipse.org/featured/api/p?product=org.eclipse.epp.package.jee.product&os=linux&runtime.version=3.9.0.v20130326-1255&client=org.eclipse.epp.mpc.core&java.version=1.7.0_25&product.version=2.0.0.20130613-0530&ws=gtk&platform.version=4.3.0.v20130605-2000&nl=es_ES: El contenido no está permitido en el prólogo.
+	at org.eclipse.epp.internal.mpc.core.service.RemoteMarketplaceService.processRequest(RemoteMarketplaceService.java:165)
+	at org.eclipse.epp.internal.mpc.core.service.RemoteMarketplaceService.processRequest(RemoteMarketplaceService.java:80)
+	at org.eclipse.epp.internal.mpc.core.service.DefaultMarketplaceService.featured(DefaultMarketplaceService.java:327)
+	at org.eclipse.epp.internal.mpc.core.service.DefaultMarketplaceService.featured(DefaultMarketplaceService.java:305)
+	at org.eclipse.epp.internal.mpc.core.service.CachingMarketplaceService$3.doSearch(CachingMarketplaceService.java:140)
+	at org.eclipse.epp.internal.mpc.core.service.CachingMarketplaceService.performSearch(CachingMarketplaceService.java:120)
+	at org.eclipse.epp.internal.mpc.core.service.CachingMarketplaceService.featured(CachingMarketplaceService.java:137)
+	at org.eclipse.epp.internal.mpc.ui.catalog.MarketplaceDiscoveryStrategy.performDiscovery(MarketplaceDiscoveryStrategy.java:148)
+	at org.eclipse.equinox.internal.p2.discovery.Catalog.performDiscovery(Catalog.java:85)
+	at org.eclipse.epp.internal.mpc.ui.catalog.MarketplaceCatalog.performDiscovery(MarketplaceCatalog.java:276)
+	at org.eclipse.equinox.internal.p2.ui.discovery.wizards.CatalogViewer$6.run(CatalogViewer.java:569)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Caused by: java.io.IOException: El contenido no está permitido en el prólogo.
+	at org.eclipse.epp.internal.mpc.core.service.RemoteMarketplaceService.processRequest(RemoteMarketplaceService.java:152)
+	... 11 more
+!SUBENTRY 1 org.eclipse.epp.mpc.core 4 0 2013-09-28 15:17:53.972
+!MESSAGE Cannot complete request to http://marketplace.eclipse.org/featured/api/p?product=org.eclipse.epp.package.jee.product&os=linux&runtime.version=3.9.0.v20130326-1255&client=org.eclipse.epp.mpc.core&java.version=1.7.0_25&product.version=2.0.0.20130613-0530&ws=gtk&platform.version=4.3.0.v20130605-2000&nl=es_ES: El contenido no está permitido en el prólogo.
+!STACK 0
+java.io.IOException: El contenido no está permitido en el prólogo.
+	at org.eclipse.epp.internal.mpc.core.service.RemoteMarketplaceService.processRequest(RemoteMarketplaceService.java:152)
+	at org.eclipse.epp.internal.mpc.core.service.RemoteMarketplaceService.processRequest(RemoteMarketplaceService.java:80)
+	at org.eclipse.epp.internal.mpc.core.service.DefaultMarketplaceService.featured(DefaultMarketplaceService.java:327)
+	at org.eclipse.epp.internal.mpc.core.service.DefaultMarketplaceService.featured(DefaultMarketplaceService.java:305)
+	at org.eclipse.epp.internal.mpc.core.service.CachingMarketplaceService$3.doSearch(CachingMarketplaceService.java:140)
+	at org.eclipse.epp.internal.mpc.core.service.CachingMarketplaceService.performSearch(CachingMarketplaceService.java:120)
+	at org.eclipse.epp.internal.mpc.core.service.CachingMarketplaceService.featured(CachingMarketplaceService.java:137)
+	at org.eclipse.epp.internal.mpc.ui.catalog.MarketplaceDiscoveryStrategy.performDiscovery(MarketplaceDiscoveryStrategy.java:148)
+	at org.eclipse.equinox.internal.p2.discovery.Catalog.performDiscovery(Catalog.java:85)
+	at org.eclipse.epp.internal.mpc.ui.catalog.MarketplaceCatalog.performDiscovery(MarketplaceCatalog.java:276)
+	at org.eclipse.equinox.internal.p2.ui.discovery.wizards.CatalogViewer$6.run(CatalogViewer.java:569)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.core.resources 4 2 2013-09-28 15:18:28.251
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Problems while saving variables and containers
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3303)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3546)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Caused by: java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/variablesAndContainers.dat (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3231)
+	... 9 more
+!SUBENTRY 1 org.eclipse.wst.jsdt.core 4 4 2013-09-28 15:18:28.251
+!MESSAGE Problems while saving variables and containers
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/variablesAndContainers.dat (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3231)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3546)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.wst.jsdt.core 4 4 2013-09-28 15:18:28.252
+!MESSAGE Problems while saving variables and containers
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/variablesAndContainers.dat (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3231)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3546)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.jdt.launching 4 4 2013-09-28 15:18:28.267
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jdt.launching/.install.xml (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jdt.launching/.install.xml (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin.writeInstallInfo(LaunchingPlugin.java:1079)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin.access$0(LaunchingPlugin.java:1051)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin$1.saving(LaunchingPlugin.java:544)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.core.resources 4 2 2013-09-28 15:18:28.305
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Error saving build states
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4304)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Error saving last build state for project SERVER-MODULE-PRESENTATION
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PRESENTATION/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Error saving last build state for project SERVER-MODULE-PERSISTENCE
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PERSISTENCE/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Error saving last build state for project SERVER-MODULE-BUSSINESS
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-BUSSINESS/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Error saving last build state for project SERVER-MODULE-SERVICES
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-SERVICES/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.jdt.core 4 4 2013-09-28 15:18:28.306
+!MESSAGE Error saving build states
+!SUBENTRY 2 org.eclipse.jdt.core 4 2 2013-09-28 15:18:28.306
+!MESSAGE Error saving last build state for project SERVER-MODULE-PRESENTATION
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PRESENTATION/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 2 org.eclipse.jdt.core 4 2 2013-09-28 15:18:28.307
+!MESSAGE Error saving last build state for project SERVER-MODULE-PERSISTENCE
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PERSISTENCE/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 2 org.eclipse.jdt.core 4 2 2013-09-28 15:18:28.307
+!MESSAGE Error saving last build state for project SERVER-MODULE-BUSSINESS
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-BUSSINESS/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 2 org.eclipse.jdt.core 4 2 2013-09-28 15:18:28.307
+!MESSAGE Error saving last build state for project SERVER-MODULE-SERVICES
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-SERVICES/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.jdt.core 4 2 2013-09-28 15:18:28.307
+!MESSAGE Error saving last build state for project SERVER-MODULE-PRESENTATION
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PRESENTATION/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.jdt.core 4 2 2013-09-28 15:18:28.307
+!MESSAGE Error saving last build state for project SERVER-MODULE-PERSISTENCE
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PERSISTENCE/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.jdt.core 4 2 2013-09-28 15:18:28.308
+!MESSAGE Error saving last build state for project SERVER-MODULE-BUSSINESS
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-BUSSINESS/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.jdt.core 4 2 2013-09-28 15:18:28.308
+!MESSAGE Error saving last build state for project SERVER-MODULE-SERVICES
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-SERVICES/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.ui.ide 4 4 2013-09-28 15:18:33.339
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 4 1 2013-09-28 15:18:33.339
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 4 568 2013-09-28 15:18:33.339
+!MESSAGE Could not write metadata for '/RemoteSystemsTempFiles'.
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/RemoteSystemsTempFiles/.markers (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.core.internal.localstore.SafeFileOutputStream.<init>(SafeFileOutputStream.java:51)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1600)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1680)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1142)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.wst.jsdt.ui 4 10001 2013-09-28 15:18:34.019
+!MESSAGE Internal Error
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.ui/QualifiedTypeNameHistory.xml (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.corext.util.History.save(History.java:182)
+	at org.eclipse.wst.jsdt.internal.ui.JavaScriptPlugin.stop(JavaScriptPlugin.java:566)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$2.run(BundleContextImpl.java:771)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop(BundleContextImpl.java:764)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.stopWorker(BundleHost.java:510)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.suspend(AbstractBundle.java:566)
+	at org.eclipse.osgi.framework.internal.core.Framework.suspendBundle(Framework.java:1206)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.decFWSL(StartLevelManager.java:592)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:257)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.shutdown(StartLevelManager.java:215)
+	at org.eclipse.osgi.framework.internal.core.InternalSystemBundle.suspend(InternalSystemBundle.java:284)
+	at org.eclipse.osgi.framework.internal.core.Framework.shutdown(Framework.java:692)
+	at org.eclipse.osgi.framework.internal.core.Framework.close(Framework.java:600)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.shutdown(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:200)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1426)
+
+!ENTRY org.eclipse.wst.jsdt.ui 4 10001 2013-09-28 15:18:34.020
+!MESSAGE Internal Error
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.ui/OpenTypeHistory.xml (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.corext.util.History.save(History.java:182)
+	at org.eclipse.wst.jsdt.internal.corext.util.OpenTypeHistory.doShutdown(OpenTypeHistory.java:372)
+	at org.eclipse.wst.jsdt.internal.corext.util.OpenTypeHistory.shutdown(OpenTypeHistory.java:183)
+	at org.eclipse.wst.jsdt.internal.ui.JavaScriptPlugin.stop(JavaScriptPlugin.java:570)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$2.run(BundleContextImpl.java:771)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop(BundleContextImpl.java:764)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.stopWorker(BundleHost.java:510)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.suspend(AbstractBundle.java:566)
+	at org.eclipse.osgi.framework.internal.core.Framework.suspendBundle(Framework.java:1206)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.decFWSL(StartLevelManager.java:592)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:257)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.shutdown(StartLevelManager.java:215)
+	at org.eclipse.osgi.framework.internal.core.InternalSystemBundle.suspend(InternalSystemBundle.java:284)
+	at org.eclipse.osgi.framework.internal.core.Framework.shutdown(Framework.java:692)
+	at org.eclipse.osgi.framework.internal.core.Framework.close(Framework.java:600)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.shutdown(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:200)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1426)
+
+!ENTRY org.eclipse.jst.j2ee.web 4 0 2013-09-28 15:18:34.600
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jst.j2ee.web/webLibrariesCache.index (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jst.j2ee.web/webLibrariesCache.index (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jst.j2ee.internal.web.classpath.WebAppLibrariesStore.persist(WebAppLibrariesStore.java:224)
+	at org.eclipse.jst.j2ee.internal.web.classpath.WebAppLibrariesStore.access$0(WebAppLibrariesStore.java:218)
+	at org.eclipse.jst.j2ee.internal.web.classpath.WebAppLibrariesStore$PersistJob$1.run(WebAppLibrariesStore.java:182)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jst.j2ee.internal.web.classpath.WebAppLibrariesStore$PersistJob.run(WebAppLibrariesStore.java:180)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.emf.common.ui 2 0 2013-09-28 15:18:35.176
+!MESSAGE Failed to create image directory /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.emf.common.ui/emf-common-ui-images
+!SESSION 2013-09-28 15:54:00.011 -----------------------------------------------
+eclipse.buildId=4.3.0.I20130605-2000
+java.version=1.7.0_25
+java.vendor=Oracle Corporation
+BootLoader constants: OS=linux, ARCH=x86_64, WS=gtk, NL=es_ES
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -data /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor -os linux -ws gtk -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.ui 4 4 2013-09-28 15:54:05.734
+!MESSAGE Unable to find Action Set: org.jboss.tools.central
+
+!ENTRY org.eclipse.ui 4 4 2013-09-28 15:54:05.737
+!MESSAGE Unable to find Action Set: org.jboss.tools.common.model.ui.actionSet
+
+!ENTRY org.eclipse.wst.jsdt.core 4 0 2013-09-28 15:54:09.072
+!MESSAGE Problem writing to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/system.js
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/system.js (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.core.compiler.libraries.SystemLibraryLocation.copyFile(SystemLibraryLocation.java:188)
+	at org.eclipse.wst.jsdt.core.compiler.libraries.SystemLibraryLocation.<init>(SystemLibraryLocation.java:155)
+	at org.eclipse.wst.jsdt.core.compiler.libraries.SystemLibraryLocation.getInstance(SystemLibraryLocation.java:51)
+	at org.eclipse.wst.jsdt.launching.JavaRuntime.initializeVMs(JavaRuntime.java:2455)
+	at org.eclipse.wst.jsdt.launching.JavaRuntime.getDefaultVMId(JavaRuntime.java:463)
+	at org.eclipse.wst.jsdt.launching.JavaRuntime.getDefaultVMInstall(JavaRuntime.java:416)
+	at org.eclipse.wst.jsdt.launching.JREContainerInitializer.resolveVM(JREContainerInitializer.java:86)
+	at org.eclipse.wst.jsdt.launching.JREContainerInitializer.initialize(JREContainerInitializer.java:41)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.initializeContainer(JavaModelManager.java:2207)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager$8.run(JavaModelManager.java:2137)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.initializeAllContainers(JavaModelManager.java:2153)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.getJsGlobalScopeContainer(JavaModelManager.java:1530)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.getJsGlobalScopeContainer(JavaScriptCore.java:1319)
+	at org.eclipse.wst.jsdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:2740)
+	at org.eclipse.wst.jsdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:2019)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.initializeAfterLoad(JavaScriptCore.java:2655)
+	at org.eclipse.wst.jsdt.internal.ui.InitializeAfterLoadJob$RealJob.run(InitializeAfterLoadJob.java:32)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.wst.jsdt.core 4 0 2013-09-28 15:54:09.113
+!MESSAGE Problem writing to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/baseBrowserLibrary.js
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/baseBrowserLibrary.js (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.core.compiler.libraries.SystemLibraryLocation.copyFile(SystemLibraryLocation.java:188)
+	at org.eclipse.wst.jsdt.core.compiler.libraries.SystemLibraryLocation.<init>(SystemLibraryLocation.java:155)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer$BasicLibLocation.<init>(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:66)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer$BasicLibLocation.getInstance(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:77)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryContainer.getIncludepathEntries(BasicBrowserLibraryContainer.java:66)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.containerPutIfInitializingWithSameEntries(JavaModelManager.java:586)
+	at org.eclipse.wst.jsdt.internal.core.SetContainerOperation.execute(SetContainerOperation.java:54)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.setJsGlobalScopeContainer(JavaScriptCore.java:3900)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer.initialize(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:106)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.initializeContainer(JavaModelManager.java:2207)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager$8.run(JavaModelManager.java:2137)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.initializeAllContainers(JavaModelManager.java:2153)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.getJsGlobalScopeContainer(JavaModelManager.java:1530)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.getJsGlobalScopeContainer(JavaScriptCore.java:1319)
+	at org.eclipse.wst.jsdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:2740)
+	at org.eclipse.wst.jsdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:2019)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.initializeAfterLoad(JavaScriptCore.java:2655)
+	at org.eclipse.wst.jsdt.internal.ui.InitializeAfterLoadJob$RealJob.run(InitializeAfterLoadJob.java:32)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.wst.jsdt.core 4 0 2013-09-28 15:54:09.115
+!MESSAGE Problem writing to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/browserWindow.js
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/browserWindow.js (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.core.compiler.libraries.SystemLibraryLocation.copyFile(SystemLibraryLocation.java:188)
+	at org.eclipse.wst.jsdt.core.compiler.libraries.SystemLibraryLocation.<init>(SystemLibraryLocation.java:155)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer$BasicLibLocation.<init>(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:66)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer$BasicLibLocation.getInstance(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:77)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryContainer.getIncludepathEntries(BasicBrowserLibraryContainer.java:66)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.containerPutIfInitializingWithSameEntries(JavaModelManager.java:586)
+	at org.eclipse.wst.jsdt.internal.core.SetContainerOperation.execute(SetContainerOperation.java:54)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.setJsGlobalScopeContainer(JavaScriptCore.java:3900)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer.initialize(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:106)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.initializeContainer(JavaModelManager.java:2207)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager$8.run(JavaModelManager.java:2137)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.initializeAllContainers(JavaModelManager.java:2153)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.getJsGlobalScopeContainer(JavaModelManager.java:1530)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.getJsGlobalScopeContainer(JavaScriptCore.java:1319)
+	at org.eclipse.wst.jsdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:2740)
+	at org.eclipse.wst.jsdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:2019)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.initializeAfterLoad(JavaScriptCore.java:2655)
+	at org.eclipse.wst.jsdt.internal.ui.InitializeAfterLoadJob$RealJob.run(InitializeAfterLoadJob.java:32)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.wst.jsdt.core 4 0 2013-09-28 15:54:09.116
+!MESSAGE Problem writing to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/xhr.js
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/xhr.js (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.core.compiler.libraries.SystemLibraryLocation.copyFile(SystemLibraryLocation.java:188)
+	at org.eclipse.wst.jsdt.core.compiler.libraries.SystemLibraryLocation.<init>(SystemLibraryLocation.java:155)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer$BasicLibLocation.<init>(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:66)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer$BasicLibLocation.getInstance(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:77)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryContainer.getIncludepathEntries(BasicBrowserLibraryContainer.java:66)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.containerPutIfInitializingWithSameEntries(JavaModelManager.java:586)
+	at org.eclipse.wst.jsdt.internal.core.SetContainerOperation.execute(SetContainerOperation.java:54)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.setJsGlobalScopeContainer(JavaScriptCore.java:3900)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer.initialize(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:106)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.initializeContainer(JavaModelManager.java:2207)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager$8.run(JavaModelManager.java:2137)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.initializeAllContainers(JavaModelManager.java:2153)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.getJsGlobalScopeContainer(JavaModelManager.java:1530)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.getJsGlobalScopeContainer(JavaScriptCore.java:1319)
+	at org.eclipse.wst.jsdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:2740)
+	at org.eclipse.wst.jsdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:2019)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.initializeAfterLoad(JavaScriptCore.java:2655)
+	at org.eclipse.wst.jsdt.internal.ui.InitializeAfterLoadJob$RealJob.run(InitializeAfterLoadJob.java:32)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.wst.jsdt.core 4 0 2013-09-28 15:54:09.130
+!MESSAGE Problem writing to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/dom5.js
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/libraries/dom5.js (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.core.compiler.libraries.SystemLibraryLocation.copyFile(SystemLibraryLocation.java:188)
+	at org.eclipse.wst.jsdt.core.compiler.libraries.SystemLibraryLocation.<init>(SystemLibraryLocation.java:155)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer$BasicLibLocation.<init>(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:66)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer$BasicLibLocation.getInstance(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:77)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryContainer.getIncludepathEntries(BasicBrowserLibraryContainer.java:66)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.containerPutIfInitializingWithSameEntries(JavaModelManager.java:586)
+	at org.eclipse.wst.jsdt.internal.core.SetContainerOperation.execute(SetContainerOperation.java:54)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.setJsGlobalScopeContainer(JavaScriptCore.java:3900)
+	at org.eclipse.wst.jsdt.libraries.BasicBrowserLibraryJsGlobalScopeContainerInitializer.initialize(BasicBrowserLibraryJsGlobalScopeContainerInitializer.java:106)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.initializeContainer(JavaModelManager.java:2207)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager$8.run(JavaModelManager.java:2137)
+	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2345)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.initializeAllContainers(JavaModelManager.java:2153)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.getJsGlobalScopeContainer(JavaModelManager.java:1530)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.getJsGlobalScopeContainer(JavaScriptCore.java:1319)
+	at org.eclipse.wst.jsdt.internal.core.JavaProject.resolveClasspath(JavaProject.java:2740)
+	at org.eclipse.wst.jsdt.internal.core.JavaProject.getResolvedClasspath(JavaProject.java:2019)
+	at org.eclipse.wst.jsdt.core.JavaScriptCore.initializeAfterLoad(JavaScriptCore.java:2655)
+	at org.eclipse.wst.jsdt.internal.ui.InitializeAfterLoadJob$RealJob.run(InitializeAfterLoadJob.java:32)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.wst.sse.core 2 2 2013-09-28 15:54:15.889
+!MESSAGE Could not write task tags scanned list to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+
+!ENTRY org.eclipse.wst.sse.core 2 2 2013-09-28 15:54:15.900
+!MESSAGE Could not write task tags scanned list to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+
+!ENTRY org.eclipse.wst.sse.core 2 2 2013-09-28 15:54:15.903
+!MESSAGE Could not write task tags scanned list to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+
+!ENTRY org.eclipse.wst.sse.core 2 2 2013-09-28 15:54:15.903
+!MESSAGE Could not write task tags scanned list to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+
+!ENTRY org.eclipse.wst.sse.core 2 2 2013-09-28 15:54:15.906
+!MESSAGE Could not write task tags scanned list to /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.sse.core/task-tags.properties
+
+!ENTRY org.eclipse.wst.common.modulecore 4 0 2013-09-28 15:55:07.195
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.common.modulecore/dependencyCache.index (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.common.modulecore/dependencyCache.index (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.common.componentcore.internal.builder.DependencyGraphImpl.persist(DependencyGraphImpl.java:903)
+	at org.eclipse.wst.common.componentcore.internal.builder.DependencyGraphImpl.access$9(DependencyGraphImpl.java:881)
+	at org.eclipse.wst.common.componentcore.internal.builder.DependencyGraphImpl$PersistJob$1.run(DependencyGraphImpl.java:860)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.wst.common.componentcore.internal.builder.DependencyGraphImpl$PersistJob.run(DependencyGraphImpl.java:858)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.jst.j2ee 4 0 2013-09-28 15:55:07.481
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jst.j2ee/earLibrariesCache.index (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jst.j2ee/earLibrariesCache.index (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jst.j2ee.internal.common.classpath.J2EEComponentClasspathContainerStore.persist(J2EEComponentClasspathContainerStore.java:102)
+	at org.eclipse.jst.j2ee.internal.common.classpath.J2EEComponentClasspathContainerStore.access$0(J2EEComponentClasspathContainerStore.java:96)
+	at org.eclipse.jst.j2ee.internal.common.classpath.J2EEComponentClasspathContainerStore$PersistJob$1.run(J2EEComponentClasspathContainerStore.java:169)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jst.j2ee.internal.common.classpath.J2EEComponentClasspathContainerStore$PersistJob.run(J2EEComponentClasspathContainerStore.java:167)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.jst.j2ee.web 4 0 2013-09-28 15:55:07.481
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jst.j2ee.web/webLibrariesCache.index (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jst.j2ee.web/webLibrariesCache.index (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jst.j2ee.internal.web.classpath.WebAppLibrariesStore.persist(WebAppLibrariesStore.java:224)
+	at org.eclipse.jst.j2ee.internal.web.classpath.WebAppLibrariesStore.access$0(WebAppLibrariesStore.java:218)
+	at org.eclipse.jst.j2ee.internal.web.classpath.WebAppLibrariesStore$PersistJob$1.run(WebAppLibrariesStore.java:182)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.jst.j2ee.internal.web.classpath.WebAppLibrariesStore$PersistJob.run(WebAppLibrariesStore.java:180)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.wst.xml.core 4 4 2013-09-28 15:56:01.195
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.xml.core/default_catalog.xml (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.xml.core/default_catalog.xml (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogWriter.getOutputStream(CatalogWriter.java:349)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogWriter.write(CatalogWriter.java:54)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog$CatalogLS.save(Catalog.java:54)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog$DefaultCatalogLS.load(Catalog.java:81)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog.load(Catalog.java:654)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogSet.lookupOrCreateCatalog(CatalogSet.java:41)
+	at org.eclipse.wst.xml.core.internal.XMLCorePlugin.getDefaultXMLCatalog(XMLCorePlugin.java:77)
+	at org.eclipse.wst.xml.core.internal.catalog.XMLCatalogURIResolverExtension.resolve(XMLCatalogURIResolverExtension.java:35)
+	at org.eclipse.wst.common.uriresolver.internal.ExtensibleURIResolver.resolve(ExtensibleURIResolver.java:85)
+	at org.eclipse.wst.xml.core.internal.validation.ValidatorHelper$MyContentHandler.startElement(ValidatorHelper.java:286)
+	at org.apache.xerces.parsers.AbstractSAXParser.startElement(Unknown Source)
+	at org.apache.xerces.impl.dtd.XMLDTDValidator.startElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentScannerImpl$ContentDispatcher.scanRootElementHook(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.eclipse.wst.xml.core.internal.validation.ValidatorHelper.computeValidationInformation(ValidatorHelper.java:164)
+	at org.eclipse.wst.xml.core.internal.validation.XMLValidator.validate(XMLValidator.java:333)
+	at org.eclipse.wst.xml.core.internal.validation.eclipse.Validator.validate(Validator.java:93)
+	at org.eclipse.wst.xml.core.internal.validation.core.AbstractNestedValidator.validate(AbstractNestedValidator.java:281)
+	at org.eclipse.wst.xml.core.internal.validation.core.AbstractNestedValidator.validate(AbstractNestedValidator.java:86)
+	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
+	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:810)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:327)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:69)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:49)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.deltaBuild(ValBuilderJob.java:211)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:179)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.wst.xml.core 4 4 2013-09-28 15:56:01.258
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.xml.core/system_catalog.xml (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.xml.core/system_catalog.xml (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogWriter.getOutputStream(CatalogWriter.java:349)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogWriter.write(CatalogWriter.java:54)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog$CatalogLS.save(Catalog.java:54)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog$SystemCatalogLS.load(Catalog.java:398)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog.load(Catalog.java:654)
+	at org.eclipse.wst.xml.core.internal.catalog.CatalogSet.lookupOrCreateCatalog(CatalogSet.java:41)
+	at org.eclipse.wst.xml.core.internal.catalog.NextCatalog.getReferencedCatalog(NextCatalog.java:42)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog.resolveSubordinateCatalogs(Catalog.java:724)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog$InternalResolver.resolveSystem(Catalog.java:295)
+	at org.eclipse.wst.xml.core.internal.catalog.Catalog.resolveSystem(Catalog.java:753)
+	at org.eclipse.wst.xml.core.internal.catalog.XMLCatalogURIResolverExtension.resolve(XMLCatalogURIResolverExtension.java:46)
+	at org.eclipse.wst.common.uriresolver.internal.ExtensibleURIResolver.resolve(ExtensibleURIResolver.java:85)
+	at org.eclipse.wst.xml.core.internal.validation.ValidatorHelper$MyContentHandler.startElement(ValidatorHelper.java:286)
+	at org.apache.xerces.parsers.AbstractSAXParser.startElement(Unknown Source)
+	at org.apache.xerces.impl.dtd.XMLDTDValidator.startElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanStartElement(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentScannerImpl$ContentDispatcher.scanRootElementHook(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl$FragmentContentDispatcher.dispatch(Unknown Source)
+	at org.apache.xerces.impl.XMLDocumentFragmentScannerImpl.scanDocument(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XML11Configuration.parse(Unknown Source)
+	at org.apache.xerces.parsers.XMLParser.parse(Unknown Source)
+	at org.apache.xerces.parsers.AbstractSAXParser.parse(Unknown Source)
+	at org.eclipse.wst.xml.core.internal.validation.ValidatorHelper.computeValidationInformation(ValidatorHelper.java:164)
+	at org.eclipse.wst.xml.core.internal.validation.XMLValidator.validate(XMLValidator.java:333)
+	at org.eclipse.wst.xml.core.internal.validation.eclipse.Validator.validate(Validator.java:93)
+	at org.eclipse.wst.xml.core.internal.validation.core.AbstractNestedValidator.validate(AbstractNestedValidator.java:281)
+	at org.eclipse.wst.xml.core.internal.validation.core.AbstractNestedValidator.validate(AbstractNestedValidator.java:86)
+	at org.eclipse.wst.validation.Validator$V2.validate(Validator.java:1159)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:704)
+	at org.eclipse.wst.validation.internal.ValManager$1.visit(ValManager.java:665)
+	at org.eclipse.wst.validation.internal.ValManager.accept(ValManager.java:810)
+	at org.eclipse.wst.validation.internal.ValManager.validate(ValManager.java:669)
+	at org.eclipse.wst.validation.internal.ValBuilderJob$Visitor.visit(ValBuilderJob.java:327)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:69)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:80)
+	at org.eclipse.core.internal.events.ResourceDelta.accept(ResourceDelta.java:49)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.deltaBuild(ValBuilderJob.java:211)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.run(ValBuilderJob.java:179)
+	at org.eclipse.wst.validation.internal.ValBuilderJob.runInWorkspace(ValBuilderJob.java:126)
+	at org.eclipse.core.internal.resources.InternalWorkspaceJob.run(InternalWorkspaceJob.java:38)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY org.eclipse.core.resources 4 2 2013-09-28 15:58:04.250
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Problems while saving variables and containers
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3303)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3546)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Caused by: java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/variablesAndContainers.dat (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3231)
+	... 9 more
+!SUBENTRY 1 org.eclipse.wst.jsdt.core 4 4 2013-09-28 15:58:04.252
+!MESSAGE Problems while saving variables and containers
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/variablesAndContainers.dat (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3231)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3546)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.wst.jsdt.core 4 4 2013-09-28 15:58:04.252
+!MESSAGE Problems while saving variables and containers
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.core/variablesAndContainers.dat (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saveVariablesAndContainers(JavaModelManager.java:3231)
+	at org.eclipse.wst.jsdt.internal.core.JavaModelManager.saving(JavaModelManager.java:3546)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.jdt.launching 4 4 2013-09-28 15:58:04.291
+!MESSAGE /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jdt.launching/.install.xml (Permiso denegado)
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.jdt.launching/.install.xml (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin.writeInstallInfo(LaunchingPlugin.java:1079)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin.access$0(LaunchingPlugin.java:1051)
+	at org.eclipse.jdt.internal.launching.LaunchingPlugin$1.saving(LaunchingPlugin.java:544)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.core.resources 4 2 2013-09-28 15:58:04.322
+!MESSAGE Problems occurred when invoking code from plug-in: "org.eclipse.core.resources".
+!STACK 1
+org.eclipse.core.runtime.CoreException: Error saving build states
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4304)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Error saving last build state for project SERVER-MODULE-PRESENTATION
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PRESENTATION/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Error saving last build state for project SERVER-MODULE-PERSISTENCE
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PERSISTENCE/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Error saving last build state for project SERVER-MODULE-BUSSINESS
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-BUSSINESS/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+Contains: Error saving last build state for project SERVER-MODULE-SERVICES
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-SERVICES/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.jdt.core 4 4 2013-09-28 15:58:04.323
+!MESSAGE Error saving build states
+!SUBENTRY 2 org.eclipse.jdt.core 4 2 2013-09-28 15:58:04.323
+!MESSAGE Error saving last build state for project SERVER-MODULE-PRESENTATION
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PRESENTATION/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 2 org.eclipse.jdt.core 4 2 2013-09-28 15:58:04.323
+!MESSAGE Error saving last build state for project SERVER-MODULE-PERSISTENCE
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PERSISTENCE/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 2 org.eclipse.jdt.core 4 2 2013-09-28 15:58:04.324
+!MESSAGE Error saving last build state for project SERVER-MODULE-BUSSINESS
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-BUSSINESS/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 2 org.eclipse.jdt.core 4 2 2013-09-28 15:58:04.324
+!MESSAGE Error saving last build state for project SERVER-MODULE-SERVICES
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-SERVICES/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.jdt.core 4 2 2013-09-28 15:58:04.324
+!MESSAGE Error saving last build state for project SERVER-MODULE-PRESENTATION
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PRESENTATION/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.jdt.core 4 2 2013-09-28 15:58:04.324
+!MESSAGE Error saving last build state for project SERVER-MODULE-PERSISTENCE
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-PERSISTENCE/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.jdt.core 4 2 2013-09-28 15:58:04.324
+!MESSAGE Error saving last build state for project SERVER-MODULE-BUSSINESS
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-BUSSINESS/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+!SUBENTRY 1 org.eclipse.jdt.core 4 2 2013-09-28 15:58:04.325
+!MESSAGE Error saving last build state for project SERVER-MODULE-SERVICES
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/SERVER-MODULE-SERVICES/org.eclipse.jdt.core/state.dat (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveBuiltState(JavaModelManager.java:3943)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saveState(JavaModelManager.java:3930)
+	at org.eclipse.jdt.internal.core.JavaModelManager.saving(JavaModelManager.java:4294)
+	at org.eclipse.core.internal.resources.SaveManager.executeLifecycle(SaveManager.java:383)
+	at org.eclipse.core.internal.resources.SaveManager$1.run(SaveManager.java:192)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.core.internal.resources.SaveManager.broadcastLifecycle(SaveManager.java:195)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1130)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.ui.ide 4 4 2013-09-28 15:58:14.048
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 4 1 2013-09-28 15:58:14.048
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 4 568 2013-09-28 15:58:14.048
+!MESSAGE Could not write metadata for '/RemoteSystemsTempFiles'.
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.core.resources/.projects/RemoteSystemsTempFiles/.markers (No existe el archivo o el directorio)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.core.internal.localstore.SafeFileOutputStream.<init>(SafeFileOutputStream.java:51)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1600)
+	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1680)
+	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1142)
+	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2376)
+	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$5.run(IDEWorkbenchAdvisor.java:508)
+	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.wst.jsdt.ui 4 10001 2013-09-28 15:58:14.444
+!MESSAGE Internal Error
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.ui/QualifiedTypeNameHistory.xml (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.corext.util.History.save(History.java:182)
+	at org.eclipse.wst.jsdt.internal.ui.JavaScriptPlugin.stop(JavaScriptPlugin.java:566)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$2.run(BundleContextImpl.java:771)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop(BundleContextImpl.java:764)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.stopWorker(BundleHost.java:510)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.suspend(AbstractBundle.java:566)
+	at org.eclipse.osgi.framework.internal.core.Framework.suspendBundle(Framework.java:1206)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.decFWSL(StartLevelManager.java:592)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:257)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.shutdown(StartLevelManager.java:215)
+	at org.eclipse.osgi.framework.internal.core.InternalSystemBundle.suspend(InternalSystemBundle.java:284)
+	at org.eclipse.osgi.framework.internal.core.Framework.shutdown(Framework.java:692)
+	at org.eclipse.osgi.framework.internal.core.Framework.close(Framework.java:600)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.shutdown(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:200)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1426)
+
+!ENTRY org.eclipse.wst.jsdt.ui 4 10001 2013-09-28 15:58:14.445
+!MESSAGE Internal Error
+!STACK 0
+java.io.FileNotFoundException: /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.wst.jsdt.ui/OpenTypeHistory.xml (Permiso denegado)
+	at java.io.FileOutputStream.open(Native Method)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:212)
+	at java.io.FileOutputStream.<init>(FileOutputStream.java:165)
+	at org.eclipse.wst.jsdt.internal.corext.util.History.save(History.java:182)
+	at org.eclipse.wst.jsdt.internal.corext.util.OpenTypeHistory.doShutdown(OpenTypeHistory.java:372)
+	at org.eclipse.wst.jsdt.internal.corext.util.OpenTypeHistory.shutdown(OpenTypeHistory.java:183)
+	at org.eclipse.wst.jsdt.internal.ui.JavaScriptPlugin.stop(JavaScriptPlugin.java:570)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl$2.run(BundleContextImpl.java:771)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at org.eclipse.osgi.framework.internal.core.BundleContextImpl.stop(BundleContextImpl.java:764)
+	at org.eclipse.osgi.framework.internal.core.BundleHost.stopWorker(BundleHost.java:510)
+	at org.eclipse.osgi.framework.internal.core.AbstractBundle.suspend(AbstractBundle.java:566)
+	at org.eclipse.osgi.framework.internal.core.Framework.suspendBundle(Framework.java:1206)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.decFWSL(StartLevelManager.java:592)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.doSetStartLevel(StartLevelManager.java:257)
+	at org.eclipse.osgi.framework.internal.core.StartLevelManager.shutdown(StartLevelManager.java:215)
+	at org.eclipse.osgi.framework.internal.core.InternalSystemBundle.suspend(InternalSystemBundle.java:284)
+	at org.eclipse.osgi.framework.internal.core.Framework.shutdown(Framework.java:692)
+	at org.eclipse.osgi.framework.internal.core.Framework.close(Framework.java:600)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.shutdown(EclipseStarter.java:400)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:200)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:636)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:591)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1450)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1426)
+
+!ENTRY org.eclipse.emf.common.ui 2 0 2013-09-28 15:58:15.491
+!MESSAGE Failed to create image directory /home/pelo/Escritorio/7b6581PT/Implementacion/ModuloServidor/.metadata/.plugins/org.eclipse.emf.common.ui/emf-common-ui-images
