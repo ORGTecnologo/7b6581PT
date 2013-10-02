@@ -1,16 +1,19 @@
 package tecinf.negocio.dtos;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class UsuarioDataType implements Serializable {
+public abstract class UsuarioDataType implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private String usuario;
-	private String contrasenia;
-	private String nombres;
-	private String apellidos;
-	private RolDataType rol;
+	protected String usuario;
+	protected String contrasenia;
+	protected String nombres;
+	protected String apellidos;
+	protected String sexo;
+	protected Date fechaNacimiento;
+	protected String telefonoMovil;
 	
 	public String getUsuario() {
 		return usuario;
@@ -36,11 +39,25 @@ public class UsuarioDataType implements Serializable {
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
 	}
-	public RolDataType getRol() {
-		return rol;
+	public String getSexo() {
+		return sexo;
 	}
-	public void setRol(RolDataType rol) {
-		this.rol = rol;
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
 	}
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+	public String getTelefonoMovil() {
+		return telefonoMovil;
+	}
+	public void setTelefonoMovil(String telefonoMovil) {
+		this.telefonoMovil = telefonoMovil;
+	}
+	
+	
 	
 }
