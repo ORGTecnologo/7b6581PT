@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -16,6 +17,14 @@ import javax.persistence.Table;
 
 @NamedQueries( {
 	
+	@NamedQuery(name = "UsuarioClienteEntity.findAll", 
+			query = "SELECT e FROM UsuarioClienteEntity e ORDER BY e.id") ,
+					
+	@NamedQuery(name = "UsuarioClienteEntity.findById", 
+		query = "SELECT e FROM UsuarioClienteEntity e WHERE e.usuario.usuario = :id") ,
+	
+	@NamedQuery(name = "UsuarioClienteEntity.findByUserAndPassword", 
+		query = "SELECT e FROM UsuarioClienteEntity e WHERE e.usuario.usuario = :id and e.usuario.contrasenia = :pwd") ,
 })
 public class UsuarioClienteEntity implements Serializable {
 	
@@ -26,18 +35,15 @@ public class UsuarioClienteEntity implements Serializable {
 	private String id;
 	
 	@OneToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(unique=true, name="fk_usuario", nullable=false)
 	private UsuarioEntity usuario;
 	
 	@OneToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(name="id_tipo_registro",nullable=false)
 	private TipoRegistroEntity tipoRegistro;
 	
 	@Column(name="ruta_imagen_perfil", length=255)
 	private String rutaImagenPerfil;
-	
-	@Column(name="sitio_web", length=100, nullable=false)
-	private String sitioWeb;
 
 	public String getId() {
 		return id;

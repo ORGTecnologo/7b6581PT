@@ -21,11 +21,14 @@ public class UsuarioProveedorEntity implements Serializable {
 	private String id;
 	
 	@OneToOne
-	@JoinColumn(nullable=false)
+	@JoinColumn(unique=true, name="fk_usuario", nullable=false)
 	private UsuarioEntity usuario;
 	
 	@Column(name="codigo_qr",nullable=false)
 	private String codigoQr;
+	
+	@Column(name="sitio_web", length=100, nullable=false)
+	private String sitioWeb;
 
 	public String getId() {
 		return id;
@@ -50,7 +53,13 @@ public class UsuarioProveedorEntity implements Serializable {
 	public void setCodigoQr(String codigoQr) {
 		this.codigoQr = codigoQr;
 	}
-	
-	
+
+	public String getSitioWeb() {
+		return sitioWeb;
+	}
+
+	public void setSitioWeb(String sitioWeb) {
+		this.sitioWeb = sitioWeb;
+	}
 	
 }
