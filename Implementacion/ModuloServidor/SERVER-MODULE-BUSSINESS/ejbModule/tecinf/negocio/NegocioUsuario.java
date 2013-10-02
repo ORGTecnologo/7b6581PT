@@ -4,15 +4,19 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 
 @Local
 public interface NegocioUsuario {
 	
-	public List<UsuarioDataType> obtenerTodos();
+	public List<UsuarioClienteDataType> obtenerTodosClientes();
 	
 	public void modificarUsuario(UsuarioDataType u) throws Exception;
 	
-	public Boolean loginUsuario(String usuario, String contrasenia);
+	public Boolean loginUsuarioCliente(String usuario, String contrasenia);
+	
+	public Boolean loginUsuarioAdmin(String usuario, String contrasenia);
 	
 }
+

@@ -6,31 +6,35 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.naming.NamingException;
 
+import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.utiles.DataTypesFactory;
+import tecinf.negocio.utiles.Encriptacion;
+import tecinf.persistencia.daos.UsuarioClienteDao;
 import tecinf.persistencia.daos.UsuarioDao;
+import tecinf.persistencia.entities.UsuarioClienteEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.utiles.PersistenciaFactory;
 
 @Stateless
 public class NegocioUsuarioImpl implements NegocioUsuario  {
 	
-	private UsuarioDao usuarioDao = null;
+	private UsuarioClienteDao usuarioClienteDao = null;
 	
 	public NegocioUsuarioImpl() throws NamingException{
 		
-		usuarioDao = PersistenciaFactory.getUsuarioDao();
+		usuarioClienteDao = PersistenciaFactory.getUsuarioClienteDao();
 		
 	}
 	
 	
-	public List<UsuarioDataType> obtenerTodos(){
+	public List<UsuarioClienteDataType> obtenerTodosClientes(){
 		
-		List<UsuarioDataType> listaDtos = new ArrayList<UsuarioDataType>();
-		List<UsuarioEntity> listEntities = usuarioDao.findAll();
+		List<UsuarioClienteDataType> listaDtos = new ArrayList<UsuarioClienteDataType>();
+		List<UsuarioClienteEntity> listEntities = usuarioClienteDao.findAll();
 		if (listEntities != null) {
-			for (UsuarioEntity ue : listEntities)
-				listaDtos.add(DataTypesFactory.getUsuarioDataType(ue));
+			for (UsuarioClienteEntity ue : listEntities)
+				listaDtos.add(DataTypesFactory.getUsuarioClienteDataType(ue));
 		}
 		return listaDtos;
 		
@@ -38,6 +42,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 	
 	public void modificarUsuario(UsuarioDataType u) throws Exception {
 		
+		/*
 		UsuarioEntity ue = usuarioDao.findById(u.getUsuario());
 		if (ue == null)
 			throw new Exception("El usuario no existe");
@@ -47,13 +52,26 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		ue.setNombres(u.getNombres());
 		
 		usuarioDao.merge(ue);
-		
+		*/
 	}
 	
-	public Boolean loginUsuario(String usuario, String contrasenia){
+	public Boolean loginUsuarioCliente(String usuario, String contrasenia){
+		
+		String hashedPassword = Encriptacion.encriptarMD5(contrasenia);
+		if ( usuarioClienteDao.findByUserAndPassword(usuario, hashedPassword) == null)
+			return false;
+		else
+			return true;
+		
+	}
+
+
+	@Override
+	public Boolean loginUsuarioAdmin(String usuario, String contrasenia) {
 		
 		
-		return true;
+		
+		return null;
 	}
 	
 }
