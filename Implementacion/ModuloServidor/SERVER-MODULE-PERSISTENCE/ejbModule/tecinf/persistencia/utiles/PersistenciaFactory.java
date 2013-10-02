@@ -4,6 +4,8 @@ import java.util.Hashtable;
 
 import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.ParametroValorDaoImpl;
+import tecinf.persistencia.daos.UsuarioClienteDao;
+import tecinf.persistencia.daos.UsuarioClienteDaoImpl;
 import tecinf.persistencia.daos.UsuarioDao;
 import tecinf.persistencia.daos.UsuarioDaoImpl;
 
@@ -16,6 +18,10 @@ public class PersistenciaFactory {
 	
 	public static UsuarioDao getUsuarioDao() throws NamingException{
 		return (UsuarioDao) lookup(UsuarioDaoImpl.class.getSimpleName(),UsuarioDao.class.getName());
+	}
+	
+	public static UsuarioClienteDao getUsuarioClienteDao() throws NamingException{
+		return (UsuarioClienteDao) lookup(UsuarioClienteDaoImpl.class.getSimpleName(),UsuarioClienteDao.class.getName());
 	}
 	
 	public static ParametroValorDao getParametroValorDao() throws NamingException{
