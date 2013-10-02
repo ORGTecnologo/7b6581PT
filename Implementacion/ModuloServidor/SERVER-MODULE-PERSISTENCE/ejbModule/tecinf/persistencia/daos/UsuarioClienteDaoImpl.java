@@ -16,7 +16,7 @@ public class UsuarioClienteDaoImpl extends DaoImpl<String , UsuarioClienteEntity
 	EntityManager em;
 
 	@Override
-	public List<UsuarioClienteEntity> findAll() {
+	public List<UsuarioClienteEntity> findAll() { 
 		
 		
 		
