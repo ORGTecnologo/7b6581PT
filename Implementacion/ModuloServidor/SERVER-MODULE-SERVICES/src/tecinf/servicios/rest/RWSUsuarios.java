@@ -13,6 +13,7 @@ import com.google.gson.Gson;
 
 import tecinf.negocio.NegocioUsuario;
 import tecinf.negocio.dtos.LoginDataType;
+import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.utiles.EnumRespuestas;
 import tecinf.negocio.utiles.NegocioFactory;
@@ -28,11 +29,11 @@ public class RWSUsuarios {
 	@GET
 	@Path("/listarUsuarios")
 	@Produces("application/json")
-	public List<UsuarioDataType> obtenerTodos() throws NamingException {
+	public List<UsuarioClienteDataType> obtenerTodos() throws NamingException {
  
 		
 		NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
-		List<UsuarioDataType> listaUsuarios = negocioUsuario.obtenerTodos();
+		List<UsuarioClienteDataType> listaUsuarios = negocioUsuario.obtenerTodosClientes();
  
 		return listaUsuarios; 
  
@@ -48,7 +49,7 @@ public class RWSUsuarios {
 		//Cambio otro cambio
 		
 		NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
-		if (negocioUsuario.loginUsuario(dt.getUsuario(), dt.getContrasenia()))
+		if (negocioUsuario.loginUsuarioCliente(dt.getUsuario(), dt.getContrasenia()))
 			return gson.toJson(EnumRespuestas.RESPUESTA_OK);
 		
 		return gson.toJson(EnumRespuestas.RESPUESTA_FALLA);
