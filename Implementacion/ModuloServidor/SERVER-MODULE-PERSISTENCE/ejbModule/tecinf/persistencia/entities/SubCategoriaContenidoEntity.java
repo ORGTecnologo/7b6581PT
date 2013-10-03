@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "sub_categorias_contenido")
-public class SubCategoriaContenido implements Serializable {
+public class SubCategoriaContenidoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 

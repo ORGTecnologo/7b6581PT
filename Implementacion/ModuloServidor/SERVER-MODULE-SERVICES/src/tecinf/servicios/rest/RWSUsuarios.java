@@ -24,18 +24,18 @@ import tecinf.servicios.utiles.JSonUtils;
 @Path("/usuarios")
 public class RWSUsuarios {
 	
-	//private static Logger
-	
 	@GET
 	@Path("/listarUsuarios")
 	@Produces("application/json")
-	public List<UsuarioClienteDataType> obtenerTodos() throws NamingException {
- 
-		
-		NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
-		List<UsuarioClienteDataType> listaUsuarios = negocioUsuario.obtenerTodosClientes();
- 
-		return listaUsuarios; 
+	public List<UsuarioClienteDataType> obtenerTodos() {
+		List<UsuarioClienteDataType> listaUsuarios = null;
+		try {
+			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+			listaUsuarios = negocioUsuario.obtenerTodosClientes();
+		} catch (Exception e) {
+			
+		} 
+		return listaUsuarios;
  
 	}
 	

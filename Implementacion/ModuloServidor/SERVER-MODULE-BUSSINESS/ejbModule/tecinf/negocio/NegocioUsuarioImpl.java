@@ -15,10 +15,8 @@ import tecinf.persistencia.daos.AuditoriaDao;
 import tecinf.persistencia.daos.AuditoriaObjetoDao;
 import tecinf.persistencia.daos.AuditoriaOperacionDao;
 import tecinf.persistencia.daos.UsuarioClienteDao;
-import tecinf.persistencia.daos.UsuarioDao;
 import tecinf.persistencia.entities.AuditoriaEntity;
 import tecinf.persistencia.entities.UsuarioClienteEntity;
-import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.utiles.EnumClavesEntidades;
 import tecinf.persistencia.utiles.PersistenciaFactory;
 

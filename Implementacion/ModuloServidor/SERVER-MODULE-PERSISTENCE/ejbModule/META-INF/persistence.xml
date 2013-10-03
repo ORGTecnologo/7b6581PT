@@ -20,7 +20,7 @@
 		<class>tecinf.persistencia.entities.EstadoVersionContenidoEntity</class>
 		<class>tecinf.persistencia.entities.CategoriaContenidoEntity</class>
 		<class>tecinf.persistencia.entities.ContenidoEntity</class>
-		<class>tecinf.persistencia.entities.SubCategoriaContenido</class>
+		<class>tecinf.persistencia.entities.SubCategoriaContenidoEntity</class>
 		
 		<properties>
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
