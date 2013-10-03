@@ -1,6 +1,7 @@
 package tecinf.negocio;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -10,20 +11,31 @@ import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.utiles.DataTypesFactory;
 import tecinf.negocio.utiles.Encriptacion;
+import tecinf.persistencia.daos.AuditoriaDao;
+import tecinf.persistencia.daos.AuditoriaObjetoDao;
+import tecinf.persistencia.daos.AuditoriaOperacionDao;
 import tecinf.persistencia.daos.UsuarioClienteDao;
 import tecinf.persistencia.daos.UsuarioDao;
+import tecinf.persistencia.entities.AuditoriaEntity;
 import tecinf.persistencia.entities.UsuarioClienteEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
+import tecinf.persistencia.utiles.EnumClavesEntidades;
 import tecinf.persistencia.utiles.PersistenciaFactory;
 
 @Stateless
 public class NegocioUsuarioImpl implements NegocioUsuario  {
 	
 	private UsuarioClienteDao usuarioClienteDao = null;
+	private AuditoriaDao auditoriaDao = null;
+	private AuditoriaObjetoDao auditoriaObjetoDao = null;
+	private AuditoriaOperacionDao auditoriaOperacionDao = null;
 	
 	public NegocioUsuarioImpl() throws NamingException{
 		
 		usuarioClienteDao = PersistenciaFactory.getUsuarioClienteDao();
+		auditoriaDao = PersistenciaFactory.getAuditoriaDao();
+		auditoriaObjetoDao = PersistenciaFactory.getAuditoriaObjetoDao();
+		auditoriaOperacionDao = PersistenciaFactory.getAuditoriaOperacionDao();
 		
 	}
 	
@@ -58,10 +70,18 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 	public Boolean loginUsuarioCliente(String usuario, String contrasenia){
 		
 		String hashedPassword = Encriptacion.encriptarMD5(contrasenia);
-		if ( usuarioClienteDao.findByUserAndPassword(usuario, hashedPassword) == null)
+		UsuarioClienteEntity ue = usuarioClienteDao.findByUserAndPassword(usuario, hashedPassword); 
+		if ( ue == null)
 			return false;
-		else
+		else {			
+			AuditoriaEntity a = new AuditoriaEntity();
+			a.setFechaOperacion(new Date());
+			a.setObjeto(auditoriaObjetoDao.findByID(EnumClavesEntidades.AUDITORIA_OBJETO_USUARIO));
+			a.setOperacion(auditoriaOperacionDao.findByID(EnumClavesEntidades.AUDITORIA_OPERACION_LOGIN));
+			a.setUsuarioCliente(ue);
+			auditoriaDao.persist(a);
 			return true;
+		}
 		
 	}
 

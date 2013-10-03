@@ -2,6 +2,12 @@ package tecinf.persistencia.utiles;
 
 import java.util.Hashtable;
 
+import tecinf.persistencia.daos.AuditoriaDao;
+import tecinf.persistencia.daos.AuditoriaDaoImpl;
+import tecinf.persistencia.daos.AuditoriaObjetoDao;
+import tecinf.persistencia.daos.AuditoriaObjetoDaoImpl;
+import tecinf.persistencia.daos.AuditoriaOperacionDao;
+import tecinf.persistencia.daos.AuditoriaOperacionDaoImpl;
 import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.ParametroValorDaoImpl;
 import tecinf.persistencia.daos.UsuarioClienteDao;
@@ -26,6 +32,18 @@ public class PersistenciaFactory {
 	
 	public static ParametroValorDao getParametroValorDao() throws NamingException{
 		return (ParametroValorDao) lookup(ParametroValorDaoImpl.class.getSimpleName(),ParametroValorDao.class.getName());
+	}
+	
+	public static AuditoriaDao getAuditoriaDao() throws NamingException{
+		return (AuditoriaDao) lookup(AuditoriaDaoImpl.class.getSimpleName(),AuditoriaDao.class.getName());
+	}
+	
+	public static AuditoriaObjetoDao getAuditoriaObjetoDao() throws NamingException{
+		return (AuditoriaObjetoDao) lookup(AuditoriaObjetoDaoImpl.class.getSimpleName(),AuditoriaObjetoDao.class.getName());
+	}
+	
+	public static AuditoriaOperacionDao getAuditoriaOperacionDao() throws NamingException{
+		return (AuditoriaOperacionDao) lookup(AuditoriaOperacionDaoImpl.class.getSimpleName(),AuditoriaOperacionDao.class.getName());
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

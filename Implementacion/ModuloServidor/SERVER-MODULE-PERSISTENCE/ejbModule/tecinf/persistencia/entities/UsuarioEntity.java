@@ -53,9 +53,8 @@ public class UsuarioEntity implements Serializable {
 	@Column(name="correo_electronico",nullable=false)
 	private String correoElectronico;
 	
-	@OneToOne
-	@JoinColumn(name="id_sexo",nullable=false)
-	private SexoUsuarioEntity sexo;
+	@Column(name="sexo",nullable=false)
+	private String sexo;
 	
 	@OneToOne
 	@JoinColumn(name="id_estado",nullable=false)
@@ -91,14 +90,6 @@ public class UsuarioEntity implements Serializable {
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
-	}	
-
-	public SexoUsuarioEntity getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(SexoUsuarioEntity sexo) {
-		this.sexo = sexo;
 	}
 
 	public Date getFechaNacimiento() {
@@ -120,5 +111,29 @@ public class UsuarioEntity implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public String getCorreoElectronico() {
+		return correoElectronico;
+	}
+
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public EstadoUsuarioEntity getEstadoUsuario() {
+		return estadoUsuario;
+	}
+
+	public void setEstadoUsuario(EstadoUsuarioEntity estadoUsuario) {
+		this.estadoUsuario = estadoUsuario;
+	}	
 			
 }

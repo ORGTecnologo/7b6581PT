@@ -7,7 +7,6 @@
       	
 		<class>tecinf.persistencia.entities.UsuarioEntity</class>
 		<class>tecinf.persistencia.entities.ParametroValorEntity</class>
-		<class>tecinf.persistencia.entities.SexoUsuarioEntity</class>
 		<class>tecinf.persistencia.entities.UsuarioClienteEntity</class>
 		<class>tecinf.persistencia.entities.TipoRegistroEntity</class>
 		<class>tecinf.persistencia.entities.AuditoriaEntity</class>

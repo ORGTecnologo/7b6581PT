@@ -29,8 +29,12 @@ public class AuditoriaEntity implements Serializable {
 	private Date fechaOperacion;
 	
 	@OneToOne
-	@JoinColumn(name="id_usuario",nullable=false)
-	private UsuarioEntity usuario;
+	@JoinColumn(name="id_usuario_cliente")
+	private UsuarioClienteEntity usuarioCliente;
+	
+	@OneToOne
+	@JoinColumn(name="id_usuario_proveedor")
+	private UsuarioProveedorEntity usuarioProveedor;
 	
 	@OneToOne
 	@JoinColumn(name="id_operacion",nullable=false)
@@ -39,6 +43,54 @@ public class AuditoriaEntity implements Serializable {
 	@OneToOne
 	@JoinColumn(name="id_objeto",nullable=false)
 	private AuditoriaObjetoEntity objeto;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Date getFechaOperacion() {
+		return fechaOperacion;
+	}
+
+	public void setFechaOperacion(Date fechaOperacion) {
+		this.fechaOperacion = fechaOperacion;
+	}
+
+	public AuditoriaOperacionEntity getOperacion() {
+		return operacion;
+	}
+
+	public void setOperacion(AuditoriaOperacionEntity operacion) {
+		this.operacion = operacion;
+	}
+
+	public AuditoriaObjetoEntity getObjeto() {
+		return objeto;
+	}
+
+	public void setObjeto(AuditoriaObjetoEntity objeto) {
+		this.objeto = objeto;
+	}
+
+	public UsuarioClienteEntity getUsuarioCliente() {
+		return usuarioCliente;
+	}
+
+	public void setUsuarioCliente(UsuarioClienteEntity usuarioCliente) {
+		this.usuarioCliente = usuarioCliente;
+	}
+
+	public UsuarioProveedorEntity getUsuarioProveedor() {
+		return usuarioProveedor;
+	}
+
+	public void setUsuarioProveedor(UsuarioProveedorEntity usuarioProveedor) {
+		this.usuarioProveedor = usuarioProveedor;
+	}
 	
 	
 }

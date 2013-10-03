@@ -1,9 +1,7 @@
 package tecinf.negocio.utiles;
 
 import tecinf.negocio.dtos.UsuarioClienteDataType;
-import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.persistencia.entities.UsuarioClienteEntity;
-import tecinf.persistencia.entities.UsuarioEntity;
 
 public class DataTypesFactory {
 	
@@ -14,7 +12,7 @@ public class DataTypesFactory {
 		dt.setContrasenia(u.getUsuario().getContrasenia());
 		dt.setNombres(u.getUsuario().getNombres());
 		dt.setUsuario(u.getUsuario().getUsuario());
-		dt.setSexo(u.getUsuario().getSexo().getDescripcion());
+		dt.setSexo(u.getUsuario().getSexo());
 		dt.setFechaNacimiento(u.getUsuario().getFechaNacimiento());
 		
 		return dt;
