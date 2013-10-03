@@ -22,9 +22,6 @@ public class SubCategoriaContenidoEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "subcatcontenido_secuencia")
 	@SequenceGenerator(name = "subcatcontenido_secuencia", sequenceName = "subcatcontenido_seq", allocationSize = 1)
 	private Integer id;
-	
-	@Column(name = "nombre", length = 20, nullable = false)
-	private String nombre;
 
 	@Column(name = "descripcion", length = 20, nullable = false)
 	private String descripcion;
@@ -47,14 +44,6 @@ public class SubCategoriaContenidoEntity implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
 	}
 
 	public CategoriaContenidoEntity getCategoria() {
