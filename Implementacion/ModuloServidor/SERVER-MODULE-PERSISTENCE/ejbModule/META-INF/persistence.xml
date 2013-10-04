@@ -21,6 +21,10 @@
 		<class>tecinf.persistencia.entities.CategoriaContenidoEntity</class>
 		<class>tecinf.persistencia.entities.ContenidoEntity</class>
 		<class>tecinf.persistencia.entities.SubCategoriaContenidoEntity</class>
+		<class>tecinf.persistencia.entities.ContenidoVideoEntity</class>
+		<class>tecinf.persistencia.entities.ContenidoLibroEntity</class>
+		<class>tecinf.persistencia.entities.ContenidoSoftwareEntity</class>
+		<class>tecinf.persistencia.entities.ContenidoTemaMusicalEntity</class>
 		
 		<properties>
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
