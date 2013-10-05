@@ -5,26 +5,54 @@
 <script src="js/holder.js"></script>
 <script src="js/bootstrap.js"></script>
 
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-			<span class="sr-only">Ver Barra de Navegacion</span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="#">Brand</a>
-	</div>
-	<ul class="nav navbar-inverse">
-		<li class="active"><a href="#">Inicio</a></li>
-		<li><a href="#">Perfil</a></li>
-		<li class="dropdown">
-			<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias<b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li><a href="#">Deportes</a></li>
-				<li><a href="#">Finanzas</a></li>
-				<li><a href="#">Entretenimiento</a></li>
-				<li><a href="#">Infantiles</a></li>
-				<li><a href="#">Gastronimia</a></li>
-			</ul>
-		</li>
-	</ul>
- </nav>
+<script>
+    $(document).ready(function(){
+        $('.carousel').carousel({
+            interval: 3000
+        });
+        
+        function chile(){
+            
+            this.nombre = "jkdksa";
+            this.iasjd = "000dasd";
+            
+        }
+
+        persona = new chile();
+    });
+</script>
+
+ <div>
+	<nav class="navbar navbar-default" role="navigation">
+		<ul class="nav navbar-inverse">
+			<li class="active"><a href="#">Inicio</a></li>
+			<li><a href="#">Perfil</a></li>
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">Deportes</a></li>
+					<li><a href="#">Finanzas</a></li>
+					<li><a href="#">Entretenimiento</a></li>
+					<li><a href="#">Infantiles</a></li>
+					<li><a href="#">Gastronomia</a></li>
+				</ul>
+			</li>
+		</ul>
+	 </nav>
+ </div>
+ <div id="myCarousel" class="carousel">
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item"><img src="img/slide01.jpg"></img></div>
+    <div class="item"><img src="img/slide02.jpg"></img></div>
+    <div class="item"><img src="img/slide03.jpg"></img></div>
+    <div class="item"><img src="img/slide04.jpg"></img></div>
+    <div class="item"><img src="img/slide05.jpg"></img></div>
+    <div class="item"><img src="img/slide06.jpg"></img></div>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div>
+ 
+ 
