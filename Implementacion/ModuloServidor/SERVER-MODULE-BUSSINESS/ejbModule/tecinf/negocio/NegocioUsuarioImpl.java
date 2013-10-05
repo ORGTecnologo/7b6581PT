@@ -7,10 +7,14 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.naming.NamingException;
 
+import tecinf.negocio.dtos.LoginRespDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.utiles.DataTypesFactory;
 import tecinf.negocio.utiles.Encriptacion;
+import tecinf.negocio.utiles.EnumRespuestas;
+import tecinf.negocio.utiles.EnumTipoUsuario;
+import tecinf.negocio.utiles.RandomString;
 import tecinf.persistencia.daos.AuditoriaDao;
 import tecinf.persistencia.daos.AuditoriaObjetoDao;
 import tecinf.persistencia.daos.AuditoriaOperacionDao;
@@ -65,22 +69,27 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		*/
 	}
 	
-	public Boolean loginUsuarioCliente(String usuario, String contrasenia){
+	public LoginRespDataType loginUsuarioCliente(String usuario, String contrasenia){
 		
+		LoginRespDataType resp = new LoginRespDataType();
 		String hashedPassword = Encriptacion.encriptarMD5(contrasenia);
 		UsuarioClienteEntity ue = usuarioClienteDao.findByUserAndPassword(usuario, hashedPassword); 
-		if ( ue == null)
-			return false;
-		else {			
+		if ( ue == null) {
+			resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA);
+		} else {			
 			AuditoriaEntity a = new AuditoriaEntity();
 			a.setFechaOperacion(new Date());
 			a.setObjeto(auditoriaObjetoDao.findByID(EnumClavesEntidades.AUDITORIA_OBJETO_USUARIO));
 			a.setOperacion(auditoriaOperacionDao.findByID(EnumClavesEntidades.AUDITORIA_OPERACION_LOGIN));
 			a.setUsuarioCliente(ue);
 			auditoriaDao.persist(a);
-			return true;
+			resp.setRespuesta(EnumRespuestas.RESPUESTA_OK);
+			String tkn = (new RandomString(20).nextString());
+			resp.setToken(tkn);
+			resp.setUsuario(ue.getUsuario().getUsuario());
+			resp.setTipoUsuario(EnumTipoUsuario.USUARIO_CLIENTE);			
 		}
-		
+		return resp;
 	}
 
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import tecinf.negocio.dtos.LoginRespDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 
@@ -14,7 +15,7 @@ public interface NegocioUsuario {
 	
 	public void modificarUsuario(UsuarioDataType u) throws Exception;
 	
-	public Boolean loginUsuarioCliente(String usuario, String contrasenia);
+	public LoginRespDataType loginUsuarioCliente(String usuario, String contrasenia);
 	
 	public Boolean loginUsuarioAdmin(String usuario, String contrasenia);
 	
