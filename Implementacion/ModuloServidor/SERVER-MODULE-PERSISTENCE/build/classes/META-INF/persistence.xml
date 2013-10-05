@@ -6,16 +6,34 @@
       	<jta-data-source>java:jboss/postgresDS</jta-data-source>
       	
 		<class>tecinf.persistencia.entities.UsuarioEntity</class>
-		<class>tecinf.persistencia.entities.RolEntity</class>
 		<class>tecinf.persistencia.entities.ParametroValorEntity</class>
-		
+		<class>tecinf.persistencia.entities.UsuarioClienteEntity</class>
+		<class>tecinf.persistencia.entities.TipoRegistroEntity</class>
+		<class>tecinf.persistencia.entities.AuditoriaEntity</class>
+		<class>tecinf.persistencia.entities.AuditoriaOperacionEntity</class>
+		<class>tecinf.persistencia.entities.UsuarioProveedorEntity</class>
+		<class>tecinf.persistencia.entities.EstadoUsuarioEntity</class>
+		<class>tecinf.persistencia.entities.AuditoriaObjetoEntity</class>
+		<class>tecinf.persistencia.entities.CategoriaReclamoEntity</class>
+		<class>tecinf.persistencia.entities.ReclamoEntity</class>
+		<class>tecinf.persistencia.entities.PromocionEntity</class>
+		<class>tecinf.persistencia.entities.EstadoVersionContenidoEntity</class>
+		<class>tecinf.persistencia.entities.CategoriaContenidoEntity</class>
+		<class>tecinf.persistencia.entities.ContenidoEntity</class>
+		<class>tecinf.persistencia.entities.SubCategoriaContenidoEntity</class>
+		<class>tecinf.persistencia.entities.ContenidoVideoEntity</class>
+		<class>tecinf.persistencia.entities.ContenidoLibroEntity</class>
+		<class>tecinf.persistencia.entities.ContenidoSoftwareEntity</class>
+		<class>tecinf.persistencia.entities.ContenidoTemaMusicalEntity</class>
+		  
 		<properties>
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
    			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.jdbc.batch_size" value="50" />
 			<property name="hibernate.order_inserts" value="true" />
 			<property name="hibernate.order_updates" value="true" />
-         	<property name="hibernate.hbm2ddl.auto" value="update"/>
+         	<!--  <property name="hibernate.hbm2ddl.auto" value="update"/>  -->
+         	<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
       	</properties>
 	</persistence-unit>
 </persistence>

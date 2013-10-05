@@ -6,7 +6,6 @@
 		<project>SERVER-MODULE-PERSISTENCE</project>
 		<project>SERVER-MODULE-BUSSINESS</project>
 		<project>SERVER-MODULE-SERVICES</project>
-		<project>SERVER-MODULE-PRESENTATION</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
