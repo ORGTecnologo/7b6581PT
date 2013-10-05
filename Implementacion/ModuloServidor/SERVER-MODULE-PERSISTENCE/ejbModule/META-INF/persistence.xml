@@ -25,7 +25,7 @@
 		<class>tecinf.persistencia.entities.ContenidoLibroEntity</class>
 		<class>tecinf.persistencia.entities.ContenidoSoftwareEntity</class>
 		<class>tecinf.persistencia.entities.ContenidoTemaMusicalEntity</class>
-		 
+		  
 		<properties>
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
    			<property name="hibernate.show_sql" value="false" />
