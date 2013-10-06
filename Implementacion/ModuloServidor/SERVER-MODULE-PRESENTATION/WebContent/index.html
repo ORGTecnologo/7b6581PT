@@ -1,58 +1,94 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/market.css" media="screen" />
 
-<script src="js/jquery.min.js"></script>
-<script src="js/holder.js"></script>
-<script src="js/bootstrap.js"></script>
+<body style="background-color: currentcolor;">
 
-<script>
-    $(document).ready(function(){
-        $('.carousel').carousel({
-            interval: 3000
-        });
-        
-        function chile(){
-            
-            this.nombre = "jkdksa";
-            this.iasjd = "000dasd";
-            
-        }
-
-        persona = new chile();
-    });
-</script>
-
- <div>
-	<nav class="navbar navbar-default" role="navigation">
-		<ul class="nav navbar-inverse">
-			<li class="active"><a href="#">Inicio</a></li>
-			<li><a href="#">Perfil</a></li>
+	<div class="PantallaCompleta span12">
+		<div class="span3" style="margin:auto"><img src="img/logo.jpg"></div>
+		<div class="span6">
+			<input type="text" class="barraBusquedaHome search-query span5" style="height:initial" placeholder="Buscar Contenido...">
+			<button class="btn barraBusquedaHome"><i class="icon-search"></i></button>
+		</div>
+		<div class="span3">
+			<a class="btn pull-right barraBusquedaHome" href="#registroUsuario" onclick="esUnicoCorreo('pelo')">Registrarse</a>
+			<a class="btn pull-right barraBusquedaHome" onclick="loginUsuario()">Login</a>
+		</div>
+	</div>
+	
+	<div class="span2" style="margin-left: auto; background-color: rgb(245, 245, 245);">
+		<ul class="nav nav-list">
+			<li class="nav-header">List header</li>
+			<li class="active"><a href="#">Home</a></li>
+			<li><a href="#">Novedades</a></li>
+			<li><a href="#">Libreria</a></li>
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias<b class="caret"></b></a>
-				<ul class="dropdown-menu">
+				<ul class="dropdown-menu pull-right">
 					<li><a href="#">Deportes</a></li>
 					<li><a href="#">Finanzas</a></li>
 					<li><a href="#">Entretenimiento</a></li>
 					<li><a href="#">Infantiles</a></li>
 					<li><a href="#">Gastronomia</a></li>
 				</ul>
-			</li>
+			</li></li>
+			<li class="nav-header">Opciones</li>
+			<li><a href="#">Perfil</a></li>
+			<li><a href="#">Mis aplicaciones</a></li>		
 		</ul>
-	 </nav>
- </div>
- <div id="myCarousel" class="carousel">
-  <!-- Carousel items -->
-  <div class="carousel-inner">
-    <div class="active item"><img src="img/slide01.jpg"></img></div>
-    <div class="item"><img src="img/slide02.jpg"></img></div>
-    <div class="item"><img src="img/slide03.jpg"></img></div>
-    <div class="item"><img src="img/slide04.jpg"></img></div>
-    <div class="item"><img src="img/slide05.jpg"></img></div>
-    <div class="item"><img src="img/slide06.jpg"></img></div>
-  </div>
-  <!-- Carousel nav -->
-  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-</div>
- 
- 
+	</div>
+	
+	<div class="container-fluid">
+	<!-- <div class="row-fluid">  -->  
+	    <div class="span10">
+			<div id="myCarousel" class="carousel">
+				<!-- Carousel items -->
+				<div class="carousel-inner">
+					<div class="active item"><img src="img/slide01.jpg"></img></div>
+					<div class="item"><img src="img/slide02.jpg"></img></div>
+					<div class="item"><img src="img/slide03.jpg"></img></div>
+					<div class="item"><img src="img/slide04.jpg"></img></div>
+					<div class="item"><img src="img/slide05.jpg"></img></div>
+					<div class="item"><img src="img/slide06.jpg"></img></div>
+				</div>
+				<!-- Carousel nav -->
+				<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+				<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+			</div>
+	      <!—Sidebar content—>
+	    </div>
+	 <!--    </div> -->  
+	</div> 
+	
+	<div id="registroUsuario" class="modal hide fade" tabindex="-1" data-width="760">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3>Registro de Usuario</h3>
+	  </div>
+	  <div class="modal-body">
+	    <div class="row-fluid">
+	      <div class="span6">
+	        <h4>Some Input</h4>
+	        <p><input type="text" class="span12"></p>
+	        <p><input type="text" class="span12"></p>
+	        <p><input type="text" class="span12"></p>
+	      </div>
+	      <div class="span6">
+	        <h4>Some More Input</h4>
+	        <p><input type="text" class="span12"></p>
+	        <p><input type="text" class="span12"></p>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" data-dismiss="modal" class="btn">Close</button>
+	    <button type="button" class="btn btn-primary">Save changes</button>
+	  </div>
+	</div>
+</body>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/holder.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/LlamadasAjax.js"></script>
+<script src="js/main.js"></script>
