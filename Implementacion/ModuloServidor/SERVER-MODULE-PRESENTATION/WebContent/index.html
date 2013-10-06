@@ -11,8 +11,8 @@
 			<button class="btn barraBusquedaHome"><i class="icon-search"></i></button>
 		</div>
 		<div class="span3">
-			<a class="btn pull-right barraBusquedaHome" href="#registroUsuario" onclick="esUnicoCorreo('pelo')">Registrarse</a>
-			<a class="btn pull-right barraBusquedaHome" onclick="loginUsuario()">Login</a>
+			<a class="btn pull-right barraBusquedaHome" href="#registroUsuario" onclick="clickRegistroUsuario()">Registrarse</a>
+			<a class="btn pull-right barraBusquedaHome" onclick="clickLogin()">Login</a>
 		</div>
 	</div>
 	
@@ -60,34 +60,56 @@
 	 <!--    </div> -->  
 	</div> 
 	
-	<div id="registroUsuario" class="modal hide fade" tabindex="-1" data-width="760">
+	<div id="loginUsuario" class="modalChocolate modal">
 	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-	    <h3>Registro de Usuario</h3>
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="cerrarPanelLogin()">X</button>
+	    <h3>Iniciar Sesion</h3>
 	  </div>
 	  <div class="modal-body">
 	    <div class="row-fluid">
-	      <div class="span6">
-	        <h4>Some Input</h4>
-	        <p><input type="text" class="span12"></p>
-	        <p><input type="text" class="span12"></p>
-	        <p><input type="text" class="span12"></p>
-	      </div>
-	      <div class="span6">
-	        <h4>Some More Input</h4>
-	        <p><input type="text" class="span12"></p>
-	        <p><input type="text" class="span12"></p>
+	      <div class="span12">
+			<h4>Datos de Usuario</h4>
+			<p>Correo    			<input type="text" class="span12"></p>
+			<p>Contrase&ntilde;a    <input type="password" class="span12"></p>
 	      </div>
 	    </div>
 	  </div>
 	  <div class="modal-footer">
-	    <button type="button" data-dismiss="modal" class="btn">Close</button>
-	    <button type="button" class="btn btn-primary">Save changes</button>
+	    <button type="button" data-dismiss="modal" class="btn" onclick="cerrarPanelLogin()">Cerrar</button>
+	    <button type="button" class="btn btn-primary">Confirmar</button>
+	  </div>
+	</div>	
+	
+	<div id="registroUsuario" class="modalChocolate modal">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="cerrarPanelRegistro()">X</button>
+	    <h3>Registro de Usuario</h3>
+	  </div>
+	  <div class="modal-body">
+	    <div class="row-fluid">
+	      <div class="span12">
+			<h4>Datos de Usuario</h4>
+			<p>Correo    			<input type="text" class="span12"></p>
+			<p>Contrase&ntilde;a    <input type="password" class="span12"></p>
+			<p>Nombre Usuario  		<input type="text" class="span12"></p>     
+			<h4>Datos Personales</h4>
+			<p>Nombres    			<input type="text" class="span12"></p>
+			<p>Apellidos    		<input type="text" class="span12"></p>
+			<p>Sexo    				<input type="text" class="span12"></p>
+			<p>Fecha de Nacimiento  <input type="text" class="span12"></p>
+			<p>Telefono Movil    	<input type="text" class="span12"></p>
+	      </div>
+	    </div>
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" data-dismiss="modal" class="btn" onclick="cerrarPanelRegistro()">Cerrar</button>
+	    <button type="button" class="btn btn-primary">Confirmar</button>
 	  </div>
 	</div>
 </body>
 
 <script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.js"></script>
 <script src="js/holder.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/LlamadasAjax.js"></script>

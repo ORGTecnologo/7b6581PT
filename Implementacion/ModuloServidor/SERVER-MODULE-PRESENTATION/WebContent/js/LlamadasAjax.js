@@ -19,21 +19,17 @@ function Rol(id,Nombre){
 	this.descripcion = Nombre;
 }
 
-rol = new Rol(1,"Usuario");
-modificarUsuarioX("canario","mouse","contrasenia","apellido",rol);
-
-
 //Registro de Usuario
 function registroUsuario(usuario,nombre,contrasenia,apellido,mail){
 	$.ajax({
-		url: '/SERVER-MODULE-SERVICES/restws/usuarios/modificarUsuario',
-		type: 'POST',
+		url: ip + '/usuarios/registrarUsuario',
+		type: 'PUT',
 		data:JSON.stringify({
-			'usuario'     : usuario,
-			'contrasenia' : contrasenia,
-			'nombres'     : nombre,
-			'apellidos'   : apellido,
-			'mail'	      : mail
+			usuario     : usuario,
+			contrasenia : contrasenia,
+			nombres     : nombre,
+			apellidos   : apellido,
+			mail	    : mail
 		}),
 		datatype: "json",
 		contentType: "application/json",
@@ -84,16 +80,16 @@ function obtenerUsuariosServ(){
 		for (var i = 0; i < msg.length; i++) {
 			msg[i]
 		};
-		console.log(msg);
+		console.log("Estos son los usuarios: " + msg);
 	})
 	.fail(function(msg) {
-		console.log(msg);
+		console.log("Fallo: " + msg);
 	})
 }
 
 function esUnicoCorreo(mail){
 	$.ajax({
-	   url: ip + '/restws/usuarios/existeUsuarioPorMail',
+	   url: ip + '/usuarios/existeUsuarioPorMail',
 	   type: 'GET',
 	   data: JSON.stringify({
 			mail : mail
@@ -104,14 +100,14 @@ function esUnicoCorreo(mail){
 	.done(function(msg) {
 		console.log(msg);
 	})
-	.fail(function() {
+	.fail(function(msg) {
 		console.log(msg);
 	})
 }
 
 function esUnicoNick(nick){
 	$.ajax({
-	   url: ip + '/restws/usuarios/',
+	   url: ip + '/usuarios/',
 	   type: 'GET',
 	   data: {'usuario' : nick,},
 	   datatype: "json",
@@ -120,7 +116,7 @@ function esUnicoNick(nick){
 	.done(function(msg) {
 		console.log(msg);
 	})
-	.fail(function() {
+	.fail(function(msg) {
 		console.log(msg);
 	})
 }
@@ -128,10 +124,10 @@ function esUnicoNick(nick){
 function loginUsuario(){
 	$.ajax({
 	   url: ip + '/usuarios/loginCliente',
-	   type: 'GET',
+	   type: 'POST',
 	   data: JSON.stringify({
-		   'usuario' : 'pelo',
-		   'contrasenia' : 'bolso'
+		   usuario : 'pelo',
+		   contrasenia : 'bolso'
 	   }),
 	   datatype: "json",
 	   contentType: "application/json",
@@ -139,7 +135,7 @@ function loginUsuario(){
 	.done(function(msg) {
 		console.log(msg);
 	})
-	.fail(function() {
+	.fail(function(msg) {
 		console.log(msg);
 	})
 }
