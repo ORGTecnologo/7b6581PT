@@ -8,14 +8,16 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
+import org.jboss.logging.Logger;
+
 import tecinf.negocio.NegocioUsuario;
+import tecinf.negocio.dtos.GenericJsonResponse;
 import tecinf.negocio.dtos.LoginDataType;
 import tecinf.negocio.dtos.LoginRespDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.utiles.EnumRespuestas;
-import tecinf.negocio.utiles.NegocioFactory;
-import tecinf.servicios.utiles.CustomJsonResponse;
+import tecinf.negocio.utiles.NegocioFactory;		
 import tecinf.servicios.utiles.JSonUtils;
 import tecinf.servicios.utiles.session.Session;
 import tecinf.servicios.utiles.session.SessionManager;
@@ -23,6 +25,8 @@ import tecinf.servicios.utiles.session.SessionManager;
 
 @Path("/usuarios")
 public class RWSUsuarios {
+	
+	private static Logger logger = Logger.getLogger(RWSUsuarios.class);
 	
 	@GET
 	@Path("/listarUsuarios")
@@ -33,7 +37,7 @@ public class RWSUsuarios {
 			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
 			listaUsuarios = negocioUsuario.obtenerTodosClientes();
 		} catch (Exception e) {
-			
+			logger.error(e.getMessage() , e);
 		} 
 		return listaUsuarios;
  
@@ -57,7 +61,43 @@ public class RWSUsuarios {
 				sm.addUserToSession(s);				
 			}
 		} catch (Exception e){
-			
+			logger.error(e.getMessage() , e);
+		}
+		return resp;
+	}
+	
+	@GET
+	@Path("/existeUsuario")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public GenericJsonResponse existeUsuario(String usr) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {		
+			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+			if (negocioUsuario.existeUsuario(usr))
+				resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
+			else
+				resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_FALLA);
+		} catch (Exception e){
+			logger.error(e.getMessage() , e);
+		}
+		return resp;
+	}
+	
+	@GET
+	@Path("/existeUsuarioPorMail")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public GenericJsonResponse existeUsuarioPorMail(String mail) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {		
+			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+			if (negocioUsuario.existeUsuarioPorMail(mail))
+				resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
+			else
+				resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_FALLA);
+		} catch (Exception e){
+			logger.error(e.getMessage() , e);
 		}
 		return resp;
 	}
@@ -66,8 +106,8 @@ public class RWSUsuarios {
 	@Path("/modificarUsuario")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public CustomJsonResponse modificarUsuario(UsuarioDataType ud){
-		CustomJsonResponse resp = new CustomJsonResponse();
+	public GenericJsonResponse modificarUsuario(UsuarioDataType ud){
+		GenericJsonResponse resp = new GenericJsonResponse();
 		try {
 			
 			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
@@ -77,8 +117,7 @@ public class RWSUsuarios {
 		} catch (Exception e) {
 			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_FALLA);
 			resp.setMensageOperacion(e.getMessage());
-		}
-				
+		}				
 		return resp;
 	}
 	

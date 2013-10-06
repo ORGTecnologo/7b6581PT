@@ -24,12 +24,6 @@ public class UsuarioClienteDaoImpl extends DaoImpl<String , UsuarioClienteEntity
 	}
 
 	@Override
-	public UsuarioClienteEntity findById(String id) {
-		
-		return null;
-	}
-
-	@Override
 	public UsuarioClienteEntity findByUserAndPassword(String id, String pwd) {
 		Query namedQuery = em.createNamedQuery("UsuarioClienteEntity.findByUserAndPassword");
 		namedQuery.setParameter("id", id);

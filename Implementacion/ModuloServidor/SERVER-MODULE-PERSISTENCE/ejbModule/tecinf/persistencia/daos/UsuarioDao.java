@@ -11,4 +11,6 @@ public interface UsuarioDao extends Dao<String , UsuarioEntity> {
 	
 	public UsuarioEntity findById(String id);
 	
+	public UsuarioEntity findByMail(String mail);
+	
 }

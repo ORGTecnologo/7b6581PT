@@ -1,6 +1,6 @@
-package tecinf.servicios.utiles;
+package tecinf.negocio.dtos;
 
-public class CustomJsonResponse {
+public class GenericJsonResponse {
 	
 	private String resultadoOperacion;
 	private String idObjeto;

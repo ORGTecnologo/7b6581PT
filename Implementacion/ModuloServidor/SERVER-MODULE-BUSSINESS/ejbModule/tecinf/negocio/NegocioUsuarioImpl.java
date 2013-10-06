@@ -18,9 +18,15 @@ import tecinf.negocio.utiles.RandomString;
 import tecinf.persistencia.daos.AuditoriaDao;
 import tecinf.persistencia.daos.AuditoriaObjetoDao;
 import tecinf.persistencia.daos.AuditoriaOperacionDao;
+import tecinf.persistencia.daos.EstadoUsuarioDao;
+import tecinf.persistencia.daos.TipoRegistroDao;
 import tecinf.persistencia.daos.UsuarioClienteDao;
+import tecinf.persistencia.daos.UsuarioDao;
 import tecinf.persistencia.entities.AuditoriaEntity;
+import tecinf.persistencia.entities.EstadoUsuarioEntity;
+import tecinf.persistencia.entities.TipoRegistroEntity;
 import tecinf.persistencia.entities.UsuarioClienteEntity;
+import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.utiles.EnumClavesEntidades;
 import tecinf.persistencia.utiles.PersistenciaFactory;
 
@@ -28,9 +34,12 @@ import tecinf.persistencia.utiles.PersistenciaFactory;
 public class NegocioUsuarioImpl implements NegocioUsuario  {
 	
 	private UsuarioClienteDao usuarioClienteDao = null;
+	private UsuarioDao usuarioDao = null;
 	private AuditoriaDao auditoriaDao = null;
 	private AuditoriaObjetoDao auditoriaObjetoDao = null;
 	private AuditoriaOperacionDao auditoriaOperacionDao = null;
+	private EstadoUsuarioDao estadoUsuarioDao = null;
+	private TipoRegistroDao tipoRegistroDao = null;
 	
 	public NegocioUsuarioImpl() throws NamingException{
 		
@@ -38,6 +47,8 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		auditoriaDao = PersistenciaFactory.getAuditoriaDao();
 		auditoriaObjetoDao = PersistenciaFactory.getAuditoriaObjetoDao();
 		auditoriaOperacionDao = PersistenciaFactory.getAuditoriaOperacionDao();
+		estadoUsuarioDao = PersistenciaFactory.getEstadoUsuarioDao();
+		tipoRegistroDao = PersistenciaFactory.getTipoRegistroDao();
 		
 	}
 	
@@ -92,13 +103,51 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		return resp;
 	}
 
-
 	@Override
 	public Boolean loginUsuarioAdmin(String usuario, String contrasenia) {
 		
 		
 		
 		return null;
+	}
+	
+	public void registroUsuarioCliente(UsuarioClienteDataType dt) throws Exception {
+		
+		UsuarioEntity ue = new UsuarioEntity();
+		ue.setApellidos(dt.getApellidos());
+		ue.setContrasenia(dt.getContrasenia());
+		ue.setCorreoElectronico(dt.getCorreoElectronico());
+		EstadoUsuarioEntity estado = estadoUsuarioDao.findByID(EnumClavesEntidades.ESTADO_USUARIO_HABILITADO);
+		ue.setEstadoUsuario(estado);
+		ue.setFechaNacimiento(dt.getFechaNacimiento());
+		ue.setNombres(dt.getNombres()); 
+		ue.setSexo(dt.getSexo());
+		ue.setTelefonoMovil(dt.getTelefonoMovil());
+		ue.setUsuario(dt.getUsuario());
+		
+		UsuarioClienteEntity uce = new UsuarioClienteEntity();
+		uce.setId(ue.getUsuario());
+		uce.setUsuario(ue);
+		TipoRegistroEntity tipoRegistro = tipoRegistroDao.findByID(EnumClavesEntidades.TIPO_REGISTRO_WEB);
+		uce.setTipoRegistro(tipoRegistro);
+		uce.setRutaImagenPerfil("");
+		
+	}
+	
+	public Boolean existeUsuario(String usr){
+		UsuarioEntity ue = usuarioDao.findById(usr);
+		if (ue == null)
+			return false;
+		else
+			return true;
+	}
+	
+	public Boolean existeUsuarioPorMail(String mail){
+		UsuarioEntity ue = usuarioDao.findByMail(mail);
+		if (ue == null)
+			return false;
+		else
+			return true;
 	}
 	
 }

@@ -21,6 +21,18 @@ public class UsuarioDaoImpl extends DaoImpl<String , UsuarioEntity> implements U
 		return (List<UsuarioEntity>)namedQuery.getResultList();	
 	}
 	
+	public UsuarioEntity findByMail(String mail){
+		
+		Query namedQuery = em.createNamedQuery("UsuarioEntity.findByMail");
+		namedQuery.setParameter("mail", mail);
+		
+		if (namedQuery.getResultList().size() > 0 )
+			return (UsuarioEntity)namedQuery.getSingleResult();
+		
+		return null;
+		
+	}
+	
 	public UsuarioEntity findById(String id){
 		
 		Query namedQuery = em.createNamedQuery("UsuarioEntity.findById");

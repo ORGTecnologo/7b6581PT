@@ -14,6 +14,7 @@ public abstract class UsuarioDataType implements Serializable {
 	protected String sexo;
 	protected Date fechaNacimiento;
 	protected String telefonoMovil;
+	protected String correoElectronico;
 	
 	public String getUsuario() {
 		return usuario;
@@ -56,6 +57,12 @@ public abstract class UsuarioDataType implements Serializable {
 	}
 	public void setTelefonoMovil(String telefonoMovil) {
 		this.telefonoMovil = telefonoMovil;
+	}
+	public String getCorreoElectronico() {
+		return correoElectronico;
+	}
+	public void setCorreoElectronico(String correoElectronico) {
+		this.correoElectronico = correoElectronico;
 	}
 	
 	

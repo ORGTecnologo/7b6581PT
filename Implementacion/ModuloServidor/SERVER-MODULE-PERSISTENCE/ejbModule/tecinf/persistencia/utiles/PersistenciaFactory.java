@@ -8,8 +8,12 @@ import tecinf.persistencia.daos.AuditoriaObjetoDao;
 import tecinf.persistencia.daos.AuditoriaObjetoDaoImpl;
 import tecinf.persistencia.daos.AuditoriaOperacionDao;
 import tecinf.persistencia.daos.AuditoriaOperacionDaoImpl;
+import tecinf.persistencia.daos.EstadoUsuarioDao;
+import tecinf.persistencia.daos.EstadoUsuarioDaoImpl;
 import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.ParametroValorDaoImpl;
+import tecinf.persistencia.daos.TipoRegistroDao;
+import tecinf.persistencia.daos.TipoRegistroDaoImpl;
 import tecinf.persistencia.daos.UsuarioClienteDao;
 import tecinf.persistencia.daos.UsuarioClienteDaoImpl;
 import tecinf.persistencia.daos.UsuarioDao;
@@ -44,6 +48,14 @@ public class PersistenciaFactory {
 	
 	public static AuditoriaOperacionDao getAuditoriaOperacionDao() throws NamingException{
 		return (AuditoriaOperacionDao) lookup(AuditoriaOperacionDaoImpl.class.getSimpleName(),AuditoriaOperacionDao.class.getName());
+	}
+	
+	public static EstadoUsuarioDao getEstadoUsuarioDao() throws NamingException{
+		return (EstadoUsuarioDao) lookup(EstadoUsuarioDaoImpl.class.getSimpleName(),EstadoUsuarioDao.class.getName());
+	}
+	
+	public static TipoRegistroDao getTipoRegistroDao() throws NamingException{
+		return (TipoRegistroDao) lookup(TipoRegistroDaoImpl.class.getSimpleName(),TipoRegistroDao.class.getName());
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

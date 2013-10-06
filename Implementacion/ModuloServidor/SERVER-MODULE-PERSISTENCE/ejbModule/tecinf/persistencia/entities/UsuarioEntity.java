@@ -24,6 +24,9 @@ import javax.persistence.Table;
 					
 	@NamedQuery(name = "UsuarioEntity.findById", 
 		query = "SELECT e FROM UsuarioEntity e WHERE e.usuario = :id") ,
+	
+	@NamedQuery(name = "UsuarioEntity.findByMail", 
+		query = "SELECT e FROM UsuarioEntity e WHERE e.correoElectronico = :mail") ,
 })
 
 
@@ -50,7 +53,7 @@ public class UsuarioEntity implements Serializable {
 	@Column(name="telefono_movil")
 	private String telefonoMovil;
 	
-	@Column(name="correo_electronico",nullable=false)
+	@Column(name="correo_electronico",nullable=false,unique=true)
 	private String correoElectronico;
 	
 	@Column(name="sexo",nullable=false)
