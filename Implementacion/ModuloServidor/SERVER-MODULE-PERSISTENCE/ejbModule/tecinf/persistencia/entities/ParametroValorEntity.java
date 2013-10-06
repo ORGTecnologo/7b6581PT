@@ -27,7 +27,7 @@ public class ParametroValorEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="nombre_parametro",length=20)
+	@Column(name="nombre_parametro",length=100)
 	private String nombreParametro;
 	
 	@Column(name="valor_parametro",length=500)

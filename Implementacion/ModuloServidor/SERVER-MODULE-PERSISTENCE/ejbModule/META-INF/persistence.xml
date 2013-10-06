@@ -25,6 +25,7 @@
 		<class>tecinf.persistencia.entities.ContenidoLibroEntity</class>
 		<class>tecinf.persistencia.entities.ContenidoSoftwareEntity</class>
 		<class>tecinf.persistencia.entities.ContenidoTemaMusicalEntity</class>
+		<class>tecinf.persistencia.entities.VersionContenidoEntity</class>
 		  
 		<properties>
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
@@ -33,7 +34,7 @@
 			<property name="hibernate.order_inserts" value="true" />
 			<property name="hibernate.order_updates" value="true" />
          	<!--  <property name="hibernate.hbm2ddl.auto" value="update"/>  -->
-         	<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+         	<property name="hibernate.hbm2ddl.auto" value="update"/>
       	</properties>
 	</persistence-unit>
 </persistence>

@@ -4,6 +4,7 @@ public class LoginDataType {
 	
 	private String usuario;
 	private String contrasenia;
+	
 	public String getUsuario() {
 		return usuario;
 	}

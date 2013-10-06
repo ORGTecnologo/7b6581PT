@@ -44,7 +44,7 @@ public class RWSUsuarios {
 	}
 	
 	@GET
-	@Path("/listarUsuarios")
+	@Path("/loginCliente")
 	@Produces("application/json")
 	@Consumes("application/json")
 	public LoginRespDataType login(LoginDataType dt) { 
@@ -88,11 +88,13 @@ public class RWSUsuarios {
 	@Path("/existeUsuarioPorMail")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public GenericJsonResponse existeUsuarioPorMail(String mail) {
+	public GenericJsonResponse existeUsuarioPorMail(String param) { 
 		GenericJsonResponse resp = new GenericJsonResponse();
-		try {		
+		try {
+			//JsonObject obj = (JsonObject)param;
+			//String mailStr = mail.get("mail").getAsString();
 			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
-			if (negocioUsuario.existeUsuarioPorMail(mail))
+			if (negocioUsuario.existeUsuarioPorMail(""))
 				resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
 			else
 				resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_FALLA);
@@ -112,6 +114,25 @@ public class RWSUsuarios {
 			
 			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
 			negocioUsuario.modificarUsuario(ud); 
+			
+			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
+		} catch (Exception e) {
+			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_FALLA);
+			resp.setMensageOperacion(e.getMessage());
+		}				
+		return resp;
+	}
+	
+	@PUT
+	@Path("/registrarUsuario")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public GenericJsonResponse registrarUsuario(UsuarioClienteDataType ud){
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {
+			
+			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario.registroUsuarioCliente(ud); 
 			
 			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
 		} catch (Exception e) {
