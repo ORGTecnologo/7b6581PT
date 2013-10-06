@@ -8,6 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import tecinf.persistencia.entities.UsuarioClienteEntity;
+import tecinf.persistencia.entities.UsuarioEntity;
 
 @Stateless
 public class UsuarioClienteDaoImpl extends DaoImpl<String , UsuarioClienteEntity> implements UsuarioClienteDao {
@@ -17,10 +18,8 @@ public class UsuarioClienteDaoImpl extends DaoImpl<String , UsuarioClienteEntity
 
 	@Override
 	public List<UsuarioClienteEntity> findAll() { 
-		
-		
-		
-		return null;
+		Query namedQuery = em.createNamedQuery("UsuarioClienteEntity.findAll");
+		return (List<UsuarioClienteEntity>)namedQuery.getResultList();
 	}
 
 	@Override

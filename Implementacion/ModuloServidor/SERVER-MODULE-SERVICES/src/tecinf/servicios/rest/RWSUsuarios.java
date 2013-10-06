@@ -45,7 +45,8 @@ public class RWSUsuarios {
  
 	}
 	
-	@GET
+	//@GET
+	@POST
 	@Path("/loginCliente")
 	@Produces("application/json")
 	@Consumes("application/json")
