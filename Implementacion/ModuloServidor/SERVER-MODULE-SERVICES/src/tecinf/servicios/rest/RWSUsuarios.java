@@ -2,6 +2,7 @@ package tecinf.servicios.rest;
 
 import java.util.List;
 
+import javax.naming.NamingException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -29,13 +30,25 @@ public class RWSUsuarios {
 	
 	private static Logger logger = Logger.getLogger(RWSUsuarios.class);
 	
+	private NegocioUsuario negocioUsuario = null;
+	
+	public RWSUsuarios(){
+		
+		try {
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
+		} catch (NamingException e) {
+			logger.error(e.getMessage() , e); 
+		}
+		
+	}
+	
 	@GET
 	@Path("/listarUsuarios")
 	@Produces("application/json")
 	public List<UsuarioClienteDataType> obtenerTodos() {
 		List<UsuarioClienteDataType> listaUsuarios = null;
 		try {
-			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			listaUsuarios = negocioUsuario.obtenerTodosClientes();
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e);
@@ -52,7 +65,7 @@ public class RWSUsuarios {
 	public LoginRespDataType login(LoginDataType dt) { 
 		LoginRespDataType resp = null;
 		try {		
-			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			resp = negocioUsuario.loginUsuarioCliente(dt.getUsuario(), dt.getContrasenia()); 
 			if (resp.getRespuesta().equals(EnumRespuestas.RESPUESTA_OK)){
 				SessionManager sm = SessionManager.getInstance();
@@ -75,7 +88,7 @@ public class RWSUsuarios {
 	public GenericJsonResponse existeUsuario(String usr) {
 		GenericJsonResponse resp = new GenericJsonResponse();
 		try {		
-			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			if (negocioUsuario.existeUsuario(usr))
 				resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
 			else
@@ -95,7 +108,7 @@ public class RWSUsuarios {
 		try {
 			//JsonObject obj = (JsonObject)param;
 			//String mailStr = mail.get("mail").getAsString();
-			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			if (negocioUsuario.existeUsuarioPorMail(""))
 				resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
 			else
@@ -114,7 +127,7 @@ public class RWSUsuarios {
 		GenericJsonResponse resp = new GenericJsonResponse();
 		try {
 			
-			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			negocioUsuario.modificarUsuario(ud); 
 			
 			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
@@ -133,7 +146,7 @@ public class RWSUsuarios {
 		GenericJsonResponse resp = new GenericJsonResponse();
 		try {
 			
-			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			negocioUsuario.registroUsuarioCliente(ud); 
 			
 			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);

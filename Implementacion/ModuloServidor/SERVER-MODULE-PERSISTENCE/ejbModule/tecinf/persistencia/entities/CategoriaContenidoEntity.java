@@ -7,11 +7,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "categorias_contenido")
+@NamedQueries( {
+	
+	@NamedQuery(name = "CategoriaContenidoEntity.findAll", 
+			query = "SELECT e FROM CategoriaContenidoEntity e ORDER BY e.nombre") ,
+})
 public class CategoriaContenidoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -20,8 +27,11 @@ public class CategoriaContenidoEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "catcontenido_secuencia")
 	@SequenceGenerator(name = "catcontenido_secuencia", sequenceName = "catcontenido_seq", allocationSize = 1)
 	private Integer id;
+	
+	@Column(name = "nombre", length = 50, nullable = false)
+	private String nombre;
 
-	@Column(name = "descripcion", length = 20, nullable = false)
+	@Column(name = "descripcion", length = 255, nullable = false)
 	private String descripcion;
 
 	public Integer getId() {
@@ -39,5 +49,14 @@ public class CategoriaContenidoEntity implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
 
 }

@@ -1,6 +1,10 @@
 package tecinf.negocio.utiles;
 
+import tecinf.negocio.dtos.CategoriaContenidoDataType;
+import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
+import tecinf.persistencia.entities.CategoriaContenidoEntity;
+import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioClienteEntity;
 
 public class DataTypesFactory {
@@ -17,5 +21,25 @@ public class DataTypesFactory {
 		
 		return dt;
 	}
+	
+	public static CategoriaContenidoDataType getCategoriaContenidoDataType(CategoriaContenidoEntity e){
+		CategoriaContenidoDataType dt = new CategoriaContenidoDataType();
+		
+		dt.setDescripcion(e.getDescripcion());
+		dt.setId(e.getId());
+		dt.setNombre(e.getNombre());
+		
+		return dt;
+	}
+	
+	public static SubCategoriaContenidoDataType getSubCategoriaContenidoDataType(SubCategoriaContenidoEntity e){
+		SubCategoriaContenidoDataType dt = new SubCategoriaContenidoDataType();
+		
+		dt.setDescripcion(e.getDescripcion());
+		dt.setId(e.getId());
+		dt.setNombre(e.getNombre());
+		
+		return dt;
+	} 
 	
 }

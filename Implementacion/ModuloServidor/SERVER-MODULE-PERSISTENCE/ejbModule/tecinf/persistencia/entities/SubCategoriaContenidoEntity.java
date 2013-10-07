@@ -8,12 +8,22 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "sub_categorias_contenido")
+@NamedQueries( {
+	
+	@NamedQuery(name = "SubCategoriaContenidoEntity.findAll", 
+		query = "SELECT e FROM SubCategoriaContenidoEntity e ORDER BY e.nombre") ,
+			
+	@NamedQuery(name = "SubCategoriaContenidoEntity.findByCategoria", 
+		query = "SELECT e FROM SubCategoriaContenidoEntity e WHERE e.categoria.id = :idCategoria ORDER BY e.nombre") ,
+})
 public class SubCategoriaContenidoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -22,8 +32,11 @@ public class SubCategoriaContenidoEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "subcatcontenido_secuencia")
 	@SequenceGenerator(name = "subcatcontenido_secuencia", sequenceName = "subcatcontenido_seq", allocationSize = 1)
 	private Integer id;
+	
+	@Column(name = "nombre", length = 50, nullable = false)
+	private String nombre;
 
-	@Column(name = "descripcion", length = 20, nullable = false)
+	@Column(name = "descripcion", length = 255, nullable = false)
 	private String descripcion;
 	
 	@OneToOne
@@ -56,6 +69,14 @@ public class SubCategoriaContenidoEntity implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 }
