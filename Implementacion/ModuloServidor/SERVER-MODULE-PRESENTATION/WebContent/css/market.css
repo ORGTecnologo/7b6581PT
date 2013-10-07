@@ -42,3 +42,10 @@
 		display: none;
 		width: 450px;
 	}
+	
+	.fijo {
+		position:fixed !important; 
+		right:0px; 
+		top:0px; 
+		z-index:10 !important
+	}
