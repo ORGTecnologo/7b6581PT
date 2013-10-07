@@ -8,6 +8,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.jboss.logging.Logger;
@@ -25,7 +26,7 @@ import tecinf.servicios.utiles.session.Session;
 import tecinf.servicios.utiles.session.SessionManager;
 
 
-@Path("/usuarios")
+@Path("/usuarios/{parametros}")
 public class RWSUsuarios {
 	
 	private static Logger logger = Logger.getLogger(RWSUsuarios.class);
@@ -62,11 +63,16 @@ public class RWSUsuarios {
 	@Path("/loginCliente")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public LoginRespDataType login(LoginDataType dt) { 
+	public LoginRespDataType login(@PathParam("parametros") String dt) { 
 		LoginRespDataType resp = null;
 		try {		
+<<<<<<< HEAD
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			resp = negocioUsuario.loginUsuarioCliente(dt.getUsuario(), dt.getContrasenia()); 
+=======
+			NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+			resp = negocioUsuario.loginUsuarioCliente("",""); 
+>>>>>>> 55523e0f7a24524b92f421d1281526137b8577ed
 			if (resp.getRespuesta().equals(EnumRespuestas.RESPUESTA_OK)){
 				SessionManager sm = SessionManager.getInstance();
 				Session s = new Session();

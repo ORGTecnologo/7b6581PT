@@ -36,3 +36,9 @@
 	.modal.container {
 		max-width: none;
 	}
+	
+	.modalChocolate{
+		background-color: white; 
+		display: none;
+		width: 450px;
+	}
