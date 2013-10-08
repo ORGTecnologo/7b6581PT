@@ -1,0 +1,5 @@
+package com.example.de.vogella.android.sqlite.first;
+
+public class MySQLiteHelper {
+
+}

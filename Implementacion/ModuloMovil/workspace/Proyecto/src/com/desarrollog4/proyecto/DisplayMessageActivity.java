@@ -1,18 +1,20 @@
 package com.desarrollog4.proyecto;
 
+import Services.ListaUsuariosWs;
 import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class DisplayMessageActivity extends Activity {
-
+	public ListaUsuariosWs lws;
+	
 	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +34,9 @@ public class DisplayMessageActivity extends Activity {
 	    TextView textView = new TextView(this);
 	    textView.setTextSize(25);
 	    textView.setText("bienvenido: "+message);
+	    
+	    lws = new ListaUsuariosWs();
+		lws.execute();
 		
 //		setupActionBar();
 		setContentView(textView);
@@ -64,5 +69,20 @@ public class DisplayMessageActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	public void sendMessage(View view) {
+			
+		ListView lv=(ListView) findViewById(R.id.listView1);
+		String usuarios[]= lws.obtenerUsuarios();
+		
+
+		ArrayAdapter<String> adaptador =
+			        new ArrayAdapter<String>(DisplayMessageActivity.this,
+			        android.R.layout.simple_list_item_1, usuarios);
+			
+		lv.setAdapter(adaptador);
+			
+	}
+
 
 }

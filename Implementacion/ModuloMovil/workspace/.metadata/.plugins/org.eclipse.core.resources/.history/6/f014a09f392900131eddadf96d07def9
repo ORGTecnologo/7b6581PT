@@ -1,0 +1,57 @@
+package com.desarrollog4.proyecto;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPut;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
+
+import android.os.AsyncTask;
+import android.util.Log;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class ListaUsuariosWs extends AsyncTask<String,Integer,Boolean> {
+	 
+    protected Boolean doInBackground(String... params) {
+ 
+        boolean resul = true;
+ 
+        HttpClient httpClient = new DefaultHttpClient();
+        
+        HttpGet put = new HttpGet("http://10.0.2.2:8080/SERVER-MODULE-SERVICES/restws/usuarios/listarUsuarios");
+        put.setHeader("content-type", "application/json");
+         
+        try
+        {
+                HttpResponse resp = httpClient.execute(put);
+                String respStr = EntityUtils.toString(resp.getEntity());
+         
+                JSONObject respJSON = new JSONObject(respStr);
+         
+                String usuario = respJSON.getString("usuario");
+                String contrasenia = respJSON.getString("contrasenia");
+                String nombres = respJSON.getString("nombres");
+                String apellidos = respJSON.getString("apellidos");
+        }
+        catch(Exception ex)
+        {
+                Log.e("ServicioRest","Error!", ex);
+        }
+ 
+        return resul;
+    }
+    
+    protected void onPostExecute(Boolean result) {
+    	 
+//        if (result)
+//        {
+//            lblResultado.setText("Insertado OK.");
+//        }
+    }
+ 
+
+}

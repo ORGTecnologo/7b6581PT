@@ -2,6 +2,7 @@ package com.desarrollog4.proyecto;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -36,17 +37,29 @@ public class MainActivity extends Activity {
 		
 		//Asi obtengo los datos del usuario que desea logearse. Falta consultar el Ws y 
 		//verificar que el usuario exista.
+		boolean exitoSesion = true;
 		
 		Intent intent = new Intent(this, DisplayMessageActivity.class);
 		EditText usuario = (EditText) findViewById(R.id.editText1);
 		String nomusuario = usuario.getText().toString();
 		intent.putExtra(EXTRA_MESSAGE, nomusuario);
-
-//		
-//		EditText password = (EditText) findViewById(R.id.editText2);
-//		String passusuario = password.getText().toString();
 		
-		startActivity(intent);
+		EditText password = (EditText) findViewById(R.id.editText2);
+		String passusuario = password.getText().toString();
+		
+//		ValidaUsuarioWs tarea = new ValidaUsuarioWs();
+//        tarea.execute(nomusuario,passusuario);
+		
+        if (exitoSesion)
+        		startActivity(intent);
+        else
+        {
+        	TextView errorSesion = (TextView) findViewById(R.id.textView3);
+        	errorSesion.setText("Error de usuario/contraseña");
+        	errorSesion.setTextColor(Color.parseColor("#FF0000"));
+        }
+		
+		
 	}
 	
 

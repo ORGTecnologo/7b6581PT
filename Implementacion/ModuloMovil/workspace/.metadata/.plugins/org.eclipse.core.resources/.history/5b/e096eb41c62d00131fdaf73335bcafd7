@@ -1,0 +1,15 @@
+package com.example.marketplace;
+
+
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class IniciarSesionActivity extends Activity {
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.ini_sesion);
+	}
+}

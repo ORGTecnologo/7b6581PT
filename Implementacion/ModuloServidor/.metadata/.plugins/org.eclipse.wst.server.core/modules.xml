@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<modules>
-  <module moduleId="org.eclipse.jst.jee.server:SERVER-MODULE-BUSSINESS" serverId="JBoss 7.1 Runtime Server1379466674341"/>
-  <module moduleId="org.eclipse.jst.jee.server:SERVER-MODULE-SERVICES" serverId="JBoss 7.1 Runtime Server1379466674341"/>
-  <module moduleId="org.eclipse.jst.jee.server:SERVER-MODULE-PERSISTENCE" serverId="JBoss 7.1 Runtime Server1379466674341"/>
-  <module moduleId="org.eclipse.jst.jee.server:SERVER-MODULE"/>
-</modules>
