@@ -49,3 +49,16 @@
 		top:0px; 
 		z-index:10 !important
 	}
+	
+	.menuEnCajaFija{
+		margin-left: auto;
+		background-color: rgb(245, 245, 245);
+		position: fixed !important;
+		top: 47px;
+		z-index: 10 !important;
+	}
+	
+	.carouselInicio{
+		padding-left: 15em;
+		padding-top: 47px;
+	}
