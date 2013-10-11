@@ -54,30 +54,30 @@ insert into usuarios_cliente (id,ruta_imagen_perfil,id_tipo_registro,fk_usuario)
 values('mrodriguez','ruta',1,'mrodriguez');
 
 -- CATEGORIAS DEFINIDAS PARA EL SISTEMA
-insert into categorias_contenido(id,nombre,descripcion) values (1,'Deportes','descripcion');
-insert into categorias_contenido(id,nombre,descripcion) values (2,'Educación','descripcion');
-insert into categorias_contenido(id,nombre,descripcion) values (3,'Finanzas','descripcion');
-insert into categorias_contenido(id,nombre,descripcion) values (4,'Alimentación','descripcion');
-insert into categorias_contenido(id,nombre,descripcion) values (5,'Noticias','descripcion');
-insert into categorias_contenido(id,nombre,descripcion) values (6,'Viajes','descripcion');
-insert into categorias_contenido(id,nombre,escripcion) values (7,'Salud y bienestar','descripcion');
+insert into categorias_contenido(id,descripcion) values (1,'Deportes');
+insert into categorias_contenido(id,descripcion) values (2,'Educación');
+insert into categorias_contenido(id,descripcion) values (3,'Finanzas');
+insert into categorias_contenido(id,descripcion) values (4,'Alimentación');
+insert into categorias_contenido(id,descripcion) values (5,'Noticias');
+insert into categorias_contenido(id,descripcion) values (6,'Viajes');
+insert into categorias_contenido(id,descripcion) values (7,'Salud y bienestar');
 
 -- SUBCATEGORIAS DEFINIDAS PARA EL SISTEMA
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Fútbol',1,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Basketball',1,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Rugby',1,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Natación',1,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Running',1,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Matemáticas',2,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Historia',2,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Filosofía',2,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Química',2,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Dietas',4,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Consejos',4,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Nacional',6,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Internacional',6,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Centros de salud',7,'descripcion');
-insert into sub_categorias_contenido (id,nombre,id_categoria,descripcion) values (nextval('subcatcontenido_seq'),'Consejos y tips',7,'descripcion');
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Fútbol',1);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Basketball',1);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Rugby',1);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Natación',1);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Running',1);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Matemáticas',2);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Historia',2);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Filosofía',2);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Química',2);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Dietas',4);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Consejos',4);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Nacional',6);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Internacional',6);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Centros de salud',7);
+insert into sub_categorias_contenido (id,descripcion,id_categoria) values (nextval('subcatcontenido_seq'),'Consejos y tips',7);
 
 -- ESTADOS PARA LAS VERSIONES DE LOS CONTENIDOS
 insert into estado_version_contenido(id, descripcion) values (1 , 'Aprobada');
