@@ -26,6 +26,7 @@
 		<class>tecinf.persistencia.entities.ContenidoSoftwareEntity</class>
 		<class>tecinf.persistencia.entities.ContenidoTemaMusicalEntity</class>
 		<class>tecinf.persistencia.entities.VersionContenidoEntity</class>
+		<class>tecinf.persistencia.entities.UsuarioAdministradorEntity</class>
 		  
 		<properties>
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>

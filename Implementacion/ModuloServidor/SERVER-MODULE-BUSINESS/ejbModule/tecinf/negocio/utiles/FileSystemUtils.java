@@ -10,9 +10,9 @@ import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.entities.ParametroValorEntity;
 import tecinf.persistencia.utiles.PersistenciaFactory;
 
-public class FileSistemUtils {
+public class FileSystemUtils {
 	
-	private static Logger logger = Logger.getLogger(FileSistemUtils.class);
+	private static Logger logger = Logger.getLogger(FileSystemUtils.class);
 	
 	private static final String DIRECTORIO_USUARIOS_CLIENTES = "usuarios_cliente";
 	private static final String DIRECTORIO_USUARIOS_PROVEEDORES = "usuarios_proveedores";
@@ -20,7 +20,7 @@ public class FileSistemUtils {
 	
 	private ParametroValorDao parametroValorDao = null;
 	
-	public FileSistemUtils() throws NamingException {
+	public FileSystemUtils() throws NamingException {
 		parametroValorDao = PersistenciaFactory.getParametroValorDao();
 	}
 	

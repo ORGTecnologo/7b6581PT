@@ -20,7 +20,6 @@ import tecinf.persistencia.daos.AuditoriaObjetoDao;
 import tecinf.persistencia.daos.AuditoriaOperacionDao;
 import tecinf.persistencia.daos.EstadoUsuarioDao;
 import tecinf.persistencia.daos.TipoRegistroDao;
-import tecinf.persistencia.daos.UsuarioClienteDao;
 import tecinf.persistencia.daos.UsuarioDao;
 import tecinf.persistencia.entities.AuditoriaEntity;
 import tecinf.persistencia.entities.EstadoUsuarioEntity;
@@ -33,7 +32,6 @@ import tecinf.persistencia.utiles.PersistenciaFactory;
 @Stateless
 public class NegocioUsuarioImpl implements NegocioUsuario  {
 	
-	private UsuarioClienteDao usuarioClienteDao = null;
 	private UsuarioDao usuarioDao = null;
 	private AuditoriaDao auditoriaDao = null;
 	private AuditoriaObjetoDao auditoriaObjetoDao = null;
@@ -43,12 +41,12 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 	
 	public NegocioUsuarioImpl() throws NamingException{
 		
-		usuarioClienteDao = PersistenciaFactory.getUsuarioClienteDao();
 		auditoriaDao = PersistenciaFactory.getAuditoriaDao();
 		auditoriaObjetoDao = PersistenciaFactory.getAuditoriaObjetoDao();
 		auditoriaOperacionDao = PersistenciaFactory.getAuditoriaOperacionDao();
 		estadoUsuarioDao = PersistenciaFactory.getEstadoUsuarioDao();
 		tipoRegistroDao = PersistenciaFactory.getTipoRegistroDao();
+		usuarioDao = PersistenciaFactory.getUsuarioDao();
 		
 	}
 	
@@ -56,10 +54,10 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 	public List<UsuarioClienteDataType> obtenerTodosClientes(){
 		
 		List<UsuarioClienteDataType> listaDtos = new ArrayList<UsuarioClienteDataType>();
-		List<UsuarioClienteEntity> listEntities = usuarioClienteDao.findAll();
+		List<UsuarioEntity> listEntities = usuarioDao.findAllByType(EnumTipoUsuario.USUARIO_CLIENTE);
 		if (listEntities != null) {
-			for (UsuarioClienteEntity ue : listEntities)
-				listaDtos.add(DataTypesFactory.getUsuarioClienteDataType(ue));
+			for (UsuarioEntity ue : listEntities)
+				listaDtos.add((UsuarioClienteDataType)DataTypesFactory.getUsuarioDataType(ue));
 		}
 		return listaDtos;
 		
@@ -84,7 +82,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		
 		LoginRespDataType resp = new LoginRespDataType();
 		String hashedPassword = Encriptacion.encriptarMD5(contrasenia);
-		UsuarioClienteEntity ue = usuarioClienteDao.findByUserAndPassword(usuario, hashedPassword); 
+		UsuarioEntity ue = usuarioDao.findByUserAndPassword(usuario, hashedPassword); 
 		if ( ue == null) {
 			resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA);
 		} else {			
@@ -92,12 +90,12 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 			a.setFechaOperacion(new Date());
 			a.setObjeto(auditoriaObjetoDao.findByID(EnumClavesEntidades.AUDITORIA_OBJETO_USUARIO));
 			a.setOperacion(auditoriaOperacionDao.findByID(EnumClavesEntidades.AUDITORIA_OPERACION_LOGIN));
-			a.setUsuarioCliente(ue);
+			a.setUsuario(ue);
 			auditoriaDao.persist(a);
 			resp.setRespuesta(EnumRespuestas.RESPUESTA_OK);
 			String tkn = (new RandomString(20).nextString());
 			resp.setToken(tkn);
-			resp.setUsuario(ue.getUsuario().getUsuario());
+			resp.setUsuario(ue.getUsuario());
 			resp.setTipoUsuario(EnumTipoUsuario.USUARIO_CLIENTE);			
 		}
 		return resp;
@@ -113,7 +111,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 	
 	public void registroUsuarioCliente(UsuarioClienteDataType dt) throws Exception {
 		
-		UsuarioEntity ue = new UsuarioEntity();
+		UsuarioClienteEntity ue = new UsuarioClienteEntity();
 		ue.setApellidos(dt.getApellidos());
 		ue.setContrasenia(dt.getContrasenia());
 		ue.setCorreoElectronico(dt.getCorreoElectronico());
@@ -124,13 +122,9 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		ue.setSexo(dt.getSexo());
 		ue.setTelefonoMovil(dt.getTelefonoMovil());
 		ue.setUsuario(dt.getUsuario());
-		
-		UsuarioClienteEntity uce = new UsuarioClienteEntity();
-		uce.setId(ue.getUsuario());
-		uce.setUsuario(ue);
 		TipoRegistroEntity tipoRegistro = tipoRegistroDao.findByID(EnumClavesEntidades.TIPO_REGISTRO_WEB);
-		uce.setTipoRegistro(tipoRegistro);
-		uce.setRutaImagenPerfil("");
+		ue.setTipoRegistro(tipoRegistro);
+		ue.setRutaImagenPerfil("");
 		
 	}
 	

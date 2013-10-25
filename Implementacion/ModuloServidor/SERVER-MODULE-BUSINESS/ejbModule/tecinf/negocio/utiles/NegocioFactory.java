@@ -33,7 +33,7 @@ public class NegocioFactory {
 		jndiProperties.put(Context.URL_PKG_PREFIXES, "org.jboss.ejb.client.naming");
 		final Context context = new InitialContext(jndiProperties);		 
 		final String appName = "SERVER-MODULE";		 
-		final String moduleName = "SERVER-MODULE-BUSSINESS";		 
+		final String moduleName = "SERVER-MODULE-BUSINESS";
 		final String distinctName = "";	
 		return context.lookup("ejb:" + appName + "/" + moduleName + "/" + distinctName + "/" + beanName + "!" + viewClassName);
 	}

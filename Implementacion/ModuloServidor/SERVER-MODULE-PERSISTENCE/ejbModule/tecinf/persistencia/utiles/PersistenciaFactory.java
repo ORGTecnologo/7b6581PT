@@ -18,8 +18,6 @@ import tecinf.persistencia.daos.SubCategoriaContenidoDao;
 import tecinf.persistencia.daos.SubCategoriaContenidoDaoImpl;
 import tecinf.persistencia.daos.TipoRegistroDao;
 import tecinf.persistencia.daos.TipoRegistroDaoImpl;
-import tecinf.persistencia.daos.UsuarioClienteDao;
-import tecinf.persistencia.daos.UsuarioClienteDaoImpl;
 import tecinf.persistencia.daos.UsuarioDao;
 import tecinf.persistencia.daos.UsuarioDaoImpl;
 
@@ -32,10 +30,6 @@ public class PersistenciaFactory {
 	
 	public static UsuarioDao getUsuarioDao() throws NamingException{
 		return (UsuarioDao) lookup(UsuarioDaoImpl.class.getSimpleName(),UsuarioDao.class.getName());
-	}
-	
-	public static UsuarioClienteDao getUsuarioClienteDao() throws NamingException{
-		return (UsuarioClienteDao) lookup(UsuarioClienteDaoImpl.class.getSimpleName(),UsuarioClienteDao.class.getName());
 	}
 	
 	public static ParametroValorDao getParametroValorDao() throws NamingException{

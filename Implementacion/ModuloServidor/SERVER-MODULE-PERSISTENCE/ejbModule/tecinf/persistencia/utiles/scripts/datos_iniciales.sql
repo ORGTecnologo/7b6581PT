@@ -38,20 +38,20 @@ Insert into auditoria_objeto (id , descripcion) values (2 , 'Contenido');
 --PELO
 insert into usuarios (usuario,apellidos,contrasenia,correo_electronico,fecha_nacimiento,nombres,telefono_movil,id_estado,sexo)
 values('pelo8888','fontes','cd1b67cecf6581172a9b39e5c1155824','pelo8888@gmail.com','1980-06-16','alejandro','095632145','H','Masculino');
-insert into usuarios_cliente (id,ruta_imagen_perfil,id_tipo_registro,fk_usuario) 
-values('pelo8888','ruta',1,'pelo8888');
+insert into usuarios_cliente (id,ruta_imagen_perfil,id_tipo_registro) 
+values('pelo8888','ruta',1);
 
 --ANDRES
 insert into usuarios (usuario,apellidos,contrasenia,correo_electronico,fecha_nacimiento,nombres,telefono_movil,id_estado,sexo)
 values('aaldao','aldao','fb10b586a378f8abc224f8390346be6d','aaldao@gmail.com','1980-06-16','andres','095874587','H','Masculino');
-insert into usuarios_cliente (id,ruta_imagen_perfil,id_tipo_registro,fk_usuario) 
-values('aaldao','ruta',1,'aaldao');
+insert into usuarios_cliente (id,ruta_imagen_perfil,id_tipo_registro) 
+values('aaldao','ruta',1);
 
 --MAURICIO
 insert into usuarios (usuario,apellidos,contrasenia,correo_electronico,fecha_nacimiento,nombres,telefono_movil,id_estado,sexo)
 values('mrodriguez','rodriguez','08ed5c4b5499407be0a438654984da36','mau.rod.81090@gmail.com','1980-06-16','mauricio','099321458','H','Masculino');
-insert into usuarios_cliente (id,ruta_imagen_perfil,id_tipo_registro,fk_usuario) 
-values('mrodriguez','ruta',1,'mrodriguez');
+insert into usuarios_cliente (id,ruta_imagen_perfil,id_tipo_registro) 
+values('mrodriguez','ruta',1);
 
 -- CATEGORIAS DEFINIDAS PARA EL SISTEMA
 insert into categorias_contenido(id,descripcion) values (1,'Deportes');
