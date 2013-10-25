@@ -2,26 +2,27 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="css/market.css" media="screen" />
 
-<body style="background-color: currentcolor;">
-
-	<div class="PantallaCompleta span12 fijo">
+<body>
+<div class="span13 fijo">
+	<div class="PantallaCompleta span12">
 		<div class="span3" style="margin:auto"><img src="img/logo.jpg"></div>
 		<div class="span6">
 			<input type="text" class="barraBusquedaHome search-query span5" style="height:initial" placeholder="Buscar Contenido...">
 			<button class="btn barraBusquedaHome"><i class="icon-search"></i></button>
 		</div>
 		<div class="span3">
-			<a class="btn pull-right barraBusquedaHome" href="#registroUsuario" onclick="clickRegistroUsuario()">Registrarse</a>
-			<a class="btn pull-right barraBusquedaHome" onclick="clickLogin()">Login</a>
+			<a class="btn  barraBusquedaHome" href="#registroUsuario" onclick="clickRegistroUsuario()">Registrarse</a>
+			<a class="btn  barraBusquedaHome" onclick="clickLogin()">Login</a>
 		</div>
 	</div>
 	
 	<div class="span2 menuEnCajaFija" style="margin-left: auto; background-color: rgb(245, 245, 245);">
 		<ul class="nav nav-list">
-			<li class="nav-header">List header</li>
-			<li class="active"><a href="#">Home</a></li>
+			<li class="nav-header">Digital Chocolate</li>
+			<li class="active"><a href="#">Inicio</a></li>
 			<li><a href="#">Novedades</a></li>
-			<li><a href="#">Libreria</a></li>
+			<li><a href="#">Top Ventas</a></li>
+			<li><a href="#">Top Gratis</a></li>			
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias<b class="caret"></b></a>
 				<ul class="dropdown-menu pull-right">
@@ -37,12 +38,10 @@
 			<li><a href="#">Mis aplicaciones</a></li>		
 		</ul>
 	</div>
-	
-	<div class="container-fluid">
-	<!-- <div class="row-fluid">  -->  
+</div>	
+	<div class="container-fluid carouselInicio">
 	    <div class="span10">
 			<div id="myCarousel" class="carousel">
-				<!-- Carousel items -->
 				<div class="carousel-inner">
 					<div class="active item"><img src="img/slide01.jpg"></img></div>
 					<div class="item"><img src="img/slide02.jpg"></img></div>
@@ -51,15 +50,26 @@
 					<div class="item"><img src="img/slide05.jpg"></img></div>
 					<div class="item"><img src="img/slide06.jpg"></img></div>
 				</div>
-				<!-- Carousel nav -->
 				<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
 				<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 			</div>
-	      <!—Sidebar content—>
 	    </div>
-	 <!--    </div> -->  
-	</div> 
+	</div>
 	
+	<div class="span13 divContenidosInicial color1Inicio"><h2 class="span12 pull-right">Aplicaciones</h2></div>
+	<div class="span13" style="height:50px;"></div>
+	<div class="span13 divContenidosInicial color2Inicio">
+		<div class="span9"></div>	
+		<div class="span3 pull-right"><h2 >Libros</h2></div>
+	</div>
+	<div class="span13" style="height:50px;"></div>
+	<div class="span13 divContenidosInicial color1Inicio"><h2 class="span12 pull-right">Videos</h2></div>	
+	<div class="span13" style="height:50px;"></div>
+	<div class="span13 divContenidosInicial color2Inicio">
+		<div class="span9"></div>	
+		<div class="span3 pull-right"><h2 >Musica</h2></div>
+	</div>	
+<!-- Modals -->	 
 	<div id="loginUsuario" class="modalChocolate modal">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="cerrarPanelLogin()">X</button>
@@ -79,7 +89,6 @@
 	    <button type="button" class="btn btn-primary">Confirmar</button>
 	  </div>
 	</div>	
-	
 	<div id="registroUsuario" class="modalChocolate modal">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="cerrarPanelRegistro()">X</button>
@@ -106,8 +115,6 @@
 	    <button type="button" class="btn btn-primary">Confirmar</button>
 	  </div>
 	</div>
-	
-	<div style="heigth:1500px"></div>
 </body>
 
 <script src="js/jquery.min.js"></script>

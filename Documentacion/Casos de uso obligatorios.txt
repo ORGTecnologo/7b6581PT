@@ -1,0 +1,46 @@
+
+Movil:
+
+	[Home]
+	- Buscar contenidos por voz o escribiendo (primer_semana)
+	- Seleccionar contenido
+	[Categoria]
+	- Seleccionar categoria
+	[Subcategoria]
+	- Seleccionar subcategoria
+	- Ver promociones
+	[Top Pagas]
+	- Seleccionar contenido
+	[Contenido digital]
+	- Ver informacion de contenido
+	- Compartir
+	- Guardar en favoritos
+
+	- Iniciar sesion / Cerrar sesion (primer semana)
+	- Descargar contenido (primer_semana)
+
+Web:
+
+- Obligatorios:
+	ABM Clientes (primer_semana)
+	ABM Reclamo
+	ABM Valoración Contenido Digital
+	ABM Categoría
+	ABM Proveedores
+	ABM Contenido digital
+	Inicio de Sesión/ Cierre de Sesión (primer_semana)
+	Adquirir Contenido Digital (primer_semana)
+	Aprobar/Rechazar versión de contenido digital
+	Utilizar Twitter Bootstrap, para los estilos Web. 
+	Buscador de contenidos digital (primer_semana)
+	Valoración de datos Ingresado
+	La vista móvil del sitio deberá soportar al menos el dispositivo LG Nexus 4 E960.
+	
+- Opcionales:
+	ABM Administradores
+	ABM Promociones
+	Ver Registro de Accesos al Sitio
+	Ver Estadísticas
+	Integración con PayPal
+	Utilizar HTTPS
+	Notificación vía correo electrónico
