@@ -25,7 +25,7 @@ import tecinf.servicios.utiles.session.Session;
 import tecinf.servicios.utiles.session.SessionManager;
 
 
-@Path("/usuarios/{parametros}")
+@Path("/usuarios")
 public class RWSUsuarios {
 	
 	private static Logger logger = Logger.getLogger(RWSUsuarios.class);

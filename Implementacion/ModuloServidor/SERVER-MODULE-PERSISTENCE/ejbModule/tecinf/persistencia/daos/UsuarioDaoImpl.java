@@ -21,6 +21,13 @@ public class UsuarioDaoImpl extends DaoImpl<String , UsuarioEntity> implements U
 		return (List<UsuarioEntity>)namedQuery.getResultList();	
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<UsuarioEntity> findAllByType(String tipo){
+		Query namedQuery = em.createNamedQuery("UsuarioEntity.findAllByType");
+		namedQuery.setParameter("tipo", tipo);
+		return (List<UsuarioEntity>)namedQuery.getResultList();	
+	}
+	
 	public UsuarioEntity findByMail(String mail){
 		
 		Query namedQuery = em.createNamedQuery("UsuarioEntity.findByMail");
@@ -45,17 +52,15 @@ public class UsuarioDaoImpl extends DaoImpl<String , UsuarioEntity> implements U
 		
 	}
 	
-	public void persist(UsuarioEntity e){
-		em.persist(e);
+	public UsuarioEntity findByUserAndPassword(String usr, String pwd) {
+		Query namedQuery = em.createNamedQuery("UsuarioEntity.findByUserAndPassword");
+		namedQuery.setParameter("usr", usr);
+		namedQuery.setParameter("pwd", pwd);
+		if (namedQuery.getResultList().size() > 0 )
+			return (UsuarioEntity)namedQuery.getSingleResult();
+		
+		return null;
+		
 	}
-	
-	public void remove(UsuarioEntity e){
-		em.remove(e);
-	}
-	
-	public void merge(UsuarioEntity e){
-		em.merge(e);
-	}
-	
 	
 }
