@@ -28,9 +28,9 @@ function crearUsuario(){
 	var apellido 	= document.getElementById('inputApellido').value;
 	var sexo 		= document.getElementById('inputSexo').value;
 	var nacimiento  = document.getElementById('inputFecha').value;
-	var tel 		= document.getElementById('inputTel').value;
+	var cel 		= document.getElementById('inputTel').value;
 	
-	registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,tel);
+	registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,cel);
 }
 
 

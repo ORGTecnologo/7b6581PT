@@ -20,19 +20,19 @@ function Rol(id,Nombre){
 }
 
 //Registro de Usuario
-function registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,tel){
+function registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,cel){
 	$.ajax({
 		url: ip + '/usuarios/registrarUsuario',
 		type: 'PUT',
 		data:JSON.stringify({
-			usuario     : usuario,
-			contrasenia : contrasenia,
-			mail	    : mail,
-			nombres     : nombre,
-			apellidos   : apellido,
-			sexo		: sexo,
-			nacimiento  : nacimiento,
-			tel			: tel
+			usuario           : usuario,
+			contrasenia       : contrasenia,
+			nombres           : nombre,
+			apellidos   	  : apellido,
+			sexo			  : sexo,
+			fechaNacimiento   : nacimiento,
+			telefonoMovil	  : cel,
+			correoElectronico : mail,
 		}),
 		datatype: "json",
 		contentType: "application/json",
@@ -44,8 +44,6 @@ function registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimient
 		console.log('Fallo al guardar!!');
 	})
 }
-
-
 
 //modificacion de datos
 function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
