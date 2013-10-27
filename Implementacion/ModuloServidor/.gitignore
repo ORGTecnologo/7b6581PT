@@ -1,3 +1,10 @@
+.metadata/*
+
+Servers/*
+Servers/.settings/*
+
+RemoteSystemTempFiles/*
+
 SERVER-MODULE-BUSSINESS/build/classes/*
 SERVER-MODULE-PERSISTENCE/build/classes/*
 SERVER-MODULE-SERVICES/build/classes/*
@@ -7,6 +14,21 @@ SERVER-MODULE-BUSSINESS/build/.classpath
 SERVER-MODULE-PERSISTENCE/build/.classpath
 SERVER-MODULE-SERVICES/build/.classpath
 SERVER-MODULE-PRESENTATION/build/.classpath
+
+SERVER-MODULE-BUSSINESS/.classpath
+SERVER-MODULE-PERSISTENCE/.classpath
+SERVER-MODULE-SERVICES/.classpath
+SERVER-MODULE-PRESENTATION/.classpath
+
+SERVER-MODULE-BUSSINESS/.settings/*
+SERVER-MODULE-PERSISTENCE/.settings/*
+SERVER-MODULE-SERVICES/.settings/*
+SERVER-MODULE-PRESENTATION/.settings/*
+
+SERVER-MODULE-BUSSINESS/.settings/*
+SERVER-MODULE-PERSISTENCE/.settings/*
+SERVER-MODULE-SERVICES/.settings/*
+SERVER-MODULE-PRESENTATION/.settings/*
 
 SERVER-MODULE-BUSSINESS/bin/build/classes/*
 SERVER-MODULE-PERSISTENCE/bin/build/classes/*
