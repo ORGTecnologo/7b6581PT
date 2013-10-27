@@ -19,6 +19,21 @@ function clickRegistroUsuario(){
 	div.show();
 }
 
+function crearUsuario(){
+	
+	var nombre 		= document.getElementById('inputNombre').value;
+	var usuario 	= document.getElementById('inputNick').value;
+	var contrasenia = document.getElementById('inputPass').value;
+	var mail 		= document.getElementById('inputCorreo').value;
+	var apellido 	= document.getElementById('inputApellido').value;
+	var sexo 		= document.getElementById('inputSexo').value;
+	var nacimiento  = document.getElementById('inputFecha').value;
+	var tel 		= document.getElementById('inputTel').value;
+	
+	registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,tel);
+}
+
+
 function clickLogin(){
 	var div = $("#loginUsuario");
 		div.show();

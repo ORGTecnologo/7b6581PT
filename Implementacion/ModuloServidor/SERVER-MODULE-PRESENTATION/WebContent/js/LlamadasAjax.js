@@ -20,16 +20,19 @@ function Rol(id,Nombre){
 }
 
 //Registro de Usuario
-function registroUsuario(usuario,nombre,contrasenia,apellido,mail){
+function registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,tel){
 	$.ajax({
 		url: ip + '/usuarios/registrarUsuario',
 		type: 'PUT',
 		data:JSON.stringify({
 			usuario     : usuario,
 			contrasenia : contrasenia,
+			mail	    : mail,
 			nombres     : nombre,
 			apellidos   : apellido,
-			mail	    : mail
+			sexo		: sexo,
+			nacimiento  : nacimiento,
+			tel			: tel
 		}),
 		datatype: "json",
 		contentType: "application/json",
@@ -121,7 +124,7 @@ function esUnicoNick(nick){
 	})
 }
 
-function loginUsuario(){
+function loginUsuario(usuario, contrasenia){
 	$.ajax({
 	   url: ip + '/usuarios/loginCliente',
 	   type: 'POST',
