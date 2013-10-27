@@ -5,7 +5,7 @@
     <ejb>SERVER-MODULE-PERSISTENCE.jar</ejb>
   </module>
   <module>
-    <ejb>SERVER-MODULE-BUSSINESS.jar</ejb>
+    <ejb>SERVER-MODULE-BUSINESS.jar</ejb>
   </module>
   <module>
     <web>

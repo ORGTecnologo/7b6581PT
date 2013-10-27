@@ -30,7 +30,7 @@ public class RWSCategoriasContenido {
 	}
 	
 	@GET
-	@Path("/CategoriasYSubcategorias")
+	@Path("/listarTopTenDescargas")
 	@Produces("application/json")
 	public List<CategoriaContenidoDataType> obtenerTopTenPorDescargas() {
 		List<CategoriaContenidoDataType> listaCategorias = null;

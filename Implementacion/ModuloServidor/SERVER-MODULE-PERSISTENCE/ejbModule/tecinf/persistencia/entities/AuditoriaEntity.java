@@ -29,12 +29,8 @@ public class AuditoriaEntity implements Serializable {
 	private Date fechaOperacion;
 	
 	@OneToOne
-	@JoinColumn(name="id_usuario_cliente")
-	private UsuarioClienteEntity usuarioCliente;
-	
-	@OneToOne
-	@JoinColumn(name="id_usuario_proveedor")
-	private UsuarioProveedorEntity usuarioProveedor;
+	@JoinColumn(name="id_usuario")
+	private UsuarioEntity usuario;
 	
 	@OneToOne
 	@JoinColumn(name="id_operacion",nullable=false)
@@ -76,20 +72,12 @@ public class AuditoriaEntity implements Serializable {
 		this.objeto = objeto;
 	}
 
-	public UsuarioClienteEntity getUsuarioCliente() {
-		return usuarioCliente;
+	public UsuarioEntity getUsuario() {
+		return usuario;
 	}
 
-	public void setUsuarioCliente(UsuarioClienteEntity usuarioCliente) {
-		this.usuarioCliente = usuarioCliente;
-	}
-
-	public UsuarioProveedorEntity getUsuarioProveedor() {
-		return usuarioProveedor;
-	}
-
-	public void setUsuarioProveedor(UsuarioProveedorEntity usuarioProveedor) {
-		this.usuarioProveedor = usuarioProveedor;
+	public void setUsuario(UsuarioEntity usuario) {
+		this.usuario = usuario;
 	}
 	
 	
