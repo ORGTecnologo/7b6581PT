@@ -127,8 +127,8 @@ function loginUsuario(usuario, contrasenia){
 	   url: ip + '/usuarios/loginCliente',
 	   type: 'POST',
 	   data: JSON.stringify({
-		   usuario : 'pelo',
-		   contrasenia : 'bolso'
+		   usuario : usuario,
+		   contrasenia : contrasenia
 	   }),
 	   datatype: "json",
 	   contentType: "application/json",

@@ -10,7 +10,8 @@ $(document).ready(function(){
     $( "#inputFecha" ).datepicker({
 	      changeMonth: true,
 	      changeYear: true,
-	      dateFormat: "dd-mm-yy"
+	      dateFormat: "dd-mm-yy",
+	      maxDate: 0
     });
    
     //rol = new Rol(1,"Usuario");
@@ -19,6 +20,15 @@ $(document).ready(function(){
 //    registroUsuario("pelo","nombre","contrasenia","apellido","mail");
     
 });
+
+function validateEmail($email) {
+	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+	if( !emailReg.test( $email ) )
+		return false;
+	else
+		return true;
+}
+
 
 function clickRegistroUsuario(){
 	var div = $("#registroUsuario");
@@ -36,7 +46,30 @@ function crearUsuario(){
 	var nacimiento  = document.getElementById('inputFecha').value;
 	var cel 		= document.getElementById('inputTel').value;
 	
-	registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,cel);
+	if(validateEmail(mail)){
+		//if continuar validando
+		registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,cel);
+		document.getElementById('inputNombre').style = "";
+		document.getElementById('inputNick').style = "";
+		document.getElementById('inputPass').style = "";
+		document.getElementById('inputCorreo').style = "";
+		document.getElementById('inputApellido').style = "";
+		document.getElementById('inputSexo').style = "";
+		document.getElementById('inputFecha').style = "";
+		document.getElementById('inputTel').style = "";
+	}
+	else{
+		document.getElementById('inputCorreo').style = "border-color: red";
+	}
+//		console.warn("Email incorrecto!!!");
+}
+
+function IniciarSesion(){
+	
+	var correo 	= document.getElementById('loginCorreo').value;
+	var pass = document.getElementById('loginPass').value;
+	
+	loginUsuario(correo,pass);
 }
 
 
