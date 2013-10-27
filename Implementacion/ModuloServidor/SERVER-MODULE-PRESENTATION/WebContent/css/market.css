@@ -44,10 +44,11 @@
 	}
 	
 	.fijo {
-		position:fixed !important; 
+		position: fixed !important; 
 		right:0px; 
 		top:0px; 
-		z-index:10 !important
+		z-index:10 !important;
+		background-color:white;
 	}
 	
 	.menuEnCajaFija{
@@ -56,6 +57,11 @@
 		position: fixed !important;
 		top: 47px;
 		z-index: 10 !important;
+	}
+	
+	navbarFija{
+		position: fixed !important;
+		width: 100%;
 	}
 	
 	.carouselInicio{
@@ -80,5 +86,30 @@
 	.color3Inicio{
 		background-color: #66CCCC;
 		margin-left: auto;
+	}
+	
+	.styleTits {
+		font-family: cursive;
+		font-size: xx-large;
+		font-weight: bolder;
+		color: rgb(91, 231, 243);
+	}
+	
+	.bestContenido{
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;	
+	}
+	
+	.precio {
+		text-align: right;
+		color: blue;
+		font-family: cursive;
+		font-weight: bolder;
+		font-variant: small-caps;
+	}
+	
+	.separador{
+		height:50px;
 	}
 	
