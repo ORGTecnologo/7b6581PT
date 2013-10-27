@@ -9,7 +9,12 @@ public interface UsuarioDao extends Dao<String , UsuarioEntity> {
 	
 	public List<UsuarioEntity> findAll();
 	
+	public List<UsuarioEntity> findAllByType(String tipo);
+	
 	public UsuarioEntity findById(String id);
+	
+	
+	public UsuarioEntity findByUserAndPassword(String usr, String pwd);	
 	
 	public UsuarioEntity findByMail(String mail);
 	

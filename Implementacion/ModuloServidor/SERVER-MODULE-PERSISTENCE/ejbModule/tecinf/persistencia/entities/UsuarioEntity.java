@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -16,21 +18,29 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="usuarios")
+@Inheritance(strategy = InheritanceType.JOINED)
 
 @NamedQueries( {
 	
 	@NamedQuery(name = "UsuarioEntity.findAll", 
-			query = "SELECT e FROM UsuarioEntity e ORDER BY e.usuario") ,
+		query = "SELECT e FROM UsuarioEntity e ORDER BY e.usuario") ,
+			
+	@NamedQuery(name = "UsuarioEntity.findAllByType", 
+		query = "SELECT e FROM UsuarioEntity e WHERE e.tipoUsuario = :tipo ORDER BY e.usuario") ,
 					
 	@NamedQuery(name = "UsuarioEntity.findById", 
 		query = "SELECT e FROM UsuarioEntity e WHERE e.usuario = :id") ,
 	
 	@NamedQuery(name = "UsuarioEntity.findByMail", 
 		query = "SELECT e FROM UsuarioEntity e WHERE e.correoElectronico = :mail") ,
+	
+	@NamedQuery(name = "UsuarioEntity.findByUserAndPassword", 
+		query = "SELECT e FROM UsuarioEntity e WHERE e.usuario = :usr and e.contrasenia = :pwd") ,
+		
 })
 
 
-public class UsuarioEntity implements Serializable {
+public abstract class UsuarioEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -62,6 +72,9 @@ public class UsuarioEntity implements Serializable {
 	@OneToOne
 	@JoinColumn(name="id_estado",nullable=false)
 	private EstadoUsuarioEntity estadoUsuario;
+	
+	@Column(name="tipo_usuario",length=20, nullable=false)
+	private String tipoUsuario;
 	
 	public String getUsuario() {
 		return usuario;
@@ -137,6 +150,14 @@ public class UsuarioEntity implements Serializable {
 
 	public void setEstadoUsuario(EstadoUsuarioEntity estadoUsuario) {
 		this.estadoUsuario = estadoUsuario;
+	}
+
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
 	}	
 			
 }

@@ -31,7 +31,7 @@ public class CategoriaContenidoEntity implements Serializable {
 	@Column(name = "nombre", length = 50, nullable = false)
 	private String nombre;
 
-	@Column(name = "descripcion", length = 255, nullable = false)
+	@Column(name = "descripcion", length = 255, nullable = true)
 	private String descripcion;
 
 	public Integer getId() {
