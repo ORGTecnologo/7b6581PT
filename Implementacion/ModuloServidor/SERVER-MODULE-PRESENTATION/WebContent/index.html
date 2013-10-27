@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="css/market.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" media="screen" />
 
 <body>
 <nav class="navbarFija navbar navbar-default " style="position: fixed !important;width: 100%;" role="navigation">
@@ -393,8 +394,8 @@
 	    <div class="row">
 	      <div class="col-md-12">
 			<h4>Datos de Usuario</h4>
-			<p>Correo    			<input type="text" class="col-md-12"></p>
-			<p>Contrase&ntilde;a    <input type="password" class="col-md-12"></p>
+			<p>Correo    			<input type="text" class="col-md-12 form-control"></p>
+			<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control"></p>
 	      </div>
 	    </div>
 	  </div>
@@ -413,17 +414,22 @@
 			<div class="rowo">
 				<div class="col-md-6">
 					<h4>Datos de Usuario</h4>
-					<p>Correo    			<input id="inputCorreo" type="email" class="col-md-12"></p>
-					<p>Contrase&ntilde;a    <input id="inputPass" 	type="password" class="col-md-12"></p>
-					<p>Nombre Usuario  		<input id="inputNick" 	type="text" class="col-md-12"></p>     
+					<p>Correo    			<input type="email" class="col-md-12 form-control" id="inputCorreo"></p>
+					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="inputPass"></p>
+					<p>Nombre Usuario  		<input type="text" class="col-md-12 form-control" id="inputNick"></p>     
 				</div>
 				<div class="col-md-6">
 					<h4>Datos Personales</h4>
-					<p>Nombres	    		<input id="inputNombre"   type="text" class="col-md-12"></p>
-					<p>Apellidos    		<input id="inputApellido" type="text" class="col-md-12"></p>
-					<p>Sexo    				<input id="inputSexo" 	  type="text" class="col-md-12"></p>
-					<p>Fecha de Nacimiento  <input id="inputFecha" 	  type="text" class="col-md-12"></p>
-					<p>Telefono Movil    	<input id="inputTel" 	  type="text" class="col-md-12"></p>
+					<p>Nombres	    		<input type="text" class="col-md-12 form-control" id="inputNombre"></p>
+					<p>Apellidos    		<input type="text" class="col-md-12 form-control" id="inputApellido"></p>
+					<p>Sexo 
+						<select id="inputSexo" class="col-md-12 form-control">
+							<option value="masculino" selected>Hombre</option>
+							<option value="femenino">Mujer</option>
+						</select>
+					</p>					
+					<p>Fecha de Nacimiento  <input type="text" class="col-md-12 form-control" id="inputFecha"></p>
+					<p>Telefono Movil    	<input type="text" class="col-md-12 form-control" id="inputTel"></p>
 				</div>
 			</div>
 		</div>
@@ -436,6 +442,7 @@
 </body>
 
 <script src="js/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/holder.js"></script>
 <script src="js/bootstrap.js"></script>

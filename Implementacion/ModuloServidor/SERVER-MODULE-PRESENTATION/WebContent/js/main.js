@@ -7,6 +7,12 @@ $(document).ready(function(){
         interval: 3000
     });
     
+    $( "#inputFecha" ).datepicker({
+	      changeMonth: true,
+	      changeYear: true,
+	      dateFormat: "dd-mm-yy"
+    });
+   
     //rol = new Rol(1,"Usuario");
     //modificarUsuarioX("canario","mouse","contrasenia","apellido",rol);
     //obtenerUsuariosServ();
