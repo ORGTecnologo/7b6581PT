@@ -5,9 +5,13 @@ import java.lang.reflect.ParameterizedType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import org.jboss.logging.Logger;
+
 
 public abstract class DaoImpl<K, E> implements Dao<K, E>{
 
+	private static Logger logger = Logger.getLogger(DaoImpl.class);
+	
 	protected Class<E> entityClass;
 
 	@PersistenceContext
@@ -24,7 +28,11 @@ public abstract class DaoImpl<K, E> implements Dao<K, E>{
 	}
 
 	public void persist(E entity) {
-		em.persist(entity);
+		try {
+			em.persist(entity);
+		} catch (Exception e) {
+			logger.error(e.getMessage(), e); 
+		}		
 	}
 
 	public void merge(E entity) {

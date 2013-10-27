@@ -111,13 +111,17 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 	
 	public void registroUsuarioCliente(UsuarioClienteDataType dt) throws Exception {
 		
+		if (existeUsuario(dt.getUsuario()))
+			throw new Exception("Nick ya utilizado");
+		
 		UsuarioClienteEntity ue = new UsuarioClienteEntity();
 		ue.setApellidos(dt.getApellidos());
-		ue.setContrasenia(dt.getContrasenia());
+		String pwdHash = Encriptacion.encriptarMD5(dt.getContrasenia());
+		ue.setContrasenia(pwdHash);
 		ue.setCorreoElectronico(dt.getCorreoElectronico());
 		EstadoUsuarioEntity estado = estadoUsuarioDao.findByID(EnumClavesEntidades.ESTADO_USUARIO_HABILITADO);
 		ue.setEstadoUsuario(estado);
-		ue.setFechaNacimiento(dt.getFechaNacimiento());
+		ue.setFechaNacimiento(dt.getFechaNacimientoDate());
 		ue.setNombres(dt.getNombres()); 
 		ue.setSexo(dt.getSexo());
 		ue.setTelefonoMovil(dt.getTelefonoMovil());
@@ -125,11 +129,13 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		TipoRegistroEntity tipoRegistro = tipoRegistroDao.findByID(EnumClavesEntidades.TIPO_REGISTRO_WEB);
 		ue.setTipoRegistro(tipoRegistro);
 		ue.setRutaImagenPerfil("");
+		ue.setTipoUsuario(EnumTipoUsuario.USUARIO_CLIENTE);
 		
+		usuarioDao.persist(ue); 
 	}
 	
 	public Boolean existeUsuario(String usr){
-		UsuarioEntity ue = usuarioDao.findById(usr);
+		UsuarioEntity ue = usuarioDao.findByID(usr);
 		if (ue == null)
 			return false;
 		else
