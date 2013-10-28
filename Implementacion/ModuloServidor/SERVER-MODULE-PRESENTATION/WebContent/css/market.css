@@ -40,7 +40,7 @@
 	.modalChocolate{
 		background-color: white; 
 		display: none;
-		width: 450px;
+		width: 80%;
 	}
 	
 	.fijo {
@@ -59,7 +59,7 @@
 		z-index: 10 !important;
 	}
 	
-	navbarFija{
+	.navbarFija{
 		position: fixed !important;
 		width: 100%;
 	}
@@ -70,8 +70,7 @@
 	}
 	
 	.divContenidosInicial{
-		height:300px; 
-/*		margin-left: auto;*/
+		height:300px;
 	}
 	
 	.color1Inicio{

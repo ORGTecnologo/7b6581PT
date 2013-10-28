@@ -23,7 +23,7 @@
 	<div class="collapse navbar-collapse navbar-ex1-collapse"> 
 		<form class="navbar-form navbar-left" role="search">
 			<div class="form-group">
-				<input type="text" class="form-control" placeholder="Buscar">
+				<input type="search" class="form-control" placeholder="Buscar">
 			</div>
 			<button class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
 				<span class="glyphicon glyphicon-search"></span> Buscar</button>
@@ -429,7 +429,7 @@
 						</select>
 					</p>					
 					<p>Fecha de Nacimiento  <input type="text" class="col-md-12 form-control" id="inputFecha"></p>
-					<p>Telefono Movil    	<input type="text" class="col-md-12 form-control" id="inputTel"></p>
+					<p>Telefono Movil    	<input type="tel" class="col-md-12 form-control" id="inputTel" onkeypress="return onlyNumbersDano(event)"></p>
 				</div>
 			</div>
 		</div>
