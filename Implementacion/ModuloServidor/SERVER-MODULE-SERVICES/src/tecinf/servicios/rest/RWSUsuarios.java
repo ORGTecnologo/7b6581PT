@@ -57,23 +57,28 @@ public class RWSUsuarios {
  
 	}
 	
-	//@GET
 	@POST
 	@Path("/loginCliente")
 	@Produces("application/json")
 	@Consumes("application/json")
 	public LoginRespDataType login(LoginDataType dt) { 
+		LoginRespDataType resp = primitiveLogin(dt.getUsuario(), dt.getContrasenia());	
+		return resp;
+	}
+	
+	private LoginRespDataType primitiveLogin(String usr, String pwd) {
 		LoginRespDataType resp = null;
-		try {		
+		try {
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
-			resp = negocioUsuario.loginUsuarioCliente(dt.getUsuario(), dt.getContrasenia()); 
+			resp = negocioUsuario.loginUsuario(usr, pwd); 
 			if (resp.getRespuesta().equals(EnumRespuestas.RESPUESTA_OK)){
 				SessionManager sm = SessionManager.getInstance();
 				Session s = new Session();
 				s.setUser(resp.getUsuario());					
 				s.setToken(resp.getToken());
+				s.setUserType(resp.getTipoUsuario()); 
 				sm.updateTimeStamp(s, SessionManager.timeOut);
-				sm.addUserToSession(s);				
+				sm.addUserToSession(s);
 			}
 		} catch (Exception e){
 			logger.error(e.getMessage() , e);
@@ -148,6 +153,7 @@ public class RWSUsuarios {
 			
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			negocioUsuario.registroUsuarioCliente(ud); 
+			primitiveLogin(ud.getUsuario(), ud.getContrasenia());
 			
 			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
 		} catch (Exception e) {
