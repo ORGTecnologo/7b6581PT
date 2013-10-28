@@ -3,7 +3,7 @@
 Servers/*
 Servers/.settings/*
 
-RemoteSystemTempFiles/*
+RemoteSystemsTempFiles/*
 
 SERVER-MODULE-BUSSINESS/build/classes/*
 SERVER-MODULE-PERSISTENCE/build/classes/*
