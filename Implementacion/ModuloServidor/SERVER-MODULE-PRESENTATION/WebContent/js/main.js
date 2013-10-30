@@ -21,6 +21,12 @@ $(document).ready(function(){
     
 });
 
+function onlyNumbersDano(evt){
+    var keyPressed = (evt.which) ? evt.which : event.keyCode
+            return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
+	
+}
+
 function validateEmail($email) {
 	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
 	if( !emailReg.test( $email ) )
@@ -35,33 +41,59 @@ function clickRegistroUsuario(){
 	div.show();
 }
 
+function Pintar_hasError(input){
+
+	if (input.value == ""){
+		input.parentElement.setAttribute('class','has-error');
+		return true;
+	}
+	input.parentElement.setAttribute('class','has-succes');
+	return false;
+}
+
+function errorControlVaciosFormularioRegistro() {
+	
+	var error0 = Pintar_hasError(document.getElementById('inputNombre'));
+	var error1 = Pintar_hasError(document.getElementById('inputNick'));
+	var error2 = Pintar_hasError(document.getElementById('inputPass'));
+	var error3 = Pintar_hasError(document.getElementById('inputCorreo'));
+	var error4 = Pintar_hasError(document.getElementById('inputApellido'));
+	var error5 = Pintar_hasError(document.getElementById('inputSexo'));
+	var error6 = Pintar_hasError(document.getElementById('inputFecha'));
+	var error7 = Pintar_hasError(document.getElementById('inputTel'));
+	
+	if(error0 || error1 || error2 || error3 || error4 || error5 || error6 || error7){
+		alert('Ha dejado campos sin completar!!!');
+		return true;
+	}
+	else
+		return false;
+}
+
+
 function crearUsuario(){
 	
-	var nombre 		= document.getElementById('inputNombre').value;
-	var usuario 	= document.getElementById('inputNick').value;
-	var contrasenia = document.getElementById('inputPass').value;
-	var mail 		= document.getElementById('inputCorreo').value;
-	var apellido 	= document.getElementById('inputApellido').value;
-	var sexo 		= document.getElementById('inputSexo').value;
-	var nacimiento  = document.getElementById('inputFecha').value;
-	var cel 		= document.getElementById('inputTel').value;
+	if (!errorControlVaciosFormularioRegistro()){
 	
-	if(validateEmail(mail)){
-		//if continuar validando
-		registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,cel);
-		document.getElementById('inputNombre').style = "";
-		document.getElementById('inputNick').style = "";
-		document.getElementById('inputPass').style = "";
-		document.getElementById('inputCorreo').style = "";
-		document.getElementById('inputApellido').style = "";
-		document.getElementById('inputSexo').style = "";
-		document.getElementById('inputFecha').style = "";
-		document.getElementById('inputTel').style = "";
+		var nombre 		= document.getElementById('inputNombre').value;
+		var usuario 	= document.getElementById('inputNick').value;
+		var contrasenia = document.getElementById('inputPass').value;
+		var mail 		= document.getElementById('inputCorreo').value;
+		var apellido 	= document.getElementById('inputApellido').value;
+		var sexo 		= document.getElementById('inputSexo').value;
+		var nacimiento  = document.getElementById('inputFecha').value;
+		var cel 		= document.getElementById('inputTel').value;
+		
+		if(validateEmail(mail)){
+			//if continuar validando
+			registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,cel);
+		}
+		else{
+			var email = document.getElementById('inputCorreo');
+			email.parentElement.setAttribute('class','has-error');
+			alert('El correo no es valido!!');
+		}
 	}
-	else{
-		document.getElementById('inputCorreo').style = "border-color: red";
-	}
-//		console.warn("Email incorrecto!!!");
 }
 
 function IniciarSesion(){

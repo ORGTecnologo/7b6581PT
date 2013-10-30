@@ -15,7 +15,7 @@ public interface NegocioUsuario {
 	
 	public void modificarUsuario(UsuarioDataType u) throws Exception;
 	
-	public LoginRespDataType loginUsuarioCliente(String usuario, String contrasenia);
+	public LoginRespDataType loginUsuario(String usuario, String contrasenia);
 	
 	public Boolean loginUsuarioAdmin(String usuario, String contrasenia);
 	

@@ -35,7 +35,7 @@
 			<property name="hibernate.order_inserts" value="true" />
 			<property name="hibernate.order_updates" value="true" />
          	<!--  <property name="hibernate.hbm2ddl.auto" value="update"/>  -->
-         	<property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+         	<property name="hibernate.hbm2ddl.auto" value="update"/>
       	</properties>
 	</persistence-unit>
 </persistence>

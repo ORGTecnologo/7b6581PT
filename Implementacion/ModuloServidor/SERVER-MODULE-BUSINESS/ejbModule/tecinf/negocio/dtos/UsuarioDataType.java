@@ -1,6 +1,7 @@
 package tecinf.negocio.dtos;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class UsuarioDataType implements Serializable {
@@ -12,7 +13,8 @@ public abstract class UsuarioDataType implements Serializable {
 	protected String nombres;
 	protected String apellidos;
 	protected String sexo;
-	protected Date fechaNacimiento;
+	protected String fechaNacimiento;
+	protected Date fechaNacimientoDate;
 	protected String telefonoMovil;
 	protected String correoElectronico;
 	
@@ -46,12 +48,6 @@ public abstract class UsuarioDataType implements Serializable {
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
 	public String getTelefonoMovil() {
 		return telefonoMovil;
 	}
@@ -64,7 +60,18 @@ public abstract class UsuarioDataType implements Serializable {
 	public void setCorreoElectronico(String correoElectronico) {
 		this.correoElectronico = correoElectronico;
 	}
-	
-	
+	public String getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+	public Date getFechaNacimientoDate() throws Exception {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		return sdf.parse(this.fechaNacimiento); 
+	}
+	public void setFechaNacimientoDate(Date fechaNacimientoDate) {
+		this.fechaNacimientoDate = fechaNacimientoDate;
+	}	
 	
 }
