@@ -3,13 +3,14 @@
 Servers/*
 Servers/.settings/*
 
-RemoteSystemTempFiles/*
+RemoteSystemsTempFiles/*
 
 SERVER-MODULE-BUSSINESS/build/classes/*
 SERVER-MODULE-PERSISTENCE/build/classes/*
 SERVER-MODULE-SERVICES/build/classes/*
 SERVER-MODULE-PRESENTATION/build/classes/*
 
+SERVER-MODULE-BUSSINESS/.classpath
 SERVER-MODULE-BUSSINESS/build/.classpath
 SERVER-MODULE-PERSISTENCE/build/.classpath
 SERVER-MODULE-SERVICES/build/.classpath
@@ -45,5 +46,5 @@ SERVER-MODULE-PERSISTENCE/.project
 SERVER-MODULE-PRESENTATION/.project
 SERVER-MODULE-SERVICES/.project
 SERVER-MODULE/.project
-
 SERVER-MODULE/.settings/*
+
