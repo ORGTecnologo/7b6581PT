@@ -1,0 +1,106 @@
+/**
+ * 
+ */
+//Llamadas Ajax
+
+//Registro de Usuario
+function registroUsuario(usuario,nombre,contrasenia,apellido,mail){
+	$.ajax({
+		url: '/SERVER-MODULE-SERVICES/restws/usuarios/modificarUsuario',
+		type: 'POST',
+		data:JSON.stringify({
+			'usuario'     : usuario,
+			'contrasenia' : contrasenia,
+			'nombres'     : nombre,
+			'apellidos'   : apellido,
+			'mail'		  : mail
+		}),
+		datatype: "json",
+		contentType: "application/json",
+	})
+	.done(function(msg){
+		console.log('Guardado con exito!!');
+	})
+	.fail(function(){
+		console.log('Fallo al guardar!!');
+	})
+}
+
+
+
+//modificacion de datos
+function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
+	$.ajax({
+		url: '/SERVER-MODULE-SERVICES/restws/usuarios/modificarUsuario',
+		type: 'PUT',
+		data:JSON.stringify({
+			'usuario'	  : usuario,
+			'contrasenia' : contrasenia,
+			'nombres'     : nombre,
+			'apellidos'   : apellido,
+			'rol'		  : rol
+		}),
+		datatype: "json",
+		contentType: "application/json",
+	})
+	.done(function(msg){
+		console.log('Guardado con exito!!');
+	})
+	.fail(function(){
+		console.log('Fallo al guardar!!');
+	})
+}
+
+//GET___________GET_____________GET
+function obtenerUsuariosServ(){
+	$.ajax({
+	   url: '/SERVER-MODULE-SERVICES/restws/usuarios/listarUsuarios',
+	   type: 'GET',
+	   data: '',
+	   datatype: "json",
+	   contentType: "application/json",
+	})
+	.done(function(msg) {
+		for (var i = 0; i < msg.length; i++) {
+			msg[i]
+		};
+		console.log(msg);
+	})
+	.fail(function() {
+		console.log(msg);
+	})
+}
+
+function esUnicoCorreo(mail){
+	$.ajax({
+	   url: 'http://192.168.1.43:8080/SERVER-MODULE-SERVICES/restws/existeUsuarioPorMail',
+	   type: 'GET',
+	   data: JSON.stringify({
+			'mail' : mail
+		}),
+	   datatype: "json",
+	   contentType: "application/json",
+	})
+	.done(function(msg) {
+		console.log(msg);
+	})
+	.fail(function() {
+		console.log(msg);
+	})
+}
+
+function esUnicoNick(nick){
+	$.ajax({
+	   url: '/SERVER-MODULE-SERVICES/restws/usuarios/listarUsuarios',
+	   type: 'GET',
+	   data: {'usuario' : nick,},
+	   datatype: "json",
+	   contentType: "application/json",
+	})
+	.done(function(msg) {
+		console.log(msg);
+	})
+	.fail(function() {
+		console.log(msg);
+	})
+}

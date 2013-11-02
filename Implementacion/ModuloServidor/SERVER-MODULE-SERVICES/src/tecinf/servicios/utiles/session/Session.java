@@ -6,6 +6,7 @@ public class Session {
 	
 	private String user;
 	private String token;
+	private String userType;
 	private Date timeStamp;	
 	
 	public String getUser() {
@@ -25,6 +26,12 @@ public class Session {
 	}
 	public void setTimeStamp(Date timeStamp) {
 		this.timeStamp = timeStamp;
+	}
+	public String getUserType() {
+		return userType;
+	}
+	public void setUserType(String userType) {
+		this.userType = userType;
 	}
 	
 }

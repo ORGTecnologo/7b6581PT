@@ -17,7 +17,7 @@ public class DataTypesFactory {
 			dt.setApellidos(u.getApellidos());
 			dt.setContrasenia(u.getContrasenia());
 			dt.setCorreoElectronico(u.getCorreoElectronico());
-			dt.setFechaNacimiento(u.getFechaNacimiento());
+			dt.setFechaNacimientoDate(u.getFechaNacimiento());
 			dt.setNombres(u.getNombres());
 			dt.setSexo(u.getSexo());
 			dt.setTelefonoMovil(u.getTelefonoMovil());		
