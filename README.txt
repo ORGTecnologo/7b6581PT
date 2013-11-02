@@ -1,6 +1,7 @@
 
 ###### Proyecto final Tecnólogo Informático ######
 
+Proyecto publicado en http://orgtecnologo.github.io/7b6581PT
 
 Estructura de directorios
 ####################################################################################
