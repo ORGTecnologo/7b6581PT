@@ -40,7 +40,7 @@ public class SessionManager {
 		return false;
 	}
 	
-	private synchronized void executeSessionsRefresh(){
+	public synchronized void executeSessionsRefresh(){
 		Date now = new Date();
 		List<Session> listaSesionesAEliminar = new ArrayList<Session>();
 		for (Session s : this.listaSesiones){
