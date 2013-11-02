@@ -1,6 +1,9 @@
 package tecinf.servicios.utiles;
  
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.security.*;
+
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 
 import sun.misc.*;
@@ -38,6 +41,17 @@ public class CripterDecripter {
     } 
     public static String decrypt(String cadena) { 
         return decrypt(cadena,keyValue); 
+    }
+    
+    public static String encryptURL(String cadena) { 
+        String encrypt = encrypt(cadena,keyValue);
+        String encode="";
+        try {
+            encode = URLEncoder.encode(encrypt, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return encode; 
     }
 	 
 	 public static void main(String[] args){	 
