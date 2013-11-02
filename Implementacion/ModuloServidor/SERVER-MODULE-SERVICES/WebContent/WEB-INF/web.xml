@@ -31,5 +31,16 @@
                 <servlet-name>resteasy-servlet</servlet-name>
                 <url-pattern>/restws/*</url-pattern>
         </servlet-mapping>
+        
+        <servlet>
+    		<description></description>
+    		<display-name>FileDispatcherServlet</display-name>
+    		<servlet-name>FileDispatcherServlet</servlet-name>
+    		<servlet-class>tecinf.servicios.servlets.FileDispatcherServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+		    <servlet-name>FileDispatcherServlet</servlet-name>
+		    <url-pattern>/FileDispatcherServlet</url-pattern>
+		</servlet-mapping>
           
 </web-app>
