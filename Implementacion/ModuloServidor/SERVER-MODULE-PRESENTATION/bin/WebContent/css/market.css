@@ -1,0 +1,117 @@
+@CHARSET "UTF-8";
+
+	.pantallaCompleta {
+		width : 100%;
+		margin : auto;
+		background-color: rgb(245, 245, 245);
+	}
+
+	.barraBusquedaHome {
+		height: initial;
+		margin-top: 0.6em;
+	}
+
+	body.modal-open, 
+		.modal-open .navbar-fixed-top, 
+		.modal-open .navbar-fixed-bottom {
+		 margin-right: 0;
+	}
+
+	.modal {
+		left: 50%;
+		bottom: auto;
+		right: auto;
+		padding: 0;
+		width: 500px;
+		margin-left: -250px;
+		background-color: #ffffff;
+		border: 1px solid #999999;
+		border: 1px solid rgba(0, 0, 0, 0.2);
+		border-radius: 6px;
+		-webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+		box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+		background-clip: padding-box;
+	}
+
+	.modal.container {
+		max-width: none;
+	}
+	
+	.modalChocolate{
+		background-color: white; 
+		display: none;
+		width: 555px;
+	}
+	
+	.fijo {
+		position: fixed !important; 
+		right:0px; 
+		top:0px; 
+		z-index:10 !important;
+		background-color:white;
+	}
+	
+	.menuEnCajaFija{
+		margin-left: auto;
+		background-color: rgb(245, 245, 245);
+		position: fixed !important;
+		top: 47px;
+		z-index: 10 !important;
+	}
+	
+	.navbarFija{
+		position: fixed !important;
+		width: 100%;
+	}
+	
+	.carouselInicio{
+		padding-left: 15em;
+		padding-top: 47px;
+	}
+	
+	.divContenidosInicial{
+		height:300px;
+	}
+	
+	.color1Inicio{
+		background-color: #66CC66;
+		margin-left: auto;
+	}
+
+	.color2Inicio{
+		background-color: #66CC99;
+	}
+
+	.color3Inicio{
+		background-color: #66CCCC;
+		margin-left: auto;
+	}
+	
+	.styleTits {
+		font-family: cursive;
+		font-size: xx-large;
+		font-weight: bolder;
+		color: rgb(91, 231, 243);
+	}
+	
+	.bestContenido{
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;	
+	}
+	
+	.precio {
+		text-align: right;
+		color: blue;
+		font-family: cursive;
+		font-weight: bolder;
+		font-variant: small-caps;
+	}
+	
+	.separador{
+		height:50px;
+	}
+	
+	#ui-datepicker-div{
+		font-size: x-small;
+	}
