@@ -9,11 +9,11 @@
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="SERVER-MODULE-PRESENTATION.war" deploy-path="/" handle="module:/resource/SERVER-MODULE-PRESENTATION/SERVER-MODULE-PRESENTATION">
+        <dependent-module archiveName="SERVER-MODULE-SERVICES.war" deploy-path="/" handle="module:/resource/SERVER-MODULE-SERVICES/SERVER-MODULE-SERVICES">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="SERVER-MODULE-SERVICES.war" deploy-path="/" handle="module:/resource/SERVER-MODULE-SERVICES/SERVER-MODULE-SERVICES">
+        <dependent-module archiveName="SERVER-MODULE-PRESENTATION.war" deploy-path="/" handle="module:/resource/SERVER-MODULE-PRESENTATION/SERVER-MODULE-PRESENTATION">
             <dependent-object/>
             <dependency-type>uses</dependency-type>
         </dependent-module>
