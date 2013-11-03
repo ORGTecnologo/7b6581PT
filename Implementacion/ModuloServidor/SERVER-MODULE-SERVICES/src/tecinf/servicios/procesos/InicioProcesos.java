@@ -14,7 +14,7 @@ public class InicioProcesos implements ServletContextListener
       public void contextInitialized(ServletContextEvent ce) 
       {           
             try 
-            {        		
+            {
             	
         		logger.info("Tareas iniciadas automaticamente:");                           
             	new DemonioSesion(20);
@@ -27,7 +27,7 @@ public class InicioProcesos implements ServletContextListener
       }
 
       /* Application Shutdown Event */
-      public void contextDestroyed(ServletContextEvent ce){
+      public void contextDestroyed(ServletContextEvent ce) {
     	  
       }
 }

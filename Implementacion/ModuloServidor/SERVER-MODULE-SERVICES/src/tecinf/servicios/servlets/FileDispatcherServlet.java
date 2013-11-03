@@ -30,9 +30,9 @@ public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implem
         ServletContext context  = getServletConfig().getServletContext();
         String mimetype = context.getMimeType(filePath);
         
-        String usr = request.getParameter("usr");
-        String tkn = request.getParameter("tkn");
-        String archivo = request.getParameter("file");
+        //String usr = request.getParameter("usr");
+        //String tkn = request.getParameter("tkn");
+        //String archivo = request.getParameter("file");
         
         // sets response content type
         if (mimetype == null) {

@@ -42,5 +42,16 @@
 		    <servlet-name>FileDispatcherServlet</servlet-name>
 		    <url-pattern>/FileDispatcherServlet</url-pattern>
 		</servlet-mapping>
+		
+        <servlet>
+    		<description></description>
+    		<display-name>ImageDispatcherServlet</display-name>
+    		<servlet-name>ImageDispatcherServlet</servlet-name>
+    		<servlet-class>tecinf.servicios.servlets.ImageDispatcherServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+		    <servlet-name>ImageDispatcherServlet</servlet-name>
+		    <url-pattern>/Images</url-pattern>
+		</servlet-mapping>
           
 </web-app>

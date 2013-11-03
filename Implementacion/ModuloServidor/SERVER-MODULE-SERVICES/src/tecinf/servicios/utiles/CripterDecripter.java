@@ -2,11 +2,8 @@ package tecinf.servicios.utiles;
  
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.security.*;
 
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-
-import sun.misc.*;
  
 public class CripterDecripter {	
 	
@@ -56,7 +53,7 @@ public class CripterDecripter {
 	 
 	 public static void main(String[] args){	 
 		 try {
-			 String ruta= "/ruta/extrania/a/archivo";
+			 String ruta= "/BaseDatosRecursos/pruebas/images/incubus.jpg";
 			 System.out.println("original: " + ruta);
 			 String encRuta = encrypt(ruta);
 			 System.out.println("cifrada: " + encRuta);
