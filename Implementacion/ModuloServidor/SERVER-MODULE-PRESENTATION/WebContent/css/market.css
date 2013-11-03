@@ -17,6 +17,12 @@
 		 margin-right: 0;
 	}
 
+	.nick{
+		font-family: monospace;
+		font-size: x-large;
+		font-weight: bold;	
+	}
+
 	.modal {
 		left: 50%;
 		bottom: auto;
