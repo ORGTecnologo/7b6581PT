@@ -14,42 +14,14 @@ $(document).ready(function(){
 	      maxDate: 0
     });
    
+    $( "#registroUsuario" ).hide();
+    $( "#loginUsuario" ).hide();
     //rol = new Rol(1,"Usuario");
     //modificarUsuarioX("canario","mouse","contrasenia","apellido",rol);
     //obtenerUsuariosServ();
 //    registroUsuario("pelo","nombre","contrasenia","apellido","mail");
     
 });
-
-function onlyNumbersDano(evt){
-    var keyPressed = (evt.which) ? evt.which : event.keyCode
-            return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
-	
-}
-
-function validateEmail($email) {
-	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-	if( !emailReg.test( $email ) )
-		return false;
-	else
-		return true;
-}
-
-
-function clickRegistroUsuario(){
-	var div = $("#registroUsuario");
-	div.show();
-}
-
-function Pintar_hasError(input){
-
-	if (input.value == ""){
-		input.parentElement.setAttribute('class','has-error');
-		return true;
-	}
-	input.parentElement.setAttribute('class','has-succes');
-	return false;
-}
 
 function errorControlVaciosFormularioRegistro() {
 	
@@ -70,23 +42,28 @@ function errorControlVaciosFormularioRegistro() {
 		return false;
 }
 
-
 function crearUsuario(){
 	
 	if (!errorControlVaciosFormularioRegistro()){
 	
-		var nombre 		= document.getElementById('inputNombre').value;
-		var usuario 	= document.getElementById('inputNick').value;
-		var contrasenia = document.getElementById('inputPass').value;
-		var mail 		= document.getElementById('inputCorreo').value;
-		var apellido 	= document.getElementById('inputApellido').value;
-		var sexo 		= document.getElementById('inputSexo').value;
-		var nacimiento  = document.getElementById('inputFecha').value;
-		var cel 		= document.getElementById('inputTel').value;
+		var nombre 		 = document.getElementById('inputNombre').value;
+		var usuario 	 = document.getElementById('inputNick').value;
+		var contrasenia  = document.getElementById('inputPass').value;
+		var contrasenia2 = document.getElementById('inputPass2').value;
+		var mail 		 = document.getElementById('inputCorreo').value;
+		var apellido 	 = document.getElementById('inputApellido').value;
+		var sexo 		 = document.getElementById('inputSexo').value;
+		var nacimiento   = document.getElementById('inputFecha').value;
+		var cel 		 = document.getElementById('inputTel').value;
 		
 		if(validateEmail(mail)){
-			//if continuar validando
-			registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,cel);
+			if(contrasenia===contrasenia2)
+				registroUsuario(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel);
+			else{
+				document.getElementById('inputPass').value = "";
+				document.getElementById('inputPass2').value = "";
+				alert('Las contraseñas no coinciden, intentelo nuevamente!!');
+			}
 		}
 		else{
 			var email = document.getElementById('inputCorreo');
@@ -104,18 +81,12 @@ function IniciarSesion(){
 	loginUsuario(correo,pass);
 }
 
-
 function clickLogin(){
 	var div = $("#loginUsuario");
 		div.show();
 }
 
-function cerrarPanelRegistro(){
+function clickRegistroUsuario(){
 	var div = $("#registroUsuario");
-	div.hide();
-}
-
-function cerrarPanelLogin(){
-	var div = $("#loginUsuario");
-	div.hide();
+	div.show();
 }
