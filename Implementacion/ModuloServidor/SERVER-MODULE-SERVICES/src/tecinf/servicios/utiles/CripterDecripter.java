@@ -53,7 +53,7 @@ public class CripterDecripter {
 	 
 	 public static void main(String[] args){	 
 		 try {
-			 String ruta= "/BaseDatosRecursos/pruebas/images/incubus.jpg";
+			 String ruta= "/BaseDatosRecursos/pruebas/images/incubus.jpg";  
 			 System.out.println("original: " + ruta);
 			 String encRuta = encrypt(ruta);
 			 System.out.println("cifrada: " + encRuta);
