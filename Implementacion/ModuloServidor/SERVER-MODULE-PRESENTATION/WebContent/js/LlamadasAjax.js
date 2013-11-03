@@ -26,7 +26,7 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 		data:JSON.stringify({
 			usuario           : usuario,
 			contrasenia       : pass,
-			contrasenia2	  : pass2
+			contrasenia2	  : pass2,
 			nombres           : nombre,
 			apellidos   	  : apellido,
 			sexo			  : sexo,
@@ -40,10 +40,10 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 	.done(function(msg){
 		console.log('Entro en done: ' + msg);
 	})
-	.fail(function(){
+	.fail(function(msg){
 		console.log('Entro en fail: ' + msg);
 	})
-}
+};
 
 //modificacion de datos
 function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
