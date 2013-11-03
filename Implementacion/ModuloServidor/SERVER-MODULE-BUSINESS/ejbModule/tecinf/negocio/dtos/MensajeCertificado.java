@@ -1,21 +1,21 @@
 package tecinf.negocio.dtos;
 
-public abstract class MensajeCertificado {
+public class MensajeCertificado {
 	
-	protected String usuario_autenticacion;
-	protected String contrasenia_autenticacion;
+	protected String usuario;
+	protected String token;
 	
-	public String getUsuario_autenticacion() {
-		return usuario_autenticacion;
+	public String getUsuario() {
+		return usuario;
 	}
-	public void setUsuario_autenticacion(String usuario_autenticacion) {
-		this.usuario_autenticacion = usuario_autenticacion;
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
-	public String getContrasenia_autenticacion() {
-		return contrasenia_autenticacion;
+	public String getToken() {
+		return token;
 	}
-	public void setContrasenia_autenticacion(String contrasenia_autenticacion) {
-		this.contrasenia_autenticacion = contrasenia_autenticacion;
+	public void setToken(String token) {
+		this.token = token;
 	}
 	
 }

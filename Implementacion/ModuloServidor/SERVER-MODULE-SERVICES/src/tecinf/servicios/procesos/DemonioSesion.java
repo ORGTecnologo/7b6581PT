@@ -1,6 +1,7 @@
 package tecinf.servicios.procesos;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,19 +32,19 @@ public class DemonioSesion {
         public void run() {
         	try {
         		
-        		logger.error("Ejecucion de demonio de session");
+        		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        		logger.info("Ejecucion de demonio de session " + sdf.format(new Date()));
         		SessionManager sm = SessionManager.getInstance();
-        		sm.executeSessionsRefresh();
-                timer.cancel();
+        		sm.executeSessionsRefresh();                
                 
 			} catch (Exception e) {
-				logger.error("Metodo : " + e.getStackTrace()[0].getMethodName() + " - linea: " + e.getStackTrace()[0].getLineNumber() + " - Mensaje: " + e);
-				timer.cancel();
+				logger.error(e.getMessage() , e);
 			} finally {
+				timer.cancel();
 				new DemonioSesion(20);
 			}
         }
-        //comentario
+
     }
 
 }

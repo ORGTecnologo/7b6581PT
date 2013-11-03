@@ -10,6 +10,7 @@ public abstract class UsuarioDataType implements Serializable {
 	
 	protected String usuario;
 	protected String contrasenia;
+	protected String contrasenia2;
 	protected String nombres;
 	protected String apellidos;
 	protected String sexo;
@@ -72,6 +73,12 @@ public abstract class UsuarioDataType implements Serializable {
 	}
 	public void setFechaNacimientoDate(Date fechaNacimientoDate) {
 		this.fechaNacimientoDate = fechaNacimientoDate;
+	}
+	public String getContrasenia2() {
+		return contrasenia2;
+	}
+	public void setContrasenia2(String contrasenia2) {
+		this.contrasenia2 = contrasenia2;
 	}	
 	
 }

@@ -19,7 +19,7 @@ public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implem
     
     public void init() {
         // the file data.xls is under web application folder
-        filePath = "/BaseDatosRecursos/pruebas/bootstrap.zip";	
+        filePath = "/BaseDatosRecursos/pruebas/software/sublime_64.tar.bz2";	
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

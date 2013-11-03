@@ -113,12 +113,10 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		
 		UsuarioEntity ue;
 		
-		ue = usuarioDao.findByID(dt.getUsuario());
 		if (existeUsuario(dt.getUsuario()))
 			throw new Exception("Nick ya utilizado");
 		
-		ue = usuarioDao.findByMail(dt.getCorreoElectronico());
-		if (existeUsuario(dt.getUsuario()))
+		if (existeUsuarioPorMail(dt.getCorreoElectronico()))
 			throw new Exception("Email ya utilizado");
 		
 		ue = new UsuarioClienteEntity();

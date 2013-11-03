@@ -53,5 +53,9 @@
 		    <servlet-name>ImageDispatcherServlet</servlet-name>
 		    <url-pattern>/Images</url-pattern>
 		</servlet-mapping>
+		
+	  	<listener>
+ 			<listener-class>tecinf.servicios.procesos.InicioProcesos</listener-class>
+ 		</listener>
           
 </web-app>
