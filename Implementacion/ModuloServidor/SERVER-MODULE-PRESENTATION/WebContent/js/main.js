@@ -43,9 +43,9 @@ function errorControlVaciosFormularioRegistro() {
 }
 
 function crearUsuario(){
-	
+
 	if (!errorControlVaciosFormularioRegistro()){
-	
+
 		var nombre 		 = document.getElementById('inputNombre').value;
 		var usuario 	 = document.getElementById('inputNick').value;
 		var contrasenia  = document.getElementById('inputPass').value;
@@ -55,10 +55,11 @@ function crearUsuario(){
 		var sexo 		 = document.getElementById('inputSexo').value;
 		var nacimiento   = document.getElementById('inputFecha').value;
 		var cel 		 = document.getElementById('inputTel').value;
-		
+
 		if(validateEmail(mail)){
-			if(contrasenia===contrasenia2)
+			if(contrasenia===contrasenia2){
 				registroUsuario(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel);
+			}
 			else{
 				document.getElementById('inputPass').value = "";
 				document.getElementById('inputPass2').value = "";
@@ -79,14 +80,4 @@ function IniciarSesion(){
 	var pass = document.getElementById('loginPass').value;
 	
 	loginUsuario(correo,pass);
-}
-
-function clickLogin(){
-	var div = $("#loginUsuario");
-		div.show();
-}
-
-function clickRegistroUsuario(){
-	var div = $("#registroUsuario");
-	div.show();
 }
