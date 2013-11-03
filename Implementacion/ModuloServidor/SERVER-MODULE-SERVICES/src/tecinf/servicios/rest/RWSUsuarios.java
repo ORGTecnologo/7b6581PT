@@ -16,6 +16,7 @@ import tecinf.negocio.NegocioUsuario;
 import tecinf.negocio.dtos.GenericJsonResponse;
 import tecinf.negocio.dtos.LoginDataType;
 import tecinf.negocio.dtos.LoginRespDataType;
+import tecinf.negocio.dtos.MensajeCertificado;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.utiles.EnumRespuestas;
@@ -66,23 +67,12 @@ public class RWSUsuarios {
 		return resp;
 	}
 	
-	private LoginRespDataType primitiveLogin(String usr, String pwd) {
-		LoginRespDataType resp = null;
-		try {
-			negocioUsuario = NegocioFactory.getNegocioUsuario();
-			resp = negocioUsuario.loginUsuario(usr, pwd); 
-			if (resp.getRespuesta().equals(EnumRespuestas.RESPUESTA_OK)){
-				SessionManager sm = SessionManager.getInstance();
-				Session s = new Session();
-				s.setUser(resp.getUsuario());					
-				s.setToken(resp.getToken());
-				s.setUserType(resp.getTipoUsuario()); 
-				sm.updateTimeStamp(s, SessionManager.timeOut);
-				sm.addUserToSession(s);
-			}
-		} catch (Exception e){
-			logger.error(e.getMessage() , e);
-		}
+	@PUT
+	@Path("/logout")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public GenericJsonResponse logout(MensajeCertificado dt) { 
+		GenericJsonResponse resp = primitiveLogout(dt.getUsuario(), dt.getToken());	
 		return resp;
 	}
 	
@@ -147,7 +137,7 @@ public class RWSUsuarios {
 	@Path("/registrarUsuario")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public GenericJsonResponse registrarUsuario(UsuarioClienteDataType ud){
+	public GenericJsonResponse registrarUsuario(UsuarioClienteDataType ud) {
 		GenericJsonResponse resp = new GenericJsonResponse();
 		try {
 			
@@ -163,5 +153,42 @@ public class RWSUsuarios {
 		return resp;
 	}
 	
+	/* FUNCIONES AUXILIARES */
+	private LoginRespDataType primitiveLogin(String usr, String pwd) {
+		LoginRespDataType resp = null;
+		try {
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
+			resp = negocioUsuario.loginUsuario(usr, pwd); 
+			if (resp.getRespuesta().equals(EnumRespuestas.RESPUESTA_OK)){
+				SessionManager sm = SessionManager.getInstance();
+				Session s = new Session();
+				s.setUser(resp.getUsuario());					
+				s.setToken(resp.getToken());
+				s.setUserType(resp.getTipoUsuario()); 
+				sm.updateTimeStamp(s, SessionManager.timeOut);
+				sm.addUserToSession(s);
+			}
+		} catch (Exception e){
+			logger.error(e.getMessage() , e);
+		}
+		return resp;
+	}
+	
+	private GenericJsonResponse primitiveLogout(String usr, String tkn) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {
+			
+			SessionManager sm = SessionManager.getInstance();
+			Session s = sm.getUserSession(usr, tkn);
+			if (s != null)
+				sm.removeUserFromSession(s);			
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
+			
+		} catch (Exception e){
+			logger.error(e.getMessage() , e);
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+		}
+		return resp;
+	}
 	
 }

@@ -21,8 +21,20 @@ public class SessionManager {
 		return instance;
 	}
 	
-	public void addUserToSession(Session s){
+	public void addUserToSession(Session s) {
 		this.listaSesiones.add(s);
+	}
+	
+	public void removeUserFromSession(Session s) {
+		this.listaSesiones.remove(s);
+	}
+	
+	public Session getUserSession(String usr, String tkn){
+		for (Session s : this.listaSesiones){
+			if (s.getUser().equals(usr) && s.getToken().equals(tkn))
+				return s;
+		}
+		return null;
 	}
 	
 	public synchronized Boolean checkUserInSession(String usr, String tkn, Date nw){		
