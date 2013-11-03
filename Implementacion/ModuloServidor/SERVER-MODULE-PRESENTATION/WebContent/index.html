@@ -1,7 +1,7 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="css/market.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" media="screen" />
 
 <body>
 <nav class="navbarFija navbar navbar-default " style="position: fixed !important;width: 100%;" role="navigation">
@@ -28,54 +28,12 @@
 			<button class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
 				<span class="glyphicon glyphicon-search"></span> Buscar</button>
 		</form>
-	<!--
-		<div class="col-md-1">
-				<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Opciones</a>
-				<ul class="dropdown-menu col-md-3 ">
-					<li class="nav-header">Market Place</li>
-					<li class="active"><a href="#">Inicio</a></li>
-					<li><a href="#">Novedades</a></li>
-					<li><a href="#">Top Ventas</a></li>
-					<li><a href="#">Top Gratis</a></li>			
-					<li class="divider"></li>
-					<li class="nav-header">Opciones</li>
-					<li><a href="#">Perfil</a></li>
-					<li><a href="#">Mis aplicaciones</a></li>	
-				</ul>
-		</div>
-	-->	
 		<div class="col-md-2 pull-right">			
-			<button class="btn btn-primary barraBusquedaHome" href="#registroUsuario" onclick="clickRegistroUsuario()">Registrarse</button>
-			<button class="btn btn-primary barraBusquedaHome" onclick="clickLogin()">Login</button>	
+			<button class="btn btn-primary barraBusquedaHome" href="#registroUsuario" onclick="mostrarElemento('registroUsuario')">Registrarse</button>
+			<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario')">Login</button>	
 		</div>
 	</div>
 </nav>
-<!--
--->
-<!--
-	<div class="col-md-2" style="margin-left: auto; background-color: rgb(245, 245, 245);">
-		<ul class="nav nav-list">
-			<li class="nav-header">Digital Chocolate</li>
-			<li class="active"><a href="#">Inicio</a></li>
-			<li><a href="#">Novedades</a></li>
-			<li><a href="#">Top Ventas</a></li>
-			<li><a href="#">Top Gratis</a></li>			
-			<li class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Categorias<b class="caret"></b></a>
-				<ul class="dropdown-menu pull-right">
-					<li><a href="#">Deportes</a></li>
-					<li><a href="#">Finanzas</a></li>
-					<li><a href="#">Entretenimiento</a></li>
-					<li><a href="#">Infantiles</a></li>
-					<li><a href="#">Gastronomia</a></li>
-				</ul>
-			</li></li>
-			<li class="nav-header">Opciones</li>
-			<li><a href="#">Perfil</a></li>
-			<li><a href="#">Mis aplicaciones</a></li>		
-		</ul>
-	</div>
--->
 </div>	
 	<div class="container-fluid carouselInicio">
 	<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno">Bajar!!</a>
@@ -94,21 +52,6 @@
 			</div>
 	    </div>
 	</div>
-
-<!--
-	<div class="col-md-12 carousel slide container carouselInicio" id="myCarousel" style="padding-top:47px;background-color: rgb(245, 245, 245);">
-			<div class="carousel-inner">
-				<div class="active item"><img src="img/slide01.jpg"></img></div>
-				<div class="item"><img src="img/slide02.jpg"></img></div>
-				<div class="item"><img src="img/slide03.jpg"></img></div>
-				<div class="item"><img src="img/slide04.jpg"></img></div>
-				<div class="item"><img src="img/slide05.jpg"></img></div>
-				<div class="item"><img src="img/slide06.jpg"></img></div>
-			</div>
-			<a class="carousel-control left" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-			<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-	</div>
--->
 <div class="col-md-12" style="height:50px;"></div>
 <!-- APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS -->	
 	<div class="col-md-12 divContenidosInicial color1Inicio" style="background-image: url(img/appsProy.png);">
@@ -178,7 +121,7 @@
 	</div>
 
 <!--	</div>	-->
-<!-- APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS -->	
+<!-- APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS -->
 	<div class="col-md-12 separador"></div>
 <!--LIBROS LIBROS LIBROS LIBROS  LIBROS  LIBROS  LIBROS  LIBROS -->	
 	<div class="col-md-12 divContenidosInicial color2Inicio" style="background-image: url(img/olivier.jpg);">
@@ -317,7 +260,7 @@
 	</div>		
 <!-- VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS -->	
 	<div class="col-md-12 separador"></div>
-<!-- MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA-->	
+<!-- MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA-->
 	<div class="col-md-12 divContenidosInicial color2Inicio" style="background-image: url(img/music.png);">
 		<h2 class="col-md-12 pull-right styleTits" style="text-align: right;">Musica</h2>
 	</div>
@@ -384,12 +327,13 @@
 		</div>
 		
 	</div>
-<!-- MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA-->		
+<!-- MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA-->
 	<div class="col-md-12 separador"></div>
 	
-	<div id="loginUsuario" class="modalChocolate modal" hidden>
+	<div id="loginUsuario" class="modalChocolate modal" hidden style="overflow-y: auto;
+		display: block;width: 26%;min-width: 300px;margin-right: auto;">
 	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="cerrarPanelLogin()">X</button>
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="ocultarElemento('loginUsuario')">X</button>
 	    <h3>Iniciar Sesion</h3>
 	  </div>
 	  <div class="modal-body">
@@ -402,22 +346,26 @@
 	    </div>
 	  </div>
 	  <div class="modal-footer">
-	    <button type="button" data-dismiss="modal" class="btn" onclick="cerrarPanelLogin()">Cerrar</button>
+	    <button type="button" data-dismiss="modal" class="btn" onclick="ocultarElemento('loginUsuario')">Cerrar</button>
 	    <button type="button" class="btn btn-primary" onclick="IniciarSesion()">Confirmar</button>
 	  </div>
 	</div>
 
-	<div id="registroUsuario" class="modalChocolate modal" hidden>
+	<div id="registroUsuario" class="modalChocolate modal" hidden style="overflow-y: auto;
+            display: block;width: 26%;min-width: 500px;margin-right: auto;">
 	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="cerrarPanelRegistro()">X</button>
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" 
+	    		onclick="ocultarElemento('registroUsuario')">X</button>
 	    <h3>Registro de Usuario</h3>
 	  </div>
+
 	  <div class="modal-body">
-			<div class="rowo">
+			<div class="row">
 				<div class="col-md-6">
 					<h4>Datos de Usuario</h4>
 					<p>Correo    			<input type="email" class="col-md-12 form-control" id="inputCorreo"></p>
 					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="inputPass"></p>
+					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="inputPass2"></p>
 					<p>Nombre Usuario  		<input type="text" class="col-md-12 form-control" id="inputNick"></p>     
 				</div>
 				<div class="col-md-6">
@@ -436,17 +384,17 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button type="button" data-dismiss="modal" class="btn" onclick="cerrarPanelRegistro()">Cerrar</button>
+			<button type="button" data-dismiss="modal" class="btn" onclick="ocultarElemento('registroUsuario')">Cerrar</button>
 			<button type="button" class="btn btn-primary" onclick="crearUsuario()">Confirmar</button>
 		</div>
 	</div>
-	
+
 </body>
 
 <script src="js/jquery.min.js"></script>
-<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/holder.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/LlamadasAjax.js"></script>
+<script src="js/getSet.js"></script>
 <script src="js/main.js"></script>

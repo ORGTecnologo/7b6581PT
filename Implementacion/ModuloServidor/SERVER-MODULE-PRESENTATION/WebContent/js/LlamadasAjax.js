@@ -1,11 +1,10 @@
 /**
- * 
+ * Llamadas Ajax de la aplicacion.
  */
 
 //var ip = "http://192.168.1.43:8080/SERVER-MODULE-SERVICES/restws";//chile
-var ip = "/SERVER-MODULE-SERVICES/restws";//local
+var ip = "/SERVER-MODULE-SERVICES/restws";
 
-//Llamadas Ajax
 //Objeto usario
 function Usuario(nick,nombre,apellido){
 	this.User 	= nick;
@@ -20,13 +19,14 @@ function Rol(id,Nombre){
 }
 
 //Registro de Usuario
-function registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimiento,cel){
+function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento,cel){
 	$.ajax({
 		url: ip + '/usuarios/registrarUsuario',
 		type: 'PUT',
 		data:JSON.stringify({
 			usuario           : usuario,
-			contrasenia       : contrasenia,
+			contrasenia       : pass,
+			contrasenia2	  : pass2
 			nombres           : nombre,
 			apellidos   	  : apellido,
 			sexo			  : sexo,
@@ -38,10 +38,10 @@ function registroUsuario(usuario,contrasenia,mail,nombre,apellido,sexo,nacimient
 		contentType: "application/json",
 	})
 	.done(function(msg){
-		console.log('Guardado con exito!!');
+		console.log('Entro en done: ' + msg);
 	})
 	.fail(function(){
-		console.log('Fallo al guardar!!');
+		console.log('Entro en fail: ' + msg);
 	})
 }
 
@@ -61,10 +61,10 @@ function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
 		contentType: "application/json",
 	})
 	.done(function(msg){
-		console.log('Guardado con exito!!');
+		console.log(msg);
 	})
 	.fail(function(){
-		console.log('Fallo al guardar!!');
+		console.log(msg);
 	})
 }
 
