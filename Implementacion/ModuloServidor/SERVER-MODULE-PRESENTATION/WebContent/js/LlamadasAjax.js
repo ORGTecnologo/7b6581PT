@@ -180,3 +180,35 @@ function loginUsuario(usuario, contrasenia){
 		alert('Nombre de usuario o contrasenia incorrectos!!');
 	})
 }
+
+function logoutUsuario(){
+	$.ajax({
+	   url: ip + '/usuarios/logout',
+	   type: 'PUT',
+	   data: JSON.stringify({
+		   usuario : varsProy.usuario,
+		   token : varsProy.token
+	   }),
+	   datatype: "json",
+	   contentType: "application/json",
+	})
+	.done(function(msg) {
+
+		if (msg.resultadoOperacion === "OK") {
+
+		    varsProy.nick = "";
+		    varsProy.token = "";
+		    varsProy.tipoUsuario = "";
+		    varsProy.mail = "";
+
+		    mostrarElemento('Login-Registro-Div');
+		    ocultarElemento('Nick-Logout-Div');
+		}
+		else
+			alert(msg.resultadoOperacion);
+	})
+	.fail(function(msg) {
+		console.log(msg);
+		alert("Fallo del sistema, intente de nuevo o contacte con el administrador!!");
+	})
+}
