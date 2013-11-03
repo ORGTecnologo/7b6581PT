@@ -23,6 +23,11 @@
 		font-weight: bold;	
 	}
 
+	.miniatura{
+		max-height: 204px;
+		max-width: 300px;
+	}
+	
 	.modal {
 		left: 50%;
 		bottom: auto;
