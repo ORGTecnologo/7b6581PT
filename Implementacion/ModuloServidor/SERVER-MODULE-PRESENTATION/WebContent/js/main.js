@@ -79,6 +79,15 @@ function crearUsuario(){
 	}
 }
 
+
+/*
+msg: Object
+respuesta: "OK"
+tipoUsuario: "usuario_cliente"
+token: "7yyoc8vomm1bpnrf4iwt"
+usuario: "chile"
+*/
+
 function IniciarSesion(){
 	
 	var correo 	= document.getElementById('loginCorreo').value;

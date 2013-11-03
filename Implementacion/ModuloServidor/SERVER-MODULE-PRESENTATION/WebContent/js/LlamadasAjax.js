@@ -38,20 +38,36 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 		contentType: "application/json",
 	})
 	.done(function(msg){
-		console.log('Entro en done: ' + msg);
 
-		ocultarElemento('registroUsuario');
-		var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-			nick.innerText = usuario;
+		if (msg.respuesta === "OK") {
 
-	    mostrarElemento('Nick-Logout-Div');
-	    ocultarElemento('Login-Registro-Div');		
+		    varsProy.nick = msg.usuario;
+		    varsProy.token = msg.token;
+		    varsProy.tipoUsuario = msg.tipoUsuario;
+
+			ocultarElemento('registroUsuario');
+			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.innerText = varsProy.nick;
+
+		    mostrarElemento('Nick-Logout-Div');
+		    ocultarElemento('Login-Registro-Div');
+		}
+		else
+			alert(msg.respuesta);
 	})
 	.fail(function(msg){
 		console.log('Entro en fail: ' + msg);
 		alert(msg);
 	})
 };
+
+/*
+msg: Object
+respuesta: "OK"
+tipoUsuario: "usuario_cliente"
+token: "7yyoc8vomm1bpnrf4iwt"
+usuario: "chile"
+*/
 
 //modificacion de datos
 function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
@@ -142,13 +158,22 @@ function loginUsuario(usuario, contrasenia){
 	   contentType: "application/json",
 	})
 	.done(function(msg) {
-		console.log(msg);
-		ocultarElemento('loginUsuario');
-		var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-			nick.innerText = usuario;
 
-	    mostrarElemento('Nick-Logout-Div');
-	    ocultarElemento('Login-Registro-Div');
+		if (msg.respuesta === "OK") {
+
+		    varsProy.nick = msg.usuario;
+		    varsProy.token = msg.token;
+		    varsProy.tipoUsuario = msg.tipoUsuario;
+
+			ocultarElemento('loginUsuario');
+			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.innerText = varsProy.nick;
+
+		    mostrarElemento('Nick-Logout-Div');
+		    ocultarElemento('Login-Registro-Div');
+		}
+		else
+			alert(msg.respuesta);
 	})
 	.fail(function(msg) {
 		console.log(msg);
