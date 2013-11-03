@@ -31,7 +31,15 @@
 				<span class="glyphicon glyphicon-search"></span> Buscar</button>
 		</form>
 		<div class="col-md-2 pull-right" id="Login-Registro-Div">
-			<button class="btn btn-primary barraBusquedaHome" href="#registroUsuario" onclick="mostrarElemento('registroUsuario')">Registrarse</button>
+		<!---->
+			<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
+			<ul class="dropdown-menu col-md-2 ">
+				<li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario')">Soy Proveedor</a></li>
+				<li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario')">Soy Cliente</a></li>
+			</ul>		
+			<!--
+				<button class="btn btn-primary barraBusquedaHome" href="#registroUsuario" onclick="mostrarElemento('registroUsuario')">Registrarse</button>
+			-->
 			<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario')">Login</button>
 		</div>
 		<div class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
@@ -371,7 +379,8 @@
 					<p>Correo    			<input type="email" class="col-md-12 form-control" id="inputCorreo"></p>
 					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="inputPass"></p>
 					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="inputPass2"></p>
-					<p>Nombre Usuario  		<input type="text" class="col-md-12 form-control" id="inputNick"></p>     
+					<p>Nombre Usuario  		<input type="text" class="col-md-12 form-control" id="inputNick"></p>
+					<p id="sitioWeb_p">Sitio Web 	  		<input type="text" class="col-md-12 form-control" id="inputWeb"></p>
 				</div>
 				<div class="col-md-6">
 					<h4>Datos Personales</h4>

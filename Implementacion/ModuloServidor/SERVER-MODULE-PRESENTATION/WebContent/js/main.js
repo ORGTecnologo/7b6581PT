@@ -3,9 +3,9 @@
  */
 
 $(document).ready(function(){
-    $('.carousel').carousel({
+    /*$('.carousel').carousel({
         interval: 3000
-    });
+    });*/
     
 	inicializarPrototipos();
 
@@ -38,8 +38,12 @@ function errorControlVaciosFormularioRegistro() {
 	var error6 = Pintar_hasError(document.getElementById('inputFecha'));
 	var error7 = Pintar_hasError(document.getElementById('inputTel'));
 	var error8 = Pintar_hasError(document.getElementById('inputPass2'));
+	var error9 = false;
+
+	if (varsProy.tipoRegistro == 'proveedor')
+		error9 = Pintar_hasError(document.getElementById('inputWeb'));
 	
-	if(error0 || error1 || error2 || error3 || error4 || error5 || error6 || error7 || error8){
+	if(error0 || error1 || error2 || error3 || error4 || error5 || error6 || error7 || error8 || error9){
 		alert('Ha dejado campos sin completar!!!');
 		return true;
 	}
@@ -79,14 +83,38 @@ function crearUsuario(){
 	}
 }
 
+function crearProveedor(){
 
-/*
-msg: Object
-respuesta: "OK"
-tipoUsuario: "usuario_cliente"
-token: "7yyoc8vomm1bpnrf4iwt"
-usuario: "chile"
-*/
+	if (!errorControlVaciosFormularioRegistro()){
+
+		var nombre 		 = document.getElementById('inputNombre').value;
+		var usuario 	 = document.getElementById('inputNick').value;
+		var contrasenia  = document.getElementById('inputPass').value;
+		var contrasenia2 = document.getElementById('inputPass2').value;
+		var mail 		 = document.getElementById('inputCorreo').value;
+		var apellido 	 = document.getElementById('inputApellido').value;
+		var sexo 		 = document.getElementById('inputSexo').value;
+		var nacimiento   = document.getElementById('inputFecha').value;
+		var cel 		 = document.getElementById('inputTel').value;
+		var sitioWeb	 = document.getElementById('sitioWeb').value;
+
+		if(mail.validarMail()){
+			if(contrasenia===contrasenia2){
+				registroProveedor(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel,sitioWeb);
+			}
+			else{
+				document.getElementById('inputPass').value = "";
+				document.getElementById('inputPass2').value = "";
+				alert('Las contrasenas no coinciden, intentelo nuevamente!!');
+			}
+		}
+		else{
+			var email = document.getElementById('inputCorreo');
+			email.parentElement.setAttribute('class','has-error');
+			alert('El correo no es valido!!');
+		}
+	}
+}
 
 function IniciarSesion(){
 	

@@ -2,27 +2,13 @@
  * Llamadas Ajax de la aplicacion.
  */
 
-//var ip = "http://192.168.1.43:8080/SERVER-MODULE-SERVICES/restws";//chile
 var ip = "/SERVER-MODULE-SERVICES/restws";
 
-//Objeto usario
-function Usuario(nick,nombre,apellido){
-	this.User 	= nick;
-	this.Nombre	= nombre;
-	this.Apellido	= apellido;
-	this.Descripcion = "--";
-}
-
-function Rol(id,Nombre){
-	this.id = id;
-	this.descripcion = Nombre;
-}
-
-//Registro de Usuario
+//POST__________POST__________POST
 function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento,cel){
 	$.ajax({
 		url: ip + '/usuarios/registrarUsuario',
-		type: 'PUT',
+		type: 'POST',
 		data:JSON.stringify({
 			usuario           : usuario,
 			contrasenia       : pass,
@@ -61,15 +47,117 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 	})
 };
 
-/*
-msg: Object
-respuesta: "OK"
-tipoUsuario: "usuario_cliente"
-token: "7yyoc8vomm1bpnrf4iwt"
-usuario: "chile"
-*/
+function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento,cel,sitioWeb){
+	$.ajax({
+		url: ip + '/usuarios/registrarProveedor',
+		type: 'POST',
+		data:JSON.stringify({
+			usuario           : usuario,
+			contrasenia       : pass,
+			contrasenia2	  : pass2,
+			nombres           : nombre,
+			apellidos   	  : apellido,
+			sexo			  : sexo,
+			fechaNacimiento   : nacimiento,
+			telefonoMovil	  : cel,
+			correoElectronico : mail,
+			sitioWeb		  : sitioWeb,
+		}),
+		datatype: "json",
+		contentType: "application/json",
+	})
+	.done(function(msg){
 
-//modificacion de datos
+		if (msg.respuesta === "OK") {
+
+		    varsProy.nick = msg.usuario;
+		    varsProy.token = msg.token;
+		    varsProy.tipoUsuario = msg.tipoUsuario;
+
+			ocultarElemento('registroUsuario');
+			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.innerText = varsProy.nick;
+
+		    mostrarElemento('Nick-Logout-Div');
+		    ocultarElemento('Login-Registro-Div');
+		}
+		else
+			alert(msg.respuesta);
+	})
+	.fail(function(msg){
+		console.log('Entro en fail: ' + msg);
+		alert(msg);
+	})
+};
+
+//PUT__________PUT__________PUT
+function loginUsuario(usuario, contrasenia){
+	$.ajax({
+	   url: ip + '/usuarios/loginCliente',
+	   type: 'PUT',
+	   data: JSON.stringify({
+		   usuario : usuario,
+		   contrasenia : contrasenia
+	   }),
+	   datatype: "json",
+	   contentType: "application/json",
+	})
+	.done(function(msg) {
+
+		if (msg.respuesta === "OK") {
+
+		    varsProy.nick = msg.usuario;
+		    varsProy.token = msg.token;
+		    varsProy.tipoUsuario = msg.tipoUsuario;
+
+			ocultarElemento('loginUsuario');
+			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.innerText = varsProy.nick;
+
+		    mostrarElemento('Nick-Logout-Div');
+		    ocultarElemento('Login-Registro-Div');
+		}
+		else
+			alert(msg.respuesta);
+	})
+	.fail(function(msg) {
+		console.log(msg);
+		alert('Nombre de usuario o contrasenia incorrectos!!');
+	})
+}
+
+function logoutUsuario(){
+	$.ajax({
+	   url: ip + '/usuarios/logout',
+	   type: 'PUT',
+	   data: JSON.stringify({
+		   usuario : varsProy.usuario,
+		   token : varsProy.token
+	   }),
+	   datatype: "json",
+	   contentType: "application/json",
+	})
+	.done(function(msg) {
+
+		if (msg.resultadoOperacion === "OK") {
+
+		    varsProy.nick = "";
+		    varsProy.token = "";
+		    varsProy.tipoUsuario = "";
+		    varsProy.mail = "";
+
+		    mostrarElemento('Login-Registro-Div');
+		    ocultarElemento('Nick-Logout-Div');
+		}
+		else
+			alert(msg.resultadoOperacion);
+	})
+	.fail(function(msg) {
+		console.log(msg);
+		alert("Fallo del sistema, intente de nuevo o contacte con el administrador!!");
+	})
+}
+
 function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
 	$.ajax({
 		url: ip + '/usuarios/modificarUsuario',
@@ -143,72 +231,5 @@ function esUnicoNick(nick){
 	})
 	.fail(function(msg) {
 		console.log(msg);
-	})
-}
-
-function loginUsuario(usuario, contrasenia){
-	$.ajax({
-	   url: ip + '/usuarios/loginCliente',
-	   type: 'POST',
-	   data: JSON.stringify({
-		   usuario : usuario,
-		   contrasenia : contrasenia
-	   }),
-	   datatype: "json",
-	   contentType: "application/json",
-	})
-	.done(function(msg) {
-
-		if (msg.respuesta === "OK") {
-
-		    varsProy.nick = msg.usuario;
-		    varsProy.token = msg.token;
-		    varsProy.tipoUsuario = msg.tipoUsuario;
-
-			ocultarElemento('loginUsuario');
-			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-				nick.innerText = varsProy.nick;
-
-		    mostrarElemento('Nick-Logout-Div');
-		    ocultarElemento('Login-Registro-Div');
-		}
-		else
-			alert(msg.respuesta);
-	})
-	.fail(function(msg) {
-		console.log(msg);
-		alert('Nombre de usuario o contrasenia incorrectos!!');
-	})
-}
-
-function logoutUsuario(){
-	$.ajax({
-	   url: ip + '/usuarios/logout',
-	   type: 'PUT',
-	   data: JSON.stringify({
-		   usuario : varsProy.usuario,
-		   token : varsProy.token
-	   }),
-	   datatype: "json",
-	   contentType: "application/json",
-	})
-	.done(function(msg) {
-
-		if (msg.resultadoOperacion === "OK") {
-
-		    varsProy.nick = "";
-		    varsProy.token = "";
-		    varsProy.tipoUsuario = "";
-		    varsProy.mail = "";
-
-		    mostrarElemento('Login-Registro-Div');
-		    ocultarElemento('Nick-Logout-Div');
-		}
-		else
-			alert(msg.resultadoOperacion);
-	})
-	.fail(function(msg) {
-		console.log(msg);
-		alert("Fallo del sistema, intente de nuevo o contacte con el administrador!!");
 	})
 }

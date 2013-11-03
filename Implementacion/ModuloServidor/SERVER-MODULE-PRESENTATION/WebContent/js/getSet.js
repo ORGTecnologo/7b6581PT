@@ -14,9 +14,25 @@ function Pintar_hasError(input){
 		return false;
 }
 
+function setRegistroTipo(tipo){
+	varsProy.tipoRegistro = tipo;
+}
+
 function mostrarElemento(id){
+
 	var div = $("#" + id);
 	div.show();
+
+	switch(id){
+		case 'registroUsuario':
+			if (varsProy.tipoRegistro == 'proveedor')
+				document.getElementById('sitioWeb_p').setAttribute('style','visibility: visible;');
+			else	
+				document.getElementById('sitioWeb_p').setAttribute('style','visibility: hidden;');
+		break;
+	}
+
+
 }
 
 function ocultarElemento(id){
