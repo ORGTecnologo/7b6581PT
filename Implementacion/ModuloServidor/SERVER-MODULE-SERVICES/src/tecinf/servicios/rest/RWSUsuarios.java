@@ -127,6 +127,7 @@ public class RWSUsuarios {
 			
 			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
 		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
 			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_FALLA);
 			resp.setMensageOperacion(e.getMessage());
 		}				
@@ -137,18 +138,19 @@ public class RWSUsuarios {
 	@Path("/registrarUsuario")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public GenericJsonResponse registrarUsuario(UsuarioClienteDataType ud) {
-		GenericJsonResponse resp = new GenericJsonResponse();
+	public LoginRespDataType registrarUsuario(UsuarioClienteDataType ud) {
+		LoginRespDataType resp = new LoginRespDataType();
 		try {
 			
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			negocioUsuario.registroUsuarioCliente(ud); 
-			primitiveLogin(ud.getUsuario(), ud.getContrasenia());
+			resp = primitiveLogin(ud.getUsuario(), ud.getContrasenia());
 			
-			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
+			//SessionManager sm = SessionManager.getInstance();		
+			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_EXITO);
 		} catch (Exception e) {
-			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_FALLA);
-			resp.setMensageOperacion(e.getMessage());
+			logger.error(e.getMessage() , e); 
+			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_FALLA);
 		}				
 		return resp;
 	}
@@ -165,7 +167,6 @@ public class RWSUsuarios {
 				s.setUser(resp.getUsuario());					
 				s.setToken(resp.getToken());
 				s.setUserType(resp.getTipoUsuario()); 
-				sm.updateTimeStamp(s, SessionManager.timeOut);
 				sm.addUserToSession(s);
 			}
 		} catch (Exception e){

@@ -21,7 +21,9 @@ public class SessionManager {
 		return instance;
 	}
 	
-	public void addUserToSession(Session s) {
+	public void addUserToSession(Session s) {	
+		s.setTimeStamp(new Date());
+		updateTimeStamp(s, SessionManager.timeOut);
 		this.listaSesiones.add(s);
 	}
 	
