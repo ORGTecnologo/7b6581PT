@@ -14,8 +14,10 @@ $(document).ready(function(){
 	      maxDate: 0
     });
    
-    $( "#registroUsuario" ).hide();
-    $( "#loginUsuario" ).hide();
+    $( "#registroUsuario").hide();
+    $( "#loginUsuario").hide();
+    $( "#Nick-Logout-Div").hide();    
+    
     //rol = new Rol(1,"Usuario");
     //modificarUsuarioX("canario","mouse","contrasenia","apellido",rol);
     //obtenerUsuariosServ();
@@ -78,6 +80,6 @@ function IniciarSesion(){
 	
 	var correo 	= document.getElementById('loginCorreo').value;
 	var pass = document.getElementById('loginPass').value;
-	
+
 	loginUsuario(correo,pass);
 }

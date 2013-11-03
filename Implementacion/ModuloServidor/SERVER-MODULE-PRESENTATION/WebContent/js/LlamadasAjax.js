@@ -39,9 +39,17 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 	})
 	.done(function(msg){
 		console.log('Entro en done: ' + msg);
+
+		ocultarElemento('registroUsuario');
+		var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+			nick.innerText = usuario;
+
+	    mostrarElemento('Nick-Logout-Div');
+	    ocultarElemento('Login-Registro-Div');		
 	})
 	.fail(function(msg){
 		console.log('Entro en fail: ' + msg);
+		alert(msg);
 	})
 };
 
@@ -135,8 +143,15 @@ function loginUsuario(usuario, contrasenia){
 	})
 	.done(function(msg) {
 		console.log(msg);
+		ocultarElemento('loginUsuario');
+		var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+			nick.innerText = usuario;
+
+	    mostrarElemento('Nick-Logout-Div');
+	    ocultarElemento('Login-Registro-Div');
 	})
 	.fail(function(msg) {
 		console.log(msg);
+		alert('Nombre de usuario o contrasenia incorrectos!!');
 	})
 }
