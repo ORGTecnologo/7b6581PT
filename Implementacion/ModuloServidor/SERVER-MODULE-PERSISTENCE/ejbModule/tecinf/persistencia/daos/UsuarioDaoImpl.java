@@ -51,4 +51,15 @@ public class UsuarioDaoImpl extends DaoImpl<String , UsuarioEntity> implements U
 		
 	}
 	
+	public UsuarioEntity findByEmailAndPassword(String email, String pwd) {
+		Query namedQuery = em.createNamedQuery("UsuarioEntity.findByEmailAndPassword");
+		namedQuery.setParameter("email", email);
+		namedQuery.setParameter("pwd", pwd);
+		if (namedQuery.getResultList().size() > 0 )
+			return (UsuarioEntity)namedQuery.getSingleResult();
+		
+		return null;
+		
+	}
+	
 }

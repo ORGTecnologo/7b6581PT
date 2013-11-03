@@ -82,7 +82,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario  {
 		
 		LoginRespDataType resp = new LoginRespDataType();
 		String hashedPassword = Encriptacion.encriptarMD5(contrasenia);
-		UsuarioEntity ue = usuarioDao.findByUserAndPassword(usuario, hashedPassword); 
+		UsuarioEntity ue = usuarioDao.findByEmailAndPassword(usuario, hashedPassword); 
 		if ( ue == null) {
 			resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA);
 		} else {			
