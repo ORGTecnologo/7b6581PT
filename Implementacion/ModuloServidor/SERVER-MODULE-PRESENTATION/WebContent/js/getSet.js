@@ -4,15 +4,6 @@ function onlyNumbersDano(evt){
             return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
 }
 
-function validateEmail($email) {
-//Regresa TRUE si el mail esta bien formado, FALSE en caso contrario	
-	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-	if( !emailReg.test( $email ) )
-		return false;
-	else
-		return true;
-}
-
 function Pintar_hasError(input){
 //Esta funcion pinta de rojo el input
 	if (input.value == ""){

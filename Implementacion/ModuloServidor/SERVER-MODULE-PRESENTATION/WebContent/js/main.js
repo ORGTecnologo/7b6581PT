@@ -7,6 +7,8 @@ $(document).ready(function(){
         interval: 3000
     });
     
+	inicializarPrototipos();
+
     $( "#inputFecha" ).datepicker({
 	      changeMonth: true,
 	      changeYear: true,
@@ -35,8 +37,9 @@ function errorControlVaciosFormularioRegistro() {
 	var error5 = Pintar_hasError(document.getElementById('inputSexo'));
 	var error6 = Pintar_hasError(document.getElementById('inputFecha'));
 	var error7 = Pintar_hasError(document.getElementById('inputTel'));
+	var error8 = Pintar_hasError(document.getElementById('inputPass2'));
 	
-	if(error0 || error1 || error2 || error3 || error4 || error5 || error6 || error7){
+	if(error0 || error1 || error2 || error3 || error4 || error5 || error6 || error7 || error8){
 		alert('Ha dejado campos sin completar!!!');
 		return true;
 	}
@@ -58,14 +61,14 @@ function crearUsuario(){
 		var nacimiento   = document.getElementById('inputFecha').value;
 		var cel 		 = document.getElementById('inputTel').value;
 
-		if(validateEmail(mail)){
+		if(mail.validarMail()){
 			if(contrasenia===contrasenia2){
 				registroUsuario(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel);
 			}
 			else{
 				document.getElementById('inputPass').value = "";
 				document.getElementById('inputPass2').value = "";
-				alert('Las contraseñas no coinciden, intentelo nuevamente!!');
+				alert('Las contrasenas no coinciden, intentelo nuevamente!!');
 			}
 		}
 		else{
@@ -81,5 +84,8 @@ function IniciarSesion(){
 	var correo 	= document.getElementById('loginCorreo').value;
 	var pass = document.getElementById('loginPass').value;
 
-	loginUsuario(correo,pass);
+	if (correo.validarMail())
+		loginUsuario(correo,pass);
+	else
+		alert("Correo Invalido");
 }
