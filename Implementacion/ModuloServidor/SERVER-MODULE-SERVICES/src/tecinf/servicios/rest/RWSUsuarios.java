@@ -134,7 +134,7 @@ public class RWSUsuarios {
 		return resp;
 	}
 	
-	@PUT
+	@POST
 	@Path("/registrarUsuario")
 	@Produces("application/json")
 	@Consumes("application/json")
@@ -144,7 +144,28 @@ public class RWSUsuarios {
 			
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			negocioUsuario.registroUsuarioCliente(ud); 
-			resp = primitiveLogin(ud.getUsuario(), ud.getContrasenia());
+			resp = primitiveLogin(ud.getCorreoElectronico(), ud.getContrasenia());
+			
+			//SessionManager sm = SessionManager.getInstance();		
+			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_EXITO);
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_FALLA);
+		}				
+		return resp;
+	}
+	
+	@POST
+	@Path("/registrarProveedor")
+	@Produces("application/json")
+	@Consumes("application/json")
+	public LoginRespDataType registrarProveedor(UsuarioClienteDataType ud) {
+		LoginRespDataType resp = new LoginRespDataType();
+		try {
+			
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario.registroUsuarioCliente(ud); 
+			resp = primitiveLogin(ud.getCorreoElectronico(), ud.getContrasenia());
 			
 			//SessionManager sm = SessionManager.getInstance();		
 			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_EXITO);
@@ -156,11 +177,11 @@ public class RWSUsuarios {
 	}
 	
 	/* FUNCIONES AUXILIARES */
-	private LoginRespDataType primitiveLogin(String usr, String pwd) {
+	private LoginRespDataType primitiveLogin(String email, String pwd) {
 		LoginRespDataType resp = null;
 		try {
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
-			resp = negocioUsuario.loginUsuario(usr, pwd); 
+			resp = negocioUsuario.loginUsuario(email, pwd); 
 			if (resp.getRespuesta().equals(EnumRespuestas.RESPUESTA_OK)){
 				SessionManager sm = SessionManager.getInstance();
 				Session s = new Session();
