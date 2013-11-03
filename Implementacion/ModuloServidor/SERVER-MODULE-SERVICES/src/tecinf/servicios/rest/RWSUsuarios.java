@@ -58,7 +58,7 @@ public class RWSUsuarios {
  
 	}
 	
-	@POST
+	@PUT
 	@Path("/loginCliente")
 	@Produces("application/json")
 	@Consumes("application/json")
