@@ -81,3 +81,12 @@ insert into estado_version_contenido(id, descripcion) values (2 , 'Rechazada');
 -- Session timeout
 insert into parametros(nombre_parametro, valor_parametro) values('timeOutSesion' , '30');
 
+
+-- ACTUALIZACIONES
+
+update parametros set valor_parametro = 'contenidos_libro;contenido_video;contenido_musica;contenido_sofware' where nombre_parametro = 'directoriosUsuariosProveedores';
+
+ALTER TABLE usuarios_proveedor ALTER COLUMN codigo_qr DROP NOT NULL;
+
+
+

@@ -39,6 +39,10 @@ import javax.persistence.Table;
 		
 	@NamedQuery(name = "UsuarioEntity.findByEmailAndPassword", 
 		query = "SELECT e FROM UsuarioEntity e WHERE e.correoElectronico = :email and e.contrasenia = :pwd") ,		
+		
+	@NamedQuery(name = "UsuarioProveedorEntity.findByWebSite", 
+		query = "SELECT e FROM UsuarioEntity e WHERE e.sitioWeb = :sitioWeb") ,
+		
 })
 
 

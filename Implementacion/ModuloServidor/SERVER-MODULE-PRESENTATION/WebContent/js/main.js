@@ -96,7 +96,7 @@ function crearProveedor(){
 		var sexo 		 = document.getElementById('inputSexo').value;
 		var nacimiento   = document.getElementById('inputFecha').value;
 		var cel 		 = document.getElementById('inputTel').value;
-		var sitioWeb	 = document.getElementById('sitioWeb').value;
+		var sitioWeb	 = document.getElementById('inputWeb').value;
 
 		if(mail.validarMail()){
 			if(contrasenia===contrasenia2){

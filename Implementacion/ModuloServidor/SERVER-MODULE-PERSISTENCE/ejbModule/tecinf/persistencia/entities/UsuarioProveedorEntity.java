@@ -16,7 +16,7 @@ public class UsuarioProveedorEntity extends UsuarioEntity implements Serializabl
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Column(name="codigo_qr",nullable=false)
+	@Column(name="codigo_qr",nullable=true)
 	private String codigoQr;
 	
 	@Column(name="sitio_web", length=100, nullable=false)

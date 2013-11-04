@@ -62,4 +62,13 @@ public class UsuarioDaoImpl extends DaoImpl<String , UsuarioEntity> implements U
 		
 	}
 	
+	public UsuarioEntity findByWebSite(String sitioWeb){
+		Query namedQuery = em.createNamedQuery("UsuarioProveedorEntity.findByWebSite");
+		namedQuery.setParameter("sitioWeb", sitioWeb);
+		if (namedQuery.getResultList().size() > 0 )
+			return (UsuarioEntity)namedQuery.getSingleResult();
+		
+		return null;
+	}
+	
 }

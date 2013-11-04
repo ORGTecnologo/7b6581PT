@@ -19,6 +19,7 @@ import tecinf.negocio.utiles.Encriptacion;
 import tecinf.negocio.utiles.EnumParametrosValor;
 import tecinf.negocio.utiles.EnumRespuestas;
 import tecinf.negocio.utiles.EnumTipoUsuario;
+import tecinf.negocio.utiles.FileSystemUtils;
 import tecinf.negocio.utiles.RandomString;
 import tecinf.persistencia.daos.AuditoriaDao;
 import tecinf.persistencia.daos.AuditoriaObjetoDao;
@@ -161,9 +162,12 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		((UsuarioClienteEntity) ue).setTipoRegistro(tipoRegistro);
 		((UsuarioClienteEntity) ue).setRutaImagenPerfil("");
 		ue.setTipoUsuario(EnumTipoUsuario.USUARIO_CLIENTE);
+		
+		//Creo la estructura de directorios para los usuarios cliente
+		if (!(new FileSystemUtils()).crearEstructuraDirectorioUsuarioCliente(ue.getUsuario()))
+			throw new Exception("Error al crear directorio de usuario");
 				
 		usuarioDao.persist(ue);
-		usuarioDao.flush();
 		
 		return loginUsuario(dt.getCorreoElectronico(), dt.getContrasenia());
 	}
@@ -177,9 +181,11 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 
 		if (existeUsuarioPorMail(dt.getCorreoElectronico()))
 			throw new Exception("Email ya utilizado");
-						
+		
+		if (existeUsuarioProveedorPorSitioWeb(dt.getSitioWeb()))
+			throw new Exception("sitioWeb ya utilizado");
 
-		ue = new UsuarioClienteEntity();
+		ue = new UsuarioProveedorEntity();
 		ue.setApellidos(dt.getApellidos());
 		String pwdHash = Encriptacion.encriptarMD5(dt.getContrasenia());
 		ue.setContrasenia(pwdHash);
@@ -192,10 +198,13 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		ue.setTelefonoMovil(dt.getTelefonoMovil());
 		ue.setUsuario(dt.getUsuario());
 		((UsuarioProveedorEntity) ue).setSitioWeb(dt.getSitioWeb());
-		((UsuarioClienteEntity) ue).setRutaImagenPerfil("");
-		ue.setTipoUsuario(EnumTipoUsuario.USUARIO_PROVEEDOR);
+		ue.setTipoUsuario(EnumTipoUsuario.USUARIO_PROVEEDOR);		
+		
+		//Creo la estructura de directorios para los usuarios proveedores
+		if (!(new FileSystemUtils()).crearEstructuraDirectorioUsuarioProveedor(ue.getUsuario()))
+			throw new Exception("Error al crear directorio de usuario");	
 				
-		usuarioDao.persist(ue);		
+		usuarioDao.persist(ue);
 		return loginUsuario(dt.getCorreoElectronico(), dt.getContrasenia());
 	}
 
@@ -209,6 +218,14 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 
 	public Boolean existeUsuarioPorMail(String mail) {
 		UsuarioEntity ue = usuarioDao.findByMail(mail);
+		if (ue == null)
+			return false;
+		else
+			return true;
+	}
+	
+	public Boolean existeUsuarioProveedorPorSitioWeb(String sitioWeb) {
+		UsuarioEntity ue = usuarioDao.findByWebSite((sitioWeb));
 		if (ue == null)
 			return false;
 		else
