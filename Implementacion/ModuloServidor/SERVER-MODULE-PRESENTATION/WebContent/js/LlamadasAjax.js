@@ -131,7 +131,7 @@ function logoutUsuario(){
 	   url: ip + '/usuarios/logout',
 	   type: 'PUT',
 	   data: JSON.stringify({
-		   usuario : varsProy.usuario,
+		   usuario : varsProy.nick,
 		   token : varsProy.token
 	   }),
 	   datatype: "json",

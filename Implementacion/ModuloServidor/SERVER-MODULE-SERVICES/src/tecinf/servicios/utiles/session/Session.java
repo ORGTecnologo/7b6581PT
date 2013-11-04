@@ -1,8 +1,11 @@
 package tecinf.servicios.utiles.session;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Session { 
+public class Session implements Serializable { 
+	
+	private static final long serialVersionUID = 1L;
 	
 	private String user;
 	private String token;

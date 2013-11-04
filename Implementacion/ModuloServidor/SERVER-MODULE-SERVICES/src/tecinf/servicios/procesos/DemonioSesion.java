@@ -7,12 +7,8 @@ import java.util.TimerTask;
 
 import org.jboss.logging.Logger;
 
-import tecinf.servicios.utiles.session.SessionManager;
-
-/**
- * Simple demo that uses java.util.Timer to schedule a task 
- * to execute once 5 seconds have passed.
- */
+import tecinf.negocio.NegocioUsuario;
+import tecinf.negocio.utiles.NegocioFactory;
 
 public class DemonioSesion {
 	
@@ -34,8 +30,8 @@ public class DemonioSesion {
         		
         		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         		logger.info("Ejecucion de demonio de session " + sdf.format(new Date()));
-        		SessionManager sm = SessionManager.getInstance();
-        		sm.executeSessionsRefresh();                
+        		NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
+        		negocioUsuario.executeSessionsRefresh();
                 
 			} catch (Exception e) {
 				logger.error(e.getMessage() , e);

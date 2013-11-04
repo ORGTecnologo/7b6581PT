@@ -76,3 +76,8 @@ insert into sub_categorias_contenido (id,nombre,id_categoria) values (nextval('s
 -- ESTADOS PARA LAS VERSIONES DE LOS CONTENIDOS
 insert into estado_version_contenido(id, descripcion) values (1 , 'Aprobada');
 insert into estado_version_contenido(id, descripcion) values (2 , 'Rechazada');
+
+
+-- Session timeout
+insert into parametros(nombre_parametro, valor_parametro) values('timeOutSesion' , '30');
+

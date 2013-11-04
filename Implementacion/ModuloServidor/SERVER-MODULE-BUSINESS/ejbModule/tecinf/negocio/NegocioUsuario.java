@@ -19,11 +19,17 @@ public interface NegocioUsuario {
 	
 	public Boolean loginUsuarioAdmin(String usuario, String contrasenia);
 	
-	public void registroUsuarioCliente(UsuarioClienteDataType dt) throws Exception;
+	public LoginRespDataType registroUsuarioCliente(UsuarioClienteDataType dt) throws Exception;
 	
 	public Boolean existeUsuario(String usr); 
 	
 	public Boolean existeUsuarioPorMail(String mail);
+	
+	public void executeSessionsRefresh();
+	
+	public Boolean checkUserSession(String usuario, String token);
+	
+	public Boolean logout(String usuario, String token);
 	
 }
 

@@ -22,8 +22,6 @@ import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.utiles.EnumRespuestas;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.servicios.utiles.JSonUtils;
-import tecinf.servicios.utiles.session.Session;
-import tecinf.servicios.utiles.session.SessionManager;
 
 
 @Path("/usuarios")
@@ -62,8 +60,15 @@ public class RWSUsuarios {
 	@Path("/loginCliente")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public LoginRespDataType login(LoginDataType dt) { 
-		LoginRespDataType resp = primitiveLogin(dt.getUsuario(), dt.getContrasenia());	
+	public LoginRespDataType login(LoginDataType dt) {
+		LoginRespDataType resp = new LoginRespDataType();
+		try {
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
+			resp = negocioUsuario.loginUsuario(dt.getUsuario(), dt.getContrasenia());
+		} catch (NamingException e) {
+			logger.error(e.getMessage(), e);
+			resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA);
+		}			
 		return resp;
 	}
 	
@@ -72,7 +77,18 @@ public class RWSUsuarios {
 	@Produces("application/json")
 	@Consumes("application/json")
 	public GenericJsonResponse logout(MensajeCertificado dt) { 
-		GenericJsonResponse resp = primitiveLogout(dt.getUsuario(), dt.getToken());	
+		GenericJsonResponse resp = new GenericJsonResponse();	
+		NegocioUsuario negocioUsuario;
+		try {
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
+			if (negocioUsuario.logout(dt.getUsuario(), dt.getToken()))
+				resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
+			else
+				resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+		} catch (NamingException e) {
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+			logger.error(e.getMessage() , e); 
+		}			
 		return resp;
 	}
 	
@@ -101,8 +117,6 @@ public class RWSUsuarios {
 	public GenericJsonResponse existeUsuarioPorMail(String param) { 
 		GenericJsonResponse resp = new GenericJsonResponse();
 		try {
-			//JsonObject obj = (JsonObject)param;
-			//String mailStr = mail.get("mail").getAsString();
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			if (negocioUsuario.existeUsuarioPorMail(""))
 				resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
@@ -143,10 +157,8 @@ public class RWSUsuarios {
 		try {
 			
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
-			negocioUsuario.registroUsuarioCliente(ud); 
-			resp = primitiveLogin(ud.getCorreoElectronico(), ud.getContrasenia());
+			resp = negocioUsuario.registroUsuarioCliente(ud); 
 			
-			//SessionManager sm = SessionManager.getInstance();		
 			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_EXITO);
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e); 
@@ -164,52 +176,13 @@ public class RWSUsuarios {
 		try {
 			
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
-			negocioUsuario.registroUsuarioCliente(ud); 
-			resp = primitiveLogin(ud.getCorreoElectronico(), ud.getContrasenia());
+			resp = negocioUsuario.registroUsuarioCliente(ud); 
 			
-			//SessionManager sm = SessionManager.getInstance();		
 			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_EXITO);
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e); 
 			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_FALLA);
 		}				
-		return resp;
-	}
-	
-	/* FUNCIONES AUXILIARES */
-	private LoginRespDataType primitiveLogin(String email, String pwd) {
-		LoginRespDataType resp = null;
-		try {
-			negocioUsuario = NegocioFactory.getNegocioUsuario();
-			resp = negocioUsuario.loginUsuario(email, pwd); 
-			if (resp.getRespuesta().equals(EnumRespuestas.RESPUESTA_OK)){
-				SessionManager sm = SessionManager.getInstance();
-				Session s = new Session();
-				s.setUser(resp.getUsuario());					
-				s.setToken(resp.getToken());
-				s.setUserType(resp.getTipoUsuario()); 
-				sm.addUserToSession(s);
-			}
-		} catch (Exception e){
-			logger.error(e.getMessage() , e);
-		}
-		return resp;
-	}
-	
-	private GenericJsonResponse primitiveLogout(String usr, String tkn) {
-		GenericJsonResponse resp = new GenericJsonResponse();
-		try {
-			
-			SessionManager sm = SessionManager.getInstance();
-			Session s = sm.getUserSession(usr, tkn);
-			if (s != null)
-				sm.removeUserFromSession(s);			
-			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
-			
-		} catch (Exception e){
-			logger.error(e.getMessage() , e);
-			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
-		}
 		return resp;
 	}
 	
