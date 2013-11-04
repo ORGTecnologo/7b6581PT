@@ -7,6 +7,7 @@ import javax.ejb.Local;
 import tecinf.negocio.dtos.LoginRespDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
+import tecinf.negocio.dtos.UsuarioProveedorDataType;
 
 @Local
 public interface NegocioUsuario {
@@ -20,6 +21,8 @@ public interface NegocioUsuario {
 	public Boolean loginUsuarioAdmin(String usuario, String contrasenia);
 	
 	public LoginRespDataType registroUsuarioCliente(UsuarioClienteDataType dt) throws Exception;
+	
+	public LoginRespDataType registroUsuarioProveedor(UsuarioProveedorDataType dt) throws Exception;
 	
 	public Boolean existeUsuario(String usr); 
 	

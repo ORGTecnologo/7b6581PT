@@ -6,9 +6,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
-import javax.ejb.TransactionManagement;
 import javax.naming.NamingException;
 
 import org.jboss.logging.Logger;
@@ -16,6 +13,7 @@ import org.jboss.logging.Logger;
 import tecinf.negocio.dtos.LoginRespDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
+import tecinf.negocio.dtos.UsuarioProveedorDataType;
 import tecinf.negocio.utiles.DataTypesFactory;
 import tecinf.negocio.utiles.Encriptacion;
 import tecinf.negocio.utiles.EnumParametrosValor;
@@ -37,6 +35,7 @@ import tecinf.persistencia.entities.SessionEntity;
 import tecinf.persistencia.entities.TipoRegistroEntity;
 import tecinf.persistencia.entities.UsuarioClienteEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
+import tecinf.persistencia.entities.UsuarioProveedorEntity;
 import tecinf.persistencia.utiles.EnumClavesEntidades;
 import tecinf.persistencia.utiles.PersistenciaFactory;
 
@@ -168,6 +167,37 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		
 		return loginUsuario(dt.getCorreoElectronico(), dt.getContrasenia());
 	}
+	
+	public LoginRespDataType registroUsuarioProveedor(UsuarioProveedorDataType dt) throws Exception {
+		
+		UsuarioEntity ue;
+
+		if (existeUsuario(dt.getUsuario()))
+			throw new Exception("Nick ya utilizado");
+
+		if (existeUsuarioPorMail(dt.getCorreoElectronico()))
+			throw new Exception("Email ya utilizado");
+						
+
+		ue = new UsuarioClienteEntity();
+		ue.setApellidos(dt.getApellidos());
+		String pwdHash = Encriptacion.encriptarMD5(dt.getContrasenia());
+		ue.setContrasenia(pwdHash);
+		ue.setCorreoElectronico(dt.getCorreoElectronico());
+		EstadoUsuarioEntity estado = estadoUsuarioDao.findByID(EnumClavesEntidades.ESTADO_USUARIO_HABILITADO);
+		ue.setEstadoUsuario(estado);
+		ue.setFechaNacimiento(dt.getFechaNacimientoDate());
+		ue.setNombres(dt.getNombres());
+		ue.setSexo(dt.getSexo());
+		ue.setTelefonoMovil(dt.getTelefonoMovil());
+		ue.setUsuario(dt.getUsuario());
+		((UsuarioProveedorEntity) ue).setSitioWeb(dt.getSitioWeb());
+		((UsuarioClienteEntity) ue).setRutaImagenPerfil("");
+		ue.setTipoUsuario(EnumTipoUsuario.USUARIO_PROVEEDOR);
+				
+		usuarioDao.persist(ue);		
+		return loginUsuario(dt.getCorreoElectronico(), dt.getContrasenia());
+	}
 
 	public Boolean existeUsuario(String usr) {
 		UsuarioEntity ue = usuarioDao.findByID(usr);
@@ -195,8 +225,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 			}
 		}
 	}
-	
-	
+		
 	public Boolean checkUserSession(String usuario, String token) {
 		SessionEntity session = sessionDao.findByUserAndToken(usuario, token);
 		if (session != null){

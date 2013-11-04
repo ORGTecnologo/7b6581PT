@@ -19,6 +19,7 @@ import tecinf.negocio.dtos.LoginRespDataType;
 import tecinf.negocio.dtos.MensajeCertificado;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
+import tecinf.negocio.dtos.UsuarioProveedorDataType;
 import tecinf.negocio.utiles.EnumRespuestas;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.servicios.utiles.JSonUtils;
@@ -171,12 +172,12 @@ public class RWSUsuarios {
 	@Path("/registrarProveedor")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public LoginRespDataType registrarProveedor(UsuarioClienteDataType ud) {
+	public LoginRespDataType registrarProveedor(UsuarioProveedorDataType ud) {
 		LoginRespDataType resp = new LoginRespDataType();
 		try {
 			
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
-			resp = negocioUsuario.registroUsuarioCliente(ud); 
+			resp = negocioUsuario.registroUsuarioProveedor(ud); 
 			
 			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_EXITO);
 		} catch (Exception e) {
