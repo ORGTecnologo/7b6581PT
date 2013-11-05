@@ -8,47 +8,46 @@
 <body>
 
 <!-- BARRA DE NAVEGACION -->
-<nav class="navbarFija navbar navbar-default " style="position: fixed !important;width: 100%;" role="navigation">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse"
-			data-target=".navbar-ex1-collapse">
-			<span class="sr-only">Desplegar navegación</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="#">Market Place Tecnologo</a>
-	</div>
+	<nav class="navbarFija navbar navbar-default " style="position: fixed !important;width: 100%;" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Desplegar navegación</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Market Place Tecnologo</a>
+		</div>
 
 
-	<div class="collapse navbar-collapse navbar-ex1-collapse"> 
-		<form class="navbar-form navbar-left" role="search">
-			<div class="form-group">
-				<input type="search" class="form-control" placeholder="Buscar">
+		<div class="collapse navbar-collapse navbar-ex1-collapse"> 
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="search" class="form-control" placeholder="Buscar">
+				</div>
+				<button class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
+					<span class="glyphicon glyphicon-search"></span> Buscar</button>
+			</form>
+			<div class="col-md-2 pull-right" id="Login-Registro-Div">
+			<!---->
+				<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
+				<ul class="dropdown-menu col-md-2 ">
+					<li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario')">Soy Proveedor</a></li>
+					<li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario')">Soy Cliente</a></li>
+				</ul>		
+				<!--
+					<button class="btn btn-primary barraBusquedaHome" href="#registroUsuario" onclick="mostrarElemento('registroUsuario')">Registrarse</button>
+				-->
+				<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario')">Login</button>
 			</div>
-			<button class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
-				<span class="glyphicon glyphicon-search"></span> Buscar</button>
-		</form>
-		<div class="col-md-2 pull-right" id="Login-Registro-Div">
-		<!---->
-			<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
-			<ul class="dropdown-menu col-md-2 ">
-				<li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario')">Soy Proveedor</a></li>
-				<li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario')">Soy Cliente</a></li>
-			</ul>		
-			<!--
-				<button class="btn btn-primary barraBusquedaHome" href="#registroUsuario" onclick="mostrarElemento('registroUsuario')">Registrarse</button>
-			-->
-			<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario')">Login</button>
+			<div class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
+				<a href="#" class="nick">nick</a>
+				<a href="#" onclick="logoutUsuario()">(Logout)</a>
+			</div>
 		</div>
-		<div class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
-			<a href="#" class="nick">nick</a>
-			<a href="#" onclick="logoutUsuario()">(Logout)</a>
-		</div>
-	</div>
-</nav>
-
-<div class="col-md-12" style="height:50px;"></div>
+	</nav>
+	<div class="col-md-12" style="height:50px;"></div>
 
 <!-- APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS -->	
 	<div class="col-md-12 divContenidosInicial color1Inicio" style="background-image: url(img/appsProy.png);">
@@ -116,9 +115,6 @@
 			</div>
 		</div>
 	</div>
-
-<!--	</div>	-->
-<!-- APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS -->
 	<div class="col-md-12 separador"></div>
 
 <!--LIBROS LIBROS LIBROS LIBROS  LIBROS  LIBROS  LIBROS  LIBROS -->	
@@ -186,9 +182,7 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
-<!--LIBROS LIBROS LIBROS LIBROS  LIBROS  LIBROS  LIBROS  LIBROS -->	
 	<div class="col-md-12 separador"></div>
 
 <!-- VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS -->
@@ -390,6 +384,7 @@
 			<button type="button" class="btn btn-primary" onclick="crearProveedor()">Confirmar</button>
 		</div>
 	</div>
+
 </body>
 
 <script src="js/jquery-ui.js"></script>
@@ -400,4 +395,5 @@
 <script src="js/LlamadasAjax.js"></script>
 <script src="js/getSet.js"></script>
 <script src="js/eventos.js"></script>
+<script src="js/Comunes.js"></script>
 <script src="js/Inicio.js"></script>

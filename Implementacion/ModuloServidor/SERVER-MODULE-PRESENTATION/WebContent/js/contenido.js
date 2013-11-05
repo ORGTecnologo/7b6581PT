@@ -1,10 +1,10 @@
-/**
- * Archivo de arranque de la aplicacion
- */
+//contenido.js
 
 $(document).ready(function(){
     
 	inicializarPrototipos();
+
+    cargarDatosDelContenido();
 
     $( "#inputFecha" ).datepicker({
 	      changeMonth: true,
@@ -25,3 +25,22 @@ $(document).ready(function(){
 	    ocultarElemento('Login-Registro-Div');
     }
 });
+
+
+function cargarDatosDelContenido(){
+
+	var ArrayQuery = window.location.search.split('?')[1].split('&');
+
+	for (var i = 0; i < ArrayQuery.length; i++) {
+		var pareja = ArrayQuery[i].split('=');
+		switch(pareja[0]){
+			case 'id':
+				varsProy.idContenido = pareja[1];
+			break;
+			case 'tk':
+				varsProy.token = pareja[1];
+			break;
+		}
+	}
+	obtenerContenidoPorId(varsProy.idContenido);
+}

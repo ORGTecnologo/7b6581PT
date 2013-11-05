@@ -246,3 +246,34 @@ function esUnicoNick(nick){
 		console.log(msg);
 	})
 }
+
+function obtenerContenidoPorId(idContenido){
+
+	$.ajax({
+	  url: ip + '/contenido/id='+idContenido,
+	  type: 'GET',
+	  dataType: 'json',
+	  data: '',
+	})
+	.done(function(msg) {
+		console.log(msg);
+
+		var content = new Contenido();
+
+		content.Id = msg[0].id;
+		content.Descripcion = msg[0].descripcion;
+		content.Nombre = msg[0].nombre;
+		content.Imagen = msg[0].imagen;
+		content.Precio = msg[0].precio;
+		content.Calificacion = msg[0].calificacion;
+		content.Source = msg[0].source;
+		// ..
+		// ..
+		// ..
+
+		varsProy.contenidoActual = content;
+	})
+	.fail(function(msg) {
+		console.log(msg);
+	})
+}
