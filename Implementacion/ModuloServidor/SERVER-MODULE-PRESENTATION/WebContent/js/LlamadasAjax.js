@@ -31,6 +31,10 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 		    varsProy.token = msg.token;
 		    varsProy.tipoUsuario = msg.tipoUsuario;
 
+		    //GUARDO LOS DATOS DE SESION EN EL NAVEGADOR
+			    window.localStorage.setItem(confProy.sessionStorageUser, msg.usuario);
+			    window.localStorage.setItem(confProy.sessionStorageToken, msg.token);
+
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
 				nick.innerText = varsProy.nick;
@@ -74,6 +78,9 @@ function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimien
 		    varsProy.token = msg.token;
 		    varsProy.tipoUsuario = msg.tipoUsuario;
 
+		    window.localStorage.setItem(confProy.sessionStorageUser, msg.usuario);
+		    window.localStorage.setItem(confProy.sessionStorageToken, msg.token);
+
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
 				nick.innerText = varsProy.nick;
@@ -109,6 +116,9 @@ function loginUsuario(usuario, contrasenia){
 		    varsProy.nick = msg.usuario;
 		    varsProy.token = msg.token;
 		    varsProy.tipoUsuario = msg.tipoUsuario;
+
+			    window.localStorage.setItem(confProy.sessionStorageUser, msg.usuario);
+			    window.localStorage.setItem(confProy.sessionStorageToken, msg.token);
 
 			ocultarElemento('loginUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
@@ -148,6 +158,9 @@ function logoutUsuario(){
 
 		    mostrarElemento('Login-Registro-Div');
 		    ocultarElemento('Nick-Logout-Div');
+
+		    window.localStorage.removeItem(confProy.sessionStorageUser);
+		    window.localStorage.removeItem(confProy.sessionStorageToken);
 		}
 		else
 			alert(msg.resultadoOperacion);

@@ -6,9 +6,9 @@
 <script src="js/jquery.min.js"></script>
 
 <body>
+
+<!-- BARRA DE NAVEGACION -->
 <nav class="navbarFija navbar navbar-default " style="position: fixed !important;width: 100%;" role="navigation">
-  <!-- El logotipo y el icono que despliega el menú se agrupan
-       para mostrarlos mejor en los dispositivos móviles -->
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse"
 			data-target=".navbar-ex1-collapse">
@@ -20,8 +20,7 @@
 		<a class="navbar-brand" href="#">Market Place Tecnologo</a>
 	</div>
 
-<!-- Agrupar los enlaces de navegación, los formularios y cualquier
-   otro elemento que se pueda ocultar al minimizar la barra -->
+
 	<div class="collapse navbar-collapse navbar-ex1-collapse"> 
 		<form class="navbar-form navbar-left" role="search">
 			<div class="form-group">
@@ -48,24 +47,9 @@
 		</div>
 	</div>
 </nav>
-</div>	
-	<div class="container-fluid carouselInicio">
-	    <div class="col-md-10">
-			<div id="myCarousel" class="carousel">
-				<div class="carousel-inner">
-					<div class="active item"><img src="img/slide01.jpg"></img></div>
-					<div class="item"><img src="img/slide02.jpg"></img></div>
-					<div class="item"><img src="img/slide03.jpg"></img></div>
-					<div class="item"><img src="img/slide04.jpg"></img></div>
-					<div class="item"><img src="img/slide05.jpg"></img></div>
-					<div class="item"><img src="img/slide06.jpg"></img></div>
-				</div>
-				<a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-				<a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-			</div>
-	    </div>
-	</div>
+
 <div class="col-md-12" style="height:50px;"></div>
+
 <!-- APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS -->	
 	<div class="col-md-12 divContenidosInicial color1Inicio" style="background-image: url(img/appsProy.png);">
 		<h2 class="col-md-12 pull-right styleTits" style="color:black; text-align: left;">Aplicaciones</h2>
@@ -136,6 +120,7 @@
 <!--	</div>	-->
 <!-- APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS -->
 	<div class="col-md-12 separador"></div>
+
 <!--LIBROS LIBROS LIBROS LIBROS  LIBROS  LIBROS  LIBROS  LIBROS -->	
 	<div class="col-md-12 divContenidosInicial color2Inicio" style="background-image: url(img/olivier.jpg);">
 		<h2 class="col-md-12 pull-right styleTits" style="color:white; text-align: right;">Libros</h2>
@@ -205,11 +190,13 @@
 	</div>
 <!--LIBROS LIBROS LIBROS LIBROS  LIBROS  LIBROS  LIBROS  LIBROS -->	
 	<div class="col-md-12 separador"></div>
+
 <!-- VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS -->
-		<div class="col-md-12 divContenidosInicial color1Inicio" style="background-image: url(img/candy.png);">
-			<h2 class="col-md-12 pull-right styleTits" style="color:black; text-align: left;">Videos</h2>
-		</div>
+	<div class="col-md-12 divContenidosInicial color1Inicio" style="background-image: url(img/candy.png);">
+		<h2 class="col-md-12 pull-right styleTits" style="color:black; text-align: left;">Videos</h2>
+	</div>
 	<div class="col-md-12 separador"></div>
+	
 	<div class="row">
 		<div id="video1"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
@@ -271,8 +258,9 @@
 			</div>
 		</div>
 	</div>		
-<!-- VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS -->	
+
 	<div class="col-md-12 separador"></div>
+
 <!-- MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA-->
 	<div class="col-md-12 divContenidosInicial color2Inicio" style="background-image: url(img/music.png);">
 		<h2 class="col-md-12 pull-right styleTits" style="text-align: right;">Musica</h2>
@@ -338,34 +326,34 @@
 				</div>
 			</div>
 		</div>
-		
-	</div>
-<!-- MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA-->
-	<div class="col-md-12 separador"></div>
-	
-	<div id="loginUsuario" class="modalChocolate modal" hidden style="overflow-y: auto;
-		display: block;width: 26%;min-width: 300px;margin-right: auto;">
-	  <div class="modal-header">
-	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="ocultarElemento('loginUsuario')">X</button>
-	    <h3>Iniciar Sesion</h3>
-	  </div>
-	  <div class="modal-body">
-	    <div class="row">
-	      <div class="col-md-12">
-			<h4>Datos de Usuario</h4>
-			<p>Correo    			<input type="text" class="col-md-12 form-control" id="loginCorreo"></p>
-			<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="loginPass"></p>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="modal-footer">
-	    <button type="button" data-dismiss="modal" class="btn" onclick="ocultarElemento('loginUsuario')">Cerrar</button>
-	    <button type="button" class="btn btn-primary" onclick="IniciarSesion()">Confirmar</button>
-	  </div>
 	</div>
 
-	<div id="registroUsuario" class="modalChocolate modal" hidden style="overflow-y: auto;
-            display: block;width: 26%;min-width: 500px;margin-right: auto;">
+	<div class="col-md-12 separador"></div>
+
+<!-- LOGIN DE USUARIO -->	
+	<div id="loginUsuario" class="modalChocolate modal" hidden style="overflow-y: auto;
+		display: block;width: 26%;min-width: 300px;margin-right: auto;">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="ocultarElemento('loginUsuario')">X</button>
+			<h3>Iniciar Sesion</h3>
+		</div>
+		<div class="modal-body">
+			<div class="row">
+				<div class="col-md-12">
+					<h4>Datos de Usuario</h4>
+					<p>Correo    			<input type="text" class="col-md-12 form-control" id="loginCorreo"></p>
+					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="loginPass"></p>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" data-dismiss="modal" class="btn" onclick="ocultarElemento('loginUsuario')">Cerrar</button>
+			<button type="button" class="btn btn-primary" onclick="IniciarSesion()">Confirmar</button>
+		</div>
+	</div>
+
+<!-- REGISTRO DE USUARIO -->
+	<div id="registroUsuario" class="modalChocolate modal" hidden style="overflow-y: auto;display: block;width: 26%;min-width: 500px;margin-right: auto;">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" 
 	    		onclick="ocultarElemento('registroUsuario')">X</button>
@@ -412,4 +400,4 @@
 <script src="js/LlamadasAjax.js"></script>
 <script src="js/getSet.js"></script>
 <script src="js/eventos.js"></script>
-<script src="js/main.js"></script>
+<script src="js/Inicio.js"></script>

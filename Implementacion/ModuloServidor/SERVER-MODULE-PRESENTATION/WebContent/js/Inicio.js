@@ -3,9 +3,6 @@
  */
 
 $(document).ready(function(){
-    /*$('.carousel').carousel({
-        interval: 3000
-    });*/
     
 	inicializarPrototipos();
 
@@ -18,14 +15,30 @@ $(document).ready(function(){
    
     $( "#registroUsuario").hide();
     $( "#loginUsuario").hide();
-    $( "#Nick-Logout-Div").hide();    
-    
-    //rol = new Rol(1,"Usuario");
-    //modificarUsuarioX("canario","mouse","contrasenia","apellido",rol);
-    //obtenerUsuariosServ();
-//    registroUsuario("pelo","nombre","contrasenia","apellido","mail");
-    
+    $( "#Nick-Logout-Div").hide();
+
+    if (checkearSesionAbierta()){
+		var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+			nick.innerText = varsProy.nick;
+
+	    mostrarElemento('Nick-Logout-Div');
+	    ocultarElemento('Login-Registro-Div');
+    }
 });
+
+function checkearSesionAbierta(){
+
+	var usuario = window.localStorage.getItem(confProy.sessionStorageUser);
+	var token = window.localStorage.getItem(confProy.sessionStorageToken);
+
+	if (usuario === null)
+		return false;
+
+	varsProy.nick = usuario;
+	varsProy.token = token;
+
+	return true;
+}
 
 function errorControlVaciosFormularioRegistro() {
 	
