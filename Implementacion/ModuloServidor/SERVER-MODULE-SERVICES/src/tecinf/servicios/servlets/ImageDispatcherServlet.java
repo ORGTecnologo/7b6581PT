@@ -2,8 +2,12 @@ package tecinf.servicios.servlets;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.*;
+
 import java.io.*;
 
+import tecinf.negocio.NegocioArchivos;
+import tecinf.negocio.NegocioUsuario;
+import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.servicios.utiles.CripterDecripter;
 
 public class ImageDispatcherServlet extends HttpServlet {
@@ -31,9 +35,13 @@ public class ImageDispatcherServlet extends HttpServlet {
 		try {
 			// leemos el fichero del ftp,usando el metodo que traduce el
 			// path
+			// http://localhost:8080/SERVER-MODULE-SERVICES/Images?/5lD4yJfz52ifDueFXAUMwUOBJBWFSj6Pkd2W49gj3MxMHgy1CqbAWRtIpKA8q8EDywz+iDwRd4=
+			// /BaseDatosRecursos/pruebas/Images/incubus.jpg
 			// "/5lD4yJfz52ifDueFXAUMwUOBJBWFSj6Pkd2W49gj3MxMHgy1CqbAWRtIpKA8q8EDywz+iDwRd4="
-			File f = new File(rutaDesencriptada);
-			RandomAccessFile raf = new RandomAccessFile(rutaDesencriptada, "r");
+			
+			NegocioArchivos negocioArchivo = NegocioFactory.getNegocioArchivos();			
+			File f = negocioArchivo.responderImagen("/BaseDatosRecursos/pruebas/images/incubus.jpg");
+			RandomAccessFile raf = new RandomAccessFile("/BaseDatosRecursos/pruebas/images/incubus.jpg", "r");
 			FileInputStream fis = new FileInputStream(f);
 			FileReader fr = new FileReader(f);
 			byte b[] = new byte[(int) f.length()];
@@ -42,10 +50,11 @@ public class ImageDispatcherServlet extends HttpServlet {
 			// cabecera
 			response.setHeader("Content-Type", "img/jpeg");
 			response.setIntHeader("Content-Length", (int) f.length());
-			// response.setHeader("Accept-Ranges", "bytes");
+			response.setHeader("Accept-Ranges", "bytes");
 
 			// lo escribimos
 			OutputStream out = response.getOutputStream();
+			
 			out.write(b);
 			out.close();
 			raf.close();
@@ -57,8 +66,7 @@ public class ImageDispatcherServlet extends HttpServlet {
 
 			// leemos el fichero del ftp por defecto
 			File f = new File("/BaseDatosRecursos/pruebas/images/Sin_foto.png");
-			RandomAccessFile raf = new RandomAccessFile(
-					"/BaseDatosRecursos/pruebas/images/Sin_foto.png", "r");
+			RandomAccessFile raf = new RandomAccessFile("/BaseDatosRecursos/pruebas/images/Sin_foto.png", "r");
 			FileInputStream fis = new FileInputStream(f);
 
 			FileReader fr = new FileReader(f);

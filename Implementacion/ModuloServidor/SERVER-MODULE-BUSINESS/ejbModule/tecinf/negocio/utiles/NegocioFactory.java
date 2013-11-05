@@ -6,6 +6,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import tecinf.negocio.NegocioArchivos;
+import tecinf.negocio.NegocioArchivosImpl;
 import tecinf.negocio.NegocioCategoriaContenido;
 import tecinf.negocio.NegocioCategoriaContenidoImpl;
 import tecinf.negocio.NegocioContenido;
@@ -25,6 +27,10 @@ public class NegocioFactory {
 	
 	public static NegocioContenido getNegocioContenido() throws NamingException{
 		return (NegocioContenido)lookup(NegocioContenidoImpl.class.getSimpleName(), NegocioContenido.class.getName());
+	}
+	
+	public static NegocioArchivos getNegocioArchivos() throws NamingException{
+		return (NegocioArchivos)lookup(NegocioArchivosImpl.class.getSimpleName(), NegocioArchivos.class.getName());
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
