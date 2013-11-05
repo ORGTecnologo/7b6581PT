@@ -40,8 +40,8 @@ public class ImageDispatcherServlet extends HttpServlet {
 			// "/5lD4yJfz52ifDueFXAUMwUOBJBWFSj6Pkd2W49gj3MxMHgy1CqbAWRtIpKA8q8EDywz+iDwRd4="
 			
 			NegocioArchivos negocioArchivo = NegocioFactory.getNegocioArchivos();			
-			File f = negocioArchivo.responderImagen("/BaseDatosRecursos/pruebas/images/incubus.jpg");
-			RandomAccessFile raf = new RandomAccessFile("/BaseDatosRecursos/pruebas/images/incubus.jpg", "r");
+			File f = negocioArchivo.responderImagen(rutaDesencriptada);
+			RandomAccessFile raf = new RandomAccessFile(rutaDesencriptada, "r");
 			FileInputStream fis = new FileInputStream(f);
 			FileReader fr = new FileReader(f);
 			byte b[] = new byte[(int) f.length()];
