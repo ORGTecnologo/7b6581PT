@@ -23,6 +23,32 @@ public class ContenidoSoftwareEntity extends ContenidoEntity implements Serializ
 	
 	@Column(name = "es_trial", nullable = false)
 	private Boolean esTrial;
-		
+	
+	@Column(name = "requisitos_minimos", length=1000, nullable = true)
+	private String requisitosMinimos;
+
+	public ContenidoEntity getContenido() {
+		return contenido;
+	}
+
+	public void setContenido(ContenidoEntity contenido) {
+		this.contenido = contenido;
+	}
+
+	public Boolean getEsTrial() {
+		return esTrial;
+	}
+
+	public void setEsTrial(Boolean esTrial) {
+		this.esTrial = esTrial;
+	}
+
+	public String getRequisitosMinimos() {
+		return requisitosMinimos;
+	}
+
+	public void setRequisitosMinimos(String requisitosMinimos) {
+		this.requisitosMinimos = requisitosMinimos;
+	}	
 
 }

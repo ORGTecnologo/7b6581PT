@@ -5,6 +5,9 @@ import java.util.List;
 import tecinf.negocio.dtos.CategoriaContenidoDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ContenidoLibroDataType;
+import tecinf.negocio.dtos.ContenidoSoftwareDataType;
+import tecinf.negocio.dtos.ContenidoTemaMusicalDataType;
+import tecinf.negocio.dtos.ContenidoVideoDataType;
 import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
@@ -12,6 +15,9 @@ import tecinf.persistencia.entities.CategoriaContenidoEntity;
 import tecinf.persistencia.entities.ContenidoEntity;
 import tecinf.persistencia.entities.ContenidoFotoEntity;
 import tecinf.persistencia.entities.ContenidoLibroEntity;
+import tecinf.persistencia.entities.ContenidoSoftwareEntity;
+import tecinf.persistencia.entities.ContenidoTemaMusicalEntity;
+import tecinf.persistencia.entities.ContenidoVideoEntity;
 import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.utiles.EnumTiposContenido;
@@ -63,6 +69,20 @@ public class DataTypesFactory {
 			((ContenidoLibroDataType)dt).setFechaPublicacion(( ((ContenidoLibroEntity)c).getFecha_publicacion()) );
 			((ContenidoLibroDataType)dt).setAutor( ((ContenidoLibroEntity)c).getAutor() );
 			
+		} else if (c.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_SOFTWARE)){
+			dt = new ContenidoSoftwareDataType();
+			((ContenidoSoftwareDataType)dt).setRequisitosMinimos(((ContenidoSoftwareEntity)c).getRequisitosMinimos());
+			((ContenidoSoftwareDataType)dt).setEsTrial(((ContenidoSoftwareEntity)c).getEsTrial());
+		} else if (c.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_VIDEO)){
+			dt = new ContenidoVideoDataType();
+			((ContenidoVideoDataType)dt).setCalidadVideo(((ContenidoVideoEntity)c).getCalidadVideo());
+			((ContenidoVideoDataType)dt).setDuracionVideo(((ContenidoVideoEntity)c).getDuracionVideo());
+			((ContenidoVideoDataType)dt).setFormatoVideo(((ContenidoVideoEntity)c).getFormatoVideo());
+		} else if (c.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_TEMA)){
+			dt = new ContenidoTemaMusicalDataType();
+			((ContenidoTemaMusicalDataType)dt).setDuracionTema(((ContenidoTemaMusicalEntity)c).getDuracionTema());
+			((ContenidoTemaMusicalDataType)dt).setArtistaTema(((ContenidoTemaMusicalEntity)c).getArtistaTema());
+			((ContenidoTemaMusicalDataType)dt).setAlbumTema(((ContenidoTemaMusicalEntity)c).getAlbumTema()); 
 		}
 		
 		if (fotos != null && fotos.size() > 0){
@@ -75,7 +95,7 @@ public class DataTypesFactory {
 		dt.setIdContenido(c.getId());
 		dt.setNombreContenido(c.getNombre());
 		dt.setTamanioContenido(c.getTamanio());
-		dt.setUrlArchivoContenido(c.getRutaArchivoContenido());
+		dt.setUrlArchivoContenido("/SERVER-MODULE-SERVICES/FileDispatcherServlet?" + c.getRutaArchivoContenido());
 		
 		return dt;
 	}
