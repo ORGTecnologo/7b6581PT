@@ -4,8 +4,38 @@
 <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" media="screen" />
 
 <script src="js/jquery.min.js"></script>
+<!--
+<style type="text/css" media="screen">
+	.overlay{
+	     display: none;
+	     position: absolute;
+	     top: 0;
+	     left: 0;
+	     width: 100%;
+	     height: 100%;
+	     background: #000;
+	     z-index:1001;
+	     opacity:.75;
+	     -moz-opacity: 0.75;
+	     filter: alpha(opacity=75);
+	}
 
-<body>
+	.modal {
+	     display: none;
+	     position: absolute;
+	     top: 25%;
+	     left: 25%;
+	     width: 50%;
+	     height: 50%;
+	     padding: 16px;
+	     background: #fff;
+	     color: #333;
+	     z-index:1002;
+	     overflow: auto;
+	}
+</style>
+-->
+<body class="overlay">
 
 <!-- BARRA DE NAVEGACION -->
 	<nav class="navbarFija navbar navbar-default " style="position: fixed !important;width: 100%;" role="navigation">
@@ -19,7 +49,6 @@
 			</button>
 			<a class="navbar-brand" href="#">Market Place Tecnologo</a>
 		</div>
-
 
 		<div class="collapse navbar-collapse navbar-ex1-collapse"> 
 			<form class="navbar-form navbar-left" role="search">
@@ -62,8 +91,8 @@
 					<h3>Aplicacion 4</h3>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>						
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>						
 						USD 2.0
 					</p>
 				</div>
@@ -77,8 +106,8 @@
 					<h3>Aplicacion 3</h3>
 					<p>Descripcion</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -92,8 +121,8 @@
 					<h3>Aplicacion 2</h3>
 					<p>Descripcion</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -107,8 +136,8 @@
 					<h3>Aplicacion 1</h3>
 					<p>Descripcion</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -125,13 +154,13 @@
 	<div class="row">
 		<div id="libro1"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="http://localhost:8080/SERVER-MODULE-SERVICES/Images?,sdlkghlsaiudflkuagksagdfkashgfkashfkw" alt="img/mu1.jpg" class="img-circle miniatura">
+				<img src="img/li1.jpg" alt="img/mu1.jpg" class="img-circle miniatura">
 				<div class="caption">
 					<h3>Libro 1</h3>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -145,8 +174,8 @@
 					<h3>Libro 1</h3>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -160,8 +189,8 @@
 					<h3>Libro 1</h3>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -175,8 +204,8 @@
 					<h3>Libro 1</h3>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>
 						USD 2.0
 					</p>
 				</div>
@@ -199,8 +228,8 @@
 					<h2>Video 1</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -214,8 +243,8 @@
 					<h2>Video 2</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -229,8 +258,8 @@
 					<h2>Video 3</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -244,8 +273,8 @@
 					<h2>Video 4</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -268,8 +297,8 @@
 					<h2>Musica 1</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -283,8 +312,8 @@
 					<h2>Musica 2</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -298,8 +327,8 @@
 					<h2>Musica 3</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>
@@ -313,8 +342,8 @@
 					<h2>Musica 4</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
 					<p class="precio">
-						<a href="#" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
+						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
+						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
 						USD 2.0
 					</p>
 				</div>

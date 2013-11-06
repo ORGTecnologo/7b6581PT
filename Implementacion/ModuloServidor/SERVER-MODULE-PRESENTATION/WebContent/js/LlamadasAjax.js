@@ -267,13 +267,29 @@ function obtenerContenidoPorId(idContenido){
 		content.Precio = msg[0].precio;
 		content.Calificacion = msg[0].calificacion;
 		content.Source = msg[0].source;
+		content.Moneda = msg[0].Moneda;
 		// ..
 		// ..
 		// ..
 
 		varsProy.contenidoActual = content;
+		armarContenidoHTML();
 	})
 	.fail(function(msg) {
+		alert("Cargue contenido Hardcore porque no devolvio el servidor!!");
 		console.log(msg);
+
+		var content = new Contenido();
+		content.Id = '1';
+		content.Descripcion = 'Esta es la descripcion basica de un contenido, la misma se puede extender mucho!!!';
+		content.Nombre = 'Contenido de Prueba';
+		content.Imagen = 'img/mu1.jpg';
+		content.Precio = '4.53';
+		content.Calificacion = 4;
+		content.Source = 'FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno';
+		content.Moneda = 'USD';
+		
+		varsProy.contenidoActual = content;
+		armarContenidoHTML();
 	})
 }

@@ -17,12 +17,13 @@ function Rol(id,Nombre){
 function Contenido(){
 
 	this.Id = "";
-	this.Nombre = "";	
-	this.Descripcion = "";	
-	this.Precio
+	this.Nombre = "";
+	this.Descripcion = "";
+	this.Precio = 0.0;
 	this.Imagen = "";
-	this.Calificacion = "";
+	this.Calificacion = 0;
 	this.Source = "";
+	this.Moneda = 1;//DOLARES
 // 	this. = "";
 // 	this. = "";
 }
