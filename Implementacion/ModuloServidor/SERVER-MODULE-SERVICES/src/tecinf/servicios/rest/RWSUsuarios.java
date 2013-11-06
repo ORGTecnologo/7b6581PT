@@ -182,7 +182,7 @@ public class RWSUsuarios {
 			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_EXITO);
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e); 
-			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_FALLA);
+			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_FALLA + ": " + e.getMessage());
 		}				
 		return resp;
 	}
