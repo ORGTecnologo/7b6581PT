@@ -1,4 +1,12 @@
+
+<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" media="screen" />
 <link rel="stylesheet" type="text/css" href="../css/Admin_Home.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../css/market.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../css/alertify.core.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="../css/alertify.default.css" media="screen" />
+
 <!DOCTYPE html>
 <html>
 
@@ -14,93 +22,97 @@
 		            <div class="navbar-inner ">
 		            	<center><h4 style="color: white; font-size: 26px; ">Modulo de Administrador</h4></center>
 		            </div>
-	
 		    	</div>
 			</div>
 		</div>
 	</div>
-	<div class="container marketing">
-		<div class="row-fluid">
-			<div class="span4">
-				<div class="item"><img class="span12" src="../img/managerprofile.jpg"></img></div>
-			</div>
-			<div class="span8" aling="center">
-				<p style="font-size: 25px;">Nos comprometemos a mejorar tu seguridad, proteger tu privacidad y desarrollar herramientas sencillas que te permitan elegir y controlar</p>
-				
-				<p>
-				Nuestro objetivo es poner a tu disposición las herramientas de privacidad y seguridad más potentes del mundo. Nos tomamos muy en serio la seguridad y la privacidad: sabemos que para los usuarios son temas muy importantes y trabajamos constantemente para garantizarlas.
-				Por ello nuestro sistema cuenta con un proceso automatico que registra todas las acciones que sean ralizadas en el sistema por todos los usuarios. 
-				</p>
-				<p> 
-				Por los motivos mencionados anteriormente pensamos en la herramienta que presentamos en esta sección. La misma permite auditar el funcionamiento, contenido, interacción en el proceso de compra/venta, entre otros.
-				Es exclusiva para usuarios con privilegios de administrador en el sistema.
-				</p>
+	<div class="col-md-12">
+		<div class="col-md-2" style="margin-left: auto; background-color: rgb(230, 230, 230)">
+			<ul class="nav nav-list">
+				<li class="nav-header">Administracion</li>
+				<li class="active"><a href="#">Inicio</a></li>
+				<li><a href="#">Contenidos</a></li>
+				<li><a href="#">Clientes</a></li>
+				<li><a href="#">Proveedores</a></li>
+				<li><a href="#">Cotizaciones</a></li>
+				<li><a href="#">Comentarios</a></li>
+				<li><a href="#">Otros</a></li>
+			</ul>	
+		</div>
+		<div class="col-md-10">
+			<div class="container marketing" style="height: 75%">
+				<div class="row-fluid">
+					<div class="span3">
+						<div class="item"><img class="span12" src="../img/servicios.jpg"></img>
+						</div>
+					</div>
+					<div class="span8" aling="center">
+						<p class="col-md-8" style="font-size: 25px;">Aprobacion de contenidos</p>
+						<!--<p class="col-md-1" onclick="mostrarElemento('div_altaServicio')"><img class="span12" src="../img/agregarServicio.jpeg"></img></p>-->
+					</div>
+	                <div class="span8" aling="center">
+	                    <table class="table table-striped">  
+	                        <thead>  
+	                          <tr>    
+	                            <th>Contenido</th>  
+	                            <th>Descripcion</th>   
+	                            <th></th>
+	                            <th></th>
+	                          </tr>  
+	                        </thead>  
+	                        <tbody>  
+	                          <tr>  
+	                            <td>Musica Ligera</td>  
+	                            <td>Contenido subido por alguien</td>
+	                            <td><a>Aprobar</a></td>
+	                            <td><a>No aprobar</a></td>
+	                          </tr>  
+	                          <tr>  
+	                            <td>Video 8 </td>  
+	                            <td>Docuemental sobre langostas</td>  
+	                            <td><a>Aprobar</a></td>
+	                            <td><a>No aprobar</a></td>
+	                          </tr> 
+	                          <tr>  
+	                            <td>Libro Infantil</td>  
+	                            <td>Cuentos para dormir la siesta</td>  
+	                            <td><a>Aprobar</a></td>
+	                            <td><a>No aprobar</a></td>
+	                          </tr>  
+	                        </tbody>  
+	                    </table>
+	                </div>
+				</div>
 			</div>
 		</div>
-		<div class="row-fluid">
-			<div class="span2">
-				<img class="span12" src="../img/abmAdministrador.jpg">
-			</div>
-			<div class="span4">
-				<p>
-					En esta seccion podemos administrar los usuarios privilegiados del sistema. Incluye dar de alta, baja o modificar usuarios administradores en el sistema.
-				</p>
-				<a href="#" class="btn btn-primary" role="button">Ir</a>
-			</div>
-						<div class="span2">
-				<img class="span12" src="../img/censored.jpg">
-			</div>
-			<div class="span4">
-				<p>
-					Aqui podemos eliminar contenidos y comentarios no deseados.
-				</p>
-				<a href="#" class="btn btn-primary" role="button">Eliminar</a>
-			</div>
-		</div>
-		<div class="row-fluid">
-			<div class="span2">
-				<img class="span12" src="../img/registro_acceso.jpg">
-			</div>
-			<div class="span4">
-				<p>
-					Permite acceder al registro de acceso al sitio, muestra los accesos registrados ordenados por fecha. 
-					Esta información se actualiza automáticamente al registrar nuevos accesos.  
-				</p>
-				<a href="#" class="btn btn-primary" role="button">Ver</a>
-			</div>
-			<div class="span2">
-				<img class="span12" src="../img/aprobar_rechazar.jpg">
-			</div>
-			<div class="span4">
-				<p>
-					Aqui podemos visualizar los contenidos publicados en el sistema. Evaluando y aceptando o no la comercialización de los mismo en mercado.
-				</p>
-				<a href="#" class="btn btn-primary" role="button">Ver</a>
-			</div>
-		</div>
-	</div>
-	<div id="footer">
-	    <div class="container">
-	        <p class="muted credit">
-	        	<div class="row-fluid">
-					<center>
-		            	<a>Tecnologo en Informática</a>
-		              	-
-		            	<a>Fing</a>
-		              	-
-		              	<a>UTU</a>
-		              	-
-	            		<a>Designed by Grupo 4</a>
-	            	</center>
-	            </div>
-	        </p>
-	    </div>
+	<div hidden id="div_altaServicio" class="modalChocolate modal pelo" style="overflow-y: auto;display: block;width: 26%;min-width: 300px;margin-right: auto;">
+	  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="ocultarElemento('div_altaServicio')">X</button>
+		    <h3>Alta de Servicio</h3>
+	  </div>
+	  <div class="modal-body">
+            <div class="row">
+                <div class="col-md-12" style="margin-left: auto;margin-right: auto;">
+                    <h4>Datos de Usuario</h4>
+                    <p>Nombre del Servicio <input type="text" class="col-md-12 form-control" id="alta_serv_nombre"></p>
+                    <p>Descripcion   <textarea type="textarea" class="col-md-12 form-control" id="alta_serv_desc"></textarea></p>
+                </div>
+            </div>
+	  </div>
+	  <div class="modal-footer">
+	    <button type="button" data-dismiss="modal" class="btn" onclick="ocultarElemento('div_altaServicio')">Cerrar</button>
+	    <button type="button" class="btn btn-primary" onclick="AltaServicio()">Confirmar</button>
+	  </div>
 	</div>
 </body>
 
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="../jquery-ui.css" media="screen" />
-
 </html>
-
+<script src="../js/jquery.min.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="../js/holder.js"></script>
+<script src="../js/bootstrap.js"></script>
+<script src="../js/LlamadasAjax.js"></script>
+<script src="../js/admin.js"></script>
+<script src="../js/getSet.js"></script>
+<script src="../js/Prototipos.js"></script>
+<script src="../js/alertify.min.js"></script>

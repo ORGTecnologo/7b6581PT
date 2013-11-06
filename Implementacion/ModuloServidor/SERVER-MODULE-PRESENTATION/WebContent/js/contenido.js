@@ -52,13 +52,13 @@ function armarContenidoHTML(){
 	var Content = varsProy.contenidoActual;
 
 	var divContent = document.getElementById('MP_Content');
+	var DescContent = document.getElementById('MP_Descripcion');
+	var PrecioContent = document.getElementById('MP_Precio');
 
 	var thumbnailContent = document.createElement('div')
 	var imgContent = document.createElement('img')
 	var divCaption = document.createElement('div')
 	var h3Content = document.createElement('h3')
-	var DescContent = document.createElement('p')
-	var PrecioContent = document.createElement('p')
 	var srcContent = document.createElement('a')
 
 	//ARMO EL ESQUEMA
@@ -67,8 +67,6 @@ function armarContenidoHTML(){
 	srcContent.setAttribute('role','button');
 	srcContent.innerText = 'Comprar';
 
-	PrecioContent.setAttribute('class','precio');
-	PrecioContent.appendChild(srcContent);	
 	PrecioContent.innerText = Content.Moneda + " " + Content.Precio.toString();
 
 	DescContent.innerText = Content.Descripcion;
@@ -76,8 +74,6 @@ function armarContenidoHTML(){
 
 	divCaption.setAttribute('class','caption');
 	divCaption.appendChild(h3Content);
-	divCaption.appendChild(DescContent);
-	divCaption.appendChild(PrecioContent);
 
 	imgContent.setAttribute('src','../'+Content.Imagen);
 	imgContent.setAttribute('alt','../'+Content.Imagen);
@@ -89,15 +85,98 @@ function armarContenidoHTML(){
 
 	divContent.appendChild(thumbnailContent);
 
-// 	<div class="thumbnail">
-// 	<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-circle miniatura">
-// 	<div class="caption">
-// 		<h3 id="MP_ContentName">Aplicacion 4</h3>
-// 		<p id="MP_ContentDesc">Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-// 		<p id="MP_ContentPrice" class="precio">
-// 			<a id="MP_ContentSrc" href="" class="btn btn-default" role="button">Comprar</a>						
-// 			USD 2.0
-// 		</p>
-// 	</div>
-// </div>
+	cargarPuntuacion(Content.Calificacion);
+
+}
+
+function cargarPuntuacion(puntuacion){
+
+	var star1 = document.getElementById('star1');
+	var star2 = document.getElementById('star2');
+	var star3 = document.getElementById('star3');
+	var star4 = document.getElementById('star4');
+	var star5 = document.getElementById('star5');
+
+	switch(puntuacion){
+		case 1:
+			star1.setAttribute('src','../img/estrellaAct.png');
+			star2.setAttribute('src','../img/estrellaNoAct.png');
+			star3.setAttribute('src','../img/estrellaNoAct.png');
+			star4.setAttribute('src','../img/estrellaNoAct.png');
+			star5.setAttribute('src','../img/estrellaNoAct.png');		
+
+			star1.setAttribute('alt','../img/estrellaAct.png');
+			star2.setAttribute('alt','../img/estrellaNoAct.png');
+			star3.setAttribute('alt','../img/estrellaNoAct.png');
+			star4.setAttribute('alt','../img/estrellaNoAct.png');
+			star5.setAttribute('alt','../img/estrellaNoAct.png');		
+		break;
+		case 2:
+			star1.setAttribute('src','../img/estrellaAct.png');
+			star2.setAttribute('src','../img/estrellaAct.png');
+			star3.setAttribute('src','../img/estrellaNoAct.png');
+			star4.setAttribute('src','../img/estrellaNoAct.png');
+			star5.setAttribute('src','../img/estrellaNoAct.png');
+
+			star1.setAttribute('alt','../img/estrellaAct.png');
+			star2.setAttribute('alt','../img/estrellaAct.png');
+			star3.setAttribute('alt','../img/estrellaNoAct.png');
+			star4.setAttribute('alt','../img/estrellaNoAct.png');
+			star5.setAttribute('alt','../img/estrellaNoAct.png');
+
+		break;
+		case 3:
+			star1.setAttribute('src','../img/estrellaAct.png');
+			star2.setAttribute('src','../img/estrellaAct.png');
+			star3.setAttribute('src','../img/estrellaAct.png');
+			star4.setAttribute('src','../img/estrellaNoAct.png');
+			star5.setAttribute('src','../img/estrellaNoAct.png');		
+
+			star1.setAttribute('alt','../img/estrellaAct.png');
+			star2.setAttribute('alt','../img/estrellaAct.png');
+			star3.setAttribute('alt','../img/estrellaAct.png');
+			star4.setAttribute('alt','../img/estrellaNoAct.png');
+			star5.setAttribute('alt','../img/estrellaNoAct.png');		
+
+		break;
+		case 4:
+			star1.setAttribute('src','../img/estrellaAct.png');
+			star2.setAttribute('src','../img/estrellaAct.png');
+			star3.setAttribute('src','../img/estrellaAct.png');
+			star4.setAttribute('src','../img/estrellaAct.png');
+			star5.setAttribute('src','../img/estrellaNoAct.png');
+
+			star1.setAttribute('alt','../img/estrellaAct.png');
+			star2.setAttribute('alt','../img/estrellaAct.png');
+			star3.setAttribute('alt','../img/estrellaAct.png');
+			star4.setAttribute('alt','../img/estrellaAct.png');
+			star5.setAttribute('alt','../img/estrellaNoAct.png');
+		break;
+		case 5:
+			star1.setAttribute('src','../img/estrellaAct.png');
+			star2.setAttribute('src','../img/estrellaAct.png');
+			star3.setAttribute('src','../img/estrellaAct.png');
+			star4.setAttribute('src','../img/estrellaAct.png');
+			star5.setAttribute('src','../img/estrellaAct.png');
+
+			star1.setAttribute('alt','../img/estrellaAct.png');
+			star2.setAttribute('alt','../img/estrellaAct.png');
+			star3.setAttribute('alt','../img/estrellaAct.png');
+			star4.setAttribute('alt','../img/estrellaAct.png');
+			star5.setAttribute('alt','../img/estrellaAct.png');
+		break;
+		default:
+			star1.setAttribute('src','../img/estrellaNoAct.png');
+			star2.setAttribute('src','../img/estrellaNoAct.png');
+			star3.setAttribute('src','../img/estrellaNoAct.png');
+			star4.setAttribute('src','../img/estrellaNoAct.png');
+			star5.setAttribute('src','../img/estrellaNoAct.png');		
+
+			star1.setAttribute('alt','../img/estrellaNoAct.png');
+			star2.setAttribute('alt','../img/estrellaNoAct.png');
+			star3.setAttribute('alt','../img/estrellaNoAct.png');
+			star4.setAttribute('alt','../img/estrellaNoAct.png');
+			star5.setAttribute('alt','../img/estrellaNoAct.png');			
+		break;
+	}
 }

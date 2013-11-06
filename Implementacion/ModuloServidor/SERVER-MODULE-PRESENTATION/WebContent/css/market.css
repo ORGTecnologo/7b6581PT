@@ -118,6 +118,14 @@
 		font-weight: bolder;
 		font-variant: small-caps;
 	}
+
+	.precioContenido{
+		text-align: left;
+		color: blue;
+		font-family: cursive;
+		font-weight: bolder;
+		font-variant: small-caps;		
+	}
 	
 	.separador{
 		height:50px;

@@ -276,7 +276,7 @@ function obtenerContenidoPorId(idContenido){
 		armarContenidoHTML();
 	})
 	.fail(function(msg) {
-		alert("Cargue contenido Hardcore porque no devolvio el servidor!!");
+		console.warn("Cargue contenido Hardcore porque no devolvio el servidor!!");
 		console.log(msg);
 
 		var content = new Contenido();
@@ -285,7 +285,7 @@ function obtenerContenidoPorId(idContenido){
 		content.Nombre = 'Contenido de Prueba';
 		content.Imagen = 'img/mu1.jpg';
 		content.Precio = '4.53';
-		content.Calificacion = 4;
+		content.Calificacion = 2;
 		content.Source = 'FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno';
 		content.Moneda = 'USD';
 		
