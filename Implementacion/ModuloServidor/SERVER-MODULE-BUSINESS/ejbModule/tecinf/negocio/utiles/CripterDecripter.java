@@ -1,4 +1,4 @@
-package tecinf.servicios.utiles;
+package tecinf.negocio.utiles;
  
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -7,7 +7,7 @@ import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
  
 public class CripterDecripter {	
 	
-	private static String keyValue = "askjdlakdaasdasdasd";
+	private static String keyValue = "aAaFmR";
  	
 	//Encriptacion y desencriptacion usando algoritmo AES
 	/*
@@ -53,7 +53,8 @@ public class CripterDecripter {
 	 
 	 public static void main(String[] args){	 
 		 try {
-			 String ruta= "/BaseDatosRecursos/pruebas/images/incubus.jpg";  
+			 
+			 String ruta= "/usuarios_proveedores/importantix/contenido_video/4/foto_2.jpg";  
 			 System.out.println("original: " + ruta);
 			 String encRuta = encrypt(ruta);
 			 System.out.println("cifrada: " + encRuta);

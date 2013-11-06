@@ -19,4 +19,5 @@
       <context-root>SERVER-MODULE-PRESENTATION</context-root>
     </web>
   </module>
+  <library-directory>/libs</library-directory>
 </application>

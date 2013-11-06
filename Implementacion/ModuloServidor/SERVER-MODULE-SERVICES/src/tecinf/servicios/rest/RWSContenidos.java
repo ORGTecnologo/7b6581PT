@@ -5,11 +5,13 @@ import java.util.List;
 import javax.naming.NamingException;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.jboss.logging.Logger;
 
 import tecinf.negocio.NegocioContenido;
+import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.IContenidoDataType;
 import tecinf.negocio.utiles.NegocioFactory;
 
@@ -41,6 +43,21 @@ public class RWSContenidos {
 			logger.error(e.getMessage() , e); 
 		}
 		return listaContenidos;
+	}
+	
+	@GET
+	@Path("/obtenerInfoContenido/{idContenido}")
+	@Produces("application/json")
+	public ContenidoDataType obtenerInfoContenido(@PathParam("idContenido") String idContenido) {
+		ContenidoDataType cont = null;
+		try {
+			
+			cont = negocioContenido.obtenerDatosContenido(Integer.valueOf(idContenido));
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}
+		return cont;
 	}
 	
 }

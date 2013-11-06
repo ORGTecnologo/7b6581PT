@@ -84,9 +84,17 @@ insert into parametros(nombre_parametro, valor_parametro) values('timeOutSesion'
 
 -- ACTUALIZACIONES
 
-update parametros set valor_parametro = 'contenidos_libro;contenido_video;contenido_musica;contenido_sofware' where nombre_parametro = 'directoriosUsuariosProveedores';
+update parametros set valor_parametro = 'contenido_libro;contenido_video;contenido_musica;contenido_sofware' where nombre_parametro = 'directoriosUsuariosProveedores';
 
 ALTER TABLE usuarios_proveedor ALTER COLUMN codigo_qr DROP NOT NULL;
+
+alter table contenido_tema_musical ALTER COLUMN album_tema TYPE varchar(100);
+
+alter table contenido_foto DROP CONSTRAINT contenido_foto_fk_contenido_key;
+
+alter table contenidos ALTER COLUMN nombre TYPE varchar(100);
+
+alter table contenidos ALTER COLUMN descripcion TYPE varchar(1000);
 
 
 

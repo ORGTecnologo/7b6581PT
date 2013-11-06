@@ -10,6 +10,10 @@ import tecinf.persistencia.daos.AuditoriaOperacionDao;
 import tecinf.persistencia.daos.AuditoriaOperacionDaoImpl;
 import tecinf.persistencia.daos.CategoriaContenidoDao;
 import tecinf.persistencia.daos.CategoriaContenidoDaoImpl;
+import tecinf.persistencia.daos.ContenidoDao;
+import tecinf.persistencia.daos.ContenidoDaoImpl;
+import tecinf.persistencia.daos.ContenidoFotoDao;
+import tecinf.persistencia.daos.ContenidoFotoDaoImpl;
 import tecinf.persistencia.daos.EstadoUsuarioDao;
 import tecinf.persistencia.daos.EstadoUsuarioDaoImpl;
 import tecinf.persistencia.daos.ParametroValorDao;
@@ -68,6 +72,14 @@ public class PersistenciaFactory {
 	
 	public static SessionDao getSessionDao() throws NamingException{
 		return (SessionDao) lookup(SessionDaoImpl.class.getSimpleName(),SessionDao.class.getName());
+	}
+	
+	public static ContenidoFotoDao getContenidoFotoDao() throws NamingException{
+		return (ContenidoFotoDao) lookup(ContenidoFotoDaoImpl.class.getSimpleName(),ContenidoFotoDao.class.getName());
+	}
+	
+	public static ContenidoDao getContenidoDao() throws NamingException{
+		return (ContenidoDao) lookup(ContenidoDaoImpl.class.getSimpleName(),ContenidoDao.class.getName());
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
