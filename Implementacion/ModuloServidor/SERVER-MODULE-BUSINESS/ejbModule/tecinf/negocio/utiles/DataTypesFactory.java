@@ -1,12 +1,20 @@
 package tecinf.negocio.utiles;
 
+import java.util.List;
+
 import tecinf.negocio.dtos.CategoriaContenidoDataType;
+import tecinf.negocio.dtos.ContenidoDataType;
+import tecinf.negocio.dtos.ContenidoLibroDataType;
 import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.persistencia.entities.CategoriaContenidoEntity;
+import tecinf.persistencia.entities.ContenidoEntity;
+import tecinf.persistencia.entities.ContenidoFotoEntity;
+import tecinf.persistencia.entities.ContenidoLibroEntity;
 import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
+import tecinf.persistencia.utiles.EnumTiposContenido;
 
 public class DataTypesFactory {
 	
@@ -44,5 +52,32 @@ public class DataTypesFactory {
 		
 		return dt;
 	} 
+	
+	public static ContenidoDataType getContenidoDataType(ContenidoEntity c, List<ContenidoFotoEntity> fotos){
+		ContenidoDataType dt = null;
+		
+		if (c.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_LIBRO)){
+			dt = new ContenidoLibroDataType();
+			c = (ContenidoLibroEntity)c;
+			((ContenidoLibroDataType)dt).setAutor( ((ContenidoLibroEntity)c).getAutor() );
+			((ContenidoLibroDataType)dt).setFechaPublicacion(( ((ContenidoLibroEntity)c).getFecha_publicacion()) );
+			((ContenidoLibroDataType)dt).setAutor( ((ContenidoLibroEntity)c).getAutor() );
+			
+		}
+		
+		if (fotos != null && fotos.size() > 0){
+			for (ContenidoFotoEntity f : fotos){
+				dt.getFotos().add("/SERVER-MODULE-SERVICES/Images?" + f.getUrlFoto());
+			}
+		}
+		
+		dt.setDescripcionContenido(c.getDescripcion());
+		dt.setIdContenido(c.getId());
+		dt.setNombreContenido(c.getNombre());
+		dt.setTamanioContenido(c.getTamanio());
+		dt.setUrlArchivoContenido(c.getRutaArchivoContenido());
+		
+		return dt;
+	}
 	
 }

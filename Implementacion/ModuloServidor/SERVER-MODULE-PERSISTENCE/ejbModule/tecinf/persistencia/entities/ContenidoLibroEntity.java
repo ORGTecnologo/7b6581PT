@@ -5,19 +5,18 @@ import java.util.Date;
 
 import javax.persistence.Entity; 
 import javax.persistence.Column; 
-import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "contenido_libro")
-public class ContenidoLibroEntity implements Serializable {
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+public class ContenidoLibroEntity extends ContenidoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	private Integer id;
 
 	@OneToOne
 	@JoinColumn(name="fk_contenido",unique=true,nullable=false)
@@ -28,14 +27,6 @@ public class ContenidoLibroEntity implements Serializable {
 	
 	@Column(name = "autor", length = 50)
 	private String autor;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public ContenidoEntity getContenido() {
 		return contenido;

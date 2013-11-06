@@ -1,6 +1,8 @@
 package tecinf.negocio.dtos;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 public abstract class ContenidoDataType implements Serializable {
 	
@@ -11,7 +13,13 @@ public abstract class ContenidoDataType implements Serializable {
 	protected String descripcionContenido;
 	protected Integer cantidadDescargas;
 	protected Integer tamanioContenido;
-	protected String archivoContenido;
+	protected String urlArchivoContenido;
+	protected List<String> fotos;
+	
+	public ContenidoDataType(){
+		fotos = new ArrayList<String>();
+		cantidadDescargas = 0;
+	}
 	
 	public Integer getIdContenido() {
 		return idContenido;
@@ -43,11 +51,22 @@ public abstract class ContenidoDataType implements Serializable {
 	public void setTamanioContenido(Integer tamanioContenido) {
 		this.tamanioContenido = tamanioContenido;
 	}
-	public String getArchivoContenido() {
-		return archivoContenido;
+
+	public String getUrlArchivoContenido() {
+		return urlArchivoContenido;
 	}
-	public void setArchivoContenido(String archivoContenido) {
-		this.archivoContenido = archivoContenido;
+
+	public void setUrlArchivoContenido(String urlArchivoContenido) {
+		this.urlArchivoContenido = urlArchivoContenido;
 	}
+
+	public List<String> getFotos() {
+		return fotos;
+	}
+
+	public void setFotos(List<String> fotos) {
+		this.fotos = fotos;
+	}
+	
 		
 }

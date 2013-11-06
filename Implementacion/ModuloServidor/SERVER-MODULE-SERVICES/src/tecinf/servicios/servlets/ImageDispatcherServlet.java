@@ -1,18 +1,22 @@
 package tecinf.servicios.servlets;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.*;
 
+import org.jboss.logging.Logger;
+
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 import tecinf.negocio.NegocioArchivos;
-import tecinf.negocio.NegocioUsuario;
 import tecinf.negocio.utiles.NegocioFactory;
-import tecinf.servicios.utiles.CripterDecripter;
 
 public class ImageDispatcherServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
+	
+	private static Logger logger = Logger.getLogger(ImageDispatcherServlet.class);
 
 	public void init() throws ServletException {
 	}
@@ -26,65 +30,37 @@ public class ImageDispatcherServlet extends HttpServlet {
 			javax.servlet.http.HttpServletResponse response)
 			throws javax.servlet.ServletException, java.io.IOException {
 
-		// String myID = (String) request.getParameter("ID");
 		String qString = request.getQueryString();
 
-		// CripterDecripter cd = new CripterDecripter();
-		String rutaDesencriptada = CripterDecripter.decrypt(qString);
-
 		try {
-			// leemos el fichero del ftp,usando el metodo que traduce el
-			// path
-			// http://localhost:8080/SERVER-MODULE-SERVICES/Images?/5lD4yJfz52ifDueFXAUMwUOBJBWFSj6Pkd2W49gj3MxMHgy1CqbAWRtIpKA8q8EDywz+iDwRd4=
-			// /BaseDatosRecursos/pruebas/Images/incubus.jpg
-			// "/5lD4yJfz52ifDueFXAUMwUOBJBWFSj6Pkd2W49gj3MxMHgy1CqbAWRtIpKA8q8EDywz+iDwRd4="
+
+			// Ejemplo de ruta en html 
+			// /SERVER-MODULE-SERVICES/Images?LLGJcfgUSahG+lgxfmg6UigHGH3lrj7aREm66NIjPpYLaFQVNMH+DCsqA+8lX/Kivy+FMznbbMWoBrA4i+AKZmoEYhHtMArnmIZ2+ZRyDPrNR5g2FwsqFx5QIblFUz9y			
+			// el query String debe ser = CripterDecripter.encrypt(ruta), donde ruta es la relativa de la imagen respecto al 
+			//directorio base, ejemplo "/pruebas/images/incubus.jpg"			
+			// CripterDecripter.encrypt("/pruebas/images/incubus.jpg") = qHg4l7Ai/VwdWRL4WB3TSa6+QwfDOBjr9xVl3Q0KrylbQdMSIV0+Cg==
 			
 			NegocioArchivos negocioArchivo = NegocioFactory.getNegocioArchivos();			
-			File f = negocioArchivo.responderImagen(rutaDesencriptada);
-			RandomAccessFile raf = new RandomAccessFile(rutaDesencriptada, "r");
-			FileInputStream fis = new FileInputStream(f);
-			FileReader fr = new FileReader(f);
-			byte b[] = new byte[(int) f.length()];
-			raf.read(b);
-
-			// cabecera
-			response.setHeader("Content-Type", "img/jpeg");
-			response.setIntHeader("Content-Length", (int) f.length());
-			response.setHeader("Accept-Ranges", "bytes");
-
-			// lo escribimos
-			OutputStream out = response.getOutputStream();
+			File f = negocioArchivo.responderImagen(qString);
 			
-			out.write(b);
-			out.close();
-			raf.close();
-			fis.close();
-			fr.close();
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			// salida a pagina de error y devolver foto por defecto
-
-			// leemos el fichero del ftp por defecto
-			File f = new File("/BaseDatosRecursos/pruebas/images/Sin_foto.png");
-			RandomAccessFile raf = new RandomAccessFile("/BaseDatosRecursos/pruebas/images/Sin_foto.png", "r");
-			FileInputStream fis = new FileInputStream(f);
-
-			FileReader fr = new FileReader(f);
-			byte b[] = new byte[(int) f.length()];
-			raf.read(b);
-
-			// cabecera
-			response.setHeader("Content-Type", "img/jpeg");
-			response.setIntHeader("Content-Length", (int) f.length());
-			// response.setHeader("Accept-Ranges", "bytes");
-
-			// lo escribimos
+			BufferedImage bi = ImageIO.read(f);
 			OutputStream out = response.getOutputStream();
-			out.write(b);
+			ImageIO.write(bi, "jpg", out);
 			out.close();
-			raf.close();
-			fis.close();
-			fr.close();
-		} // catch
-	} // doGet
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+			try {
+				NegocioArchivos negocioArchivo = NegocioFactory.getNegocioArchivos();			
+				File f = negocioArchivo.responderImagen("/BaseDatosRecursos/pruebas/images/Sin_foto.png");
+				
+				BufferedImage bi = ImageIO.read(f);
+				OutputStream out = response.getOutputStream();
+				ImageIO.write(bi, "jpg", out);
+				out.close();
+			} catch (Exception e2) {
+				logger.error(e2.getMessage() , e2);
+			}
+		}
+	} 
 }
