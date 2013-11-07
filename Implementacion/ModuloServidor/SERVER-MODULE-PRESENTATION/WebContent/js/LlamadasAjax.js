@@ -250,7 +250,7 @@ function esUnicoNick(nick){
 function obtenerContenidoPorId(idContenido){
 
 	$.ajax({
-	  url: ip + '/contenido/id='+idContenido,
+	  url: ip + '/contenidos/obtenerInfoContenido/'+idContenido,
 	  type: 'GET',
 	  dataType: 'json',
 	  data: '',
@@ -260,14 +260,14 @@ function obtenerContenidoPorId(idContenido){
 
 		var content = new Contenido();
 
-		content.Id = msg[0].id;
-		content.Descripcion = msg[0].descripcion;
-		content.Nombre = msg[0].nombre;
-		content.Imagen = msg[0].imagen;
-		content.Precio = msg[0].precio;
-		content.Calificacion = msg[0].calificacion;
-		content.Source = msg[0].source;
-		content.Moneda = msg[0].Moneda;
+		content.Id = msg.idContenido;
+		content.Descripcion = msg.descripcionContenido;
+		content.Nombre = msg.nombreContenido;
+		content.Imagen = msg.urlArchivoContenido[0];
+		content.Precio = 50;//msg[0].precio;
+		content.Calificacion = 3;//msg[0].calificacion;
+		content.Source = 'http://localhost:8080/' + msg.urlArchivoContenido;
+		content.Moneda = "UYU";//msg[0].Moneda;
 		// ..
 		// ..
 		// ..
@@ -286,7 +286,7 @@ function obtenerContenidoPorId(idContenido){
 		content.Imagen = 'img/mu1.jpg';
 		content.Precio = '4.53';
 		content.Calificacion = 2;
-		content.Source = 'FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno';
+		content.Source = 'http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno';
 		content.Moneda = 'USD';
 		
 		varsProy.contenidoActual = content;

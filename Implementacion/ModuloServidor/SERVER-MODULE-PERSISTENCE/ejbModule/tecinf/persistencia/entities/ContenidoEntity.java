@@ -38,7 +38,7 @@ public abstract class ContenidoEntity implements Serializable {
 	@Column(name = "tamanio_contenido", nullable = false)
 	private Integer tamanio;
 	
-	@Column(name = "ruta_archivo_contenido", length = 100, nullable = false)
+	@Column(name = "ruta_archivo_contenido", length = 1000, nullable = false)
 	private String rutaArchivoContenido;
 	
 	@Column(name = "tipo_contenido", length = 50, nullable = false)

@@ -90,11 +90,9 @@ ALTER TABLE usuarios_proveedor ALTER COLUMN codigo_qr DROP NOT NULL;
 
 alter table contenido_tema_musical ALTER COLUMN album_tema TYPE varchar(100);
 
-alter table contenido_foto DROP CONSTRAINT contenido_foto_fk_contenido_key;
-
 alter table contenidos ALTER COLUMN nombre TYPE varchar(100);
 
 alter table contenidos ALTER COLUMN descripcion TYPE varchar(1000);
 
-
+alter table contenidos ALTER COLUMN ruta_archivo_contenido TYPE varchar(1000);
 
