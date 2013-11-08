@@ -14,22 +14,20 @@ import tecinf.negocio.dtos.LoginRespDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.dtos.UsuarioProveedorDataType;
+import tecinf.negocio.utiles.ConstantesAuditoria;
 import tecinf.negocio.utiles.DataTypesFactory;
 import tecinf.negocio.utiles.Encriptacion;
 import tecinf.negocio.utiles.EnumParametrosValor;
 import tecinf.negocio.utiles.EnumRespuestas;
 import tecinf.negocio.utiles.EnumTipoUsuario;
 import tecinf.negocio.utiles.FileSystemUtils;
+import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.negocio.utiles.RandomString;
-import tecinf.persistencia.daos.AuditoriaDao;
-import tecinf.persistencia.daos.AuditoriaObjetoDao;
-import tecinf.persistencia.daos.AuditoriaOperacionDao;
 import tecinf.persistencia.daos.EstadoUsuarioDao;
 import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.SessionDao;
 import tecinf.persistencia.daos.TipoRegistroDao;
 import tecinf.persistencia.daos.UsuarioDao;
-import tecinf.persistencia.entities.AuditoriaEntity;
 import tecinf.persistencia.entities.EstadoUsuarioEntity;
 import tecinf.persistencia.entities.ParametroValorEntity;
 import tecinf.persistencia.entities.SessionEntity;
@@ -46,24 +44,21 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 	private static Logger logger = Logger.getLogger(NegocioUsuarioImpl.class);
 	
 	private UsuarioDao usuarioDao = null;
-	private AuditoriaDao auditoriaDao = null;
-	private AuditoriaObjetoDao auditoriaObjetoDao = null;
-	private AuditoriaOperacionDao auditoriaOperacionDao = null;
 	private EstadoUsuarioDao estadoUsuarioDao = null;
 	private TipoRegistroDao tipoRegistroDao = null;
 	private SessionDao sessionDao = null;
 	private ParametroValorDao parametroValorDao = null;
+	private NegocioAuditoria negocioAuditoria = null;
 
 	public NegocioUsuarioImpl() throws NamingException {
-
-		auditoriaDao = PersistenciaFactory.getAuditoriaDao();
-		auditoriaObjetoDao = PersistenciaFactory.getAuditoriaObjetoDao();
-		auditoriaOperacionDao = PersistenciaFactory.getAuditoriaOperacionDao();
+		
 		estadoUsuarioDao = PersistenciaFactory.getEstadoUsuarioDao();
 		tipoRegistroDao = PersistenciaFactory.getTipoRegistroDao();
 		usuarioDao = PersistenciaFactory.getUsuarioDao();
 		sessionDao = PersistenciaFactory.getSessionDao();
 		parametroValorDao = PersistenciaFactory.getParametroValorDao();
+		
+		negocioAuditoria = NegocioFactory.getNegocioAuditoria();
 		
 	}
 
@@ -104,12 +99,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		} else {
 			
 			//Auditoria
-			AuditoriaEntity a = new AuditoriaEntity();
-			a.setFechaOperacion(new Date());
-			a.setObjeto(auditoriaObjetoDao.findByID(EnumClavesEntidades.AUDITORIA_OBJETO_USUARIO));
-			a.setOperacion(auditoriaOperacionDao.findByID(EnumClavesEntidades.AUDITORIA_OPERACION_LOGIN));
-			a.setUsuario(ue);
-			auditoriaDao.persist(a);
+			negocioAuditoria.registrarAuditoria(ue.getUsuario(), new Date(), ConstantesAuditoria.ID_OBJETO_USUARIO, ConstantesAuditoria.ID_OPERACION_LOGIN, ue.getUsuario());
 					
 			//Respuesta
 			resp.setRespuesta(EnumRespuestas.RESPUESTA_OK);
@@ -166,7 +156,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		//Creo la estructura de directorios para los usuarios cliente
 		if (!(new FileSystemUtils()).crearEstructuraDirectorioUsuarioCliente(ue.getUsuario()))
 			throw new Exception("Error al crear directorio de usuario");
-				
+		negocioAuditoria.registrarAuditoria(ue.getUsuario(), new Date(), ConstantesAuditoria.ID_OBJETO_USUARIO, ConstantesAuditoria.ID_OPERACION_ALTA, ue.getUsuario());
 		usuarioDao.persist(ue);
 		
 		return loginUsuario(dt.getCorreoElectronico(), dt.getContrasenia());
@@ -267,7 +257,8 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		try {
 			SessionEntity session = sessionDao.findByUserAndToken(usuario, token);
 			if (session != null)
-				sessionDao.remove(session); 
+				sessionDao.remove(session);
+			negocioAuditoria.registrarAuditoria(usuario, new Date(), ConstantesAuditoria.ID_OBJETO_USUARIO, ConstantesAuditoria.ID_OPERACION_LOGOUT, usuario);
 			return true;
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e); 

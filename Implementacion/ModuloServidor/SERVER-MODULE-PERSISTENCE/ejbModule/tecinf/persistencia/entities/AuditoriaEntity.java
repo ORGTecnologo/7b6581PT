@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -16,6 +18,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="auditoria")
+
+@NamedQueries( {
+	
+	@NamedQuery(name = "AuditoriaEntity.findByOperacion", 
+		query = "SELECT e FROM AuditoriaEntity e WHERE e.operacion.id = :idOperacion ORDER BY e.fechaOperacion DESC"),
+})
+
 public class AuditoriaEntity implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -39,6 +48,9 @@ public class AuditoriaEntity implements Serializable {
 	@OneToOne
 	@JoinColumn(name="id_objeto",nullable=false)
 	private AuditoriaObjetoEntity objeto;
+	
+	@Column(name="id_objeto_sistema")
+	private String idObjetoSistema;
 
 	public Integer getId() {
 		return id;
@@ -78,6 +90,14 @@ public class AuditoriaEntity implements Serializable {
 
 	public void setUsuario(UsuarioEntity usuario) {
 		this.usuario = usuario;
+	}
+
+	public String getIdObjetoSistema() {
+		return idObjetoSistema;
+	}
+
+	public void setIdObjetoSistema(String idObjetoSistema) {
+		this.idObjetoSistema = idObjetoSistema;
 	}
 	
 	

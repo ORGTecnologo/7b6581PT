@@ -43,6 +43,15 @@ public abstract class ContenidoEntity implements Serializable {
 	
 	@Column(name = "tipo_contenido", length = 50, nullable = false)
 	private String tipoContenido;
+	
+	@Column(name = "cantidad_descargas", nullable = true)
+	private Integer canntidadDescargas;
+	
+	@Column(name = "calificacion", nullable = true)
+	private Integer calificacion;
+	
+	@Column(name = "precio", nullable = true)
+	private Float precio;
 
 	public Integer getId() {
 		return id;
@@ -99,5 +108,31 @@ public abstract class ContenidoEntity implements Serializable {
 	public void setTipoContenido(String tipoContenido) {
 		this.tipoContenido = tipoContenido;
 	}
+
+	public Integer getCanntidadDescargas() {
+		return canntidadDescargas;
+	}
+
+	public void setCanntidadDescargas(Integer canntidadDescargas) {
+		this.canntidadDescargas = canntidadDescargas;
+	}
+
+	public Integer getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(Integer calificacion) {
+		this.calificacion = calificacion;
+	}
+
+	public Float getPrecio() {
+		return precio;
+	}
+
+	public void setPrecio(Float precio) {
+		this.precio = precio;
+	}
+	
+	
 
 }

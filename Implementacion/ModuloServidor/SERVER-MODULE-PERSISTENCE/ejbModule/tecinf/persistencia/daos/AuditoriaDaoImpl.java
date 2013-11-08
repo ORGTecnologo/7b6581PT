@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import tecinf.persistencia.entities.AuditoriaEntity;
 
@@ -17,6 +18,13 @@ public class AuditoriaDaoImpl extends DaoImpl<Integer, AuditoriaEntity> implemen
 	@Override
 	public List<AuditoriaEntity> findAll() {
 		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<AuditoriaEntity> getHistoryByOperation(Integer idOperacion){
+		Query namedQuery = em.createNamedQuery("AuditoriaEntity.findByOperacion");
+		namedQuery.setParameter("idOperacion", idOperacion);
+		return (List<AuditoriaEntity>)namedQuery.getResultList();		
 	}
 	
 }

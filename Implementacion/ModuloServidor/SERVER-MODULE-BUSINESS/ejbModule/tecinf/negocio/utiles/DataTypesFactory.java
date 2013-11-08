@@ -1,7 +1,9 @@
 package tecinf.negocio.utiles;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
+import tecinf.negocio.dtos.AuditoriaDataType;
 import tecinf.negocio.dtos.CategoriaContenidoDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ContenidoLibroDataType;
@@ -11,6 +13,7 @@ import tecinf.negocio.dtos.ContenidoVideoDataType;
 import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
+import tecinf.persistencia.entities.AuditoriaEntity;
 import tecinf.persistencia.entities.CategoriaContenidoEntity;
 import tecinf.persistencia.entities.ContenidoEntity;
 import tecinf.persistencia.entities.ContenidoFotoEntity;
@@ -91,11 +94,26 @@ public class DataTypesFactory {
 			}
 		}
 		
+		dt.setPrecio(c.getPrecio());
+		dt.setCalificacion(c.getCalificacion());
 		dt.setDescripcionContenido(c.getDescripcion());
 		dt.setIdContenido(c.getId());
 		dt.setNombreContenido(c.getNombre());
 		dt.setTamanioContenido(c.getTamanio());
 		dt.setUrlArchivoContenido("/SERVER-MODULE-SERVICES/FileDispatcherServlet?" + c.getRutaArchivoContenido());
+		
+		return dt;
+	}
+	
+	public static AuditoriaDataType getAuditoriaDataType(AuditoriaEntity e){
+		AuditoriaDataType dt = new AuditoriaDataType();
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		dt.setFechaOperacion(sdf.format(e.getFechaOperacion()));
+		dt.setObjeto(e.getObjeto().getDescripcion());
+		dt.setOperacion(e.getOperacion().getDescripcion()); 
+		dt.setUsuario(e.getUsuario().getUsuario());
+		dt.setObjetoSistema(e.getIdObjetoSistema()); 
 		
 		return dt;
 	}

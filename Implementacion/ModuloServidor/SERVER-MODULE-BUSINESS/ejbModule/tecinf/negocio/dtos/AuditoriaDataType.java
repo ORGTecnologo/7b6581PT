@@ -9,6 +9,8 @@ public class AuditoriaDataType implements Serializable {
 	private String fechaOperacion;
 	private String usuario;
 	private String operacion;
+	private String objeto;
+	private String objetoSistema;
 	
 	public String getFechaOperacion() {
 		return fechaOperacion;
@@ -28,5 +30,18 @@ public class AuditoriaDataType implements Serializable {
 	public void setOperacion(String operacion) {
 		this.operacion = operacion;
 	}
+	public String getObjeto() {
+		return objeto;
+	}
+	public void setObjeto(String objeto) {
+		this.objeto = objeto;
+	}
+	public String getObjetoSistema() {
+		return objetoSistema;
+	}
+	public void setObjetoSistema(String objetoSistema) {
+		this.objetoSistema = objetoSistema;
+	}
+	
 
 }
