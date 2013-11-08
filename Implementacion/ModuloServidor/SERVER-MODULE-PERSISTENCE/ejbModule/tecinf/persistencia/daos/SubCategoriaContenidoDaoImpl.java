@@ -18,7 +18,7 @@ public class SubCategoriaContenidoDaoImpl extends DaoImpl<Integer, SubCategoriaC
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<SubCategoriaContenidoEntity> findAll() {
-		Query namedQuery = em.createNamedQuery("SubCategoriaContenidoEntity.findAll");
+		Query namedQuery = em.createNamedQuery("SubCategoriaContenidoEntity.findAll");		
 		return (List<SubCategoriaContenidoEntity>)namedQuery.getResultList();
 	}
 	
@@ -26,6 +26,7 @@ public class SubCategoriaContenidoDaoImpl extends DaoImpl<Integer, SubCategoriaC
 	public List<SubCategoriaContenidoEntity> getAllByCategoria(Integer idCategoria){
 		Query namedQuery = em.createNamedQuery("SubCategoriaContenidoEntity.findByCategoria");
 		namedQuery.setParameter("idCategoria", idCategoria);
+		namedQuery.setParameter("habilitado", true);
 		return (List<SubCategoriaContenidoEntity>)namedQuery.getResultList();
 	}
 	

@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @NamedQueries( {
 	
 	@NamedQuery(name = "CategoriaContenidoEntity.findAll", 
-			query = "SELECT e FROM CategoriaContenidoEntity e ORDER BY e.nombre") ,
+			query = "SELECT e FROM CategoriaContenidoEntity e WHERE e.habilitado = :habilitado ORDER BY e.nombre") ,
 })
 public class CategoriaContenidoEntity implements Serializable {
 

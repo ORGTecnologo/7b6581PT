@@ -44,7 +44,7 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 			CategoriaContenidoDataType dt = DataTypesFactory.getCategoriaContenidoDataType(cat);			
 			List<SubCategoriaContenidoEntity> subCats = subCategoriaContenidoDao.getAllByCategoria(cat.getId());
 			for (SubCategoriaContenidoEntity subCat : subCats)
-				dt.getSubcategorias().add(DataTypesFactory.getSubCategoriaContenidoDataType(subCat));			
+				dt.getSubcategorias().add(DataTypesFactory.getSubCategoriaContenidoDataType(subCat));
 			listaCategorias.add(dt);
 		}		
 		return listaCategorias;

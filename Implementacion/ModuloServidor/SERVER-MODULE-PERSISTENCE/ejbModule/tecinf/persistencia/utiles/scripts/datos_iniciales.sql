@@ -96,3 +96,7 @@ alter table contenidos ALTER COLUMN descripcion TYPE varchar(1000);
 
 alter table contenidos ALTER COLUMN ruta_archivo_contenido TYPE varchar(1000);
 
+update categorias_contenido set habilitado=true;
+
+update sub_categorias_contenido set habilitado=true;
+

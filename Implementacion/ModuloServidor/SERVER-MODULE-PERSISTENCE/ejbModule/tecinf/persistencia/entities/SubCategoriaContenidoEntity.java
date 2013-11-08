@@ -22,7 +22,7 @@ import javax.persistence.Table;
 		query = "SELECT e FROM SubCategoriaContenidoEntity e ORDER BY e.nombre") ,
 			
 	@NamedQuery(name = "SubCategoriaContenidoEntity.findByCategoria", 
-		query = "SELECT e FROM SubCategoriaContenidoEntity e WHERE e.categoria.id = :idCategoria ORDER BY e.nombre") ,
+		query = "SELECT e FROM SubCategoriaContenidoEntity e WHERE e.categoria.id = :idCategoria and e.habilitado = :habilitado ORDER BY e.nombre") ,
 })
 public class SubCategoriaContenidoEntity implements Serializable {
 

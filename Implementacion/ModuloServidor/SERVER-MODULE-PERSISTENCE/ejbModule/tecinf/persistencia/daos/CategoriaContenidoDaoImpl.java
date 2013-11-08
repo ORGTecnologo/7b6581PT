@@ -19,6 +19,7 @@ public class CategoriaContenidoDaoImpl extends DaoImpl<Integer, CategoriaConteni
 	@Override
 	public List<CategoriaContenidoEntity> findAll() {
 		Query namedQuery = em.createNamedQuery("CategoriaContenidoEntity.findAll");
+		namedQuery.setParameter("habilitado", true);
 		return (List<CategoriaContenidoEntity>)namedQuery.getResultList();
 	}
 }
