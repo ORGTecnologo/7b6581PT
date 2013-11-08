@@ -27,15 +27,13 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	}
 	
 	public ContenidoDataType obtenerDatosContenido(int idContenido) {
-		ContenidoDataType contenido = null;
-		
+		ContenidoDataType contenido = null;		
 		ContenidoEntity cont = contenidoDao.findByID(idContenido);
-		
-		List<ContenidoFotoEntity> fotos = contenidoFotosDao.getAllByContenido(idContenido);
-		
-		ContenidoDataType dt = DataTypesFactory.getContenidoDataType(cont, fotos);
-		
-		return dt;
+		if (cont != null){
+			List<ContenidoFotoEntity> fotos = contenidoFotosDao.getAllByContenido(idContenido);		
+			contenido = DataTypesFactory.getContenidoDataType(cont, fotos);
+		}
+		return contenido;
 	}
 	
 	

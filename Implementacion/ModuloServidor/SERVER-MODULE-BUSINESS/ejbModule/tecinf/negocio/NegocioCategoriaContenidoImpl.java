@@ -9,7 +9,9 @@ import javax.naming.NamingException;
 import org.jboss.logging.Logger;
 
 import tecinf.negocio.dtos.CategoriaContenidoDataType;
+import tecinf.negocio.dtos.ItemGenericoDataType;
 import tecinf.negocio.utiles.DataTypesFactory;
+import tecinf.negocio.utiles.ValidationUtil;
 import tecinf.persistencia.daos.CategoriaContenidoDao;
 import tecinf.persistencia.daos.SubCategoriaContenidoDao;
 import tecinf.persistencia.entities.CategoriaContenidoEntity;
@@ -46,6 +48,70 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 			listaCategorias.add(dt);
 		}		
 		return listaCategorias;
+	}
+	
+	public Integer ingresarCategoria(ItemGenericoDataType dt) throws Exception {
+		
+		if (ValidationUtil.isNullOrEmpty(dt.getDescripcion()))
+			throw new Exception("Descripción obligatoria");
+		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))
+			throw new Exception("Nombre obligatorio");
+		
+		CategoriaContenidoEntity categoria = new CategoriaContenidoEntity();
+		categoria.setDescripcion(dt.getDescripcion());
+		categoria.setNombre(dt.getNombre());
+		
+		categoriaContenidoDao.persist(categoria);
+		
+		return categoria.getId();				
+	}
+	
+	public Integer ingresarSubCategoria(ItemGenericoDataType dt) throws Exception {
+		
+		if (ValidationUtil.isNullOrEmpty(dt.getDescripcion()))
+			throw new Exception("Descripción obligatoria");
+		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))
+			throw new Exception("Nombre obligatorio");
+		
+		SubCategoriaContenidoEntity subCategoria = new SubCategoriaContenidoEntity();
+		subCategoria.setDescripcion(dt.getDescripcion());
+		subCategoria.setNombre(dt.getNombre());
+		
+		subCategoriaContenidoDao.persist(subCategoria);
+		
+		return subCategoria.getId();
+	}
+	
+	public Integer modificarCategoria(ItemGenericoDataType dt) throws Exception {
+		
+		if (ValidationUtil.isNullOrEmpty(dt.getDescripcion()))
+			throw new Exception("Descripción obligatoria");
+		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))
+			throw new Exception("Nombre obligatorio");
+		
+		CategoriaContenidoEntity categoria = categoriaContenidoDao.findByID(dt.getId());
+		categoria.setDescripcion(dt.getDescripcion());
+		categoria.setNombre(dt.getNombre());
+		
+		categoriaContenidoDao.merge(categoria);
+		
+		return categoria.getId();
+	}
+	
+	public Integer modificarSubCategoria(ItemGenericoDataType dt) throws Exception {
+		
+		if (ValidationUtil.isNullOrEmpty(dt.getDescripcion()))
+			throw new Exception("Descripción obligatoria");
+		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))
+			throw new Exception("Nombre obligatorio");
+		
+		SubCategoriaContenidoEntity subCategoria = subCategoriaContenidoDao.findByID(dt.getId());
+		subCategoria.setDescripcion(dt.getDescripcion());
+		subCategoria.setNombre(dt.getNombre());
+		
+		subCategoriaContenidoDao.merge(subCategoria);
+		
+		return subCategoria.getId();
 	}
 	
 }

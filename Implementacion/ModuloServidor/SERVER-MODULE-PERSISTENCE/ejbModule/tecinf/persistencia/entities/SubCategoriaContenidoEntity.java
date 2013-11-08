@@ -42,6 +42,9 @@ public class SubCategoriaContenidoEntity implements Serializable {
 	@OneToOne
 	@JoinColumn(name="id_categoria", nullable=false)
 	private CategoriaContenidoEntity categoria;
+	
+	@Column(name = "habilitado", nullable = true)
+	private Boolean habilitado;
 
 	public Integer getId() {
 		return id;
@@ -77,6 +80,14 @@ public class SubCategoriaContenidoEntity implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
+	}
+
+	public Boolean getHabilitado() {
+		return habilitado;
+	}
+
+	public void setHabilitado(Boolean habilitado) {
+		this.habilitado = habilitado;
 	}
 	
 }

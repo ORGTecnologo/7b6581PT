@@ -33,6 +33,9 @@ public class CategoriaContenidoEntity implements Serializable {
 
 	@Column(name = "descripcion", length = 255, nullable = true)
 	private String descripcion;
+	
+	@Column(name = "habilitado", nullable = true)
+	private Boolean habilitado;
 
 	public Integer getId() {
 		return id;
@@ -57,6 +60,13 @@ public class CategoriaContenidoEntity implements Serializable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
 
+	public Boolean getHabilitado() {
+		return habilitado;
+	}
+
+	public void setHabilitado(Boolean habilitado) {
+		this.habilitado = habilitado;
+	}	
+	
 }
