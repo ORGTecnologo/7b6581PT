@@ -101,7 +101,8 @@ function setearEspecificos(content){
 		break;
 		case(confProy.TIPO_CONTENIDO_LIBRO):
 			divEsp = $("#espLibro").show();
-			divEsp.children()[0].innerText = "Fecha Publicacion:  " + content.fechaPublicacion;
+			var date = new Date(content.fechaPublicacion).toLocaleDateString()
+			divEsp.children()[0].innerText = "Fecha Publicacion:  " + date;
 			divEsp.children()[1].innerText = "Autor            :  " + content.autor;
 			divEsp.children()[2].innerText = "Paginas          :  " + content.Paginas;
 		break;
@@ -126,9 +127,13 @@ function armarContenidoHTML(){
 	var comprarBtn = document.getElementById('comprarBtn');
 		comprarBtn.setAttribute('href',Content.Source);
 
-	var comprarBtn = document.getElementById('tamanioCont');
-		comprarBtn.innerText = 'Tamaño:  ' + Content.Tamanio;
+	var pTam = document.getElementById('tamanioCont');
+		pTam.innerText = 'Tamaño:  ' + Content.Tamanio;
 	
+	var pDesc = document.getElementById('cantDescargas');
+		pDesc.innerText = 'Cantidad de Descargas:  ' + Content.Descargas;
+
+
 	//ARMO EL ESQUEMA
 	if (Content.Precio.toString() === 'gratis')
 		PrecioContent.innerText = Content.Precio.toString();

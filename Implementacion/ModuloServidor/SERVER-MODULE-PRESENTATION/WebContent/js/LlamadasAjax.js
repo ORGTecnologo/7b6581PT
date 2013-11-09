@@ -291,6 +291,7 @@ function obtenerContenidoPorId(idContenido){
 			case(confProy.TIPO_CONTENIDO_LIBRO):
 				content.fechaPublicacion = msg.fechaPublicacion;
 				content.autor = msg.autor;
+				content.Paginas = msg.cantidadPaginas;
 			break;
 		}
 
@@ -298,20 +299,6 @@ function obtenerContenidoPorId(idContenido){
 		armarContenidoHTML();
 	})
 	.fail(function(msg) {
-		console.warn("Cargue contenido Hardcore porque no devolvio el servidor!!");
-		console.log(msg);
-
-		var content = new Contenido();
-		content.Id = '1';
-		content.Descripcion = 'Esta es la descripcion basica de un contenido, la misma se puede extender mucho!!!';
-		content.Nombre = 'Contenido de Prueba';
-		content.Imagen = 'img/mu1.jpg';
-		content.Precio = '4.53';
-		content.Calificacion = 2;
-		content.Source = '/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno';
-		content.Moneda = 'USD';
-		
-		varsProy.contenidoActual = content;
-		armarContenidoHTML();
+		console.log("Fallo el pedido " + msg);
 	})
 }

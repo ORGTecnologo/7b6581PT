@@ -38,6 +38,7 @@ function Contenido(){
 //LIBROS
 	this.fechaPublicacion = 1254967200000,
 	this.autor = "";
+	this.Paginas = 0;
 //VIDEO
 	this.duracionVideo = "03:32",
 	this.formatoVideo
