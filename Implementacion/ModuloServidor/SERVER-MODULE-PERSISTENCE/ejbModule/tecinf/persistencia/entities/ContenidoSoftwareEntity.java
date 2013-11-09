@@ -27,6 +27,18 @@ public class ContenidoSoftwareEntity extends ContenidoEntity implements Serializ
 	@Column(name = "requisitos_minimos", length=1000, nullable = true)
 	private String requisitosMinimos;
 
+	@Column(name = "desarrollador", length=100, nullable = true)
+	private String desarrollador;
+	
+	
+	public String getDesarrollador() {
+		return desarrollador;
+	}
+
+	public void setDesarrollador(String desarrollador) {
+		this.desarrollador = desarrollador;
+	}
+
 	public ContenidoEntity getContenido() {
 		return contenido;
 	}

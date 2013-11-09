@@ -8,11 +8,23 @@ public class ContenidoSoftwareDataType extends ContenidoDataType implements Seri
 	
 	private Boolean esTrial;
 	private String requisitosMinimos;
+	private String desarrollador;
 	
 	public ContenidoSoftwareDataType(){
 		super();
 	}
 	
+	
+	public String getDesarrollador() {
+		return desarrollador;
+	}
+
+
+	public void setDesarrollador(String desarrollador) {
+		this.desarrollador = desarrollador;
+	}
+
+
 	public Boolean getEsTrial() {
 		return esTrial;
 	}

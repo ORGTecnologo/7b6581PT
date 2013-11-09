@@ -78,11 +78,13 @@ public class DataTypesFactory {
 			((ContenidoLibroDataType)dt).setAutor( ((ContenidoLibroEntity)c).getAutor() );
 			((ContenidoLibroDataType)dt).setFechaPublicacion(( ((ContenidoLibroEntity)c).getFecha_publicacion()) );
 			((ContenidoLibroDataType)dt).setAutor( ((ContenidoLibroEntity)c).getAutor() );
-			
+			Integer cantPag = ((ContenidoLibroEntity)c).getCantidadPaginas();
+			((ContenidoLibroDataType)dt).setCantidadPaginas(cantPag == null ? 0 : cantPag);
 		} else if (c.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_SOFTWARE)){
 			dt = new ContenidoSoftwareDataType();
 			((ContenidoSoftwareDataType)dt).setRequisitosMinimos(((ContenidoSoftwareEntity)c).getRequisitosMinimos());
 			((ContenidoSoftwareDataType)dt).setEsTrial(((ContenidoSoftwareEntity)c).getEsTrial());
+			((ContenidoSoftwareDataType)dt).setDesarrollador(((ContenidoSoftwareEntity)c).getDesarrollador());
 		} else if (c.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_VIDEO)){
 			dt = new ContenidoVideoDataType();
 			((ContenidoVideoDataType)dt).setCalidadVideo(((ContenidoVideoEntity)c).getCalidadVideo());

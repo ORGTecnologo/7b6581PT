@@ -10,9 +10,18 @@ public class ContenidoLibroDataType extends ContenidoDataType implements Seriali
 	
 	private Date fechaPublicacion;	
 	private String autor;
+	private Integer cantidadPaginas;
 	
 	public ContenidoLibroDataType(){
 		super();
+	}
+	
+	public Integer getCantidadPaginas() {
+		return cantidadPaginas;
+	}
+
+	public void setCantidadPaginas(Integer cantidadPaginas) {
+		this.cantidadPaginas = cantidadPaginas;
 	}
 
 	public Date getFechaPublicacion() {
@@ -30,7 +39,5 @@ public class ContenidoLibroDataType extends ContenidoDataType implements Seriali
 	public void setAutor(String autor) {
 		this.autor = autor;
 	}
-	
-	
 	
 }

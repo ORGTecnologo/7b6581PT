@@ -25,6 +25,9 @@ public class ContenidoLibroEntity extends ContenidoEntity implements Serializabl
 	@Column(name = "fecha_publicacion")
 	private Date fecha_publicacion;
 	
+	@Column(name = "cantidad_paginas", nullable=true)
+	private Integer cantidadPaginas;
+	
 	@Column(name = "autor", length = 50)
 	private String autor;
 
@@ -50,6 +53,14 @@ public class ContenidoLibroEntity extends ContenidoEntity implements Serializabl
 
 	public void setAutor(String autor) {
 		this.autor = autor;
+	}
+
+	public Integer getCantidadPaginas() {
+		return cantidadPaginas;
+	}
+
+	public void setCantidadPaginas(Integer cantidadPaginas) {
+		this.cantidadPaginas = cantidadPaginas;
 	}
 	
 }
