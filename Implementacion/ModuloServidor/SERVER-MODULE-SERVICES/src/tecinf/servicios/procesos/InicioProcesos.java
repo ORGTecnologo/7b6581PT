@@ -14,7 +14,8 @@ public class InicioProcesos implements ServletContextListener {
 		try 
 		{			
 			logger.info("Inicio de tareas automaticas");                           
-			new DemonioSesion(20);			
+			new DemonioSesion(LapsosProcesos.LAPSO_EJECUCION_DEMONIO_SESION);
+			new DemonioActualizarDatosContenidos(LapsosProcesos.LAPSO_EJECUCION_DEMONIO_ACTUALIZACION_DATOS_CONTENIDOS);
 		}
 		catch (Exception e) 
 		{

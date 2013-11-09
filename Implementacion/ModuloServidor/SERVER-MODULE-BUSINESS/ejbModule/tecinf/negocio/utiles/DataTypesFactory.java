@@ -3,6 +3,10 @@ package tecinf.negocio.utiles;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.naming.NamingException;
+
+import org.jboss.logging.Logger;
+
 import tecinf.negocio.dtos.AuditoriaDataType;
 import tecinf.negocio.dtos.CategoriaContenidoDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
@@ -27,6 +31,8 @@ import tecinf.persistencia.utiles.EnumTiposContenido;
 
 public class DataTypesFactory {
 	
+	private static Logger logger = Logger.getLogger(DataTypesFactory.class);
+	
 	public static UsuarioDataType getUsuarioDataType(UsuarioEntity u){
 		UsuarioDataType dt = null;		
 		if (u.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE)){
@@ -37,7 +43,8 @@ public class DataTypesFactory {
 			dt.setFechaNacimientoDate(u.getFechaNacimiento());
 			dt.setNombres(u.getNombres());
 			dt.setSexo(u.getSexo());
-			dt.setTelefonoMovil(u.getTelefonoMovil());		
+			dt.setTelefonoMovil(u.getTelefonoMovil());	
+			dt.setUsuario(u.getUsuario());
 		}
 		return dt;
 	}
@@ -94,13 +101,17 @@ public class DataTypesFactory {
 			}
 		}
 		
-		dt.setPrecio(c.getPrecio());
-		dt.setCalificacion(c.getCalificacion());
+		dt.setTipoContenido(c.getTipoContenido());
+		dt.setPrecio(c.getPrecio() == null ? 0 : c.getPrecio());
+		dt.setCalificacion(c.getCalificacion() == null ? 0 : c.getCalificacion());
 		dt.setDescripcionContenido(c.getDescripcion());
 		dt.setIdContenido(c.getId());
 		dt.setNombreContenido(c.getNombre());
-		dt.setTamanioContenido(c.getTamanio());
+		FileSystemUtils fsu = null;
+		try { fsu = new FileSystemUtils(); } catch (NamingException e) { logger.error(e.getMessage() , e); }
+		dt.setTamanioContenido(fsu.getFileSize(c.getRutaArchivoContenido()));
 		dt.setUrlArchivoContenido("/SERVER-MODULE-SERVICES/FileDispatcherServlet?" + c.getRutaArchivoContenido());
+		dt.setCantidadDescargas(c.getCantidadDescargas() == null ? 0 : c.getCantidadDescargas()); 
 		
 		return dt;
 	}

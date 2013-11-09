@@ -75,4 +75,17 @@ public class FileSystemUtils {
 		return result;
 	}
 	
+	public Integer getFileSize(String filePath){
+		try {
+			ParametroValorEntity rutaBase = parametroValorDao.findByID(EnumParametrosValor.RUTA_BASE_SISTEMA_ARCHIVOS);
+			String pathDesencriptado = CripterDecripter.decrypt(filePath);
+			File f = new File(rutaBase.getValorParametro() + pathDesencriptado);
+			Long l = f.length();
+			return l.intValue();
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e);
+			return 0;
+		}
+	}
+	
 }

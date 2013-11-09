@@ -57,5 +57,9 @@
 	  	<listener>
  			<listener-class>tecinf.servicios.procesos.InicioProcesos</listener-class>
  		</listener>
+ 		
+		<session-config>
+			<session-timeout>10</session-timeout>
+		</session-config>
           
 </web-app>

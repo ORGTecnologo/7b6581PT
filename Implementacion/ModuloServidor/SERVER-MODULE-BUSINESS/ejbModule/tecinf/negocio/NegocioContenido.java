@@ -9,4 +9,6 @@ public interface NegocioContenido {
 
 	public ContenidoDataType obtenerDatosContenido(int idContenido);	
 	
+	public void actualizarDatosContenidos();
+	
 }

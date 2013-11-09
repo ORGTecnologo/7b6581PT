@@ -17,12 +17,19 @@ public abstract class ContenidoDataType implements Serializable {
 	protected Integer calificacion;
 	protected Float precio;
 	protected List<String> fotos;
+	protected String tipoContenido;
 	
 	public ContenidoDataType(){
 		fotos = new ArrayList<String>();
 		cantidadDescargas = 0;
 	}
-	
+		
+	public String getTipoContenido() {
+		return tipoContenido;
+	}
+	public void setTipoContenido(String tipoContenido) {
+		this.tipoContenido = tipoContenido;
+	}
 	public Integer getIdContenido() {
 		return idContenido;
 	}

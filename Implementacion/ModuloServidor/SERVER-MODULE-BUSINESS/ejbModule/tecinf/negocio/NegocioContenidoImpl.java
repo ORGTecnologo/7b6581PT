@@ -36,5 +36,10 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		return contenido;
 	}
 	
+	public void actualizarDatosContenidos(){
+		
+		
+	}
+	
 	
 }

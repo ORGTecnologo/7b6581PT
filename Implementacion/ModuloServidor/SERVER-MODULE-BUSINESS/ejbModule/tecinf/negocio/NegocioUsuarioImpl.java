@@ -65,12 +65,10 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 	public List<UsuarioClienteDataType> obtenerTodosClientes() {
 
 		List<UsuarioClienteDataType> listaDtos = new ArrayList<UsuarioClienteDataType>();
-		List<UsuarioEntity> listEntities = usuarioDao
-				.findAllByType(EnumTipoUsuario.USUARIO_CLIENTE);
+		List<UsuarioEntity> listEntities = usuarioDao.findAllByType(EnumTipoUsuario.USUARIO_CLIENTE);
 		if (listEntities != null) {
 			for (UsuarioEntity ue : listEntities)
-				listaDtos.add((UsuarioClienteDataType) DataTypesFactory
-						.getUsuarioDataType(ue));
+				listaDtos.add((UsuarioClienteDataType) DataTypesFactory.getUsuarioDataType(ue));
 		}
 		return listaDtos;
 

@@ -3,12 +3,15 @@ package tecinf.servicios.rest;
 import java.util.List;
 
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 
 import org.jboss.logging.Logger;
 
@@ -77,10 +80,11 @@ public class RWSUsuarios {
 	@Path("/logout")
 	@Produces("application/json")
 	@Consumes("application/json")
-	public GenericJsonResponse logout(MensajeCertificado dt) { 
+	public GenericJsonResponse logout(@Context HttpServletRequest req, MensajeCertificado dt) { 
 		GenericJsonResponse resp = new GenericJsonResponse();	
 		NegocioUsuario negocioUsuario;
 		try {
+			HttpSession s = req.getSession();			
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			if (negocioUsuario.logout(dt.getUsuario(), dt.getToken()))
 				resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);

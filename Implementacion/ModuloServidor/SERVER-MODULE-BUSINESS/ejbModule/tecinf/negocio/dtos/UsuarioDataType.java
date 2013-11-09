@@ -68,11 +68,13 @@ public abstract class UsuarioDataType implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	public Date getFechaNacimientoDate() throws Exception {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		return sdf.parse(this.fechaNacimiento); 
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		return (this.fechaNacimiento == null ? null : sdf.parse(this.fechaNacimiento) ); 
 	}
 	public void setFechaNacimientoDate(Date fechaNacimientoDate) {
 		this.fechaNacimientoDate = fechaNacimientoDate;
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		this.setFechaNacimiento(fechaNacimientoDate == null ? "null" : sdf.format(fechaNacimientoDate));
 	}
 	public String getContrasenia2() {
 		return contrasenia2;

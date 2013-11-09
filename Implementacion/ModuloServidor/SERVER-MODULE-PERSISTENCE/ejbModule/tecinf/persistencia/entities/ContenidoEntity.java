@@ -45,7 +45,7 @@ public abstract class ContenidoEntity implements Serializable {
 	private String tipoContenido;
 	
 	@Column(name = "cantidad_descargas", nullable = true)
-	private Integer canntidadDescargas;
+	private Integer cantidadDescargas;
 	
 	@Column(name = "calificacion", nullable = true)
 	private Integer calificacion;
@@ -109,12 +109,12 @@ public abstract class ContenidoEntity implements Serializable {
 		this.tipoContenido = tipoContenido;
 	}
 
-	public Integer getCanntidadDescargas() {
-		return canntidadDescargas;
+	public Integer getCantidadDescargas() {
+		return cantidadDescargas;
 	}
 
-	public void setCanntidadDescargas(Integer canntidadDescargas) {
-		this.canntidadDescargas = canntidadDescargas;
+	public void setCantidadDescargas(Integer cantidadDescargas) {
+		this.cantidadDescargas = cantidadDescargas;
 	}
 
 	public Integer getCalificacion() {
