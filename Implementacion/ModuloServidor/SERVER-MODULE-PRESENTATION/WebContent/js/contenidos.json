@@ -38,3 +38,23 @@
   "formatoVideo": "flv",
   "calidadVideo": "buena"
 }
+
+{
+  "idContenido": 1,
+  "nombreContenido": "Strange Dejavu",
+  "descripcionContenido": "Strange Dejavu - Dream Theater",
+  "cantidadDescargas": 0,
+  "tamanioContenido": 0,
+  "urlArchivoContenido": "/SERVER-MODULE-SERVICES/FileDispatcherServlet?isp5aoZkgFP/pchdUJTnt28UeG4x51B+NaUGSv7c0qBagvN98WPJoF0BgCycSVgHsgl0WOZxXiQwlyfGod44t6E/O2rdnPZikPjNkor09py8jYB9q9vimmFHRwDJcK5WO19HgC3pigPix63FSco/DLlDonjiivYG",
+  "calificacion": 0,
+  "precio": 0.0,
+  "fotos": [
+    "/SERVER-MODULE-SERVICES/Images?Z6hmuMfS3EY9PcFz0lbIoy5baWl7JwQuFRwpR+FRljeIQVuL8/lc2H6GDXRcLwZ/xQXqPwTkSjLugocEIkT4ncLXuLmGFQPT",
+    "/SERVER-MODULE-SERVICES/Images?kf5RF9Jhp8VbVHJysDFbfOaaL4O5ksdTucwrqtYT3ckEMFsZop7in4plgXAMb/yIoHmpHGCFsH+WwliwX0Z/Eizbtpklh5ej",
+    "/SERVER-MODULE-SERVICES/Images?5JOKdpHxytWLgHU7/oHS4l3+2+vKHU0OS5KG1i+RIoJtCeeEtnOBtAnUZ/hZkVGMOPEeMskl+p0Ma35OpTxe66V2Jb5Ul8O2"
+  ],
+  "tipoContenido": "tipo_contenido_tema",
+  "duracionTema": "08:00",
+  "artistaTema": "Dream Theater",
+  "albumTema": "Metropolis Pt. 2: Scenes from a Memory"
+}

@@ -26,7 +26,6 @@ $(document).ready(function(){
     }
 });
 
-
 function cargarDatosDelContenido(){
 
 	// VERSION 1 -- DATOS PASADOS EN LA URL ATRAVES DE ?id=1&tk=hjdsanjda
@@ -78,7 +77,7 @@ function esconderEspecificosOtros(tipoContenido){
 
 function setearEspecificos(content){
 
-	var divEsp;
+	var divEsp, aux;
 
 	switch(content.tipoContenido){
 		case(confProy.TIPO_CONTENIDO_MUSICA):
@@ -89,6 +88,10 @@ function setearEspecificos(content){
 		break;
 		case(confProy.TIPO_CONTENIDO_APP):
 			divEsp = $("#espApp").show();
+			
+			if (content.requisitosMinimos === null) aux = "";	
+			else aux = content.requisitosMinimos;
+
 			divEsp.children()[0].innerText = "Es Trial     :  " + content.esTrial;
 			divEsp.children()[1].innerText = "Req. Minimos :  " + content.requisitosMinimos;			
 			divEsp.children()[1].innerText = "Desarrollador:  " + content.proveedor;			
@@ -101,8 +104,9 @@ function setearEspecificos(content){
 		break;
 		case(confProy.TIPO_CONTENIDO_LIBRO):
 			divEsp = $("#espLibro").show();
-			var date = new Date(content.fechaPublicacion).toLocaleDateString()
-			divEsp.children()[0].innerText = "Fecha Publicacion:  " + date;
+			
+			aux = new Date(content.fechaPublicacion).toLocaleDateString();
+			divEsp.children()[0].innerText = "Fecha Publicacion:  " + aux;
 			divEsp.children()[1].innerText = "Autor            :  " + content.autor;
 			divEsp.children()[2].innerText = "Paginas          :  " + content.Paginas;
 		break;

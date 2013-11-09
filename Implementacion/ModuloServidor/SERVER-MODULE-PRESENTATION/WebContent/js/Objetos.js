@@ -28,18 +28,18 @@ function Contenido(){
 	this.Precio = 0.0;
 	this.tipoContenido = "";
 
-//MUSICA
+	//MUSICA
 	this.duracionTema = "00.00";
 	this.artistaTema  = "";
 	this.albumTema    = "";
-//APP
+	//APP
 	this.esTrial = false;
 	this.requisitosMinimos = null;
-//LIBROS
+	//LIBROS
 	this.fechaPublicacion = 1254967200000,
 	this.autor = "";
 	this.Paginas = 0;
-//VIDEO
+	//VIDEO
 	this.duracionVideo = "03:32",
 	this.formatoVideo
 	this.calidadVideo
