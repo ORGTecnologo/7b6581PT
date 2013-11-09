@@ -2,6 +2,10 @@
 
 $(document).ready(function(){
     
+    $( "#registroUsuario").hide();
+    $( "#loginUsuario").hide();
+    $( "#Nick-Logout-Div").hide();
+
 	inicializarPrototipos();
 
     cargarDatosDelContenido();
@@ -13,10 +17,6 @@ $(document).ready(function(){
 	      maxDate: 0
     });
    
-    $( "#registroUsuario").hide();
-    $( "#loginUsuario").hide();
-    $( "#Nick-Logout-Div").hide();
-
     if (checkearSesionAbierta()){
 		var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
 			nick.innerText = varsProy.nick;
@@ -46,6 +46,68 @@ function cargarDatosDelContenido(){
 	obtenerContenidoPorId(varsProy.idContenido);
 }
 
+function esconderEspecificosOtros(tipoContenido){
+
+	switch(tipoContenido){
+		case(confProy.TIPO_CONTENIDO_MUSICA):
+			$("#espMusica").show();
+			$("#espApp").hide();
+			$("#espVideo").hide();
+			$("#espLibro").hide();
+		break;
+		case(confProy.TIPO_CONTENIDO_APP):
+			$("#espMusica").hide();
+			$("#espApp").show();
+			$("#espVideo").hide();
+			$("#espLibro").hide();
+		break;
+		case(confProy.TIPO_CONTENIDO_VIDEO):
+			$("#espMusica").hide();
+			$("#espApp").hide();
+			$("#espVideo").show();
+			$("#espLibro").hide();
+		break;
+		case(confProy.TIPO_CONTENIDO_LIBRO):
+			$("#espMusica").hide();
+			$("#espApp").hide();
+			$("#espVideo").hide();
+			$("#espLibro").show();
+		break;
+	}
+}
+
+function setearEspecificos(content){
+
+	var divEsp;
+
+	switch(content.tipoContenido){
+		case(confProy.TIPO_CONTENIDO_MUSICA):
+			divEsp = $("#espMusica");
+			divEsp.children()[0].innerText = "Duracion:  " + content.duracionTema;
+			divEsp.children()[1].innerText = "Artista :  " + content.artistaTema;
+			divEsp.children()[2].innerText = "Album   :  " + content.albumTema;
+		break;
+		case(confProy.TIPO_CONTENIDO_APP):
+			divEsp = $("#espApp").show();
+			divEsp.children()[0].innerText = "Es Trial     :  " + content.esTrial;
+			divEsp.children()[1].innerText = "Req. Minimos :  " + content.requisitosMinimos;			
+			divEsp.children()[1].innerText = "Desarrollador:  " + content.proveedor;			
+		break;
+		case(confProy.TIPO_CONTENIDO_VIDEO):
+			divEsp = $("#espVideo").show();
+			divEsp.children()[0].innerText = "Duracion:  " + content.duracionVideo;
+			divEsp.children()[1].innerText = "Formato :  " + content.formatoVideo;
+			divEsp.children()[2].innerText = "Calidad :  " + content.calidadVideo;
+		break;
+		case(confProy.TIPO_CONTENIDO_LIBRO):
+			divEsp = $("#espLibro").show();
+			divEsp.children()[0].innerText = "Fecha Publicacion:  " + content.fechaPublicacion;
+			divEsp.children()[1].innerText = "Autor            :  " + content.autor;
+			divEsp.children()[2].innerText = "Paginas          :  " + content.Paginas;
+		break;
+	}
+}
+
 function armarContenidoHTML(){
 
 	//CARGA LA PARTE VISUAL DEL CONTENT.HTML
@@ -61,13 +123,17 @@ function armarContenidoHTML(){
 	var h3Content = document.createElement('h3')
 	var srcContent = document.createElement('a')
 
-	//ARMO EL ESQUEMA
-	srcContent.setAttribute('href',Content.Source);
-	srcContent.setAttribute('class','btn btn-default');
-	srcContent.setAttribute('role','button');
-	srcContent.innerText = 'Comprar';
+	var comprarBtn = document.getElementById('comprarBtn');
+		comprarBtn.setAttribute('href',Content.Source);
 
-	PrecioContent.innerText = Content.Moneda + " " + Content.Precio.toString();
+	var comprarBtn = document.getElementById('tamanioCont');
+		comprarBtn.innerText = 'Tamaño:  ' + Content.Tamanio;
+	
+	//ARMO EL ESQUEMA
+	if (Content.Precio.toString() === 'gratis')
+		PrecioContent.innerText = Content.Precio.toString();
+	else
+		PrecioContent.innerText = Content.Moneda + " " + Content.Precio.toString();
 
 	DescContent.innerText = Content.Descripcion;
 	h3Content.innerText = Content.Nombre;
@@ -75,8 +141,8 @@ function armarContenidoHTML(){
 	divCaption.setAttribute('class','caption');
 	divCaption.appendChild(h3Content);
 
-	imgContent.setAttribute('src','../'+Content.Imagen);
-	imgContent.setAttribute('alt','../'+Content.Imagen);
+	imgContent.setAttribute('src',confProy.HOST + Content.Imagenes[0]);
+	imgContent.setAttribute('alt',confProy.HOST + Content.Imagenes[0]);
 	imgContent.setAttribute('class','img-circle miniatura');
 
 	thumbnailContent.setAttribute('class','thumbnail');
@@ -86,7 +152,8 @@ function armarContenidoHTML(){
 	divContent.appendChild(thumbnailContent);
 
 	cargarPuntuacion(Content.Calificacion);
-
+	esconderEspecificosOtros(Content.tipoContenido);
+	setearEspecificos(Content);
 }
 
 function cargarPuntuacion(puntuacion){
@@ -99,84 +166,84 @@ function cargarPuntuacion(puntuacion){
 
 	switch(puntuacion){
 		case 1:
-			star1.setAttribute('src','../img/estrellaAct.png');
-			star2.setAttribute('src','../img/estrellaNoAct.png');
-			star3.setAttribute('src','../img/estrellaNoAct.png');
-			star4.setAttribute('src','../img/estrellaNoAct.png');
-			star5.setAttribute('src','../img/estrellaNoAct.png');		
+			star1.setAttribute('src','img/estrellaAct.png');
+			star2.setAttribute('src','img/estrellaNoAct.png');
+			star3.setAttribute('src','img/estrellaNoAct.png');
+			star4.setAttribute('src','img/estrellaNoAct.png');
+			star5.setAttribute('src','img/estrellaNoAct.png');		
 
-			star1.setAttribute('alt','../img/estrellaAct.png');
-			star2.setAttribute('alt','../img/estrellaNoAct.png');
-			star3.setAttribute('alt','../img/estrellaNoAct.png');
-			star4.setAttribute('alt','../img/estrellaNoAct.png');
-			star5.setAttribute('alt','../img/estrellaNoAct.png');		
+			star1.setAttribute('alt','img/estrellaAct.png');
+			star2.setAttribute('alt','img/estrellaNoAct.png');
+			star3.setAttribute('alt','img/estrellaNoAct.png');
+			star4.setAttribute('alt','img/estrellaNoAct.png');
+			star5.setAttribute('alt','img/estrellaNoAct.png');		
 		break;
 		case 2:
-			star1.setAttribute('src','../img/estrellaAct.png');
-			star2.setAttribute('src','../img/estrellaAct.png');
-			star3.setAttribute('src','../img/estrellaNoAct.png');
-			star4.setAttribute('src','../img/estrellaNoAct.png');
-			star5.setAttribute('src','../img/estrellaNoAct.png');
+			star1.setAttribute('src','img/estrellaAct.png');
+			star2.setAttribute('src','img/estrellaAct.png');
+			star3.setAttribute('src','img/estrellaNoAct.png');
+			star4.setAttribute('src','img/estrellaNoAct.png');
+			star5.setAttribute('src','img/estrellaNoAct.png');
 
-			star1.setAttribute('alt','../img/estrellaAct.png');
-			star2.setAttribute('alt','../img/estrellaAct.png');
-			star3.setAttribute('alt','../img/estrellaNoAct.png');
-			star4.setAttribute('alt','../img/estrellaNoAct.png');
-			star5.setAttribute('alt','../img/estrellaNoAct.png');
+			star1.setAttribute('alt','img/estrellaAct.png');
+			star2.setAttribute('alt','img/estrellaAct.png');
+			star3.setAttribute('alt','img/estrellaNoAct.png');
+			star4.setAttribute('alt','img/estrellaNoAct.png');
+			star5.setAttribute('alt','img/estrellaNoAct.png');
 
 		break;
 		case 3:
-			star1.setAttribute('src','../img/estrellaAct.png');
-			star2.setAttribute('src','../img/estrellaAct.png');
-			star3.setAttribute('src','../img/estrellaAct.png');
-			star4.setAttribute('src','../img/estrellaNoAct.png');
-			star5.setAttribute('src','../img/estrellaNoAct.png');		
+			star1.setAttribute('src','img/estrellaAct.png');
+			star2.setAttribute('src','img/estrellaAct.png');
+			star3.setAttribute('src','img/estrellaAct.png');
+			star4.setAttribute('src','img/estrellaNoAct.png');
+			star5.setAttribute('src','img/estrellaNoAct.png');		
 
-			star1.setAttribute('alt','../img/estrellaAct.png');
-			star2.setAttribute('alt','../img/estrellaAct.png');
-			star3.setAttribute('alt','../img/estrellaAct.png');
-			star4.setAttribute('alt','../img/estrellaNoAct.png');
-			star5.setAttribute('alt','../img/estrellaNoAct.png');		
+			star1.setAttribute('alt','img/estrellaAct.png');
+			star2.setAttribute('alt','img/estrellaAct.png');
+			star3.setAttribute('alt','img/estrellaAct.png');
+			star4.setAttribute('alt','img/estrellaNoAct.png');
+			star5.setAttribute('alt','img/estrellaNoAct.png');		
 
 		break;
 		case 4:
-			star1.setAttribute('src','../img/estrellaAct.png');
-			star2.setAttribute('src','../img/estrellaAct.png');
-			star3.setAttribute('src','../img/estrellaAct.png');
-			star4.setAttribute('src','../img/estrellaAct.png');
-			star5.setAttribute('src','../img/estrellaNoAct.png');
+			star1.setAttribute('src','img/estrellaAct.png');
+			star2.setAttribute('src','img/estrellaAct.png');
+			star3.setAttribute('src','img/estrellaAct.png');
+			star4.setAttribute('src','img/estrellaAct.png');
+			star5.setAttribute('src','img/estrellaNoAct.png');
 
-			star1.setAttribute('alt','../img/estrellaAct.png');
-			star2.setAttribute('alt','../img/estrellaAct.png');
-			star3.setAttribute('alt','../img/estrellaAct.png');
-			star4.setAttribute('alt','../img/estrellaAct.png');
-			star5.setAttribute('alt','../img/estrellaNoAct.png');
+			star1.setAttribute('alt','img/estrellaAct.png');
+			star2.setAttribute('alt','img/estrellaAct.png');
+			star3.setAttribute('alt','img/estrellaAct.png');
+			star4.setAttribute('alt','img/estrellaAct.png');
+			star5.setAttribute('alt','img/estrellaNoAct.png');
 		break;
 		case 5:
-			star1.setAttribute('src','../img/estrellaAct.png');
-			star2.setAttribute('src','../img/estrellaAct.png');
-			star3.setAttribute('src','../img/estrellaAct.png');
-			star4.setAttribute('src','../img/estrellaAct.png');
-			star5.setAttribute('src','../img/estrellaAct.png');
+			star1.setAttribute('src','img/estrellaAct.png');
+			star2.setAttribute('src','img/estrellaAct.png');
+			star3.setAttribute('src','img/estrellaAct.png');
+			star4.setAttribute('src','img/estrellaAct.png');
+			star5.setAttribute('src','img/estrellaAct.png');
 
-			star1.setAttribute('alt','../img/estrellaAct.png');
-			star2.setAttribute('alt','../img/estrellaAct.png');
-			star3.setAttribute('alt','../img/estrellaAct.png');
-			star4.setAttribute('alt','../img/estrellaAct.png');
-			star5.setAttribute('alt','../img/estrellaAct.png');
+			star1.setAttribute('alt','img/estrellaAct.png');
+			star2.setAttribute('alt','img/estrellaAct.png');
+			star3.setAttribute('alt','img/estrellaAct.png');
+			star4.setAttribute('alt','img/estrellaAct.png');
+			star5.setAttribute('alt','img/estrellaAct.png');
 		break;
 		default:
-			star1.setAttribute('src','../img/estrellaNoAct.png');
-			star2.setAttribute('src','../img/estrellaNoAct.png');
-			star3.setAttribute('src','../img/estrellaNoAct.png');
-			star4.setAttribute('src','../img/estrellaNoAct.png');
-			star5.setAttribute('src','../img/estrellaNoAct.png');		
+			star1.setAttribute('src','img/estrellaNoAct.png');
+			star2.setAttribute('src','img/estrellaNoAct.png');
+			star3.setAttribute('src','img/estrellaNoAct.png');
+			star4.setAttribute('src','img/estrellaNoAct.png');
+			star5.setAttribute('src','img/estrellaNoAct.png');		
 
-			star1.setAttribute('alt','../img/estrellaNoAct.png');
-			star2.setAttribute('alt','../img/estrellaNoAct.png');
-			star3.setAttribute('alt','../img/estrellaNoAct.png');
-			star4.setAttribute('alt','../img/estrellaNoAct.png');
-			star5.setAttribute('alt','../img/estrellaNoAct.png');			
+			star1.setAttribute('alt','img/estrellaNoAct.png');
+			star2.setAttribute('alt','img/estrellaNoAct.png');
+			star3.setAttribute('alt','img/estrellaNoAct.png');
+			star4.setAttribute('alt','img/estrellaNoAct.png');
+			star5.setAttribute('alt','img/estrellaNoAct.png');			
 		break;
 	}
 }

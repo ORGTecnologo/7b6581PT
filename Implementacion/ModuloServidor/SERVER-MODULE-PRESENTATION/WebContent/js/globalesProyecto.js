@@ -16,8 +16,16 @@ function VARS_PROY(){
 
 function CTES_PROY(){
 
-	this.sessionStorageUser = 'user_proyMPTecnologo';
-	this.sessionStorageToken = 'token_proyMPTecnologo';
+	this.sessionStorageUser   = 'user_proyMPTecnologo';
+	this.sessionStorageToken  = 'token_proyMPTecnologo';
+
+	this.TIPO_CONTENIDO_MUSICA= "tipo_contenido_tema";
+	this.TIPO_CONTENIDO_APP   = "tipo_contenido_software";
+	this.TIPO_CONTENIDO_VIDEO = "tipo_contenido_video";
+	this.TIPO_CONTENIDO_LIBRO = "tipo_contenido_libro";
+
+	this.HOST 		  = "http://localhost:8080";
+	this.IP_SERVICIOS = "http://localhost:8080/SERVER-MODULE-SERVICES";
 }
 
 var varsProy = new VARS_PROY();

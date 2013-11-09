@@ -260,17 +260,39 @@ function obtenerContenidoPorId(idContenido){
 
 		var content = new Contenido();
 
-		content.Id = msg.idContenido;
-		content.Descripcion = msg.descripcionContenido;
-		content.Nombre = msg.nombreContenido;
-		content.Imagen = msg.urlArchivoContenido[0];
-		content.Precio = 50;//msg[0].precio;
-		content.Calificacion = 3;//msg[0].calificacion;
-		content.Source = 'http://localhost:8080/' + msg.urlArchivoContenido;
-		content.Moneda = "UYU";//msg[0].Moneda;
-		// ..
-		// ..
-		// ..
+		content.Id 			 = msg.idContenido;
+		content.Nombre       = msg.nombreContenido;
+		content.Descripcion  = msg.descripcionContenido;
+		content.Imagenes 	 = msg.fotos;
+		content.Calificacion = msg.calificacion;
+		content.Source 		 = msg.urlArchivoContenido;
+		content.Descargas    = msg.cantidadDescargas;
+		content.Tamanio		 = msg.tamanioContenido;
+		content.tipoContenido= msg.tipoContenido;
+
+		if (msg.precio === 0)	content.Precio = "gratis"; 
+		else content.Precio = msg.precio;
+
+		switch(msg.tipoContenido){
+			case(confProy.TIPO_CONTENIDO_MUSICA):
+				content.duracionTema = msg.duracionTema;
+				content.artistaTema  = msg.artistaTema;
+				content.albumTema    = msg.albumTema;
+			break;
+			case(confProy.TIPO_CONTENIDO_APP):
+				content.esTrial = msg.esTrial;
+				content.requisitosMinimos = msg.requisitosMinimos;
+			break;
+			case(confProy.TIPO_CONTENIDO_VIDEO):
+				content.duracionVideo = msg.duracionVideo;
+				content.formatoVideo = msg.formatoVideo;
+				content.calidadVideo = msg.calidadVideo;
+			break;
+			case(confProy.TIPO_CONTENIDO_LIBRO):
+				content.fechaPublicacion = msg.fechaPublicacion;
+				content.autor = msg.autor;
+			break;
+		}
 
 		varsProy.contenidoActual = content;
 		armarContenidoHTML();
@@ -286,7 +308,7 @@ function obtenerContenidoPorId(idContenido){
 		content.Imagen = 'img/mu1.jpg';
 		content.Precio = '4.53';
 		content.Calificacion = 2;
-		content.Source = 'http://localhost:8080/SERVER-MODULE-SERVICES/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno';
+		content.Source = '/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno';
 		content.Moneda = 'USD';
 		
 		varsProy.contenidoActual = content;

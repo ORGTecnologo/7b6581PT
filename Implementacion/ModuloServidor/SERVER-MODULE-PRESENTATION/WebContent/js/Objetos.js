@@ -19,11 +19,27 @@ function Contenido(){
 	this.Id = "";
 	this.Nombre = "";
 	this.Descripcion = "";
-	this.Precio = 0.0;
 	this.Imagen = "";
 	this.Calificacion = 0;
 	this.Source = "";
-	this.Moneda = 1;//DOLARES
-// 	this. = "";
-// 	this. = "";
+	this.Moneda = "UYU";
+	this.Tamanio = 0;
+	this.Descargas = 0;
+	this.Precio = 0.0;
+	this.tipoContenido = "";
+
+//MUSICA
+	this.duracionTema = "00.00";
+	this.artistaTema  = "";
+	this.albumTema    = "";
+//APP
+	this.esTrial = false;
+	this.requisitosMinimos = null;
+//LIBROS
+	this.fechaPublicacion = 1254967200000,
+	this.autor = "";
+//VIDEO
+	this.duracionVideo = "03:32",
+	this.formatoVideo
+	this.calidadVideo
 }

@@ -11,6 +11,10 @@
 		margin-top: 0.6em;
 	}
 
+	.Especificos{
+		right: 15px;
+	}
+
 	body.modal-open, 
 		.modal-open .navbar-fixed-top, 
 		.modal-open .navbar-fixed-bottom {

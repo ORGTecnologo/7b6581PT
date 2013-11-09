@@ -112,3 +112,8 @@ function IniciarSesion(){
 	else
 		alert("Correo Invalido");
 }
+
+function hola(){
+
+	
+}
