@@ -39,7 +39,7 @@ public class NegocioArchivosImpl implements NegocioArchivos {
 		File f = new File(rutaBase.getValorParametro() + rutaDesencriptada);
 		resp.setFile(f);
 		resp.setFileName(f.getName());
-		resp.setMimeType(mimeType);
+		resp.setMimeType("");
 		
 		return resp;
 	}

@@ -13,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.logging.Logger;
 
-import tecinf.negocio.NegocioArchivos;
-import tecinf.negocio.dtos.FileDataType;
-import tecinf.negocio.utiles.NegocioFactory;
+import tecinf.negocio.utiles.CripterDecripter;
  
 public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
 	
@@ -23,30 +21,24 @@ public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implem
 	
     static final long serialVersionUID = 1L;
     private static final int BUFSIZE = 4096;
-    private String filePath;
+    //private String filePath;
     
     public void init() {
         // the file data.xls is under web application folder
-        filePath = "/BaseDatosRecursos/pruebas/software/sublime_64.tar.bz2";	
+        //filePath = "/BaseDatosRecursos/pruebas/software/sublime_64.tar.bz2";	
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
     	String qString = request.getQueryString();
-    	NegocioArchivos negocioArchivo = null;
-    	FileDataType file = null;
+    	String qStringDecripted = CripterDecripter.decrypt(qString);
     	
-    	try {
-    		negocioArchivo = NegocioFactory.getNegocioArchivos();
-    		file = negocioArchivo.responderArchivo(qString);
-    	} catch (Exception e) {
-    		logger.error(e.getMessage() , e);
-    	}    	
+    	File file = new File(qStringDecripted);
         
         int length = 0;
         ServletOutputStream outStream = response.getOutputStream();
         ServletContext context  = getServletConfig().getServletContext();
-        String mimetype = context.getMimeType(filePath);
+        String mimetype = context.getMimeType(qStringDecripted);
         
         // sets response content type
         if (mimetype == null) {
@@ -54,7 +46,7 @@ public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implem
         }
         response.setContentType(mimetype);
         response.setContentLength((int)file.length());
-        String fileName = (new File(filePath)).getName();
+        String fileName = file.getName();
         
         // sets HTTP header
         response.setHeader("Content-Disposition", "attachment; filename=\"" + fileName + "\"");
