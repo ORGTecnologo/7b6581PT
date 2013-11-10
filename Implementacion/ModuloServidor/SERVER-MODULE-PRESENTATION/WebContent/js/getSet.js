@@ -20,8 +20,11 @@ function setRegistroTipo(tipo){
 
 function mostrarElemento(id){
 
-	var div = $("#" + id);
-	div.show();
+	var div = $("#" + id)[0];
+	//div.show();
+
+	div.classList.remove('hide');
+	div.classList.add('show');
 
 	switch(id){
 		case 'registroUsuario':
@@ -36,6 +39,9 @@ function mostrarElemento(id){
 }
 
 function ocultarElemento(id){
-	var div = $("#" + id);
-	div.hide();
+	var div = $("#" + id)[0];
+	//div.hide();
+
+	div.classList.remove('show');
+	div.classList.add('hide');
 }

@@ -15,6 +15,22 @@
 		right: 15px;
 	}
 
+	.loginDiv{
+		overflow-y: auto;
+		display: block;
+		width: 26%;
+		min-width: 300px;
+		margin-right: auto;
+	}
+
+	.registerDiv{
+		overflow-y: auto;
+		display: none;
+		width: 26%;
+		min-width:500px;
+		margin-right: auto;
+	}
+
 	body.modal-open, 
 		.modal-open .navbar-fixed-top, 
 		.modal-open .navbar-fixed-bottom {
@@ -32,6 +48,11 @@
 		max-width: 300px;
 	}
 	
+	.centerContent{
+		margin-left: inherit;
+		margin-right: inherit;
+	}
+
 	.modal {
 		left: 50%;
 		bottom: auto;

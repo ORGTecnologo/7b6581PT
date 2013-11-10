@@ -37,6 +37,18 @@ function errorControlVaciosFormularioRegistro() {
 		return false;
 }
 
+function crearMiembro(){
+
+	switch(varsProy.tipoRegistro){
+		case 'cliente':
+			crearUsuario();
+		break;
+		case 'proveedor':
+			crearProveedor();
+		break;
+	}
+}
+
 function crearUsuario(){
 
 	if (!errorControlVaciosFormularioRegistro()){
@@ -115,5 +127,5 @@ function IniciarSesion(){
 
 function hola(){
 
-	
+
 }
