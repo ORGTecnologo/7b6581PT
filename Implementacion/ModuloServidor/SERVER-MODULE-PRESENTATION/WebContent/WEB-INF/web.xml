@@ -9,4 +9,16 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+	<servlet>
+	 	<description/>
+	 	<display-name>UploadServlet</display-name>
+	 	<servlet-name>UploadServlet</servlet-name>
+	 	<servlet-class>tecinf.presentacion.servlets.FileUploadServlet</servlet-class>
+  	</servlet>
+	  	<servlet-mapping>
+	    <servlet-name>UploadServlet</servlet-name>
+	    <url-pattern>/upload</url-pattern>
+	</servlet-mapping>
+  
 </web-app>

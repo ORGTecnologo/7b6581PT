@@ -1,5 +1,6 @@
 package tecinf.persistencia.entities;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,8 +16,10 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="reclamos")
-public class ReclamoEntity {
-	
+public class ReclamoEntity implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator =	"reclamo_secuencia") 
 	@SequenceGenerator(name = "reclamo_secuencia", sequenceName = "reclamo_seq", allocationSize = 1)
@@ -29,7 +32,7 @@ public class ReclamoEntity {
 	@Column(name="fecha_reclamo", nullable=false)
 	private Date fechaReclamo;
 	
-	@Column(name="descripcion", nullable=false, length=500)
+	@Column(name="descripcion", nullable=false, length=1000)
 	private String descripcion;
 
 	public Integer getId() {
