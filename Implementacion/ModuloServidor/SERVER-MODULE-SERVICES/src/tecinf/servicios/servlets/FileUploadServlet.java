@@ -18,17 +18,22 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class FileUploadServlet extends HttpServlet {
-        
-    /**
+	
+	private String rutaTemporales = "/BaseDatosRecursos/tmp/";
+	
+	private static final long serialVersionUID = 1L;
+
+	/**
         * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
         * 
         */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+    	
+    	
         
         if (request.getParameter("getfile") != null && !request.getParameter("getfile").isEmpty()) {
-            File file = new File(request.getServletContext().getRealPath("/")+"imgs/"+request.getParameter("getfile"));
+            File file = new File(rutaTemporales + request.getParameter("getfile"));
             if (file.exists()) {
                 int bytes = 0;
                 ServletOutputStream op = response.getOutputStream();
@@ -49,12 +54,12 @@ public class FileUploadServlet extends HttpServlet {
                 op.close();
             }
         } else if (request.getParameter("delfile") != null && !request.getParameter("delfile").isEmpty()) {
-            File file = new File(request.getServletContext().getRealPath("/")+"imgs/"+ request.getParameter("delfile"));
+            File file = new File(rutaTemporales + request.getParameter("delfile"));
             if (file.exists()) {
-                file.delete(); // TODO:check and report success
+                file.delete();
             } 
         } else if (request.getParameter("getthumb") != null && !request.getParameter("getthumb").isEmpty()) {
-            File file = new File(request.getServletContext().getRealPath("/")+"imgs/"+request.getParameter("getthumb"));
+            File file = new File(rutaTemporales + request.getParameter("getthumb"));
                 if (file.exists()) {
                     System.out.println(file.getAbsolutePath());
                     String mimetype = getMimeType(file);
@@ -111,7 +116,7 @@ public class FileUploadServlet extends HttpServlet {
             List<FileItem> items = uploadHandler.parseRequest(request);
             for (FileItem item : items) {
                 if (!item.isFormField()) {
-                		String filePath = request.getServletContext().getRealPath("/")+"imgs/";
+                		String filePath = rutaTemporales;
                 		String fileName = item.getName();
                         File file = new File(filePath , fileName);
                         item.write(file);

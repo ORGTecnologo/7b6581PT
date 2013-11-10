@@ -54,6 +54,17 @@
 		    <url-pattern>/Images</url-pattern>
 		</servlet-mapping>
 		
+	    <servlet>
+        	<description/>
+        	<display-name>UploadServlet</display-name>
+        	<servlet-name>UploadServlet</servlet-name>
+        	<servlet-class>tecinf.servicios.servlets.FileUploadServlet</servlet-class>
+    	</servlet>
+    	<servlet-mapping>
+		    <servlet-name>UploadServlet</servlet-name>
+		    <url-pattern>/upload</url-pattern>
+		</servlet-mapping>
+		
 	  	<listener>
  			<listener-class>tecinf.servicios.procesos.InicioProcesos</listener-class>
  		</listener>
