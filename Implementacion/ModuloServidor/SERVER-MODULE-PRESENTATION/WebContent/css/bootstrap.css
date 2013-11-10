@@ -4326,7 +4326,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 @media (min-width: 768px) {
   .navbar-form {
-    width: auto;
+    width: 739px;
     padding-top: 0;
     padding-bottom: 0;
     margin-right: 0;

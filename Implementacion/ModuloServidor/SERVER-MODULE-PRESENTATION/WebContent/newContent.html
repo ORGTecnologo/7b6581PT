@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html lang="es">
     <head>
+        <title>Crear Contenido</title>
         <meta charset="utf-8">
-        <title>jQuery File Upload Demo</title>
-        <meta name="description" content="File Upload widget with multiple file selection, drag&amp;drop support, progress bar and preview images for jQuery. Supports cross-domain, chunked and resumable file uploads. Works with any server-side platform (Google App Engine, PHP, Python, Ruby on Rails, Java, etc.) that supports standard HTML form file uploads.">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+        <meta name="description" content="Pagina de creacion de nuevos contenidos.">
       
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
@@ -20,22 +20,25 @@
                 <p>Para crear un nuevo contenido, complete el siguiente formularo.<br></p>
             </blockquote>
             <br>
+            <form action="newContent_submit" method="get" accept-charset="utf-8">
+                           
+            </form>
             <form id="fileupload" action="upload" method="POST" enctype="multipart/form-data">
                 <div class="row fileupload-buttonbar">
                     <div class="span7">
                         <span class="btn btn-success fileinput-button">
-                            <i class="icon-plus icon-white"></i><span>Add files...</span>
+                            <i class="icon-plus icon-white"></i><span>Agregar..</span>
                             <input type="file" name="files[]" multiple>
                         </span>
                         <button type="submit" class="btn btn-primary start">
-                            <i class="icon-upload icon-white"></i><span>Start upload</span>
+                            <i class="icon-upload icon-white"></i><span>Subir</span>
                         </button>
                         <button type="reset" class="btn btn-warning cancel">
-                            <i class="icon-ban-circle icon-white"></i><span>Cancel upload</span>
+                            <i class="icon-ban-circle icon-white"></i><span>Cancelar</span>
                         </button>
                         <button type="button" class="btn btn-danger delete">
                             <i class="icon-trash icon-white"></i>
-                            <span>Delete</span>
+                            <span>Borrar</span>
                         </button>
                         <input type="checkbox" class="toggle">
                     </div>

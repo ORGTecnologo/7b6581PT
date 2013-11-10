@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <head>
     <title>MarketPlace Tecnologo</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="description" content="Bienvenidos al MarketPlace tecnologo, donde ecnotraras todo lo que te imagines y mas.">
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css" media="screen"/>
@@ -27,11 +29,12 @@
 
 		<div class="collapse navbar-collapse navbar-ex1-collapse"> 
 			<form class="navbar-form navbar-left" role="search">
-				<div class="form-group">
+				<div class="form-group col-xs-5">
 					<input type="search" class="form-control" placeholder="Buscar">
 				</div>
 				<button class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
 					<span class="glyphicon glyphicon-search"></span> Buscar</button>
+					<span class="glyphicon glyphicon-search"></span> Opciones</button>
 			</form>
 			<div class="col-md-2 pull-right" id="Login-Registro-Div">
 				<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
@@ -333,10 +336,10 @@
 
 		<div class="modal-body">
 			<div class="row">
-				<div class="col-md-12">
+				<div class="col-md-12 col-xs-10">
 					<h4>Datos de Usuario</h4>
-					<p>Correo    			<input type="text" class="col-md-12 form-control" id="loginCorreo"></p>
-					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="loginPass"></p>
+					<p>Correo <input type="text" class="col-xs-7 form-control" id="loginCorreo" autocomplete="on"></p>
+					<p>Contrase&ntilde;a    <input type="password" class="col-xs-7 form-control" id="loginPass"></p>
 				</div>
 			</div>
 		</div>
@@ -356,26 +359,26 @@
 
 	  <div class="modal-body">
 			<div class="row">
-				<div class="col-md-6">
+				<div class="col-md-6 col-xs-5">
 					<h4>Datos de Usuario</h4>
-					<p>Correo    			<input type="email" class="col-md-12 form-control" id="inputCorreo"></p>
-					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="inputPass"></p>
-					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="inputPass2"></p>
-					<p>Nombre Usuario  		<input type="text" class="col-md-12 form-control" id="inputNick"></p>
-					<p id="sitioWeb_p">Sitio Web <input type="text" class="col-md-12 form-control" id="inputWeb"></p>
+					<p>Correo <input type="email" class="col-xs-10 form-control" id="inputCorreo" autocomplete="on"></p>
+					<p>Contrase&ntilde;a <input type="password" class="col-xs-10 form-control" id="inputPass"></p>
+					<p>Contrase&ntilde;a <input type="password" class="col-xs-10 form-control" id="inputPass2"></p>
+					<p>Nombre Usuario  	 <input type="text" class="col-xs-10 form-control" id="inputNick" autocomplete></p>
+					<p id="sitioWeb_p">Sitio Web <input type="text" class="col-xs-10 form-control" id="inputWeb"></p>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-6 col-xs-5">
 					<h4>Datos Personales</h4>
-					<p>Nombres	    		<input type="text" class="col-md-12 form-control" id="inputNombre"></p>
-					<p>Apellidos    		<input type="text" class="col-md-12 form-control" id="inputApellido"></p>
-					<p>Sexo 
-						<select id="inputSexo" class="col-md-12 form-control">
+					<p>Nombres <input type="text" class="form-control col-xs-10" id="inputNombre"></p>
+					<p>Apellidos <input type="text" class="form-control col-xs-10" id="inputApellido"></p>
+					<p>Orientacion Sexual
+						<select id="inputSexo" class="form-control col-xs-10">
 							<option value="masculino" selected>Hombre</option>
 							<option value="femenino">Mujer</option>
 						</select>
-					</p>					
-					<p>Fecha de Nacimiento  <input type="text" class="col-md-12 form-control" id="inputFecha"></p>
-					<p>Telefono Movil    	<input type="tel" class="col-md-12 form-control" id="inputTel" onkeypress="return onlyNumbersDano(event)"></p>
+					</p>
+					<p>Fecha de Nacimiento  <input type="text" class="col-xs-10 form-control" id="inputFecha"></p>
+					<p>Telefono Movil    	<input type="tel" class="col-xs-10 form-control" id="inputTel" onkeypress="return onlyNumbersDano(event)"></p>
 				</div>
 			</div>
 		</div>
