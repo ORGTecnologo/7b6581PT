@@ -14,8 +14,6 @@
 
 (function (factory) {
     'use strict';
-                    console.warn("INFO 1: ");
-    
     if (typeof define === 'function' && define.amd) {
         // Register as an anonymous AMD module:
         define(['jquery'], factory);
@@ -57,13 +55,12 @@
             'postmessage html': convert
         }
     });
-                    console.warn("INFO 1: ");
 
     $.ajaxTransport('postmessage', function (options) {
         if (options.postMessage && window.postMessage) {
             var iframe,
                 loc = $('<a>').prop('href', options.postMessage)[0],
-                target = 'http://localhost:8080/SERVER-MODULE-SERVICES/upload',//loc.protocol + '//' + loc.host,
+                target = loc.protocol + '//' + loc.host,
                 xhrUpload = options.xhr().upload;
             return {
                 send: function (_, completeCallback) {

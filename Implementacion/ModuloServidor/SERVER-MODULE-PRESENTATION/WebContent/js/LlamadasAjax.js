@@ -247,6 +247,24 @@ function esUnicoNick(nick){
 	})
 }
 
+
+
+function respuestaPares(){
+
+	this.filtro = ""
+	this.valor = "";
+}
+
+
+/*var respuesta = new respuestaPares();
+	respuesta.filtro = "categoria"
+	respuesta.valor = "1,8,9,12"
+
+	var arr = new Array()
+
+	arr.add(respuesta)
+*/
+
 function obtenerContenidoPorId(idContenido){
 
 	$.ajax({
