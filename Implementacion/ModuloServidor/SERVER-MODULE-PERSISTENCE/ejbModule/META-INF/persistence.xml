@@ -28,6 +28,7 @@
 		<class>tecinf.persistencia.entities.VersionContenidoEntity</class>
 		<class>tecinf.persistencia.entities.UsuarioAdministradorEntity</class>
 		<class>tecinf.persistencia.entities.SessionEntity</class>
+		<class>tecinf.persistencia.entities.ContenidoFotoEntity</class>
 		  
 		<properties>
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
