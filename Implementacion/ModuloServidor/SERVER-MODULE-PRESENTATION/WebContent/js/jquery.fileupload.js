@@ -26,6 +26,7 @@
     }
 }(function ($) {
     'use strict';
+                    console.warn("INFO 1: ");
 
     // The FileReader API is not actually used, but works as feature detection,
     // as e.g. Safari supports XHR file uploads via the FormData API,
@@ -399,7 +400,7 @@
                     this._initProgressListener(options);
                 }
                 if (options.postMessage) {
-                    // Setting the dataType to postmessage enables the
+                    // Setting the dataType t1o postmessage enables the
                     // postMessage transport:
                     options.dataType = 'postmessage ' + (options.dataType || '');
                 }

@@ -37,6 +37,7 @@
                 return {
                     send: function (headers, completeCallback) {
                         function callback(status, statusText, responses, responseHeaders) {
+                            console.warn("INFO 1: " + xdr.onload);
                             xdr.onload = xdr.onerror = xdr.ontimeout = $.noop;
                             xdr = null;
                             completeCallback(status, statusText, responses, responseHeaders);
@@ -44,10 +45,12 @@
                         xdr = new XDomainRequest();
                         // XDomainRequest only supports GET and POST:
                         if (s.type === 'DELETE') {
+                            console.warn(s.type);
                             s.url = s.url + (/\?/.test(s.url) ? '&' : '?') +
                                 '_method=DELETE';
                             s.type = 'POST';
                         } else if (s.type === 'PUT') {
+                            console.warn(s.type);                            
                             s.url = s.url + (/\?/.test(s.url) ? '&' : '?') +
                                 '_method=PUT';
                             s.type = 'POST';

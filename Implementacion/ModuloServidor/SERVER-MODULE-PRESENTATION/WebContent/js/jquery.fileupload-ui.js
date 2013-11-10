@@ -14,6 +14,8 @@
 
 (function (factory) {
     'use strict';
+                    console.warn("INFO 1: ");
+    
     if (typeof define === 'function' && define.amd) {
         // Register as an anonymous AMD module:
         define([

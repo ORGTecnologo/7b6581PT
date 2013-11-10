@@ -22,6 +22,7 @@ $(function () {
     $('#fileupload').fileupload(
         'option',
         'redirect',
+        'url',
         window.location.href.replace(
             /\/[^\/]*$/,
             '/cors/result.html?%s'
@@ -30,8 +31,9 @@ $(function () {
 
     if (window.location.hostname === 'localhost:8080') {
         // Demo settings:
+        console.warn("INFO 1: ");
         $('#fileupload').fileupload('option', {
-            url: '//localhost:8089/jQuery-File-Upload-Java/imgs/',
+            url: 'http://localhost:8080/jQuery-File-Upload-Java/imgs/',
             maxFileSize: 5000000,
             acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i,
             process: [
@@ -52,8 +54,9 @@ $(function () {
         });
         // Upload server status check for browsers with CORS support:
         if ($.support.cors) {
+                        console.warn("INFO 1: ");
             $.ajax({
-                url: '//localhost:8080/jQuery-File-Upload-Java/imgs/',
+                url: 'http://localhost:8080/jQuery-File-Upload-Java/imgs/',
                 type: 'HEAD'
             }).fail(function () {
                 $('<span class="alert alert-error"/>')
@@ -66,6 +69,7 @@ $(function () {
         // Load existing files:
         $('#fileupload').each(function () {
             var that = this;
+                        console.warn("INFO 1: ");
             $.getJSON(this.action, function (result) {
                 if (result && result.length) {
                     $(that).fileupload('option', 'done')
