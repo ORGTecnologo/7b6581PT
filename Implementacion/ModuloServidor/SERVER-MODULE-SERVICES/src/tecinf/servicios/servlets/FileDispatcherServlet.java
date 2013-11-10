@@ -4,15 +4,23 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
- 
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.jboss.logging.Logger;
+
+import tecinf.negocio.NegocioArchivos;
+import tecinf.negocio.dtos.FileDataType;
+import tecinf.negocio.utiles.NegocioFactory;
  
-public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implements
-        javax.servlet.Servlet {
+public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
+	
+	private static Logger logger = Logger.getLogger(FileDispatcherServlet.class);
+	
     static final long serialVersionUID = 1L;
     private static final int BUFSIZE = 4096;
     private String filePath;
@@ -24,15 +32,21 @@ public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implem
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
-        File file = new File(filePath);
-        int length   = 0;
+    	String qString = request.getQueryString();
+    	NegocioArchivos negocioArchivo = null;
+    	FileDataType file = null;
+    	
+    	try {
+    		negocioArchivo = NegocioFactory.getNegocioArchivos();
+    		file = negocioArchivo.responderArchivo(qString);
+    	} catch (Exception e) {
+    		logger.error(e.getMessage() , e);
+    	}    	
+        
+        int length = 0;
         ServletOutputStream outStream = response.getOutputStream();
         ServletContext context  = getServletConfig().getServletContext();
         String mimetype = context.getMimeType(filePath);
-        
-        //String usr = request.getParameter("usr");
-        //String tkn = request.getParameter("tkn");
-        //String archivo = request.getParameter("file");
         
         // sets response content type
         if (mimetype == null) {
