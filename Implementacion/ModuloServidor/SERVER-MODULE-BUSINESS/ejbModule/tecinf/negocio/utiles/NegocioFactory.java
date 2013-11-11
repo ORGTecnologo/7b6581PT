@@ -14,6 +14,8 @@ import tecinf.negocio.NegocioCategoriaContenido;
 import tecinf.negocio.NegocioCategoriaContenidoImpl;
 import tecinf.negocio.NegocioContenido;
 import tecinf.negocio.NegocioContenidoImpl;
+import tecinf.negocio.NegocioParametros;
+import tecinf.negocio.NegocioParametrosImpl;
 import tecinf.negocio.NegocioUsuario;
 import tecinf.negocio.NegocioUsuarioImpl;
 
@@ -37,6 +39,10 @@ public class NegocioFactory {
 	
 	public static NegocioAuditoria getNegocioAuditoria() throws NamingException{
 		return (NegocioAuditoria)lookup(NegocioAuditoriaImpl.class.getSimpleName(), NegocioAuditoria.class.getName());
+	}
+	
+	public static NegocioParametros getNegocioParametros() throws NamingException{
+		return (NegocioParametros)lookup(NegocioParametrosImpl.class.getSimpleName(), NegocioParametros.class.getName());
 	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })

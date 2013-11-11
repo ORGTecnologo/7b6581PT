@@ -100,3 +100,7 @@ update categorias_contenido set habilitado=true;
 
 update sub_categorias_contenido set habilitado=true;
 
+insert into parametros (nombre_parametro, valor_parametro) values('lapsoEjecucionChequeoSesiones' , '20');
+
+insert into parametros (nombre_parametro, valor_parametro) values('lapsoEjecucionActualizacionInfoContenidos' , '30');
+

@@ -9,12 +9,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "contenidos")
 @Inheritance(strategy = InheritanceType.JOINED)
+
+@NamedQueries( {
+	
+	@NamedQuery(name = "ContenidoEntity.findAll", 
+		query = "SELECT e FROM ContenidoEntity e ORDER BY e.id") ,
+})
+
+
 public abstract class ContenidoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;

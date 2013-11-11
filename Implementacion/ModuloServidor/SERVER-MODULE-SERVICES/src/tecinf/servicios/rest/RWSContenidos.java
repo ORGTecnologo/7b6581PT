@@ -7,13 +7,18 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 
 import org.jboss.logging.Logger;
 
 import tecinf.negocio.NegocioContenido;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.IContenidoDataType;
+import tecinf.negocio.dtos.ListaFiltrosDataType;
 import tecinf.negocio.utiles.NegocioFactory;
+
+import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.JsonParser;
 
 @Path("/contenidos")
 public class RWSContenidos {
@@ -58,6 +63,23 @@ public class RWSContenidos {
 			logger.error(e.getMessage() , e); 
 		}
 		return cont;
+	}
+	
+	@GET
+	@Path("/obtenerInfoContenido/{filtros}")
+	@Produces("application/json")
+	public List<ContenidoDataType> filtrarContenidos(@QueryParam("filtros") String filtros) {
+		List<ContenidoDataType> listaContenidos = null;
+		try {
+			
+			ObjectMapper mapper = new ObjectMapper();			
+			ListaFiltrosDataType listaFiltros = mapper.readValue(filtros, ListaFiltrosDataType.class); 			
+			listaContenidos = negocioContenido.filtrarContenidos(listaFiltros);
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}
+		return listaContenidos;
 	}
 	
 }

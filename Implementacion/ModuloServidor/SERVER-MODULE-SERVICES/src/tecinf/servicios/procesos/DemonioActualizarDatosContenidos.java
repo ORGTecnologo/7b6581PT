@@ -1,13 +1,14 @@
 package tecinf.servicios.procesos;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import org.jboss.logging.Logger;
 
 import tecinf.negocio.NegocioContenido;
+import tecinf.negocio.NegocioParametros;
+import tecinf.negocio.utiles.EnumParametrosValor;
 import tecinf.negocio.utiles.NegocioFactory;
 
 public class DemonioActualizarDatosContenidos {
@@ -26,10 +27,11 @@ public class DemonioActualizarDatosContenidos {
     	SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
     	
         public void run() {
+        	NegocioParametros negocioParametros = null;
         	try {
         		
-        		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        		logger.info("Ejecucion de demonio de actualizacion de datos de contenidos " + sdf.format(new Date()));  
+        		negocioParametros = NegocioFactory.getNegocioParametros();        		
+        		logger.info("Ejecucion de demonio de actualizacion de datos de contenidos");  
         		NegocioContenido negocioContenido = NegocioFactory.getNegocioContenido();
         		negocioContenido.actualizarDatosContenidos();
                 
@@ -37,7 +39,7 @@ public class DemonioActualizarDatosContenidos {
 				logger.error(e.getMessage() , e);
 			} finally {
 				timer.cancel();
-				new DemonioActualizarDatosContenidos(LapsosProcesos.LAPSO_EJECUCION_DEMONIO_ACTUALIZACION_DATOS_CONTENIDOS);
+				new DemonioActualizarDatosContenidos(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_ACTUALIZACION_INFO_CONTENIDOS)));
 			}
         }
 
