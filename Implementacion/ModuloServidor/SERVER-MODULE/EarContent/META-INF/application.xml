@@ -9,12 +9,6 @@
   </module>
   <module>
     <web>
-      <web-uri>SERVER-MODULE-SERVICES.war</web-uri>
-      <context-root>SERVER-MODULE-SERVICES</context-root>
-    </web>
-  </module>
-  <module>
-    <web>
       <web-uri>SERVER-MODULE-PRESENTATION.war</web-uri>
       <context-root>SERVER-MODULE-PRESENTATION</context-root>
     </web>

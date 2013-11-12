@@ -25,7 +25,7 @@ function CTES_PROY(){
 	this.TIPO_CONTENIDO_LIBRO = "tipo_contenido_libro";
 
 	this.HOST 		  = "http://localhost:8080";
-	this.IP_SERVICIOS = "http://localhost:8080/SERVER-MODULE-SERVICES";
+	this.IP_SERVICIOS = "http://localhost:8080/SERVER-MODULE-PRESENTATION";
 }
 
 var varsProy = new VARS_PROY();

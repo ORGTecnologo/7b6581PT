@@ -2,7 +2,7 @@
  * Llamadas Ajax de la aplicacion.
  */
 
-var ip = "/SERVER-MODULE-SERVICES/restws";
+var ip = "/SERVER-MODULE-PRESENTATION/restws";
 
 //POST__________POST__________POST
 function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento,cel){

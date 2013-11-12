@@ -18,6 +18,8 @@ import tecinf.persistencia.daos.EstadoUsuarioDao;
 import tecinf.persistencia.daos.EstadoUsuarioDaoImpl;
 import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.ParametroValorDaoImpl;
+import tecinf.persistencia.daos.PromocionDao;
+import tecinf.persistencia.daos.PromocionDaoImpl;
 import tecinf.persistencia.daos.SessionDao;
 import tecinf.persistencia.daos.SessionDaoImpl;
 import tecinf.persistencia.daos.SubCategoriaContenidoDao;
@@ -86,6 +88,10 @@ public class PersistenciaFactory {
 	
 	public static UsuarioDescargaContenidoDao getUsuarioDescargaContenidoDao() throws NamingException{
 		return (UsuarioDescargaContenidoDao) lookup(UsuarioDescargaContenidoDaoImpl.class.getSimpleName(),UsuarioDescargaContenidoDao.class.getName());
+	}
+	
+	public static PromocionDao getPromocionDao() throws NamingException{
+		return (PromocionDao) lookup(PromocionDaoImpl.class.getSimpleName(),PromocionDao.class.getName());
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
