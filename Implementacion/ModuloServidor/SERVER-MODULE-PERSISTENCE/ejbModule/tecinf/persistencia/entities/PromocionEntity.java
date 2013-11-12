@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -22,6 +24,10 @@ public class PromocionEntity implements Serializable {
 	@SequenceGenerator(name = "promocion_secuencia", sequenceName = "promocion_seq", allocationSize = 1)
 	private Integer id;
 	
+	@OneToOne
+	@JoinColumn(name="fk_contenido")
+	private ContenidoEntity contenido;
+	
 	@Column(name="nombre_promocion", nullable=false, length=100)
 	private String nombrePromocion;
 	
@@ -29,7 +35,7 @@ public class PromocionEntity implements Serializable {
 	private String descripcionPromocion;
 	
 	@Column(name="descuento_promocion", nullable=false, length=50)
-	private String descuentoPromocion;
+	private Float descuentoPromocion;
 	
 	@Column(name="fecha_inicio_promocion", nullable=false)
 	private Date fechaInicioPromocion;
@@ -61,11 +67,11 @@ public class PromocionEntity implements Serializable {
 		this.descripcionPromocion = descripcionPromocion;
 	}
 
-	public String getDescuentoPromocion() {
+	public Float getDescuentoPromocion() {
 		return descuentoPromocion;
 	}
 
-	public void setDescuentoPromocion(String descuentoPromocion) {
+	public void setDescuentoPromocion(Float descuentoPromocion) {
 		this.descuentoPromocion = descuentoPromocion;
 	}
 
@@ -83,6 +89,14 @@ public class PromocionEntity implements Serializable {
 
 	public void setFechaFinPromocion(Date fechaFinPromocion) {
 		this.fechaFinPromocion = fechaFinPromocion;
+	}
+
+	public ContenidoEntity getContenido() {
+		return contenido;
+	}
+
+	public void setContenido(ContenidoEntity contenido) {
+		this.contenido = contenido;
 	}
 	
 

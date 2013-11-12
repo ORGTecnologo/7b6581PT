@@ -99,7 +99,7 @@ public class DataTypesFactory {
 		
 		if (fotos != null && fotos.size() > 0){
 			for (ContenidoFotoEntity f : fotos){
-				dt.getFotos().add("/SERVER-MODULE-SERVICES/Images?" + f.getUrlFoto());
+				dt.getFotos().add("/SERVER-MODULE-PRESENTATION/Images?" + f.getUrlFoto());
 			}
 		}
 		
@@ -112,7 +112,7 @@ public class DataTypesFactory {
 		FileSystemUtils fsu = null;
 		try { fsu = new FileSystemUtils(); } catch (NamingException e) { logger.error(e.getMessage() , e); }
 		dt.setTamanioContenido(fsu.getFileSize(c.getRutaArchivoContenido()));
-		dt.setUrlArchivoContenido("/SERVER-MODULE-SERVICES/FileDispatcherServlet?" + c.getRutaArchivoContenido());
+		dt.setUrlArchivoContenido("/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?" + c.getRutaArchivoContenido());
 		dt.setCantidadDescargas(c.getCantidadDescargas() == null ? 0 : c.getCantidadDescargas()); 
 		
 		return dt;

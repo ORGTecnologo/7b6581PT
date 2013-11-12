@@ -1,4 +1,4 @@
-package tecinf.servicios.rest;
+package tecinf.presentacion.rest;
 
 import java.util.List;
 
@@ -26,7 +26,7 @@ import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.dtos.UsuarioProveedorDataType;
 import tecinf.negocio.utiles.EnumRespuestas;
 import tecinf.negocio.utiles.NegocioFactory;
-import tecinf.servicios.utiles.JSonUtils;
+import tecinf.presentacion.utiles.JSonUtils;
 
 
 @Path("/usuarios")

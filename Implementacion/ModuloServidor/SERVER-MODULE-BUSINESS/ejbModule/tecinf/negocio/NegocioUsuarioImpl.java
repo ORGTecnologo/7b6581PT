@@ -107,6 +107,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 			resp.setTipoUsuario(ue.getTipoUsuario());
 			
 			//Session
+			/*
 			SessionEntity session = new SessionEntity();
 			session.setUsuario(ue.getUsuario()); 
 			session.setTimeStamp(new Date());
@@ -114,6 +115,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 			session.setToken(tkn);
 			session.setTimeStamp(updateTimeStamp(new Date())); 
 			sessionDao.persist(session);
+			*/
 		}
 		return resp;
 	}

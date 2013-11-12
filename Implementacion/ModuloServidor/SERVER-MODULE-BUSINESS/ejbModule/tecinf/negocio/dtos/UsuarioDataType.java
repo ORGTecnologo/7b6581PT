@@ -68,7 +68,7 @@ public abstract class UsuarioDataType implements Serializable {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 	public Date getFechaNacimientoDate() throws Exception {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		return (this.fechaNacimiento == null ? null : sdf.parse(this.fechaNacimiento) ); 
 	}
 	public void setFechaNacimientoDate(Date fechaNacimientoDate) {
