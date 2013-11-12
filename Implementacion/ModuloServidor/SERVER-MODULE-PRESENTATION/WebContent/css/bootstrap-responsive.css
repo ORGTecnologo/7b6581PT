@@ -167,8 +167,10 @@
     width: 170px;
   }
   .span1 {
-    width: 70px;
-  }
+    min-height: 395px;
+  
+    min-width: 100%;
+}
   .offset12 {
     margin-left: 1230px;
   }

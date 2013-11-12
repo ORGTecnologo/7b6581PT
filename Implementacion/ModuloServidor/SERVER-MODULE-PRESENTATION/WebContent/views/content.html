@@ -1,16 +1,21 @@
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="../css/market.css" media="screen" />
-<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" media="screen" />
 
-<script src="../js/jquery.min.js"></script>
+<head>
+    <title>MarketPlace Tecnologo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-responsive.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="../css/market.css" media="screen" />
+	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" media="screen" />
+
+	<script src="../js/jquery.min.js"></script>
+</head>
 
 <body>
 
 <!-- BARRA DE NAVEGACION -->
-	<nav class="navbar navbar-default " style="position: fixed !important;width: 100%;" role="navigation">
+	<nav class="navbar navbar-default" role="navigation">
 	  <!-- El logotipo y el icono que despliega el menú se agrupan
-	       para mostrarlos mejor en los dispositivos móviles -->
+	       para mostrarlos menújor en los dispositivos móviles -->
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse"
 				data-target=".navbar-ex1-collapse">
@@ -46,8 +51,7 @@
 	</nav>
 
 <!--LOGIN DE USUARIO -->
-	<div id="loginUsuario" class="modalChocolate modal" hidden style="overflow-y: auto;
-		display: block;width: 26%;min-width: 300px;margin-right: auto;">
+	<div id="loginUsuario" class="modal loginDiv hide">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="ocultarElemento('loginUsuario')">X</button>
 			<h3>Iniciar Sesion</h3>
@@ -56,8 +60,8 @@
 			<div class="row">
 				<div class="col-md-12">
 					<h4>Datos de Usuario</h4>
-					<p>Correo    			<input type="text" class="col-md-12 form-control" id="loginCorreo"></p>
-					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="loginPass"></p>
+					<p>Correo <input type="text" class="col-md-12 form-control" id="loginCorreo"></p>
+					<p>Contrase&ntilde;a <input type="password" class="col-md-12 form-control" id="loginPass"></p>
 				</div>
 			</div>
 		</div>
@@ -68,7 +72,7 @@
 	</div>
 
 <!--REGISTRO DE USUARIO -->
-	<div id="registroUsuario" class="modalChocolate modal" hidden style="overflow-y: auto;display: block;width: 26%;min-width:500px;margin-right: auto;">
+	<div id="registroUsuario" class="modal registerDiv hide">
 		<div class="modal-header">
 	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" 
 	    		onclick="ocultarElemento('registroUsuario')">X</button>
@@ -82,7 +86,7 @@
 					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="inputPass"></p>
 					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="inputPass2"></p>
 					<p>Nombre Usuario  		<input type="text" class="col-md-12 form-control" id="inputNick"></p>
-					<p id="sitioWeb_p">Sitio Web 	  		<input type="text" class="col-md-12 form-control" id="inputWeb"></p>
+					<p id="sitioWeb_p">Sitio Web <input type="text" class="col-md-12 form-control" id="inputWeb"></p>
 				</div>
 				<div class="col-md-6">
 					<h4>Datos Personales</h4>
@@ -101,25 +105,49 @@
 		</div>
 		<div class="modal-footer">
 			<button type="button" data-dismiss="modal" class="btn" onclick="ocultarElemento('registroUsuario')">Cerrar</button>
-			<button type="button" class="btn btn-primary" onclick="crearProveedor()">Confirmar</button>
+			<button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
 		</div>
 	</div>
 
-<!-- CONTENIDO / CUERPO DE LA VISTA-->
-	<div id="MP_Content"  class="col-md-4" style="padding-top: 5em;text-align: center;">
-	</div>
-	<div id="MP_Canvas" class="col-md-7" style="padding-top: 5em;">
-		<h4 id="MP_Descripcion"></h4>
-		Puntuacion: 
-		<img id="star1" src="../img/estrellaAct.png" alt="../img/estrellaAct.png">
-		<img id="star2" src="../img/estrellaAct.png" alt="../img/estrellaAct.png">
-		<img id="star3" src="../img/estrellaAct.png" alt="../img/estrellaAct.png">
-		<img id="star4" src="../img/estrellaAct.png" alt="../img/estrellaAct.png">
-		<img id="star5" src="../img/estrellaNoAct.png" alt="../img/estrellaNoAct.png">
-		<p id="MP_Precio" class="precioContenido"></p>
-		<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-	</div>
+<!-- CONTENIDO / CUERPO DE LA VISTA -->
+	<div class="col-md-16" style="min-height: 395px;width: 100%;">
+		<div id="MP_Content" class="col-md-4" style="text-align: center;">
+		</div>
+		<div id="MP_Canvas" class="col-md-8">
+			<h4 id="MP_Descripcion"></h4>
+			<div id="EspecificosTipoContenido" class="col-md-12 Especificos">
+				<div id="espMusica" style="display:none">
+					<p></p><p></p><p></p>
+				</div>
+				<div id="espLibro" style="display:none">
+					<p></p><p></p><p></p>
+				</div>
+				<div id="espApp" style="display:none">
+					<p></p><p></p><p></p>
+				</div>
+				<div id="espVideo" style="display:none">
+					<p></p><p></p><p></p>
+				</div>
+			</div>
 
+			<p id="tamanioCont"></p>
+			<p id="cantDescargas"></p>
+			<p>Puntuacion: 
+			<img id="star1" src="../img/estrellaAct.png" alt="../img/estrellaAct.png">
+			<img id="star2" src="../img/estrellaAct.png" alt="../img/estrellaAct.png">
+			<img id="star3" src="../img/estrellaAct.png" alt="../img/estrellaAct.png">
+			<img id="star4" src="../img/estrellaAct.png" alt="../img/estrellaAct.png">
+			<img id="star5" src="../img/estrellaNoAct.png" alt="../img/estrellaNoAct.png">
+			</p>
+			<a href="#" id="comprarBtn" class="btn btn-info" role="button">Comprar</a>	
+			<p id="MP_Precio" class="precioContenido"></p>
+		</div>
+	</div>
+	<div class="col-md-16" style="text-align: center">
+		<h2>Opiniones de los Usuarios</h2>
+		------------------------------------
+		<h4>Me gusta mucho este contenido :D</h4>
+	</div>
 </body>
 
 <script src="../js/jquery-ui.js"></script>

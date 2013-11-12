@@ -153,6 +153,8 @@ function armarContenidoHTML(){
 	imgContent.setAttribute('src',confProy.HOST + Content.Imagenes[0]);
 	imgContent.setAttribute('alt',confProy.HOST + Content.Imagenes[0]);
 	imgContent.setAttribute('class','img-circle miniatura');
+	imgContent.setAttribute('style','width: 250px;height: 250px;');
+
 
 	thumbnailContent.setAttribute('class','thumbnail');
 	thumbnailContent.appendChild(imgContent);
@@ -160,12 +162,13 @@ function armarContenidoHTML(){
 
 	divContent.appendChild(thumbnailContent);
 
-	cargarPuntuacion(Content.Calificacion);
+	cargarPuntuacion(Content.Calificacion,"../");
 	esconderEspecificosOtros(Content.tipoContenido);
 	setearEspecificos(Content);
 }
 
-function cargarPuntuacion(puntuacion){
+function cargarPuntuacion(puntuacion,origen){
+	origen || (origen = ''); //Ruta por defecto
 
 	var star1 = document.getElementById('star1');
 	var star2 = document.getElementById('star2');
@@ -175,84 +178,84 @@ function cargarPuntuacion(puntuacion){
 
 	switch(puntuacion){
 		case 1:
-			star1.setAttribute('src','img/estrellaAct.png');
-			star2.setAttribute('src','img/estrellaNoAct.png');
-			star3.setAttribute('src','img/estrellaNoAct.png');
-			star4.setAttribute('src','img/estrellaNoAct.png');
-			star5.setAttribute('src','img/estrellaNoAct.png');		
+			star1.setAttribute('src',origen + 'img/estrellaAct.png');
+			star2.setAttribute('src',origen + 'img/estrellaNoAct.png');
+			star3.setAttribute('src',origen + 'img/estrellaNoAct.png');
+			star4.setAttribute('src',origen + 'img/estrellaNoAct.png');
+			star5.setAttribute('src',origen + 'img/estrellaNoAct.png');		
 
-			star1.setAttribute('alt','img/estrellaAct.png');
-			star2.setAttribute('alt','img/estrellaNoAct.png');
-			star3.setAttribute('alt','img/estrellaNoAct.png');
-			star4.setAttribute('alt','img/estrellaNoAct.png');
-			star5.setAttribute('alt','img/estrellaNoAct.png');		
+			star1.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star2.setAttribute('alt',origen + 'img/estrellaNoAct.png');
+			star3.setAttribute('alt',origen + 'img/estrellaNoAct.png');
+			star4.setAttribute('alt',origen + 'img/estrellaNoAct.png');
+			star5.setAttribute('alt',origen + 'img/estrellaNoAct.png');		
 		break;
 		case 2:
-			star1.setAttribute('src','img/estrellaAct.png');
-			star2.setAttribute('src','img/estrellaAct.png');
-			star3.setAttribute('src','img/estrellaNoAct.png');
-			star4.setAttribute('src','img/estrellaNoAct.png');
-			star5.setAttribute('src','img/estrellaNoAct.png');
+			star1.setAttribute('src',origen + 'img/estrellaAct.png');
+			star2.setAttribute('src',origen + 'img/estrellaAct.png');
+			star3.setAttribute('src',origen + 'img/estrellaNoAct.png');
+			star4.setAttribute('src',origen + 'img/estrellaNoAct.png');
+			star5.setAttribute('src',origen + 'img/estrellaNoAct.png');
 
-			star1.setAttribute('alt','img/estrellaAct.png');
-			star2.setAttribute('alt','img/estrellaAct.png');
-			star3.setAttribute('alt','img/estrellaNoAct.png');
-			star4.setAttribute('alt','img/estrellaNoAct.png');
-			star5.setAttribute('alt','img/estrellaNoAct.png');
+			star1.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star2.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star3.setAttribute('alt',origen + 'img/estrellaNoAct.png');
+			star4.setAttribute('alt',origen + 'img/estrellaNoAct.png');
+			star5.setAttribute('alt',origen + 'img/estrellaNoAct.png');
 
 		break;
 		case 3:
-			star1.setAttribute('src','img/estrellaAct.png');
-			star2.setAttribute('src','img/estrellaAct.png');
-			star3.setAttribute('src','img/estrellaAct.png');
-			star4.setAttribute('src','img/estrellaNoAct.png');
-			star5.setAttribute('src','img/estrellaNoAct.png');		
+			star1.setAttribute('src',origen + 'img/estrellaAct.png');
+			star2.setAttribute('src',origen + 'img/estrellaAct.png');
+			star3.setAttribute('src',origen + 'img/estrellaAct.png');
+			star4.setAttribute('src',origen + 'img/estrellaNoAct.png');
+			star5.setAttribute('src',origen + 'img/estrellaNoAct.png');		
 
-			star1.setAttribute('alt','img/estrellaAct.png');
-			star2.setAttribute('alt','img/estrellaAct.png');
-			star3.setAttribute('alt','img/estrellaAct.png');
-			star4.setAttribute('alt','img/estrellaNoAct.png');
-			star5.setAttribute('alt','img/estrellaNoAct.png');		
+			star1.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star2.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star3.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star4.setAttribute('alt',origen + 'img/estrellaNoAct.png');
+			star5.setAttribute('alt',origen + 'img/estrellaNoAct.png');		
 
 		break;
 		case 4:
-			star1.setAttribute('src','img/estrellaAct.png');
-			star2.setAttribute('src','img/estrellaAct.png');
-			star3.setAttribute('src','img/estrellaAct.png');
-			star4.setAttribute('src','img/estrellaAct.png');
-			star5.setAttribute('src','img/estrellaNoAct.png');
+			star1.setAttribute('src',origen + 'img/estrellaAct.png');
+			star2.setAttribute('src',origen + 'img/estrellaAct.png');
+			star3.setAttribute('src',origen + 'img/estrellaAct.png');
+			star4.setAttribute('src',origen + 'img/estrellaAct.png');
+			star5.setAttribute('src',origen + 'img/estrellaNoAct.png');
 
-			star1.setAttribute('alt','img/estrellaAct.png');
-			star2.setAttribute('alt','img/estrellaAct.png');
-			star3.setAttribute('alt','img/estrellaAct.png');
-			star4.setAttribute('alt','img/estrellaAct.png');
-			star5.setAttribute('alt','img/estrellaNoAct.png');
+			star1.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star2.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star3.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star4.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star5.setAttribute('alt',origen + 'img/estrellaNoAct.png');
 		break;
 		case 5:
-			star1.setAttribute('src','img/estrellaAct.png');
-			star2.setAttribute('src','img/estrellaAct.png');
-			star3.setAttribute('src','img/estrellaAct.png');
-			star4.setAttribute('src','img/estrellaAct.png');
-			star5.setAttribute('src','img/estrellaAct.png');
+			star1.setAttribute('src',origen + 'img/estrellaAct.png');
+			star2.setAttribute('src',origen + 'img/estrellaAct.png');
+			star3.setAttribute('src',origen + 'img/estrellaAct.png');
+			star4.setAttribute('src',origen + 'img/estrellaAct.png');
+			star5.setAttribute('src',origen + 'img/estrellaAct.png');
 
-			star1.setAttribute('alt','img/estrellaAct.png');
-			star2.setAttribute('alt','img/estrellaAct.png');
-			star3.setAttribute('alt','img/estrellaAct.png');
-			star4.setAttribute('alt','img/estrellaAct.png');
-			star5.setAttribute('alt','img/estrellaAct.png');
+			star1.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star2.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star3.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star4.setAttribute('alt',origen + 'img/estrellaAct.png');
+			star5.setAttribute('alt',origen + 'img/estrellaAct.png');
 		break;
 		default:
-			star1.setAttribute('src','img/estrellaNoAct.png');
-			star2.setAttribute('src','img/estrellaNoAct.png');
-			star3.setAttribute('src','img/estrellaNoAct.png');
-			star4.setAttribute('src','img/estrellaNoAct.png');
-			star5.setAttribute('src','img/estrellaNoAct.png');		
+			star1.setAttribute('src',origen + 'img/estrellaNoAct.png');
+			star2.setAttribute('src',origen + 'img/estrellaNoAct.png');
+			star3.setAttribute('src',origen + 'img/estrellaNoAct.png');
+			star4.setAttribute('src',origen + 'img/estrellaNoAct.png');
+			star5.setAttribute('src',origen + 'img/estrellaNoAct.png');		
 
-			star1.setAttribute('alt','img/estrellaNoAct.png');
-			star2.setAttribute('alt','img/estrellaNoAct.png');
-			star3.setAttribute('alt','img/estrellaNoAct.png');
-			star4.setAttribute('alt','img/estrellaNoAct.png');
-			star5.setAttribute('alt','img/estrellaNoAct.png');			
+			star1.setAttribute('alt',origen + 'img/estrellaNoAct.png');
+			star2.setAttribute('alt',origen + 'img/estrellaNoAct.png');
+			star3.setAttribute('alt',origen + 'img/estrellaNoAct.png');
+			star4.setAttribute('alt',origen + 'img/estrellaNoAct.png');
+			star5.setAttribute('alt',origen + 'img/estrellaNoAct.png');			
 		break;
 	}
 }
