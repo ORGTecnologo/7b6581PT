@@ -18,6 +18,10 @@ public class FileSystemUtils {
 	private static final String DIRECTORIO_USUARIOS_CLIENTES = "usuarios_clientes";
 	private static final String DIRECTORIO_USUARIOS_PROVEEDORES = "usuarios_proveedores";
 	private static final String DIRECTORIO_USUARIOS_ADMINISTRADORES = "usuarios_administradores";
+	private static final String DIRECTORIO_RECURSOS_SISTEMA = "recursos_aplicacion";
+	private static final String DIRECTORIO_CATEGORIAS_SISTEMA = "recursos_aplicacion/categorias";
+	private static final String DIRECTORIO_SUBCATEGORIAS_SISTEMA = "recursos_aplicacion/subcategorias";
+	private static final String DIRECTORIO_TEMPORALES = "tmp";
 	
 	private ParametroValorDao parametroValorDao = null;
 	
@@ -86,6 +90,19 @@ public class FileSystemUtils {
 			logger.error(e.getMessage() , e);
 			return 0;
 		}
+	}
+	
+	public void copyFile(String sourceStr, String destStr) throws Exception {
+		ParametroValorEntity rutaBase = parametroValorDao.findByID(EnumParametrosValor.RUTA_BASE_SISTEMA_ARCHIVOS);
+		File source  = new File(rutaBase.getValorParametro() + sourceStr);
+		File dest = new File(rutaBase.getValorParametro() + destStr);
+		Files.copy(source.toPath(), dest.toPath());
+	}
+	
+	public void deleteFile(String filePath) throws Exception {
+		ParametroValorEntity rutaBase = parametroValorDao.findByID(EnumParametrosValor.RUTA_BASE_SISTEMA_ARCHIVOS);
+		File file = new File(rutaBase.getValorParametro() + filePath);
+		file.delete();
 	}
 	
 }

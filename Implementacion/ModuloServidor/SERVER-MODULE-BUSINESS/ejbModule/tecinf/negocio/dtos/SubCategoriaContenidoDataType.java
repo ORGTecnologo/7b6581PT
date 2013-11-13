@@ -9,7 +9,14 @@ public class SubCategoriaContenidoDataType implements Serializable {
 	private Integer id;
 	private String nombre;
 	private String descripcion;
-
+	private String rutaImagen;
+	
+	public String getRutaImagen() {
+		return rutaImagen;
+	}
+	public void setRutaImagen(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
+	}
 	public Integer getId() {
 		return id;
 	}

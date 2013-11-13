@@ -11,12 +11,21 @@ public class CategoriaContenidoDataType implements Serializable {
 	private Integer id;
 	private String nombre;
 	private String descripcion;
+	private String rutaImagen;
 	private List<SubCategoriaContenidoDataType> subcategorias;
 	
 	public CategoriaContenidoDataType(){
 		subcategorias = new ArrayList<SubCategoriaContenidoDataType>();
 	}
-	
+		
+	public String getRutaImagen() {
+		return rutaImagen;
+	}
+
+	public void setRutaImagen(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
+	}
+
 	public Integer getId() {
 		return id;
 	}

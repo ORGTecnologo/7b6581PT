@@ -104,3 +104,7 @@ insert into parametros (nombre_parametro, valor_parametro) values('lapsoEjecucio
 
 insert into parametros (nombre_parametro, valor_parametro) values('lapsoEjecucionActualizacionInfoContenidos' , '30');
 
+update parametros set valor_parametro='contenido_libro;contenido_video;contenido_musica;contenido_sofware;tmp' where nombre_parametro='directoriosUsuariosProveedores';
+
+
+

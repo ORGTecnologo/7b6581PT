@@ -54,8 +54,10 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 		
 		if (ValidationUtil.isNullOrEmpty(dt.getDescripcion()))
 			throw new Exception("Descripción obligatoria");
-		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))
+		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))		
 			throw new Exception("Nombre obligatorio");
+		if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
+			throw new Exception("Imagen obligatoria obligatorio");
 		
 		CategoriaContenidoEntity categoria = new CategoriaContenidoEntity();
 		categoria.setDescripcion(dt.getDescripcion());
@@ -72,6 +74,8 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 			throw new Exception("Descripción obligatoria");
 		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))
 			throw new Exception("Nombre obligatorio");
+		if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
+			throw new Exception("Imagen obligatoria obligatorio");
 		
 		SubCategoriaContenidoEntity subCategoria = new SubCategoriaContenidoEntity();
 		subCategoria.setDescripcion(dt.getDescripcion());
@@ -88,6 +92,8 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 			throw new Exception("Descripción obligatoria");
 		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))
 			throw new Exception("Nombre obligatorio");
+		if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
+			throw new Exception("Imagen obligatoria obligatorio");
 		
 		CategoriaContenidoEntity categoria = categoriaContenidoDao.findByID(dt.getId());
 		categoria.setDescripcion(dt.getDescripcion());
@@ -104,6 +110,8 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 			throw new Exception("Descripción obligatoria");
 		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))
 			throw new Exception("Nombre obligatorio");
+		if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
+			throw new Exception("Imagen obligatoria obligatorio");
 		
 		SubCategoriaContenidoEntity subCategoria = subCategoriaContenidoDao.findByID(dt.getId());
 		subCategoria.setDescripcion(dt.getDescripcion());
