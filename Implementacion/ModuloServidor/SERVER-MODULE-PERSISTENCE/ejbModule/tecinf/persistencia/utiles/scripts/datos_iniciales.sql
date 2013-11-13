@@ -109,3 +109,9 @@ update parametros set valor_parametro='contenido_libro;contenido_video;contenido
 insert into parametros (nombre_parametro, valor_parametro) values('horasValoracionNoHabilitada' , '72');
 
 insert into parametros (nombre_parametro, valor_parametro) values('lapsoEjecucionActualizacionInfoDescargas' , '30');
+
+alter table usuarios ALTER COLUMN tipo_usuario TYPE varchar(50); 
+
+insert into usuarios (usuario,apellidos,contrasenia,correo_electronico,fecha_nacimiento,nombres,telefono_movil,id_estado,sexo,tipo_usuario)
+values('admin','admin','21232f297a57a5a743894a0e4a801fc3','admin@admin.com','1980-06-16','juan','095632145','H','Masculino','usuario_administrador');
+insert into usuarios_administrador (usuario) values('admin');

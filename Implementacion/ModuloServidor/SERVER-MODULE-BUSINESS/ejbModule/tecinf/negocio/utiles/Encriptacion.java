@@ -35,4 +35,8 @@ public class Encriptacion {
 		return h.toString();
 	} 
 	
+	public static void main (String[] args){
+		System.out.print(encriptarMD5("admin"));		
+	}
+	
 }

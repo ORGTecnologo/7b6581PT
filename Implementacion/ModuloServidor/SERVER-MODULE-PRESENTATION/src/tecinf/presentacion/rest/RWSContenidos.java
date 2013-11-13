@@ -70,7 +70,7 @@ public class RWSContenidos {
 	}
 	
 	@GET
-	@Path("/obtenerInfoContenido/{filtros}")
+	@Path("/filtrarContenidos/{filtros}")
 	@Produces("application/json")
 	public List<ContenidoDataType> filtrarContenidos(@QueryParam("filtros") String filtros) {
 		List<ContenidoDataType> listaContenidos = null;

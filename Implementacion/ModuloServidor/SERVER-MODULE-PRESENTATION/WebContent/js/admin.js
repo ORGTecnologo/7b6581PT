@@ -21,3 +21,11 @@ $(document).ready(function(){
 	    ocultarElemento('Login-Registro-Div');
     }
 });
+
+
+
+/* funciones que cargan los abms en el backend del administrador */
+
+function loadABMCategorias(){
+	$("#wrapperAdministracion").load("/SERVER-MODULE-PRESENTATION/admin/partialCategorias.xhtml");	
+}

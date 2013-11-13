@@ -55,9 +55,9 @@ public class FiltroAutenticacion implements Filter {
 			} else if (userSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR) && !isSupplierRestricted(url)){
 				resp.sendRedirect("/SERVER-MODULE-PRESENTATION/index.html");
 				return;			
-			} else if (userSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) && !isAdminRestricted(url)){
-				resp.sendRedirect("/SERVER-MODULE-PRESENTATION/index.html");
-				return;		
+			} else if (userSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) ){
+				resp.sendRedirect("/SERVER-MODULE-PRESENTATION/admin/admin.html");
+				return;	
 			}			
 		}
 		chain.doFilter(request, response); 
@@ -68,8 +68,8 @@ public class FiltroAutenticacion implements Filter {
 	public void init(FilterConfig fConfig) throws ServletException 
 	{ 
 		// URLs publicas
-		publicURLs = new ArrayList<String>(); 
-		publicURLs.add("/index.html");
+		publicURLs = new ArrayList<String>();	
+		publicURLs.add("/index.html");		
 		publicURLs.add("/css/");
 		publicURLs.add("/js/");
 		publicURLs.add("/cors/");
@@ -77,6 +77,11 @@ public class FiltroAutenticacion implements Filter {
 		publicURLs.add("/img/");
 		publicURLs.add("/restws");
 		publicURLs.add("/views/content.html");
+		
+		//Pendientes a pasar a restringidas para admin
+		publicURLs.add("/admin/admin.xhtml");
+		publicURLs.add("/admin/partialCategorias.xhtml");
+		publicURLs.add("/admin/partialSubCategorias.xhtml");
 		
 		
 		// URLs de administradores
@@ -92,11 +97,9 @@ public class FiltroAutenticacion implements Filter {
 		supplierURLs.add("/FileDispatcherServlet");
 		supplierURLs.add("/proveedor/upload");
 		supplierURLs.add("/proveedor/FileUploadServlet");
-		
-		
-		
+					
 		// URLs de clientes
-		clientURLs = new ArrayList<String>(); 
+		clientURLs = new ArrayList<String>();
 		clientURLs.add("/FileDispatcherServlet");
 		
 	}

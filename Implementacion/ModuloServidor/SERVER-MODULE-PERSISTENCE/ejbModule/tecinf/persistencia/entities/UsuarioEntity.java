@@ -79,7 +79,7 @@ public abstract class UsuarioEntity implements Serializable {
 	@JoinColumn(name="id_estado",nullable=false)
 	private EstadoUsuarioEntity estadoUsuario;
 	
-	@Column(name="tipo_usuario",length=20, nullable=false)
+	@Column(name="tipo_usuario",length=50, nullable=false)
 	private String tipoUsuario;
 	
 	public String getUsuario() {

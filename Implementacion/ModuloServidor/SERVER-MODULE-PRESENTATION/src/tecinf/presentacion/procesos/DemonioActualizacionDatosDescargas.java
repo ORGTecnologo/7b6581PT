@@ -35,7 +35,7 @@ public class DemonioActualizacionDatosDescargas {
 				logger.error(e.getMessage() , e);
 			} finally {
 				timer.cancel();
-				new DemonioActualizacionDatosDescargas(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_ACTUALIZACION_INFO_CONTENIDOS)));
+				new DemonioActualizacionDatosDescargas(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_ACTUALIZACION_INFO_DESCARGAS)));
 			}
         }
 
