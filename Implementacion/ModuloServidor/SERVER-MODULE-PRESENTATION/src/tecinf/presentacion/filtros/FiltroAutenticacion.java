@@ -23,7 +23,7 @@ public class FiltroAutenticacion implements Filter {
 	private List<String> publicURLs;
 	private List<String> adminURLs;
 	private List<String> supplierURLs;
-	private List<String> clientURLs;
+	private List<String> clientURLs; 
 
 	public FiltroAutenticacion() 
 	{	 
