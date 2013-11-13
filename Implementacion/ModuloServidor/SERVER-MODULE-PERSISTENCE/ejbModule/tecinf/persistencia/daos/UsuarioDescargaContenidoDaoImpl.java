@@ -42,5 +42,13 @@ public class UsuarioDescargaContenidoDaoImpl  extends DaoImpl<Integer, UsuarioDe
 		namedQuery.setParameter("estado", estado);
 		return (List<UsuarioDescargaContenidoEntity>)namedQuery.getResultList();		
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<UsuarioDescargaContenidoEntity> getDonwloadsByUserAndState(String usuario, String estado){
+		Query namedQuery = em.createNamedQuery("UsuarioDescargaContenidoEntity.findAllByUsuarioAndEstado");
+		namedQuery.setParameter("estado", estado);
+		namedQuery.setParameter("usuario", usuario);
+		return (List<UsuarioDescargaContenidoEntity>)namedQuery.getResultList();		
+	}
 
 }

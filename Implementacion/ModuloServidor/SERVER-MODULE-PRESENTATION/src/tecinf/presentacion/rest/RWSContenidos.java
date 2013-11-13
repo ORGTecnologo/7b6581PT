@@ -16,10 +16,12 @@ import org.jboss.logging.Logger;
 import tecinf.negocio.NegocioContenido;
 import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
+import tecinf.negocio.dtos.DescargaDataType;
 import tecinf.negocio.dtos.IContenidoDataType;
 import tecinf.negocio.dtos.ListaFiltrosDataType;
 import tecinf.negocio.dtos.UserSession;
 import tecinf.negocio.utiles.NegocioFactory;
+import tecinf.presentacion.utiles.ConstantesSession;
 import tecinf.presentacion.utiles.RightsChecker;
 
 import org.codehaus.jackson.map.ObjectMapper;
@@ -113,6 +115,22 @@ public class RWSContenidos {
 			logger.error(e.getMessage() , e); 
 		}
 		return listaComentarios;
+	}
+	
+	@GET
+	@Path("/obtenerDescargasACalificar")
+	@Produces("application/json")
+	public List<DescargaDataType> obtenerDescargasACalificar(@Context HttpServletRequest req) {
+		List<DescargaDataType> listaDescargas = null;
+		try {
+			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
+			(new RightsChecker()).checkCustomerRights(uSession);
+			listaDescargas = negocioContenido.obtenerDescargasACalificar(uSession.getUsuario()); 
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}
+		return listaDescargas;
 	}
 	
 }

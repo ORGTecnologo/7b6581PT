@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import tecinf.negocio.dtos.UserSession;
 import tecinf.negocio.utiles.EnumTipoUsuario;
+import tecinf.presentacion.utiles.ConstantesSession;
 
 
 public class FiltroAutenticacion implements Filter {
@@ -40,7 +41,7 @@ public class FiltroAutenticacion implements Filter {
 		HttpSession session = req.getSession(true); 
 		String url = req.getServletPath(); 
 		
-		UserSession userSession = (UserSession)session.getAttribute("userSession");
+		UserSession userSession = (UserSession)session.getAttribute(ConstantesSession.keyUsuarioSession);
 		
 		if (!isPublic(url)){
 			

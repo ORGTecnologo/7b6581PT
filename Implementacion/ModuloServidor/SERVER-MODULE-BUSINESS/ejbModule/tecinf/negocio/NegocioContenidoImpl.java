@@ -10,6 +10,7 @@ import javax.naming.NamingException;
 
 import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
+import tecinf.negocio.dtos.DescargaDataType;
 import tecinf.negocio.dtos.ListaFiltrosDataType;
 import tecinf.negocio.utiles.DataTypesFactory;
 import tecinf.negocio.utiles.EnumEstadosDescarga;
@@ -126,6 +127,15 @@ public class NegocioContenidoImpl implements NegocioContenido {
 			}
 		}
 		
+	}
+	
+	public List<DescargaDataType> obtenerDescargasACalificar(String usuario){
+		List<DescargaDataType> listaDescargasACalificar = new ArrayList<>();
+		
+		List<UsuarioDescargaContenidoEntity> descargas = usuarioDescargaContenidoDao.getDonwloadsByUserAndState(usuario, EnumEstadosDescarga.VALORACION_NO_HABILITADA);
+			
+		
+		return listaDescargasACalificar;
 	}
 	
 }
