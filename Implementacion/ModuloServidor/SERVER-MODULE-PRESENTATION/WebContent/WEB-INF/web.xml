@@ -50,13 +50,17 @@
   	<!-- SERVLET DE SUBIDA DE ARCHIVOS -->
 	<servlet>
 	 	<description/>
-	 	<display-name>UploadServlet</display-name>
-	 	<servlet-name>UploadServlet</servlet-name>
+	 	<display-name>FileUploadServlet</display-name>
+	 	<servlet-name>FileUploadServlet</servlet-name>
 	 	<servlet-class>tecinf.presentacion.servlets.FileUploadServlet</servlet-class>
   	</servlet>
-	  	<servlet-mapping>
-	    <servlet-name>UploadServlet</servlet-name>
-	    <url-pattern>/upload</url-pattern>
+  	<servlet-mapping>
+	    <servlet-name>FileUploadServlet</servlet-name>
+	    <url-pattern>/proveedor/upload</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+	    <servlet-name>FileUploadServlet</servlet-name>
+	    <url-pattern>/admin/upload</url-pattern>
 	</servlet-mapping>
 	
 	

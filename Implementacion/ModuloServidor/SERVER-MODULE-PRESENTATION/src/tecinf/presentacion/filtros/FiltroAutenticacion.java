@@ -81,15 +81,22 @@ public class FiltroAutenticacion implements Filter {
 		// URLs de administradores
 		adminURLs = new ArrayList<String>(); 
 		adminURLs.add("/admin/admin.html");
+		adminURLs.add("/admin/upload");
+		adminURLs.add("/admin/FileUploadServlet");
 		
 		// URLs de proveedores
 		supplierURLs = new ArrayList<String>(); 
 		supplierURLs.add("/proveedor/AltaContenido.html");
 		supplierURLs.add("/proveedor/upload.jsp");
+		supplierURLs.add("/FileDispatcherServlet");
+		supplierURLs.add("/proveedor/upload");
+		supplierURLs.add("/proveedor/FileUploadServlet");
+		
+		
 		
 		// URLs de clientes
 		clientURLs = new ArrayList<String>(); 
-		//clientURLs.add("/web/paginas/login.xhtml");
+		clientURLs.add("/FileDispatcherServlet");
 		
 	}
 	

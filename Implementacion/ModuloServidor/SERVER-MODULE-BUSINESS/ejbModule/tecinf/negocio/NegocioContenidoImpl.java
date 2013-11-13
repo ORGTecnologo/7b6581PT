@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.naming.NamingException;
 
+import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ListaFiltrosDataType;
 import tecinf.negocio.utiles.DataTypesFactory;
@@ -72,6 +73,17 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		
 		
 		return new ArrayList<ContenidoDataType>();
+	}
+	
+	public List<ComentarioDataType> obtenerComentariosAAprobar(){
+		
+		return new ArrayList<>();
+	}
+	
+	public List<ComentarioDataType> obtenerComentariosDeContenido(){
+		
+		
+		return new ArrayList<>();
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ListaFiltrosDataType;
 
@@ -15,5 +16,9 @@ public interface NegocioContenido {
 	public void actualizarDatosContenidos();
 	
 	public List<ContenidoDataType> filtrarContenidos(ListaFiltrosDataType filtros);
+	
+	public List<ComentarioDataType> obtenerComentariosAAprobar();
+	
+	public List<ComentarioDataType> obtenerComentariosDeContenido();
 	
 }
