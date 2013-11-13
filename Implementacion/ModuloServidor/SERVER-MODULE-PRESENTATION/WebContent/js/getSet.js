@@ -21,10 +21,11 @@ function setRegistroTipo(tipo){
 function mostrarElemento(id){
 
 	var div = $("#" + id)[0];
-	//div.show();
 
 	div.classList.remove('hide');
 	div.classList.add('show');
+
+	$('#'+id).modal();
 
 	switch(id){
 		case 'registroUsuario':
