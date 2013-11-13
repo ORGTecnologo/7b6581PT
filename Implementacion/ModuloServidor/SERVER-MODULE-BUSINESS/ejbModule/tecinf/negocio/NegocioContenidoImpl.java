@@ -1,6 +1,8 @@
 package tecinf.negocio;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -10,11 +12,16 @@ import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ListaFiltrosDataType;
 import tecinf.negocio.utiles.DataTypesFactory;
+import tecinf.negocio.utiles.EnumEstadosDescarga;
+import tecinf.negocio.utiles.EnumParametrosValor;
+import tecinf.negocio.utiles.TimeUtils;
 import tecinf.persistencia.daos.ContenidoDao;
 import tecinf.persistencia.daos.ContenidoFotoDao;
+import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.UsuarioDescargaContenidoDao;
 import tecinf.persistencia.entities.ContenidoEntity;
 import tecinf.persistencia.entities.ContenidoFotoEntity;
+import tecinf.persistencia.entities.ParametroValorEntity;
 import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
 import tecinf.persistencia.utiles.PersistenciaFactory;
 
@@ -23,6 +30,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	
 	private ContenidoDao contenidoDao = null;
 	private ContenidoFotoDao contenidoFotosDao = null;
+	private ParametroValorDao parametroValorDao = null;
 	private UsuarioDescargaContenidoDao usuarioDescargaContenidoDao = null;
 	
 	public NegocioContenidoImpl() throws NamingException { 
@@ -30,6 +38,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		contenidoDao = PersistenciaFactory.getContenidoDao();
 		contenidoFotosDao = PersistenciaFactory.getContenidoFotoDao();
 		usuarioDescargaContenidoDao = PersistenciaFactory.getUsuarioDescargaContenidoDao();
+		parametroValorDao = PersistenciaFactory.getParametroValorDao();
 		
 	}
 	
@@ -80,7 +89,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	public List<ComentarioDataType> obtenerComentariosAAprobar(){
 		List<ComentarioDataType> comentariosPendientes = new ArrayList<>();
 		
-		List<UsuarioDescargaContenidoEntity> listaDescargasPendientes = usuarioDescargaContenidoDao.getDonwloadsByState(false);
+		List<UsuarioDescargaContenidoEntity> listaDescargasPendientes = usuarioDescargaContenidoDao.getDonwloadsByState(EnumEstadosDescarga.PENDIENTE_VALIDACION);
 		if (listaDescargasPendientes != null){
 			for (UsuarioDescargaContenidoEntity e : listaDescargasPendientes)
 				comentariosPendientes.add(DataTypesFactory.getComentarioDataType(e));
@@ -91,12 +100,32 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	public List<ComentarioDataType> obtenerComentariosDeContenido(Integer idContenido){
 		List<ComentarioDataType> comentariosContenido = new ArrayList<>();
 		
-		List<UsuarioDescargaContenidoEntity> listaDescargasContenido = usuarioDescargaContenidoDao.getContentDonwloadsByState(idContenido, true);
+		List<UsuarioDescargaContenidoEntity> listaDescargasContenido = usuarioDescargaContenidoDao.getContentDonwloadsByState(idContenido, EnumEstadosDescarga.VALIDADO_OK);
 		if (listaDescargasContenido != null){
 			for (UsuarioDescargaContenidoEntity e : listaDescargasContenido)
 				comentariosContenido.add(DataTypesFactory.getComentarioDataType(e));
 		}	
 		return comentariosContenido;
+	}
+	
+	public void actualizarDatosDescargas(){
+		
+		List<UsuarioDescargaContenidoEntity> descargas = usuarioDescargaContenidoDao.getDonwloadsByState(EnumEstadosDescarga.VALORACION_NO_HABILITADA);
+		if (descargas != null){
+			
+			ParametroValorEntity horasValoracionNoHabilitada = parametroValorDao.findByID(EnumParametrosValor.HORAS_VALORACION_NO_HABILITADA);
+			TimeUtils tu = new TimeUtils();
+			Date ahora = new Date();
+			
+			for (UsuarioDescargaContenidoEntity e : descargas){
+				Date fechaComienzo = tu.addTimeToDate(e.getFechaDescarga(), Integer.valueOf(horasValoracionNoHabilitada.getValorParametro()), Calendar.HOUR);
+				if (fechaComienzo.before(ahora)){
+					e.setEstadoDescarga(EnumEstadosDescarga.VALORACION_HABILITADA);
+					usuarioDescargaContenidoDao.merge(e);
+				}
+			}
+		}
+		
 	}
 	
 }

@@ -22,10 +22,10 @@ import javax.persistence.Table;
 		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.contenido.id = :idContenido") ,
 		
 	@NamedQuery(name = "UsuarioDescargaContenidoEntity.findAllByContenidoAndEstado", 
-		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.contenido.id = :idContenido and e.validadoAdministrador = :validada") ,
+		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.contenido.id = :idContenido and e.estadoDescarga = :estado") ,
 		
 	@NamedQuery(name = "UsuarioDescargaContenidoEntity.findAllByEstado", 
-		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.validadoAdministrador = :validada") ,
+		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.estadoDescarga = :estado") ,
 		
 })
 
@@ -64,16 +64,17 @@ public class UsuarioDescargaContenidoEntity implements Serializable {
 	@Column(name="fecha_valoracion" , nullable=true)
 	private Date fechaValoracion;
 	
-	@Column(name="validado_administrador" , nullable=true)
-	private Boolean validadoAdministrador;
+	@Column(name="estado_descarga" , nullable=true, length=100)
+	private String estadoDescarga;
 	
 	
-	public Boolean getValidadoAdministrador() {
-		return validadoAdministrador;
+
+	public String getEstadoDescarga() {
+		return estadoDescarga;
 	}
 
-	public void setValidadoAdministrador(Boolean validadoAdministrador) {
-		this.validadoAdministrador = validadoAdministrador;
+	public void setEstadoDescarga(String estadoDescarga) {
+		this.estadoDescarga = estadoDescarga;
 	}
 
 	public Integer getId() {

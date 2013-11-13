@@ -106,5 +106,6 @@ insert into parametros (nombre_parametro, valor_parametro) values('lapsoEjecucio
 
 update parametros set valor_parametro='contenido_libro;contenido_video;contenido_musica;contenido_sofware;tmp' where nombre_parametro='directoriosUsuariosProveedores';
 
+insert into parametros (nombre_parametro, valor_parametro) values('horasValoracionNoHabilitada' , '72');
 
-
+insert into parametros (nombre_parametro, valor_parametro) values('lapsoEjecucionActualizacionInfoDescargas' , '30');

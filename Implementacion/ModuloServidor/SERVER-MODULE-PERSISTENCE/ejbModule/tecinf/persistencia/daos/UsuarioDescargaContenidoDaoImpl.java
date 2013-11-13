@@ -29,17 +29,17 @@ public class UsuarioDescargaContenidoDaoImpl  extends DaoImpl<Integer, UsuarioDe
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<UsuarioDescargaContenidoEntity> getContentDonwloadsByState(Integer idContenido, Boolean validada){
+	public List<UsuarioDescargaContenidoEntity> getContentDonwloadsByState(Integer idContenido, String estado){
 		Query namedQuery = em.createNamedQuery("UsuarioDescargaContenidoEntity.findAllByContenidoAndEstado");
 		namedQuery.setParameter("idContenido", idContenido);
-		namedQuery.setParameter("validada", validada);
+		namedQuery.setParameter("estado", estado);
 		return (List<UsuarioDescargaContenidoEntity>)namedQuery.getResultList();		
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<UsuarioDescargaContenidoEntity> getDonwloadsByState(Boolean validada){
+	public List<UsuarioDescargaContenidoEntity> getDonwloadsByState(String estado){
 		Query namedQuery = em.createNamedQuery("UsuarioDescargaContenidoEntity.findAllByEstado");
-		namedQuery.setParameter("validada", validada);
+		namedQuery.setParameter("estado", estado);
 		return (List<UsuarioDescargaContenidoEntity>)namedQuery.getResultList();		
 	}
 

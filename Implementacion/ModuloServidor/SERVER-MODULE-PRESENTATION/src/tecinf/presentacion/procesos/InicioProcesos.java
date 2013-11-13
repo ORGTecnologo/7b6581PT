@@ -21,7 +21,8 @@ public class InicioProcesos implements ServletContextListener {
 			NegocioParametros negocioParametros = NegocioFactory.getNegocioParametros();
 			
 			new DemonioSesion(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_CHEQUEO_SESIONES)));
-			new DemonioActualizarDatosContenidos(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_ACTUALIZACION_INFO_CONTENIDOS)));
+			new DemonioActualizacionDatosContenidos(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_ACTUALIZACION_INFO_CONTENIDOS)));
+			new DemonioActualizacionDatosDescargas(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_ACTUALIZACION_INFO_DESCARGAS)));
 		}
 		catch (Exception e) 
 		{

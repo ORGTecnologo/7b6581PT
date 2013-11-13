@@ -1,6 +1,5 @@
 package tecinf.presentacion.procesos;
 
-import java.text.SimpleDateFormat;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -11,20 +10,17 @@ import tecinf.negocio.NegocioParametros;
 import tecinf.negocio.utiles.EnumParametrosValor;
 import tecinf.negocio.utiles.NegocioFactory;
 
-public class DemonioActualizarDatosContenidos {
+public class DemonioActualizacionDatosDescargas {
 	
     private Timer timer;
-    private static final Logger logger = Logger.getLogger(DemonioActualizarDatosContenidos.class);
+    private static final Logger logger = Logger.getLogger(DemonioActualizacionDatosDescargas.class);
 
-    public DemonioActualizarDatosContenidos(int seconds) {
+    public DemonioActualizacionDatosDescargas(int seconds) {
         timer = new Timer();
         timer.schedule(new RemindTask(), seconds*1000);
 	}
 
     class RemindTask extends TimerTask {   	
-    	
-    	SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-    	SimpleDateFormat sdfDate = new SimpleDateFormat("dd/MM/yyyy");
     	
         public void run() {
         	NegocioParametros negocioParametros = null;
@@ -33,13 +29,13 @@ public class DemonioActualizarDatosContenidos {
         		negocioParametros = NegocioFactory.getNegocioParametros();        		
         		logger.info("Ejecucion de demonio de actualizacion de datos de contenidos");  
         		NegocioContenido negocioContenido = NegocioFactory.getNegocioContenido();
-        		negocioContenido.actualizarDatosContenidos();
+        		negocioContenido.actualizarDatosDescargas();
                 
 			} catch (Exception e) {
 				logger.error(e.getMessage() , e);
 			} finally {
 				timer.cancel();
-				new DemonioActualizarDatosContenidos(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_ACTUALIZACION_INFO_CONTENIDOS)));
+				new DemonioActualizacionDatosDescargas(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_ACTUALIZACION_INFO_CONTENIDOS)));
 			}
         }
 

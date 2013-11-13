@@ -15,6 +15,8 @@ public interface NegocioContenido {
 	
 	public void actualizarDatosContenidos();
 	
+	public void actualizarDatosDescargas();
+	
 	public List<ContenidoDataType> filtrarContenidos(ListaFiltrosDataType filtros);
 	
 	public List<ComentarioDataType> obtenerComentariosAAprobar();
