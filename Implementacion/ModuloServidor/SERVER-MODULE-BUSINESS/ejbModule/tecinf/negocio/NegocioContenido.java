@@ -19,6 +19,6 @@ public interface NegocioContenido {
 	
 	public List<ComentarioDataType> obtenerComentariosAAprobar();
 	
-	public List<ComentarioDataType> obtenerComentariosDeContenido();
+	public List<ComentarioDataType> obtenerComentariosDeContenido(Integer idContenido);
 	
 }

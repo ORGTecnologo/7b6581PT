@@ -63,7 +63,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 					}
 					c.setCalificacion(cantDescargasConCalificacion == 0 ? 0 : sumaCalificacion / cantDescargasConCalificacion);
 					contenidoDao.merge(c);
-				}			
+				}
 			}
 		}
 		
@@ -72,18 +72,31 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	public List<ContenidoDataType> filtrarContenidos(ListaFiltrosDataType filtros) {
 		
 		
+		
+		
 		return new ArrayList<ContenidoDataType>();
 	}
 	
 	public List<ComentarioDataType> obtenerComentariosAAprobar(){
+		List<ComentarioDataType> comentariosPendientes = new ArrayList<>();
 		
-		return new ArrayList<>();
+		List<UsuarioDescargaContenidoEntity> listaDescargasPendientes = usuarioDescargaContenidoDao.getDonwloadsByState(false);
+		if (listaDescargasPendientes != null){
+			for (UsuarioDescargaContenidoEntity e : listaDescargasPendientes)
+				comentariosPendientes.add(DataTypesFactory.getComentarioDataType(e));
+		}	
+		return comentariosPendientes;
 	}
 	
-	public List<ComentarioDataType> obtenerComentariosDeContenido(){
+	public List<ComentarioDataType> obtenerComentariosDeContenido(Integer idContenido){
+		List<ComentarioDataType> comentariosContenido = new ArrayList<>();
 		
-		
-		return new ArrayList<>();
+		List<UsuarioDescargaContenidoEntity> listaDescargasContenido = usuarioDescargaContenidoDao.getContentDonwloadsByState(idContenido, true);
+		if (listaDescargasContenido != null){
+			for (UsuarioDescargaContenidoEntity e : listaDescargasContenido)
+				comentariosContenido.add(DataTypesFactory.getComentarioDataType(e));
+		}	
+		return comentariosContenido;
 	}
 	
 }

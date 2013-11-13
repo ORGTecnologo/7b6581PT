@@ -92,8 +92,7 @@ public class RWSUsuarios {
 		GenericJsonResponse resp = new GenericJsonResponse();	
 		//NegocioUsuario negocioUsuario;
 		try {
-			HttpSession s = req.getSession();	
-			UserSession sess = (UserSession)s.getAttribute("userSession");
+			HttpSession s = req.getSession();
 			s.setAttribute("userSession", null);
 			s.invalidate();
 			/*

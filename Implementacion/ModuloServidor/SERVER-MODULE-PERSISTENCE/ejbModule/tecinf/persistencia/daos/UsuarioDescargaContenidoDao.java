@@ -8,4 +8,8 @@ public interface UsuarioDescargaContenidoDao extends Dao<Integer, UsuarioDescarg
 	
 	public List<UsuarioDescargaContenidoEntity> getContentDownloads(Integer idContenido);
 	
+	public List<UsuarioDescargaContenidoEntity> getContentDonwloadsByState(Integer idContenido, Boolean validada);
+	
+	public List<UsuarioDescargaContenidoEntity> getDonwloadsByState(Boolean validada);
+	
 }

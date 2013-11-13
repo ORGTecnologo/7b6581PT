@@ -3,22 +3,26 @@ package tecinf.presentacion.rest;
 import java.util.List;
 
 import javax.naming.NamingException;
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.Context;
 
 import org.jboss.logging.Logger;
 
 import tecinf.negocio.NegocioContenido;
+import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.IContenidoDataType;
 import tecinf.negocio.dtos.ListaFiltrosDataType;
+import tecinf.negocio.dtos.UserSession;
 import tecinf.negocio.utiles.NegocioFactory;
+import tecinf.presentacion.utiles.RightsChecker;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.JsonParser;
 
 @Path("/contenidos")
 public class RWSContenidos {
@@ -32,10 +36,8 @@ public class RWSContenidos {
 			negocioContenido = NegocioFactory.getNegocioContenido();
 		} catch (NamingException e) {
 			logger.error(e.getMessage() , e);
-		}
-		
-	}
-	
+		}		
+	}	
 	
 	@GET
 	@Path("/listarTopTenDescargas")
@@ -80,6 +82,37 @@ public class RWSContenidos {
 			logger.error(e.getMessage() , e); 
 		}
 		return listaContenidos;
+	}
+	
+	@GET
+	@Path("/obtenerComentariosAAprobar")
+	@Produces("application/json")
+	public List<ComentarioDataType> obtenerComentariosAAprobar(@Context HttpServletRequest req) {
+		List<ComentarioDataType> listaComentarios = null;
+		try {
+			
+			(new RightsChecker()).checkAdminRights((UserSession)req.getSession().getAttribute("userSession"));
+			listaComentarios = negocioContenido.obtenerComentariosAAprobar();
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}
+		return listaComentarios;
+	}
+	
+	@GET
+	@Path("/obtenerComentariosDeContenido/{idContenido}")
+	@Produces("application/json")
+	public List<ComentarioDataType> obtenerComentariosDeContenido(@PathParam("idContenido") String idContenido) {
+		List<ComentarioDataType> listaComentarios = null;
+		try {
+			
+			listaComentarios = negocioContenido.obtenerComentariosDeContenido(Integer.valueOf(idContenido)); 
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}
+		return listaComentarios;
 	}
 	
 }

@@ -9,6 +9,7 @@ import org.jboss.logging.Logger;
 
 import tecinf.negocio.dtos.AuditoriaDataType;
 import tecinf.negocio.dtos.CategoriaContenidoDataType;
+import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ContenidoLibroDataType;
 import tecinf.negocio.dtos.ContenidoSoftwareDataType;
@@ -26,6 +27,7 @@ import tecinf.persistencia.entities.ContenidoSoftwareEntity;
 import tecinf.persistencia.entities.ContenidoTemaMusicalEntity;
 import tecinf.persistencia.entities.ContenidoVideoEntity;
 import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
+import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.utiles.EnumTiposContenido;
 
@@ -129,6 +131,19 @@ public class DataTypesFactory {
 		dt.setOperacion(e.getOperacion().getDescripcion()); 
 		dt.setUsuario(e.getUsuario().getUsuario());
 		dt.setObjetoSistema(e.getIdObjetoSistema()); 
+		
+		return dt;
+	}
+	
+	public static ComentarioDataType getComentarioDataType(UsuarioDescargaContenidoEntity e){
+		ComentarioDataType dt = new ComentarioDataType();
+		
+		dt.setIdDescarga(e.getId()); 
+		dt.setComentario(e.getDescripcionValoracion() == null ? "" : e.getDescripcionValoracion());
+		dt.setIdContenido(e.getContenido().getId());
+		dt.setUsuario(e.getUsuarioCliente().getUsuario());
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		dt.setFecha(e.getFechaValoracion() == null ? "" : sdf.format(e.getFechaValoracion()));
 		
 		return dt;
 	}

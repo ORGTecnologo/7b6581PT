@@ -21,6 +21,12 @@ import javax.persistence.Table;
 	@NamedQuery(name = "UsuarioDescargaContenidoEntity.findAllByContenido", 
 		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.contenido.id = :idContenido") ,
 		
+	@NamedQuery(name = "UsuarioDescargaContenidoEntity.findAllByContenidoAndEstado", 
+		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.contenido.id = :idContenido and e.validadoAdministrador = :validada") ,
+		
+	@NamedQuery(name = "UsuarioDescargaContenidoEntity.findAllByEstado", 
+		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.validadoAdministrador = :validada") ,
+		
 })
 
 @Entity
@@ -57,6 +63,18 @@ public class UsuarioDescargaContenidoEntity implements Serializable {
 	
 	@Column(name="fecha_valoracion" , nullable=true)
 	private Date fechaValoracion;
+	
+	@Column(name="validado_administrador" , nullable=true)
+	private Boolean validadoAdministrador;
+	
+	
+	public Boolean getValidadoAdministrador() {
+		return validadoAdministrador;
+	}
+
+	public void setValidadoAdministrador(Boolean validadoAdministrador) {
+		this.validadoAdministrador = validadoAdministrador;
+	}
 
 	public Integer getId() {
 		return id;
