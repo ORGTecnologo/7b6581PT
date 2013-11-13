@@ -18,14 +18,16 @@ function setRegistroTipo(tipo){
 	varsProy.tipoRegistro = tipo;
 }
 
-function mostrarElemento(id){
+function mostrarElemento(id,esmodal){
+	esmodal || (esmodal = false);
 
 	var div = $("#" + id)[0];
 
 	div.classList.remove('hide');
 	div.classList.add('show');
 
-	$('#'+id).modal();
+	if(esmodal)
+		$('#'+id).modal();
 
 	switch(id){
 		case 'registroUsuario':
@@ -41,7 +43,6 @@ function mostrarElemento(id){
 
 function ocultarElemento(id){
 	var div = $("#" + id)[0];
-	//div.hide();
 
 	div.classList.remove('show');
 	div.classList.add('hide');
