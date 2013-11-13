@@ -48,7 +48,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		
 		if (listaContenidos != null){			
 			// Para cada contenido actualizo los datos
-			for (ContenidoEntity c : listaContenidos){			
+			for (ContenidoEntity c : listaContenidos){
 				List<UsuarioDescargaContenidoEntity> listaDescargas = usuarioDescargaContenidoDao.getContentDownloads(c.getId());
 				c.setCantidadDescargas(listaDescargas == null ? 0 : listaDescargas.size());
 				if (listaDescargas != null){

@@ -34,8 +34,19 @@ public class CategoriaContenidoEntity implements Serializable {
 	@Column(name = "descripcion", length = 255, nullable = true)
 	private String descripcion;
 	
+	@Column(name = "ruta_imagen", length = 255, nullable = true)
+	private String rutaImagen;
+	
 	@Column(name = "habilitado", nullable = true)
 	private Boolean habilitado;
+	
+	public String getRutaImagen() {
+		return rutaImagen;
+	}
+
+	public void setRutaImagen(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
+	}
 
 	public Integer getId() {
 		return id;

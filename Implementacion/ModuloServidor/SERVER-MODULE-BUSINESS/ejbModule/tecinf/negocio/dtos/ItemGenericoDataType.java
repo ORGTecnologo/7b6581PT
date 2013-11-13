@@ -9,12 +9,22 @@ public class ItemGenericoDataType implements Serializable {
 	private int id;
 	private String nombre;
 	private String descripcion;
+	private String rutaImagen;
 	private Boolean habilitado;
 	
 	
 	public int getId() {
 		return id;
 	}
+	
+	public String getRutaImagen() {
+		return rutaImagen;
+	}
+
+	public void setRutaImagen(String rutaImagen) {
+		this.rutaImagen = rutaImagen;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}

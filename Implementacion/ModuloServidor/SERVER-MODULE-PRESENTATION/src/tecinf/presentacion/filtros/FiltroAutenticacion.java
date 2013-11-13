@@ -75,6 +75,7 @@ public class FiltroAutenticacion implements Filter {
 		publicURLs.add("/fonts/");
 		publicURLs.add("/img/");
 		publicURLs.add("/restws");
+		publicURLs.add("/views/content.html");
 		
 		
 		// URLs de administradores
