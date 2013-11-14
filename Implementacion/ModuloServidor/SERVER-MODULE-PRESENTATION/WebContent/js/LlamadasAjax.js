@@ -194,6 +194,25 @@ function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
 }
 
 //GET___________GET_____________GET
+function obtenerCategoriasySubcategorias(){
+
+	$.ajax({
+		url: ip + '/categoriasContenido/obtenerCategoriasYSubcategorias',
+		type: 'GET',
+		dataType: 'json',
+		contentType: "application/json",
+	})
+	.done(function(msg) {
+		console.log("Estas son las categorias: " + msg);
+		cargarCategoriasMemoria(msg);
+		cargarComboCategorias();
+	})
+	.fail(function(msg) {
+		console.log("Fallo: " + msg);
+	})
+}
+
+
 function obtenerUsuariosServ(){
 	$.ajax({
 	   url: ip + '/usuarios/listarUsuarios',

@@ -28,5 +28,11 @@ function CTES_PROY(){
 	this.IP_SERVICIOS = "http://localhost:8080/SERVER-MODULE-PRESENTATION";
 }
 
+function JSON_PROY(){
+
+	this.categorias = new Array();
+}
+
 var varsProy = new VARS_PROY();
 var confProy = new CTES_PROY();
+var jsonProy = new JSON_PROY();

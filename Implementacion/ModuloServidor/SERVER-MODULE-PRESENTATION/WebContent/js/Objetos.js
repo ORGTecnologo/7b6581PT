@@ -41,6 +41,47 @@ function Contenido(){
 	this.Paginas = 0;
 	//VIDEO
 	this.duracionVideo = "03:32",
-	this.formatoVideo
-	this.calidadVideo
+	this.formatoVideo = "";
+	this.calidadVideo = "";
+}
+
+function Categoria(){
+	this.id = '';
+    this.nombre = '';
+    this.descripcion = '';
+    this.rutaImagen = '';
+    this.subcategorias = new Array();
+}
+
+function Subcategoria(){
+	this.id = '';
+	this.nombre = '';
+	this.descripcion = '';
+	this.rutaImagen = '';
+}
+
+
+//CARGA DE JSONs
+
+function cargarCategoriasMemoria(msg){
+
+	for (var i = 0; i < msg.length; i++) {
+		var Cat = new Categoria();
+		Cat.id = msg[i].id;
+		Cat.nombre = msg[i].nombre;
+		Cat.descripcion = msg[i].descripcion;
+		Cat.rutaImagen = msg[i].rutaImagen;
+
+		for (var j = 0; j < msg[i].subcategorias.length; j++) {
+			var SC = new Subcategoria();
+
+			SC.id = msg[i].subcategorias[j].id;
+			SC.nombre = msg[i].subcategorias[j].nombre;
+			SC.descripcion = msg[i].subcategorias[j].descripcion;
+			SC.rutaImagen = msg[i].subcategorias[j].rutaImagen;
+			Cat.subcategorias.push(SC);
+		};
+		jsonProy.categorias.push(Cat);
+	};
+
 }

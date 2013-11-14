@@ -11,6 +11,18 @@
     <link rel="stylesheet" href="../css/bootstrap.css" media="screen"/>
     <link rel="stylesheet" href="../css/FU_jquery.fileupload-ui.css">
 </head>
+
+<script>
+    function check(input) {
+      if (input.value != document.getElementById('email_addr').value) {
+        input.setCustomValidity('The two email addresses must match.');
+      } else {
+        // input is valid -- reset the error message
+        input.setCustomValidity('');
+      }
+    }
+</script>
+
 <body>
 <!-- BARRA DE NAVEGACION -->
 <nav class="navbar navbar-default " role="navigation">
@@ -32,7 +44,6 @@
             </div>
             <button class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
                 <span class="glyphicon glyphicon-search"></span> Buscar</button>
-                <span class="glyphicon glyphicon-search"></span> Opciones</button>
         </form>
         <div class="col-md-2 pull-right" id="Login-Registro-Div">
             <a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
@@ -57,22 +68,62 @@
             la ubicacion del contenido a subir.</p>
     </blockquote>
 
-    <br/>
-
-    <div class="col-md-12">
+    <div class="col-md-12 row">
+        <div class="col-md-3">
+            <p>Tipo de contenido 
+                <select id="id_tipoContenido" class="form-control" onchange="verEspecificos(this);">
+                  <option value="tipo_contenido_software">App</option>
+                  <option value="tipo_contenido_tema">Musica</option>
+                  <option value="tipo_contenido_video">Video</option>
+                  <option value="tipo_contenido_libro">Libro</option>
+                </select>
+            </p>
+            <p>Categoria 
+                <select id="id_categoria" class="form-control" onchange="cargarComboSubCategorias(this);">
+                </select>
+            </p>
+            <p>Subcategorias 
+                <select id="id_subcategoria" class="form-control" >
+                </select>
+            </p>
+        </div>        
         <div class="col-md-6">
-            <p>Nombre <input></input></p>
-            <p>Descripcion <input></input></p>
+            <p>Nombre <input id="id_nombre" type="text" class="form-control col-lg-3"></input></p>
+            <p>Descripcion: <textarea id="id_descripcion" class="form-control" rows="3"></textarea></p>             
         </div>
-        <div class="col-md-6">
-            <p>Nombre <input></input></p>
-            <p>Descripcion <input></input></p>
+        <!-- Especificos -->
+            <!-- Libros -->
+        <div id="esp_libro" class="col-md-6 hide">    
+            <p>Fecha Publicacion <input id="id_fechaPublicacion" type="text" class="form-control col-lg-1"></input></p>
+            <p>Autor <input id="id_autor" type="text" class="form-control col-lg-1"></input></p>
+            <p>Cantidad de Paginas <input id="id_cantPag" type="text" class="form-control col-lg-1"></input></p>
         </div>
+            <!-- App -->
+        <div id="esp_app" class="col-md-6">
+            <p>Desarrollador <input id="id_desarrollador" type="text" class="form-control col-lg-1"></input></p>
+            <p>Es Trial <input id="id_trial" type="checkbox" class="form-control col-lg-1"></input></p>
+            <p>Req. Minimos <textarea id="id_req" rows="3" class="form-control col-lg-1"></textarea></p>
+        </div>
+            <!-- Video -->
+        <div id="esp_video" class="col-md-6 hide">
+            <p>Duracion <input id="id_duracion" type="text" class="form-control col-lg-1"></input></p>
+            <p>Formato <input id="id_formato" type="text" class="form-control col-lg-1"></input></p>
+            <p>Calidad <input id="id_calidad" type="text" class="form-control col-lg-1"></input></p>
+        </div>            
+            <!-- Musica -->
+        <div id="esp_musica" class="col-md-6 hide">
+            <p>Duracion<input id="id_duracion" type="text" class="form-control col-lg-1"></input></p>
+            <p>Artista <input id="id_artista" type="text" class="form-control col-lg-1"></input></p>
+            <p>Album<input id="id_album" type="text" class="form-control col-lg-1"></input></p>
+        </div>        
     </div>
 
-    <blockquote>
+    <br></br>
+
+    <div class="well">
         <p>A continuacion eliga el contenido seguido de las imagenes que van a ir asociadas al mismo.</p>
-    </blockquote>    
+    </div>
+
     <form id="fileupload" action="upload" method="POST" enctype="multipart/form-data">
         <div class="row fileupload-buttonbar">
             <div class="col-md-7"> 
@@ -101,7 +152,7 @@
             <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
         </table>
     </form>
-    <br/>
+    <br>
     <div class="well">
          <h3>Notas</h3>
         <ul>
@@ -203,7 +254,13 @@
     </script>
 
     <script src="../js/jquery.min.js"></script>
+    <script src="../js/jquery-ui.js"></script>    
     <script src="../js/bootstrap.js"></script>    
+    <script src="../js/proveedor.js"></script>    
+    <script src="../js/globalesProyecto.js"></script> 
+    <script src="../js/Objetos.js"></script>   
+    <script src="../js/Prototipos.js"></script>
+    <script src="../js/LlamadasAjax.js"></script>
     <script src="../js/FU_vendor/jquery.ui.widget.js"></script>
     <script src="../js/FU_vendor/FU_tmpl.min.js"></script>
     <script src="../js/FU_vendor/FU_load-image.min.js"></script>
