@@ -120,3 +120,34 @@ function verEspecificos(elem){
 		break;
 	}
 }
+
+function enviarAltaContenido(){
+
+	var content = new Contenido();
+
+	content.Nombre 		  = document.getElementById("id_nombre").value;
+	content.Descripcion   = document.getElementById("id_descripcion").value;
+//	content.Imagen 		  = document.getElementById("").value;
+//	content.Source 		  = document.getElementById("").value;
+//	content.Precio        = document.getElementById("").value;
+	content.tipoContenido = document.getElementById("id_tipoContenido").value;
+	content.Categoria 	  = document.getElementById("id_categoria").value;
+	content.subcategoria  = document.getElementById("id_subcategoria").value;
+
+	//MUSICA
+	content.duracionTema  = document.getElementById("id_duracionMusica").value;
+	content.artistaTema   = document.getElementById("id_artista").value;
+	content.albumTema     = document.getElementById("id_album").value;
+	//APP
+	content.esTrial = document.getElementById("id_trial").value;
+	content.requisitosMinimos = document.getElementById("id_req").value;
+	content.desarrollador = document.getElementById("id_desarrollador").value;
+	//LIBROS
+	content.fechaPublicacion = document.getElementById("id_fechaPublicacion").value;
+	content.autor = document.getElementById("id_autor").value;
+	content.Paginas = document.getElementById("id_cantPag").value;
+	//VIDEO
+	content.duracionVideo = document.getElementById("id_duracion").value;
+	content.formatoVideo  = document.getElementById("id_formato").value;
+	content.calidadVideo  = document.getElementById("id_calidad").value;
+}

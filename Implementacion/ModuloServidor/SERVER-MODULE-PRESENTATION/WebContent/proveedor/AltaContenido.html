@@ -112,7 +112,7 @@
         </div>            
             <!-- Musica -->
         <div id="esp_musica" class="col-md-6 hide">
-            <p>Duracion<input id="id_duracion" type="text" class="form-control col-lg-1"></input></p>
+            <p>Duracion<input id="id_duracionMusica" type="text" class="form-control col-lg-1"></input></p>
             <p>Artista <input id="id_artista" type="text" class="form-control col-lg-1"></input></p>
             <p>Album<input id="id_album" type="text" class="form-control col-lg-1"></input></p>
         </div>        
@@ -153,6 +153,11 @@
         </table>
     </form>
     <br>
+
+    <div class="col-md-12">
+         <a class="btn btn-default modal-download" onclick="enviarAltaContenido()"><i class="glyphicon glyphicon-download"></i><span>Crear</span></a>
+    </div>
+
     <div class="well">
          <h3>Notas</h3>
         <ul>
@@ -167,7 +172,6 @@
         </ul>
     </div>
 </div>
-
 
 <!-- Galeria de imagenes subidas al tmp -->
 <div id="modal-gallery" class="modal modal-gallery fade" data-filter=":odd">
@@ -193,7 +197,7 @@
 
     <!-- The template to display files available for upload -->
     <script id="template-upload" type="text/x-tmpl">
-            {% for (var i=0, file; file=o.files[i]; i++) { %}
+       {% for (var i=0, file; file=o.files[i]; i++) { %}
         <tr class="template-upload fade">
             <td class="preview"><span class="fade"></span></td>
             <td class="name"><span>{%=file.name%}</span></td>

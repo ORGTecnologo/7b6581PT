@@ -27,6 +27,9 @@ function Contenido(){
 	this.Descargas = 0;
 	this.Precio = 0.0;
 	this.tipoContenido = "";
+	this.Categoria = ""
+	this.Subcategoria = "";
+	this.desarrollador = "";
 
 	//MUSICA
 	this.duracionTema = "00.00";
@@ -83,5 +86,4 @@ function cargarCategoriasMemoria(msg){
 		};
 		jsonProy.categorias.push(Cat);
 	};
-
 }
