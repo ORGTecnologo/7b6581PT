@@ -11,21 +11,22 @@ import org.jboss.logging.Logger;
 
 import tecinf.negocio.NegocioCategoriaContenido;
 import tecinf.negocio.dtos.CategoriaContenidoDataType;
+import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.presentacion.utiles.ErrorHelper;
 
 @ManagedBean
 @SessionScoped
-public class CategoriaMB implements Serializable {
+public class SubCategoriaMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;	
 	
 	private static Logger logger = Logger.getLogger(CategoriaMB.class);
 	
 	private NegocioCategoriaContenido negocioCategoria = null;
-	private List<CategoriaContenidoDataType> listaCategorias = null;
-	private CategoriaContenidoDataType currentCategoria = new CategoriaContenidoDataType();
-	private CategoriaContenidoDataType nuevaCategoria = new CategoriaContenidoDataType();
+	private List<SubCategoriaContenidoDataType> listaSubCategorias = null;
+	private SubCategoriaContenidoDataType currentSubCategoria = new SubCategoriaContenidoDataType();
+	private SubCategoriaContenidoDataType nuevaSubCategoria = new SubCategoriaContenidoDataType();
 	
 	private Boolean activoPanelIngreso = false;
 	private Boolean activoPanelEditar = false;
@@ -33,35 +34,14 @@ public class CategoriaMB implements Serializable {
 	
 	private ErrorHelper eH = new ErrorHelper();
 	
-	public CategoriaMB() throws NamingException{
+	public SubCategoriaMB() throws NamingException{
 		
 		negocioCategoria = NegocioFactory.getNegocioCategoriaContenido();		
-		listaCategorias = negocioCategoria.obtenerCategoriasYSubcategorias();
-		
-	}
-
-	public List<CategoriaContenidoDataType> getListaCategorias() {
-		return listaCategorias;
-	}
-
-	public void setListaCategorias(List<CategoriaContenidoDataType> listaCategorias) {
-		this.listaCategorias = listaCategorias;
-	}
-
-	public CategoriaContenidoDataType getCurrentCategoria() {
-		return currentCategoria;
-	}
-
-	public void setCurrentCategoria(CategoriaContenidoDataType currentCategoria) {
-		this.currentCategoria = currentCategoria;
+		listaSubCategorias = negocioCategoria.obtenerSubCategorias();
 	}
 	
-	public void mostrarPanelIngreso(){	
-		activoPanelIngreso = true; 
-		}
-	public void ocultarPanelIngreso(){	
-		activoPanelIngreso = false; 
-		}
+	public void mostrarPanelIngreso(){	activoPanelIngreso = true; }
+	public void ocultarPanelIngreso(){	activoPanelIngreso = false; 	}
 	
 	public void mostrarPanelEditar(){ activoPanelEditar = true; }
 	public void ocultarPanelEditar(){	activoPanelEditar = false; }
@@ -71,14 +51,6 @@ public class CategoriaMB implements Serializable {
 	
 	public Boolean getActivoPanelIngreso() {
 		return activoPanelIngreso;
-	}	
-	
-	public CategoriaContenidoDataType getNuevaCategoria() {
-		return nuevaCategoria;
-	}
-
-	public void setNuevaCategoria(CategoriaContenidoDataType nuevaCategoria) {
-		this.nuevaCategoria = nuevaCategoria;
 	}
 
 	public Boolean getActivoPanelEditar() {
@@ -101,10 +73,36 @@ public class CategoriaMB implements Serializable {
 		this.activoPanelIngreso = activoPanelIngreso;
 	}
 
-	public void crearCategoria(){
+	public List<SubCategoriaContenidoDataType> getListaSubCategorias() {
+		return listaSubCategorias;
+	}
+
+	public void setListaSubCategorias(
+			List<SubCategoriaContenidoDataType> listaSubCategorias) {
+		this.listaSubCategorias = listaSubCategorias;
+	}
+
+	public SubCategoriaContenidoDataType getCurrentSubCategoria() {
+		return currentSubCategoria;
+	}
+
+	public void setCurrentSubCategoria(
+			SubCategoriaContenidoDataType currentSubCategoria) {
+		this.currentSubCategoria = currentSubCategoria;
+	}
+
+	public SubCategoriaContenidoDataType getNuevaSubCategoria() {
+		return nuevaSubCategoria;
+	}
+
+	public void setNuevaSubCategoria(SubCategoriaContenidoDataType nuevaSubCategoria) {
+		this.nuevaSubCategoria = nuevaSubCategoria;
+	}
+
+	public void crearSubCategoria(){
 		try {			
-			negocioCategoria.ingresarCategoria(this.nuevaCategoria);		
-			listaCategorias = negocioCategoria.obtenerCategoriasYSubcategorias();
+			negocioCategoria.ingresarSubCategoria(this.nuevaSubCategoria);		
+			listaSubCategorias = negocioCategoria.obtenerSubCategorias();
 			activoPanelIngreso = false;
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarIngreso", e.getMessage());
@@ -112,20 +110,20 @@ public class CategoriaMB implements Serializable {
 		
 	}
 	
-	public void editarCategoria(){
+	public void editarSubCategoria(){
 		try {			
-			negocioCategoria.modificarCategoria(this.currentCategoria);		
-			listaCategorias = negocioCategoria.obtenerCategoriasYSubcategorias();		
+			negocioCategoria.modificarSubCategoria(this.currentSubCategoria);		
+			listaSubCategorias = negocioCategoria.obtenerSubCategorias();	
 			activoPanelEditar = false;
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarModificacion", e.getMessage());
 		}		
 	}
 	
-	public void eliminarCategoria(){
+	public void eliminarSubCategoria(){
 		try {			
-			negocioCategoria.eliminarCategoria(this.currentCategoria);	
-			listaCategorias = negocioCategoria.obtenerCategoriasYSubcategorias();		
+			negocioCategoria.eliminarSubCategoria(this.currentSubCategoria);	
+			listaSubCategorias = negocioCategoria.obtenerSubCategorias();
 			activoPanelEliminar = false;
 		} catch (Exception e) {
 			eH.setErrorMessage("", e.getMessage());

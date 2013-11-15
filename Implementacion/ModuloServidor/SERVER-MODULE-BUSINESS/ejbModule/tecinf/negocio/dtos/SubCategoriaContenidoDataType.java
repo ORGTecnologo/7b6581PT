@@ -10,6 +10,7 @@ public class SubCategoriaContenidoDataType implements Serializable {
 	private String nombre;
 	private String descripcion;
 	private String rutaImagen;
+	private Boolean habilitada;
 	
 	public String getRutaImagen() {
 		return rutaImagen;
@@ -34,6 +35,12 @@ public class SubCategoriaContenidoDataType implements Serializable {
 	}
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public Boolean getHabilitada() {
+		return habilitada;
+	}
+	public void setHabilitada(Boolean habilitada) {
+		this.habilitada = habilitada;
 	}
 	
 }

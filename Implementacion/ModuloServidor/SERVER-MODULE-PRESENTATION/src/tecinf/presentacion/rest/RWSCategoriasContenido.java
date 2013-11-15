@@ -53,10 +53,12 @@ public class RWSCategoriasContenido {
 	@Produces("application/json")
 	public GenericJsonResponse ingresarCategoria(ItemGenericoDataType dt) {
 		GenericJsonResponse resp = new GenericJsonResponse();
-		try {			
+		try {
+			/*
 			Integer id = negocioCategoriaContenido.ingresarCategoria(dt);			
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 			resp.setIdObjeto(String.valueOf(id));
+			*/
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
 			resp.setMensageOperacion(e.getMessage());
@@ -70,10 +72,12 @@ public class RWSCategoriasContenido {
 	@Produces("application/json")
 	public GenericJsonResponse ingresarSubCategoria(ItemGenericoDataType dt) {
 		GenericJsonResponse resp = new GenericJsonResponse();
-		try {			
+		try {
+			/*
 			Integer id = negocioCategoriaContenido.ingresarSubCategoria(dt);			
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 			resp.setIdObjeto(String.valueOf(id));
+			*/
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
 			resp.setMensageOperacion(e.getMessage());
@@ -87,10 +91,12 @@ public class RWSCategoriasContenido {
 	@Produces("application/json")
 	public GenericJsonResponse modificarCategoria(ItemGenericoDataType dt) {
 		GenericJsonResponse resp = new GenericJsonResponse();
-		try {			
+		try {	
+			/*
 			Integer id = negocioCategoriaContenido.modificarCategoria(dt);			
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 			resp.setIdObjeto(String.valueOf(id));
+			*/
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
 			resp.setMensageOperacion(e.getMessage());
@@ -104,10 +110,12 @@ public class RWSCategoriasContenido {
 	@Produces("application/json")
 	public GenericJsonResponse modificarSubCategoria(ItemGenericoDataType dt) {
 		GenericJsonResponse resp = new GenericJsonResponse();
-		try {			
+		try {	
+			/*
 			Integer id = negocioCategoriaContenido.modificarSubCategoria(dt);			
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 			resp.setIdObjeto(String.valueOf(id));
+			*/
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
 			resp.setMensageOperacion(e.getMessage());

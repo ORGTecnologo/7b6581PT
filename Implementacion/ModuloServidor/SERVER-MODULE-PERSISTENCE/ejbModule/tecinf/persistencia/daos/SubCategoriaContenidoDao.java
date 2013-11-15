@@ -8,4 +8,6 @@ public interface SubCategoriaContenidoDao extends Dao<Integer, SubCategoriaConte
 	
 	public List<SubCategoriaContenidoEntity> getAllByCategoria(Integer idCategoria);
 	
+	public SubCategoriaContenidoEntity findByName(String name);
+	
 }

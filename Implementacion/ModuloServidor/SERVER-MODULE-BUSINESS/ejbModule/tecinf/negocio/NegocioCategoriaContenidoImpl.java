@@ -9,7 +9,7 @@ import javax.naming.NamingException;
 import org.jboss.logging.Logger;
 
 import tecinf.negocio.dtos.CategoriaContenidoDataType;
-import tecinf.negocio.dtos.ItemGenericoDataType;
+import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.utiles.DataTypesFactory;
 import tecinf.negocio.utiles.ValidationUtil;
 import tecinf.persistencia.daos.CategoriaContenidoDao;
@@ -50,25 +50,30 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 		return listaCategorias;
 	}
 	
-	public Integer ingresarCategoria(ItemGenericoDataType dt) throws Exception {
+	public Integer ingresarCategoria(CategoriaContenidoDataType dt) throws Exception {
 		
 		if (ValidationUtil.isNullOrEmpty(dt.getDescripcion()))
 			throw new Exception("Descripción obligatoria");
 		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))		
 			throw new Exception("Nombre obligatorio");
-		if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
-			throw new Exception("Imagen obligatoria obligatorio");
+		//if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
+		//	throw new Exception("Imagen obligatoria obligatorio");
 		
-		CategoriaContenidoEntity categoria = new CategoriaContenidoEntity();
+		CategoriaContenidoEntity categoria = categoriaContenidoDao.findByName(dt.getNombre());
+		if  (categoria != null)
+			throw new Exception("Nombre ya utilizado");
+		categoria = new CategoriaContenidoEntity();
 		categoria.setDescripcion(dt.getDescripcion());
 		categoria.setNombre(dt.getNombre());
+		categoria.setHabilitado(dt.getHabilitada());
+		categoria.setRutaImagen("");
 		
 		categoriaContenidoDao.persist(categoria);
 		
 		return categoria.getId();				
 	}
 	
-	public Integer ingresarSubCategoria(ItemGenericoDataType dt) throws Exception {
+	public Integer ingresarSubCategoria(SubCategoriaContenidoDataType dt) throws Exception {
 		
 		if (ValidationUtil.isNullOrEmpty(dt.getDescripcion()))
 			throw new Exception("Descripción obligatoria");
@@ -86,16 +91,20 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 		return subCategoria.getId();
 	}
 	
-	public Integer modificarCategoria(ItemGenericoDataType dt) throws Exception {
+	public Integer modificarCategoria(CategoriaContenidoDataType dt) throws Exception {
 		
 		if (ValidationUtil.isNullOrEmpty(dt.getDescripcion()))
 			throw new Exception("Descripción obligatoria");
 		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))
 			throw new Exception("Nombre obligatorio");
-		if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
-			throw new Exception("Imagen obligatoria obligatorio");
+		//if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
+		//	throw new Exception("Imagen obligatoria obligatorio");
 		
-		CategoriaContenidoEntity categoria = categoriaContenidoDao.findByID(dt.getId());
+		CategoriaContenidoEntity categoria = categoriaContenidoDao.findByName(dt.getNombre());
+		if  (categoria != null && dt.getId() != categoria.getId())
+			throw new Exception("Nombre ya utilizado");
+		
+		categoria = categoriaContenidoDao.findByID(dt.getId());
 		categoria.setDescripcion(dt.getDescripcion());
 		categoria.setNombre(dt.getNombre());
 		
@@ -104,7 +113,7 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 		return categoria.getId();
 	}
 	
-	public Integer modificarSubCategoria(ItemGenericoDataType dt) throws Exception {
+	public Integer modificarSubCategoria(SubCategoriaContenidoDataType dt) throws Exception {
 		
 		if (ValidationUtil.isNullOrEmpty(dt.getDescripcion()))
 			throw new Exception("Descripción obligatoria");
@@ -120,6 +129,35 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 		subCategoriaContenidoDao.merge(subCategoria);
 		
 		return subCategoria.getId();
+	}
+	
+	public Integer eliminarSubCategoria(SubCategoriaContenidoDataType dt) throws Exception {
+		
+		SubCategoriaContenidoEntity subCat = subCategoriaContenidoDao.findByID(dt.getId());
+		subCat.setHabilitado(false);
+		subCategoriaContenidoDao.merge(subCat);
+		
+		return subCat.getId();
+	}
+	
+	public Integer eliminarCategoria(CategoriaContenidoDataType dt) throws Exception {
+		CategoriaContenidoEntity cat = categoriaContenidoDao.findByID(dt.getId());
+		cat.setHabilitado(false);
+		categoriaContenidoDao.merge(cat);
+		
+		return cat.getId();
+	}
+	
+	public List<SubCategoriaContenidoDataType> obtenerSubCategorias(){
+		List<SubCategoriaContenidoDataType> listaSubCat = new ArrayList<SubCategoriaContenidoDataType>(); 
+		
+		List<SubCategoriaContenidoEntity> listaSubCatE = subCategoriaContenidoDao.findAll();
+		if (listaSubCatE != null){
+			for (SubCategoriaContenidoEntity s : listaSubCatE)
+				listaSubCat.add(DataTypesFactory.getSubCategoriaContenidoDataType(s));
+		}
+		
+		return listaSubCat;
 	}
 	
 }

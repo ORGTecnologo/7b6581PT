@@ -22,4 +22,13 @@ public class CategoriaContenidoDaoImpl extends DaoImpl<Integer, CategoriaConteni
 		namedQuery.setParameter("habilitado", true);
 		return (List<CategoriaContenidoEntity>)namedQuery.getResultList();
 	}
+	
+	public CategoriaContenidoEntity findByName(String name){
+		Query namedQuery = em.createNamedQuery("CategoriaContenidoEntity.findByName");
+		namedQuery.setParameter("name", name);
+		if (namedQuery.getResultList().size() == 1)
+			return (CategoriaContenidoEntity)namedQuery.getSingleResult();
+		return null;
+	}
+	
 }

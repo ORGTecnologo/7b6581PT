@@ -11,6 +11,7 @@ public class CategoriaContenidoDataType implements Serializable {
 	private Integer id;
 	private String nombre;
 	private String descripcion;
+	private Boolean habilitada;
 	private String rutaImagen;
 	private List<SubCategoriaContenidoDataType> subcategorias;
 	
@@ -21,11 +22,15 @@ public class CategoriaContenidoDataType implements Serializable {
 	public String getRutaImagen() {
 		return rutaImagen;
 	}
-
 	public void setRutaImagen(String rutaImagen) {
 		this.rutaImagen = rutaImagen;
 	}
-
+	public Boolean getHabilitada() {
+		return habilitada;
+	}
+	public void setHabilitada(Boolean habilitada) {
+		this.habilitada = habilitada;
+	}
 	public Integer getId() {
 		return id;
 	}

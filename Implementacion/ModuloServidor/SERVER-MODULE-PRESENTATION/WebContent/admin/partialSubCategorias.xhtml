@@ -1,1 +1,151 @@
-<center><h:inputText value="#{categoriaBean.algo}"></h:inputText></center>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="admin.xhtml">
+	<ui:define name="body">
+
+		<h:form>
+			<div>
+				<h2>Gestion de sub categorias</h2>
+				
+				<h:commandButton style="float:right" action="#{subCategoriaMB.mostrarPanelIngreso}" value="Nuevo">
+					<!--  <h:graphicImage library="images" class="btnNuevo" value="../img/agregarServicio.jpeg" />  -->
+				</h:commandButton>
+			</div>
+			<div class="wrapperTablasAdministracion">
+				<h:dataTable value="#{subCategoriaMB.listaSubCategorias}" var="o"
+					styleClass="order-table" headerClass="order-table-header"
+					rowClasses="order-table-odd-row,order-table-even-row"
+					class="table table-striped">
+	
+					<!-- column header -->
+					<!-- row record -->
+					<h:column>
+						<f:facet name="header">Id</f:facet>
+						#{o.id}
+					</h:column>
+	
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						#{o.nombre}
+					</h:column>
+	
+					<h:column>
+						<f:facet name="header">Descripcion</f:facet>
+						#{o.descripcion}
+					</h:column>
+					
+					<h:column>
+						<f:facet name="header">Categoria</f:facet>
+						
+					</h:column>
+	
+					<h:column>
+						<h:commandButton value="Editar" action="#{subCategoriaMB.mostrarPanelEditar}" >
+							<f:setPropertyActionListener target="#{subCategoriaMB.currentSubCategoria}" value="#{o}" />
+						</h:commandButton>
+					</h:column>
+					<h:column>
+						<h:commandButton action="#{subCategoriaMB.mostrarPanelEliminar}" value="Eliminar">
+							<f:setPropertyActionListener target="#{subCategoriaMB.currentSubCategoria}" value="#{o}" />
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
+			</div>
+		</h:form>
+		
+
+		<h:panelGroup id="panelModificar" rendered="#{subCategoriaMB.activoPanelEditar}">
+			<h:form>
+				<div class="modal loginDiv modal-dialog"
+					style="width: 300px">
+					<div class="modal-content">
+						<div class="modal-header">Modificar categoria</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12 col-xs-10">
+									<h4>Datos de categoría</h4>
+									<p>
+										Nombre <h:inputText value="#{subCategoriaMB.currentSubCategoria.nombre}" type="text" class="col-xs-7 form-control" />
+									</p>
+									<p>
+										Descripcion <h:inputText value="#{subCategoriaMB.currentSubCategoria.descripcion}" type="text" class="col-xs-7 form-control" />
+									</p>
+									<p>
+										Habilitada <h:selectBooleanCheckbox value="#{subCategoriaMB.currentSubCategoria.habilitada}" type="checkbox"/>
+									</p> 
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+								<h:commandButton id="btnConfirmarModificacion" value="Confirmar" action="#{subCategoriaMB.editarSubCategoria}" />
+								<h:commandButton value="Cancelar" action="#{subCategoriaMB.ocultarPanelEditar}" />
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</h:panelGroup>
+
+		<h:panelGroup id="panelIngreso" rendered="#{subCategoriaMB.activoPanelIngreso}">
+			<h:form>
+				<div class="modal loginDiv modal-dialog"
+					style="width: 300px">
+					<div class="modal-content">
+						<div class="modal-header">Crear nueva categoria</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12 col-xs-10">
+									<h4>Datos de categoría</h4>
+									<p>
+										Nombre <h:inputText value="#{subCategoriaMB.nuevaSubCategoria.nombre}" type="text" class="col-xs-7 form-control" />
+									</p>
+									<p>
+										Descripcion <h:inputText value="#{subCategoriaMB.nuevaSubCategoria.descripcion}" type="text" class="col-xs-7 form-control" />
+									</p>
+									<p>
+										Habilitada <h:selectBooleanCheckbox value="#{subCategoriaMB.nuevaSubCategoria.habilitada}" type="checkbox"/>
+									</p>
+								</div>
+							</div>
+						</div>						
+						<div class="modal-footer">
+							<h:message for="btnConfirmarIngreso" class="error" />
+							<h:commandButton id="btnConfirmarIngreso" value="Confirmar" action="#{subCategoriaMB.crearSubCategoria}" />
+							<h:commandButton value="Cancelar" action="#{subCategoriaMB.ocultarPanelIngreso}" />
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</h:panelGroup>
+
+		<h:panelGroup id="panelEliminar" rendered="#{subCategoriaMB.activoPanelEliminar}">
+		<h:form>
+		<div class="modal loginDiv modal-dialog"
+			style="width: 300px">
+			<div class="modal-content">
+				<div class="modal-header">Eliminar categoria</div>
+				<div class="modal-body">
+					<div class="row">
+						<div class="col-md-12 col-xs-10">
+							<h4>¿Seguro que desea eliminar la sub categoria?</h4>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<h:commandButton value="Confirmar" action="#{subCategoriaMB.eliminarSubCategoria}" />
+					<h:commandButton value="Cancelar" action="#{subCategoriaMB.ocultarPanelEliminar}" />
+				</div>
+			</div>
+		</div>
+		</h:form>
+		</h:panelGroup>
+
+
+	</ui:define>
+</ui:composition>
+</html>
