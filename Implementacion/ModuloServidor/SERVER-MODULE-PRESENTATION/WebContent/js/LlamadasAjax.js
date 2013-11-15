@@ -97,6 +97,52 @@ function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimien
 	})
 };
 
+function altaContenido(content){
+	
+
+	$.ajax({
+		url: ip + 'proveedores/altaContenido',
+		type: 'POST',
+		dataType: 'json',
+		data: {
+			nombre: 			content.Nombre,
+			descripcion: 		content.Descripcion,
+			imagenes: 			content.Imagen,
+			calificacion: 		content.Calificacion,
+			source: 			content.Source,
+			precio:  			content.Precio,
+			tipoContenido:  	content.tipoContenido,
+			categoria : 		content.Categoria,
+			subcategoria: 		content.Subcategoria,
+			desarrollador: 		content.desarrollador,
+			duracionTema: 		content.duracionTema,
+			artistaTema: 		content.artistaTema,
+			albumTema: 			content.albumTema,
+			esTrial: 			content.esTrial,
+			requisitosMinimos:  content.requisitosMinimos,
+			fechaPublicacion: 	content.fechaPublicacion,
+			autor: 				content.autor,
+			paginas: 			content.Paginas,
+			duracionVideo: 		content.duracionVideo,
+			formatoVideo: 		content.formatoVideo,
+			calidadVideo: 		content.calidadVideo,
+		},
+	})
+	.done(function(msg) {
+		console.log("success");
+		console.log(msg);
+	})
+	.fail(function(msg) {
+		console.log("error");
+		console.log(msg);
+	})
+	.always(function(msg) {
+		console.log("complete");
+		console.log(msg);
+	});
+	
+}
+
 //PUT__________PUT__________PUT
 function loginUsuario(usuario, contrasenia){
 	$.ajax({

@@ -127,9 +127,21 @@ function enviarAltaContenido(){
 
 	content.Nombre 		  = document.getElementById("id_nombre").value;
 	content.Descripcion   = document.getElementById("id_descripcion").value;
-//	content.Imagen 		  = document.getElementById("").value;
-//	content.Source 		  = document.getElementById("").value;
-//	content.Precio        = document.getElementById("").value;
+
+	var ListaArchivos = document.getElementById('fileupload');
+	var arrArchivos = ListaArchivos.getElementsByTagName("TR");
+	content.Imagen  = new Array();
+
+	for (var i = 0; i < arrArchivos.length; i++) {
+		var elem = arrArchivos[i];
+		var span = elem.getElementsByTagName('a')[1];
+			if (i===0)
+				content.Source = span.innerText;
+			else
+				content.Imagen.push(span.innerText);
+	}
+
+	content.Precio        = document.getElementById("id_precio").value;
 	content.tipoContenido = document.getElementById("id_tipoContenido").value;
 	content.Categoria 	  = document.getElementById("id_categoria").value;
 	content.subcategoria  = document.getElementById("id_subcategoria").value;
@@ -150,4 +162,6 @@ function enviarAltaContenido(){
 	content.duracionVideo = document.getElementById("id_duracion").value;
 	content.formatoVideo  = document.getElementById("id_formato").value;
 	content.calidadVideo  = document.getElementById("id_calidad").value;
+
+	altaContenido(content);
 }
