@@ -48,7 +48,7 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 	.fail(function(msg){
 		console.log('Entro en fail: ' + msg);
 		alert(msg);
-	})
+	});
 };
 
 function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento,cel,sitioWeb){
@@ -94,38 +94,40 @@ function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimien
 	.fail(function(msg){
 		console.log('Entro en fail: ' + msg);
 		alert(msg);
-	})
+	});
 };
 
 function altaContenido(content){
 	
 	$.ajax({
-		url: ip + '/proveedores/altaContenido',
+		url: ip + '/contenidos/altaContenido',
 		type: 'POST',
-		dataType: 'json',
-		data: {
+		dataType: 'application/json',
+		contentType: 'application/json',
+		
+		data: JSON.stringify({
 			nombre: 			content.Nombre,
 			descripcion: 		content.Descripcion,
 			imagenes: 			content.Imagen,
-			calificacion: 		content.Calificacion,
-			source: 			content.Source,
-			precio:  			content.Precio,
-			tipoContenido:  	content.tipoContenido,
-			categoria : 		content.Categoria,
-			subcategoria: 		content.Subcategoria,
+			calificacion: 		content.Calificacion.toString(),
+			source: 			content.Source.toString(),
+			precio:  			content.Precio.toString(),
+			tipoContenido:  	content.tipoContenido.toString(),
+			categoria : 		content.Categoria.toString(),
+			subcategoria: 		content.Subcategoria.toString(),
 			desarrollador: 		content.desarrollador,
-			duracionTema: 		content.duracionTema,
-			artistaTema: 		content.artistaTema,
-			albumTema: 			content.albumTema,
-			esTrial: 			content.esTrial,
-			requisitosMinimos:  content.requisitosMinimos,
-			fechaPublicacion: 	content.fechaPublicacion,
-			autor: 				content.autor,
-			paginas: 			content.Paginas,
-			duracionVideo: 		content.duracionVideo,
-			formatoVideo: 		content.formatoVideo,
-			calidadVideo: 		content.calidadVideo,
-		},
+			duracionTema: 		content.duracionTema.toString(),
+			artistaTema: 		content.artistaTema.toString(),
+			albumTema: 			content.albumTema.toString(),
+			esTrial: 			content.esTrial.toString(),
+			requisitosMinimos:  content.requisitosMinimos.toString(),
+			fechaPublicacion: 	content.fechaPublicacion.toString(),
+			autor: 				content.autor.toString(),
+			paginas: 			content.Paginas.toString(),
+			duracionVideo: 		content.duracionVideo.toString(),
+			formatoVideo: 		content.formatoVideo.toString(),
+			calidadVideo: 		content.calidadVideo.toString(	),
+		}),
 	})
 	.done(function(msg) {
 		console.log("success");
@@ -178,7 +180,7 @@ function loginUsuario(usuario, contrasenia){
 	.fail(function(msg) {
 		console.log(msg);
 		alert('Nombre de usuario o contrasenia incorrectos!!');
-	})
+	});
 }
 
 function logoutUsuario(){
@@ -213,7 +215,7 @@ function logoutUsuario(){
 	.fail(function(msg) {
 		console.log(msg);
 		alert("Fallo del sistema, intente de nuevo o contacte con el administrador!!");
-	})
+	});
 }
 
 function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
@@ -235,7 +237,7 @@ function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
 	})
 	.fail(function(){
 		console.log(msg);
-	})
+	});
 }
 
 //GET___________GET_____________GET
@@ -254,7 +256,7 @@ function obtenerCategoriasySubcategorias(){
 	})
 	.fail(function(msg) {
 		console.log("Fallo: " + msg);
-	})
+	});
 }
 
 
@@ -268,13 +270,13 @@ function obtenerUsuariosServ(){
 	})
 	.done(function(msg) {
 		for (var i = 0; i < msg.length; i++) {
-			msg[i]
+			msg[i];
 		};
 		console.log("Estos son los usuarios: " + msg);
 	})
 	.fail(function(msg) {
 		console.log("Fallo: " + msg);
-	})
+	});
 }
 
 function esUnicoCorreo(mail){
@@ -292,7 +294,7 @@ function esUnicoCorreo(mail){
 	})
 	.fail(function(msg) {
 		console.log(msg);
-	})
+	});
 }
 
 function esUnicoNick(nick){
@@ -308,14 +310,14 @@ function esUnicoNick(nick){
 	})
 	.fail(function(msg) {
 		console.log(msg);
-	})
+	});
 }
 
 
 
 function respuestaPares(){
 
-	this.filtro = ""
+	this.filtro = "";
 	this.valor = "";
 }
 
@@ -382,5 +384,5 @@ function obtenerContenidoPorId(idContenido){
 	})
 	.fail(function(msg) {
 		console.log("Fallo el pedido " + msg);
-	})
+	});
 }

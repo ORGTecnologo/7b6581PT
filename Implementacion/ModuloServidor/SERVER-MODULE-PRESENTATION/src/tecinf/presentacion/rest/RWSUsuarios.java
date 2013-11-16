@@ -10,6 +10,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 
@@ -26,6 +27,7 @@ import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.dtos.UsuarioProveedorDataType;
 import tecinf.negocio.utiles.EnumRespuestas;
 import tecinf.negocio.utiles.NegocioFactory;
+import tecinf.presentacion.utiles.ConstantesSession;
 import tecinf.presentacion.utiles.JSonUtils;
 
 
@@ -214,6 +216,20 @@ public class RWSUsuarios {
 			resp.setRespuesta(JSonUtils.RESULTADO_OPERACION_FALLA + ": " + e.getMessage());
 		}				
 		return resp;
+	}
+	
+	@GET
+	@Path("/checkSession/{usuario}")
+	@Produces("application/json")
+	public UserSession checkSession(@Context HttpServletRequest req, @PathParam("usuario") String usuario) {
+		UserSession session = null;
+		try {			
+			HttpSession s = req.getSession();
+			session = (UserSession) s.getAttribute(ConstantesSession.keyUsuarioSession);
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}				
+		return session;
 	}
 	
 }

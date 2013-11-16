@@ -10,7 +10,7 @@ public class RightsChecker {
 			throw new Exception("USUARIO_NO_AUTENTICADO");
 		if (session.getTipoUsuario() == null || session.getUsuario() == null)
 			throw new Exception("SESION_INVALIDA");
-		if (session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR))
+		if (!session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR))
 			throw new Exception("OPERACION_RESTRINGIDA_A_ADMINISTRADORES");		
 	}
 	
@@ -19,7 +19,7 @@ public class RightsChecker {
 			throw new Exception("USUARIO_NO_AUTENTICADO");
 		if (session.getTipoUsuario() == null || session.getUsuario() == null)
 			throw new Exception("SESION_INVALIDA");
-		if (session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR))
+		if (!session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR))
 			throw new Exception("OPERACION_RESTRINGIDA_A_PROVEEDORES");		
 	}
 		
@@ -28,7 +28,7 @@ public class RightsChecker {
 			throw new Exception("USUARIO_NO_AUTENTICADO");
 		if (session.getTipoUsuario() == null || session.getUsuario() == null)
 			throw new Exception("SESION_INVALIDA");
-		if (session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE))
+		if (!session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE))
 			throw new Exception("OPERACION_RESTRINGIDA_A_CLIENTES");
 	}
 	

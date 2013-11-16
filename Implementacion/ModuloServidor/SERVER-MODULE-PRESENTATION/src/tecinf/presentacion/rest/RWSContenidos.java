@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -16,10 +18,13 @@ import org.jboss.logging.Logger;
 import tecinf.negocio.NegocioContenido;
 import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
+import tecinf.negocio.dtos.ContenidoIngresoDataType;
 import tecinf.negocio.dtos.DescargaDataType;
+import tecinf.negocio.dtos.GenericJsonResponse;
 import tecinf.negocio.dtos.IContenidoDataType;
 import tecinf.negocio.dtos.ListaFiltrosDataType;
 import tecinf.negocio.dtos.UserSession;
+import tecinf.negocio.utiles.EnumRespuestas;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.presentacion.utiles.ConstantesSession;
 import tecinf.presentacion.utiles.RightsChecker;
@@ -93,7 +98,7 @@ public class RWSContenidos {
 		List<ComentarioDataType> listaComentarios = null;
 		try {
 			
-			(new RightsChecker()).checkAdminRights((UserSession)req.getSession().getAttribute("userSession"));
+			(new RightsChecker()).checkAdminRights((UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession));
 			listaComentarios = negocioContenido.obtenerComentariosAAprobar();
 			
 		} catch (Exception e) {
@@ -131,6 +136,26 @@ public class RWSContenidos {
 			logger.error(e.getMessage() , e); 
 		}
 		return listaDescargas;
+	}
+	
+	@POST
+	@Path("/altaContenido")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public GenericJsonResponse altaContenido(@Context HttpServletRequest req, ContenidoIngresoDataType dt) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {
+			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
+			(new RightsChecker()).checkSupplierRights(uSession);
+			Integer id = negocioContenido.ingresarNuevoContendo(dt); 
+			resp.setIdObjeto(String.valueOf(id));
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
+		} catch (Exception e) {
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+			resp.setMensageOperacion(e.getMessage()); 
+			logger.error(e.getMessage() , e); 
+		}
+		return resp;
 	}
 	
 }

@@ -105,4 +105,9 @@ public class FileSystemUtils {
 		file.delete();
 	}
 	
+	public void crearDirectorioContenido(String usuario, String tipoContenido, String idContenido){
+		ParametroValorEntity rutaBase = parametroValorDao.findByID(EnumParametrosValor.RUTA_BASE_SISTEMA_ARCHIVOS);
+		
+	}
+	
 }

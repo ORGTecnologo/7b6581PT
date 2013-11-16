@@ -10,6 +10,7 @@ import javax.naming.NamingException;
 
 import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
+import tecinf.negocio.dtos.ContenidoIngresoDataType;
 import tecinf.negocio.dtos.DescargaDataType;
 import tecinf.negocio.dtos.ListaFiltrosDataType;
 import tecinf.negocio.utiles.DataTypesFactory;
@@ -24,6 +25,7 @@ import tecinf.persistencia.entities.ContenidoEntity;
 import tecinf.persistencia.entities.ContenidoFotoEntity;
 import tecinf.persistencia.entities.ParametroValorEntity;
 import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
+import tecinf.persistencia.utiles.EnumTiposContenido;
 import tecinf.persistencia.utiles.PersistenciaFactory;
 
 @Stateless
@@ -136,6 +138,43 @@ public class NegocioContenidoImpl implements NegocioContenido {
 			
 		
 		return listaDescargasACalificar;
+	}
+	
+	public Integer ingresarNuevoContendo(ContenidoIngresoDataType dt){
+		
+		ContenidoEntity nC = null;
+		
+		if (dt.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_LIBRO)){
+			
+			
+			
+			nC.setTipoContenido(EnumTiposContenido.TIPO_CONTENIDO_LIBRO);
+		} else if (dt.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_SOFTWARE)){
+			
+			
+			nC.setTipoContenido(EnumTiposContenido.TIPO_CONTENIDO_SOFTWARE);
+		} else if (dt.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_TEMA)){
+			
+			
+			nC.setTipoContenido(EnumTiposContenido.TIPO_CONTENIDO_TEMA);
+		}else if (dt.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_VIDEO)){
+			
+			
+			nC.setTipoContenido(EnumTiposContenido.TIPO_CONTENIDO_VIDEO);
+		}
+		
+		nC.setCalificacion(0);
+		nC.setCantidadDescargas(0);
+		nC.setDescripcion(dt.getDescripcion());
+		nC.setNombre(dt.getNombre());
+		nC.setPrecio(Float.valueOf(dt.getPrecio()));
+		nC.setVersion("1.0");
+		contenidoDao.persist(nC);
+		
+		
+		
+		
+		return 0;
 	}
 	
 }
