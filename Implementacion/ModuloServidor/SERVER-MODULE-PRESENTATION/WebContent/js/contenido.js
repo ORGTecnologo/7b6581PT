@@ -24,11 +24,13 @@ $(document).ready(function(){
 	    mostrarElemento('Nick-Logout-Div');
 	    ocultarElemento('Login-Registro-Div');
     }
+
+
 });
 
 function cargarDatosDelContenido(){
 
-	// VERSION 1 -- DATOS PASADOS EN LA URL ATRAVES DE ?id=1&tk=hjdsanjda
+	// VERSION 1 -- DATOS PASADOS EN LA URL ATRAVES DE ?id=1
 	var ArrayQuery = window.location.search.split('?')[1].split('&');
 
 	for (var i = 0; i < ArrayQuery.length; i++) {
@@ -43,7 +45,12 @@ function cargarDatosDelContenido(){
 		}
 	}	
 	obtenerContenidoPorId(varsProy.idContenido);
+
+	//Cargo la URL en los botones sociales
+	var like = $(':first .facebookLike')[0];
+		like.setAttribute('data-href',confProy.IP_SERVICIOS + "/views/content.html?id=" + varsProy.idContenido);
 }
+
 
 function esconderEspecificosOtros(tipoContenido){
 
