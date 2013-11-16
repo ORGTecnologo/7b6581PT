@@ -37,8 +37,6 @@ function mostrarElemento(id,esmodal){
 				document.getElementById('sitioWeb_p').setAttribute('style','visibility: hidden;');
 		break;
 	}
-
-
 }
 
 function ocultarElemento(id){
@@ -46,13 +44,6 @@ function ocultarElemento(id){
 
 	div.classList.remove('show');
 	div.classList.add('hide');
-}
-
-function mostrarElemento(id){
-	var div = $("#" + id)[0];
-
-	div.classList.remove('hide');
-	div.classList.add('show');
 }
 
 

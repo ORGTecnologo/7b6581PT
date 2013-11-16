@@ -150,11 +150,9 @@ function armarContenidoHTML(){
 	divCaption.setAttribute('class','caption');
 	divCaption.appendChild(h3Content);
 
-	imgContent.setAttribute('src',confProy.HOST + Content.Imagenes[0]);
-	imgContent.setAttribute('alt',confProy.HOST + Content.Imagenes[0]);
-	//imgContent.setAttribute('class','img-circle miniatura');
+	imgContent.setAttribute('src',Content.Imagenes[0]);
+	imgContent.setAttribute('alt',Content.Imagenes[0]);
 	imgContent.setAttribute('style','width: 250px;height: 250px;');
-
 
 	thumbnailContent.setAttribute('class','thumbnail');
 	thumbnailContent.appendChild(imgContent);
