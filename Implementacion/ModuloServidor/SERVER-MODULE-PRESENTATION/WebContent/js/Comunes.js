@@ -10,7 +10,12 @@ function checkearSesionAbierta(){
 	varsProy.nick = usuario;
 	varsProy.token = token;
 
-	return true;
+	if (existeSesionServ(varsProy.nick))
+		return true;
+	else{
+		window.localStorage.clear();		
+		return false;
+	}
 }
 
 function errorControlVaciosFormularioRegistro() {

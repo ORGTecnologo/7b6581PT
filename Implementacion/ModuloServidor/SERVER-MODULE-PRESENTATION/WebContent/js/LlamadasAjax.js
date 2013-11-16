@@ -259,6 +259,30 @@ function obtenerCategoriasySubcategorias(){
 	});
 }
 
+function existeSesionServ(user){
+
+	$.ajax({
+		url: ip + '/usuarios/checkSession/' + user,
+		type: 'GET',
+		datatype: "json",
+		contentType: "application/json",
+		async: false,
+	})
+	.done(function(msg) {
+		console.log("success");
+		console.log(msg);
+		return true;
+	})
+	.fail(function(msg) {
+		console.log("error");
+		console.log(msg);
+		return false;
+	})
+	.always(function(msg) {
+		console.log("complete");
+		console.log(msg);
+	});	
+}
 
 function obtenerUsuariosServ(){
 	$.ajax({
