@@ -99,9 +99,8 @@ function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimien
 
 function altaContenido(content){
 	
-
 	$.ajax({
-		url: ip + 'proveedores/altaContenido',
+		url: ip + '/proveedores/altaContenido',
 		type: 'POST',
 		dataType: 'json',
 		data: {
