@@ -27,6 +27,7 @@ public class SubCategoriaMB implements Serializable {
 	private List<SubCategoriaContenidoDataType> listaSubCategorias = null;
 	private SubCategoriaContenidoDataType currentSubCategoria = new SubCategoriaContenidoDataType();
 	private SubCategoriaContenidoDataType nuevaSubCategoria = new SubCategoriaContenidoDataType();
+	private List<CategoriaContenidoDataType> listaCategorias = null;
 	
 	private Boolean activoPanelIngreso = false;
 	private Boolean activoPanelEditar = false;
@@ -38,6 +39,8 @@ public class SubCategoriaMB implements Serializable {
 		
 		negocioCategoria = NegocioFactory.getNegocioCategoriaContenido();		
 		listaSubCategorias = negocioCategoria.obtenerSubCategorias();
+		listaCategorias = negocioCategoria.obtenerCategorias();
+		
 	}
 	
 	public void mostrarPanelIngreso(){	activoPanelIngreso = true; }
@@ -98,6 +101,15 @@ public class SubCategoriaMB implements Serializable {
 	public void setNuevaSubCategoria(SubCategoriaContenidoDataType nuevaSubCategoria) {
 		this.nuevaSubCategoria = nuevaSubCategoria;
 	}
+	
+
+	public List<CategoriaContenidoDataType> getListaCategorias() {
+		return listaCategorias;
+	}
+
+	public void setListaCategorias(List<CategoriaContenidoDataType> listaCategorias) {
+		this.listaCategorias = listaCategorias;
+	}
 
 	public void crearSubCategoria(){
 		try {			
@@ -117,12 +129,12 @@ public class SubCategoriaMB implements Serializable {
 			activoPanelEditar = false;
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarModificacion", e.getMessage());
-		}		
+		}
 	}
 	
 	public void eliminarSubCategoria(){
 		try {			
-			negocioCategoria.eliminarSubCategoria(this.currentSubCategoria);	
+			negocioCategoria.cambiarEstadoSubCategoria(this.currentSubCategoria);	
 			listaSubCategorias = negocioCategoria.obtenerSubCategorias();
 			activoPanelEliminar = false;
 		} catch (Exception e) {

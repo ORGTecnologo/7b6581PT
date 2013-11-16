@@ -12,7 +12,11 @@ public interface NegocioCategoriaContenido {
 	
 	public List<CategoriaContenidoDataType> obtenerCategoriasYSubcategorias();
 	
-	public List<SubCategoriaContenidoDataType> obtenerSubCategorias();	
+	public List<CategoriaContenidoDataType> obtenerTodasCategoriasYSubcategorias();
+	
+	public List<SubCategoriaContenidoDataType> obtenerSubCategorias();
+	
+	public List<CategoriaContenidoDataType> obtenerCategorias();	
 	
 	public Integer ingresarCategoria(CategoriaContenidoDataType dt) throws Exception;
 	
@@ -22,8 +26,8 @@ public interface NegocioCategoriaContenido {
 	
 	public Integer modificarSubCategoria(SubCategoriaContenidoDataType dt) throws Exception;
 	
-	public Integer eliminarSubCategoria(SubCategoriaContenidoDataType dt) throws Exception;
+	public Integer cambiarEstadoSubCategoria(SubCategoriaContenidoDataType dt) throws Exception;
 	
-	public Integer eliminarCategoria(CategoriaContenidoDataType dt) throws Exception;
+	public Integer cambiarEstadoCategoria(CategoriaContenidoDataType dt) throws Exception;
 	
 }

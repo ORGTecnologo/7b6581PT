@@ -19,10 +19,13 @@ import javax.persistence.Table;
 @NamedQueries( {
 	
 	@NamedQuery(name = "SubCategoriaContenidoEntity.findAll", 
-		query = "SELECT e FROM SubCategoriaContenidoEntity e ORDER BY e.nombre") ,
+		query = "SELECT e FROM SubCategoriaContenidoEntity e ORDER BY e.categoria.nombre") ,
+		
+		@NamedQuery(name = "SubCategoriaContenidoEntity.findAllByState",
+		query = "SELECT e FROM SubCategoriaContenidoEntity e WHERE e.habilitado = :habilitado ORDER BY e.nombre") ,
 			
 	@NamedQuery(name = "SubCategoriaContenidoEntity.findByCategoria", 
-		query = "SELECT e FROM SubCategoriaContenidoEntity e WHERE e.categoria.id = :idCategoria and e.habilitado = :habilitado ORDER BY e.nombre") ,
+		query = "SELECT e FROM SubCategoriaContenidoEntity e WHERE e.categoria.id = :idCategoria ORDER BY e.nombre") ,
 		
 	@NamedQuery(name = "SubCategoriaContenidoEntity.findByName", 
 		query = "SELECT e FROM SubCategoriaContenidoEntity e WHERE e.nombre = :name") ,

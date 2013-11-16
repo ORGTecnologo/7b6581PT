@@ -16,8 +16,11 @@ import javax.persistence.Table;
 @Table(name = "categorias_contenido")
 @NamedQueries( {
 	
-	@NamedQuery(name = "CategoriaContenidoEntity.findAll", 
+	@NamedQuery(name = "CategoriaContenidoEntity.findAllByState",
 		query = "SELECT e FROM CategoriaContenidoEntity e WHERE e.habilitado = :habilitado ORDER BY e.nombre") ,
+		
+	@NamedQuery(name = "CategoriaContenidoEntity.findAll",
+		query = "SELECT e FROM CategoriaContenidoEntity e ORDER BY e.nombre") ,
 			
 	@NamedQuery(name = "CategoriaContenidoEntity.findByName", 
 		query = "SELECT e FROM CategoriaContenidoEntity e WHERE e.nombre = :name") ,

@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import tecinf.persistencia.entities.CategoriaContenidoEntity;
 import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
 
 @Stateless
@@ -27,14 +26,20 @@ public class SubCategoriaContenidoDaoImpl extends DaoImpl<Integer, SubCategoriaC
 	public List<SubCategoriaContenidoEntity> getAllByCategoria(Integer idCategoria){
 		Query namedQuery = em.createNamedQuery("SubCategoriaContenidoEntity.findByCategoria");
 		namedQuery.setParameter("idCategoria", idCategoria);
-		namedQuery.setParameter("habilitado", true);
+		return (List<SubCategoriaContenidoEntity>)namedQuery.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<SubCategoriaContenidoEntity> findAllByState(Boolean estado){
+		Query namedQuery = em.createNamedQuery("SubCategoriaContenidoEntity.findAllByState");
+		namedQuery.setParameter("habilitado", estado);
 		return (List<SubCategoriaContenidoEntity>)namedQuery.getResultList();
 	}
 	
 	public SubCategoriaContenidoEntity findByName(String name){
 		Query namedQuery = em.createNamedQuery("SubCategoriaContenidoEntity.findByName");
 		namedQuery.setParameter("name", name);
-		if (namedQuery.getResultList().size() == 1)
+		if (namedQuery.getResultList().size() > 0)
 			return (SubCategoriaContenidoEntity)namedQuery.getSingleResult();
 		return null;
 	}

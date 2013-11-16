@@ -37,7 +37,7 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 		
 	}
 	
-	public List<CategoriaContenidoDataType> obtenerCategoriasYSubcategorias(){
+	public List<CategoriaContenidoDataType> obtenerTodasCategoriasYSubcategorias(){
 		List<CategoriaContenidoDataType> listaCategorias = new ArrayList<CategoriaContenidoDataType>();		
 		List<CategoriaContenidoEntity> listaCategoriasE = categoriaContenidoDao.findAll();
 		for (CategoriaContenidoEntity cat : listaCategoriasE){
@@ -45,6 +45,22 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 			List<SubCategoriaContenidoEntity> subCats = subCategoriaContenidoDao.getAllByCategoria(cat.getId());
 			for (SubCategoriaContenidoEntity subCat : subCats)
 				dt.getSubcategorias().add(DataTypesFactory.getSubCategoriaContenidoDataType(subCat));
+			listaCategorias.add(dt);
+		}		
+		return listaCategorias;
+	}
+	
+	public List<CategoriaContenidoDataType> obtenerCategoriasYSubcategorias(){
+		List<CategoriaContenidoDataType> listaCategorias = new ArrayList<CategoriaContenidoDataType>();		
+		List<CategoriaContenidoEntity> listaCategoriasE = categoriaContenidoDao.findAllByState(true);
+		for (CategoriaContenidoEntity cat : listaCategoriasE){
+			CategoriaContenidoDataType dt = DataTypesFactory.getCategoriaContenidoDataType(cat);			
+			List<SubCategoriaContenidoEntity> subCats = subCategoriaContenidoDao.getAllByCategoria(cat.getId());
+			for (SubCategoriaContenidoEntity subCat : subCats){
+				if (subCat.getHabilitado())
+					dt.getSubcategorias().add(DataTypesFactory.getSubCategoriaContenidoDataType(subCat));
+			}
+				
 			listaCategorias.add(dt);
 		}		
 		return listaCategorias;
@@ -79,10 +95,21 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 			throw new Exception("Descripción obligatoria");
 		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))
 			throw new Exception("Nombre obligatorio");
-		if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
-			throw new Exception("Imagen obligatoria obligatorio");
+		//if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
+			//throw new Exception("Imagen obligatoria obligatorio");
+
+		CategoriaContenidoEntity cat = categoriaContenidoDao.findByID(dt.getCategoria().getId());
+		if (cat == null)
+			throw new Exception("Categoria obligatoria");
 		
-		SubCategoriaContenidoEntity subCategoria = new SubCategoriaContenidoEntity();
+		SubCategoriaContenidoEntity subCategoria = subCategoriaContenidoDao.findByName(dt.getNombre());
+		if (subCategoria != null)
+			throw new Exception("Nombre ya utilizado");
+			
+		subCategoria = new SubCategoriaContenidoEntity();
+		
+		subCategoria.setCategoria(cat);
+		subCategoria.setHabilitado(true);
 		subCategoria.setDescripcion(dt.getDescripcion());
 		subCategoria.setNombre(dt.getNombre());
 		
@@ -119,10 +146,22 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 			throw new Exception("Descripción obligatoria");
 		if (ValidationUtil.isNullOrEmpty(dt.getNombre()))
 			throw new Exception("Nombre obligatorio");
-		if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
-			throw new Exception("Imagen obligatoria obligatorio");
+		//if (ValidationUtil.isNullOrEmpty(dt.getRutaImagen()))
+			//throw new Exception("Imagen obligatoria obligatorio");
+
+		CategoriaContenidoEntity cat = categoriaContenidoDao.findByID(dt.getCategoria().getId());
+		if (cat == null)
+			throw new Exception("Categoria obligatoria");
+				
+		SubCategoriaContenidoEntity subCategoria = subCategoriaContenidoDao.findByName(dt.getNombre());
+		if (!dt.getNombre().equals(subCategoria.getNombre())){
+			if (subCategoria != null)
+				throw new Exception("Nombre ya utilizado");
+		}
+		subCategoria = subCategoriaContenidoDao.findByID(dt.getId());
 		
-		SubCategoriaContenidoEntity subCategoria = subCategoriaContenidoDao.findByID(dt.getId());
+		subCategoria.setCategoria(cat);
+		subCategoria.setHabilitado(true);
 		subCategoria.setDescripcion(dt.getDescripcion());
 		subCategoria.setNombre(dt.getNombre());
 		
@@ -131,19 +170,37 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 		return subCategoria.getId();
 	}
 	
-	public Integer eliminarSubCategoria(SubCategoriaContenidoDataType dt) throws Exception {
+	public Integer cambiarEstadoSubCategoria(SubCategoriaContenidoDataType dt) throws Exception {
 		
-		SubCategoriaContenidoEntity subCat = subCategoriaContenidoDao.findByID(dt.getId());
-		subCat.setHabilitado(false);
-		subCategoriaContenidoDao.merge(subCat);
+		SubCategoriaContenidoEntity scat = subCategoriaContenidoDao.findByID(dt.getId());
 		
-		return subCat.getId();
+		if (dt.getHabilitada() == null || dt.getHabilitada() == false)
+			scat.setHabilitado(true);
+		else
+			scat.setHabilitado(false);
+		subCategoriaContenidoDao.merge(scat);
+		
+		return scat.getId();
 	}
 	
-	public Integer eliminarCategoria(CategoriaContenidoDataType dt) throws Exception {
+	public Integer cambiarEstadoCategoria(CategoriaContenidoDataType dt) throws Exception {
+		
 		CategoriaContenidoEntity cat = categoriaContenidoDao.findByID(dt.getId());
-		cat.setHabilitado(false);
+		
+		if (dt.getHabilitada() == null || dt.getHabilitada() == false)
+			cat.setHabilitado(true);
+		else
+			cat.setHabilitado(false);
 		categoriaContenidoDao.merge(cat);
+		
+		List<SubCategoriaContenidoEntity> listaSubCats = subCategoriaContenidoDao.getAllByCategoria(dt.getId());
+		for (SubCategoriaContenidoEntity s : listaSubCats){
+			if (dt.getHabilitada() == null || dt.getHabilitada() == false)
+				s.setHabilitado(true);
+			else 
+				s.setHabilitado(false);
+			subCategoriaContenidoDao.merge(s);
+		}
 		
 		return cat.getId();
 	}
@@ -158,6 +215,18 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 		}
 		
 		return listaSubCat;
+	}
+	
+	public List<CategoriaContenidoDataType> obtenerCategorias(){
+		List<CategoriaContenidoDataType> listaCat = new ArrayList<CategoriaContenidoDataType>(); 
+		
+		List<CategoriaContenidoEntity> listaSubCatE = categoriaContenidoDao.findAll();
+		if (listaSubCatE != null){
+			for (CategoriaContenidoEntity s : listaSubCatE)
+				listaCat.add(DataTypesFactory.getCategoriaContenidoDataType(s));
+		}
+		
+		return listaCat;
 	}
 	
 }

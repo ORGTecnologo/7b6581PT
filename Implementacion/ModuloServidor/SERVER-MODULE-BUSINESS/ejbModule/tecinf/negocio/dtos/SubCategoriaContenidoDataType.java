@@ -11,6 +11,11 @@ public class SubCategoriaContenidoDataType implements Serializable {
 	private String descripcion;
 	private String rutaImagen;
 	private Boolean habilitada;
+	private CategoriaContenidoDataType categoria;
+	
+	public SubCategoriaContenidoDataType(){
+		categoria = new CategoriaContenidoDataType();
+	}	
 	
 	public String getRutaImagen() {
 		return rutaImagen;
@@ -41,6 +46,26 @@ public class SubCategoriaContenidoDataType implements Serializable {
 	}
 	public void setHabilitada(Boolean habilitada) {
 		this.habilitada = habilitada;
+	}
+
+	public CategoriaContenidoDataType getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(CategoriaContenidoDataType categoria) {
+		this.categoria = categoria;
+	}	
+	public String getHabilitadaStr(){
+		if (this.habilitada == null)
+			return "";
+		else if (this.habilitada == true)
+			return "SI";
+		else 
+			return "NO";
+	}
+	
+	public String getCaptionBtnHabilitarDeshabilitar(){
+		return (this.habilitada == null || this.habilitada == false ? "Habilitar" : "Deshabilitar");		
 	}
 	
 }

@@ -10,4 +10,6 @@ public interface SubCategoriaContenidoDao extends Dao<Integer, SubCategoriaConte
 	
 	public SubCategoriaContenidoEntity findByName(String name);
 	
+	public List<SubCategoriaContenidoEntity> findAllByState(Boolean estado);
+	
 }

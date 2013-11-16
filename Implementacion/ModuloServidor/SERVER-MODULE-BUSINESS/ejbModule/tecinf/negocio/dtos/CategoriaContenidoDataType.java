@@ -55,4 +55,17 @@ public class CategoriaContenidoDataType implements Serializable {
 	public void setSubcategorias(List<SubCategoriaContenidoDataType> subcategorias) {
 		this.subcategorias = subcategorias;
 	}
+	
+	public String getHabilitadaStr(){
+		if (this.habilitada == null)
+			return "";
+		else if (this.habilitada == true)
+			return "SI";
+		else 
+			return "NO";
+	}
+	
+	public String getCaptionBtnHabilitarDeshabilitar(){
+		return (this.habilitada == null || this.habilitada == false ? "Habilitar" : "Deshabilitar");		
+	}
 }

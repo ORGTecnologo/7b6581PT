@@ -57,7 +57,8 @@ public class DataTypesFactory {
 		dt.setDescripcion(e.getDescripcion());
 		dt.setId(e.getId());
 		dt.setNombre(e.getNombre());
-		dt.setRutaImagen(e.getRutaImagen()); 
+		dt.setRutaImagen(e.getRutaImagen());
+		dt.setHabilitada(e.getHabilitado());
 		
 		return dt;
 	}
@@ -69,6 +70,8 @@ public class DataTypesFactory {
 		dt.setId(e.getId());
 		dt.setNombre(e.getNombre());
 		dt.setRutaImagen(e.getRutaImagen());
+		dt.setCategoria(getCategoriaContenidoDataType(e.getCategoria()));
+		dt.setHabilitada(e.getHabilitado());
 		
 		return dt;
 	} 
