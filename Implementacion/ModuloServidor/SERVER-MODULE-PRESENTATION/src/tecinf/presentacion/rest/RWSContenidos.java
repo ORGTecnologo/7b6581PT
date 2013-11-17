@@ -147,7 +147,7 @@ public class RWSContenidos {
 		try {
 			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
 			(new RightsChecker()).checkSupplierRights(uSession);
-			Integer id = negocioContenido.ingresarNuevoContendo(dt); 
+			Integer id = negocioContenido.ingresarNuevoContendo(dt, uSession.getUsuario()); 
 			resp.setIdObjeto(String.valueOf(id));
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 		} catch (Exception e) {

@@ -28,11 +28,7 @@ public abstract class DaoImpl<K, E> implements Dao<K, E>{
 	}
 
 	public void persist(E entity) {
-		try {
-			em.persist(entity);
-		} catch (Exception e) {
-			logger.error(e.getMessage(), e); 
-		}		
+		em.persist(entity);		
 	}
 
 	public void merge(E entity) {

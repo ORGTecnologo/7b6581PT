@@ -73,14 +73,8 @@ insert into sub_categorias_contenido (id,nombre,id_categoria) values (nextval('s
 insert into sub_categorias_contenido (id,nombre,id_categoria) values (nextval('subcatcontenido_seq'),'Centros de salud',7);
 insert into sub_categorias_contenido (id,nombre,id_categoria) values (nextval('subcatcontenido_seq'),'Consejos y tips',7);
 
--- ESTADOS PARA LAS VERSIONES DE LOS CONTENIDOS
-insert into estado_version_contenido(id, descripcion) values (1 , 'Aprobada');
-insert into estado_version_contenido(id, descripcion) values (2 , 'Rechazada');
-
-
 -- Session timeout
 insert into parametros(nombre_parametro, valor_parametro) values('timeOutSesion' , '30');
-
 
 -- ACTUALIZACIONES
 
@@ -115,3 +109,5 @@ alter table usuarios ALTER COLUMN tipo_usuario TYPE varchar(50);
 insert into usuarios (usuario,apellidos,contrasenia,correo_electronico,fecha_nacimiento,nombres,telefono_movil,id_estado,sexo,tipo_usuario)
 values('admin','admin','21232f297a57a5a743894a0e4a801fc3','admin@admin.com','1980-06-16','juan','095632145','H','Masculino','usuario_administrador');
 insert into usuarios_administrador (usuario) values('admin');
+
+update parametros set valor_parametro = 'contenido_libro;contenido_video;contenido_musica;contenido_software' where nombre_parametro = 'directoriosUsuariosProveedores';

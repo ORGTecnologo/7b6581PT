@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn; 
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,10 +14,6 @@ import javax.persistence.Table;
 public class ContenidoVideoEntity extends ContenidoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	@OneToOne
-	@JoinColumn(name="fk_contenido",unique=true,nullable=false)
-	private ContenidoEntity contenido;
 	
 	@Column(name = "duracion_video", length = 20, nullable = false)
 	private String duracionVideo;
@@ -30,14 +24,10 @@ public class ContenidoVideoEntity extends ContenidoEntity implements Serializabl
 	@Column(name = "calidad_video", length = 20, nullable = false)
 	private String calidadVideo;
 
-	public ContenidoEntity getContenido() {
-		return contenido;
+	public ContenidoVideoEntity(){
+		super();
 	}
-
-	public void setContenido(ContenidoEntity contenido) {
-		this.contenido = contenido;
-	}
-
+	
 	public String getDuracionVideo() {
 		return duracionVideo;
 	}

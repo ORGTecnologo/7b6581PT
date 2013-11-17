@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Column;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne; 
 import javax.persistence.Table;
 
 @Entity
@@ -16,10 +14,6 @@ import javax.persistence.Table;
 public class ContenidoTemaMusicalEntity extends ContenidoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	@OneToOne
-	@JoinColumn(name="fk_contenido",unique=true,nullable=false)
-	private ContenidoEntity contenido;	
 	
 	@Column(name = "duracion_tema", length = 10)
 	private String duracionTema;
@@ -30,14 +24,10 @@ public class ContenidoTemaMusicalEntity extends ContenidoEntity implements Seria
 	@Column(name = "album_tema", length = 20)
 	private String albumTema;
 
-	public ContenidoEntity getContenido() {
-		return contenido;
+	public ContenidoTemaMusicalEntity(){
+		super();
 	}
-
-	public void setContenido(ContenidoEntity contenido) {
-		this.contenido = contenido;
-	}
-
+	
 	public String getDuracionTema() {
 		return duracionTema;
 	}

@@ -1,9 +1,13 @@
 package tecinf.persistencia.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +15,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -63,6 +68,17 @@ public abstract class ContenidoEntity implements Serializable {
 	@Column(name = "precio", nullable = true)
 	private Float precio;
 
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="contenido")
+	private List<ContenidoFotoEntity> fotos;
+	
+	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="contenido")
+	private List<VersionContenidoEntity> versiones;
+	
+	public ContenidoEntity(){
+		fotos = new ArrayList<ContenidoFotoEntity>();
+		versiones = new ArrayList<VersionContenidoEntity>();
+	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -142,7 +158,22 @@ public abstract class ContenidoEntity implements Serializable {
 	public void setPrecio(Float precio) {
 		this.precio = precio;
 	}
-	
+
+	public List<ContenidoFotoEntity> getFotos() {
+		return fotos;
+	}
+
+	public void setFotos(List<ContenidoFotoEntity> fotos) {
+		this.fotos = fotos;
+	}
+
+	public List<VersionContenidoEntity> getVersiones() {
+		return versiones;
+	}
+
+	public void setVersiones(List<VersionContenidoEntity> versiones) {
+		this.versiones = versiones;
+	}
 	
 
 }

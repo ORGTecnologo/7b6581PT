@@ -1,14 +1,16 @@
 package tecinf.persistencia.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,19 +25,18 @@ public class VersionContenidoEntity implements Serializable {
 	@SequenceGenerator(name = "version_contenido_secuencia", sequenceName = "version_contenido_seq", allocationSize = 1)
 	private Integer id;
 	
-	@OneToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="fk_contenido", nullable=false)
 	private ContenidoEntity contenido;
 	
-	@OneToOne
-	@JoinColumn(name="fk_estado_version", nullable=false)
-	private EstadoVersionContenidoEntity estadoVersion;
+	@Column(name="estado_version", nullable=false, length=30)
+	private String estadoVersion;
 	
 	@Column(name="descripcion",nullable=false, length=50)
 	private String descripcion;
 	
-	@Column(name="fecha_subida",nullable=false, length=50)
-	private String fechaSubida;
+	@Column(name="fecha_subida",nullable=false)
+	private Date fechaSubida;
 
 	public Integer getId() {
 		return id;
@@ -51,13 +52,13 @@ public class VersionContenidoEntity implements Serializable {
 
 	public void setContenido(ContenidoEntity contenido) {
 		this.contenido = contenido;
-	}
+	}	
 
-	public EstadoVersionContenidoEntity getEstadoVersion() {
+	public String getEstadoVersion() {
 		return estadoVersion;
 	}
 
-	public void setEstadoVersion(EstadoVersionContenidoEntity estadoVersion) {
+	public void setEstadoVersion(String estadoVersion) {
 		this.estadoVersion = estadoVersion;
 	}
 
@@ -69,11 +70,11 @@ public class VersionContenidoEntity implements Serializable {
 		this.descripcion = descripcion;
 	}
 
-	public String getFechaSubida() {
+	public Date getFechaSubida() {
 		return fechaSubida;
 	}
 
-	public void setFechaSubida(String fechaSubida) {
+	public void setFechaSubida(Date fechaSubida) {
 		this.fechaSubida = fechaSubida;
 	}
 	

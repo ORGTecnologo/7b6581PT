@@ -17,7 +17,6 @@
 		<class>tecinf.persistencia.entities.CategoriaReclamoEntity</class>
 		<class>tecinf.persistencia.entities.ReclamoEntity</class>
 		<class>tecinf.persistencia.entities.PromocionEntity</class>
-		<class>tecinf.persistencia.entities.EstadoVersionContenidoEntity</class>
 		<class>tecinf.persistencia.entities.CategoriaContenidoEntity</class>
 		<class>tecinf.persistencia.entities.ContenidoEntity</class>
 		<class>tecinf.persistencia.entities.SubCategoriaContenidoEntity</class>
@@ -38,7 +37,6 @@
 			<property name="hibernate.jdbc.batch_size" value="50" />
 			<property name="hibernate.order_inserts" value="true" />
 			<property name="hibernate.order_updates" value="true" />
-         	<!--  <property name="hibernate.hbm2ddl.auto" value="update"/>  -->
          	<property name="hibernate.hbm2ddl.auto" value="update"/>
       	</properties>
 	</persistence-unit>

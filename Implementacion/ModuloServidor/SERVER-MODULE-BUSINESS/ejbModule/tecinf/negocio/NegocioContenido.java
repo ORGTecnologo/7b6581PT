@@ -27,6 +27,6 @@ public interface NegocioContenido {
 	
 	public List<DescargaDataType> obtenerDescargasACalificar(String usuario);
 	
-	public Integer ingresarNuevoContendo(ContenidoIngresoDataType dt);
+	public Integer ingresarNuevoContendo(ContenidoIngresoDataType dt, String usuario) throws Exception;
 	
 }

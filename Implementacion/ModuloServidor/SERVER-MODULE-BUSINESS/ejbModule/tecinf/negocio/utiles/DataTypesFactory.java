@@ -3,8 +3,6 @@ package tecinf.negocio.utiles;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-import javax.naming.NamingException;
-
 import org.jboss.logging.Logger;
 
 import tecinf.negocio.dtos.AuditoriaDataType;
@@ -116,9 +114,7 @@ public class DataTypesFactory {
 		dt.setDescripcionContenido(c.getDescripcion());
 		dt.setIdContenido(c.getId());
 		dt.setNombreContenido(c.getNombre());
-		FileSystemUtils fsu = null;
-		try { fsu = new FileSystemUtils(); } catch (NamingException e) { logger.error(e.getMessage() , e); }
-		dt.setTamanioContenido(fsu.getFileSize(c.getRutaArchivoContenido()));
+		dt.setTamanioContenido(c.getTamanio());
 		dt.setUrlArchivoContenido("/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?" + c.getRutaArchivoContenido());
 		dt.setCantidadDescargas(c.getCantidadDescargas() == null ? 0 : c.getCantidadDescargas()); 
 		

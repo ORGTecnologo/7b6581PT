@@ -3,23 +3,33 @@ package tecinf.presentacion.servlets;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.util.List;
+
 import javax.imageio.ImageIO;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.imgscalr.Scalr;
+import org.jboss.logging.Logger;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import tecinf.negocio.dtos.UserSession;
+import tecinf.negocio.utiles.FileSystemUtils;
+import tecinf.presentacion.utiles.ConstantesSession;
+
 public class FileUploadServlet extends HttpServlet {
 	
-	private String rutaTemporales = "/BaseDatosRecursos/tmp/";
+	private String rutaTemporales = "";
+	private static Logger logger = Logger.getLogger(FileUploadServlet.class);
 	
 	private static final long serialVersionUID = 1L;
 
@@ -30,10 +40,19 @@ public class FileUploadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
+    	HttpSession sess = request.getSession();
+    	UserSession uSess = (UserSession)sess.getAttribute(ConstantesSession.keyUsuarioSession);
+    	FileSystemUtils fsu;
     	
+		try {
+			fsu = new FileSystemUtils();
+			rutaTemporales = fsu.obtenerDirectorioAbsolutoUsuario(FileSystemUtils.DIRECTORIO_USUARIOS_PROVEEDORES, FileSystemUtils.DIRECTORIO_TEMPORALES, uSess.getUsuario());
+		} catch (NamingException e) {
+			logger.error(e.getMessage() , e); 
+		}  	
         
         if (request.getParameter("getfile") != null && !request.getParameter("getfile").isEmpty()) {
-            File file = new File(rutaTemporales + request.getParameter("getfile"));
+            File file = new File(rutaTemporales + "/" + request.getParameter("getfile"));
             if (file.exists()) {
                 int bytes = 0;
                 ServletOutputStream op = response.getOutputStream();
@@ -54,12 +73,12 @@ public class FileUploadServlet extends HttpServlet {
                 op.close();
             }
         } else if (request.getParameter("delfile") != null && !request.getParameter("delfile").isEmpty()) {
-            File file = new File(rutaTemporales + request.getParameter("delfile"));
+            File file = new File(rutaTemporales + "/" + request.getParameter("delfile"));
             if (file.exists()) {
                 file.delete();
             } 
         } else if (request.getParameter("getthumb") != null && !request.getParameter("getthumb").isEmpty()) {
-            File file = new File(rutaTemporales + request.getParameter("getthumb"));
+            File file = new File(rutaTemporales + "/" + request.getParameter("getthumb"));
                 if (file.exists()) {
                     System.out.println(file.getAbsolutePath());
                     String mimetype = getMimeType(file);
@@ -107,6 +126,17 @@ public class FileUploadServlet extends HttpServlet {
         if (!ServletFileUpload.isMultipartContent(request)) {
             throw new IllegalArgumentException("Request is not multipart, please 'multipart/form-data' enctype for your form.");
         }
+        
+        HttpSession sess = request.getSession();
+    	UserSession uSess = (UserSession)sess.getAttribute(ConstantesSession.keyUsuarioSession);
+    	FileSystemUtils fsu;
+    	
+		try {
+			fsu = new FileSystemUtils();
+			rutaTemporales = fsu.obtenerDirectorioAbsolutoUsuario(FileSystemUtils.DIRECTORIO_USUARIOS_PROVEEDORES, FileSystemUtils.DIRECTORIO_TEMPORALES, uSess.getUsuario());
+		} catch (NamingException e) {
+			logger.error(e.getMessage() , e); 
+		}  	
 
         ServletFileUpload uploadHandler = new ServletFileUpload(new DiskFileItemFactory());
         PrintWriter writer = response.getWriter();

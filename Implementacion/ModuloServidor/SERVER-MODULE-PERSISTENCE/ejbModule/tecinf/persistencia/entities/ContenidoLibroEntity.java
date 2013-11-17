@@ -7,8 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Column; 
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,10 +15,6 @@ import javax.persistence.Table;
 public class ContenidoLibroEntity extends ContenidoEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	@OneToOne
-	@JoinColumn(name="fk_contenido",unique=true,nullable=false)
-	private ContenidoEntity contenido;	
 
 	@Column(name = "fecha_publicacion")
 	private Date fecha_publicacion;
@@ -31,14 +25,10 @@ public class ContenidoLibroEntity extends ContenidoEntity implements Serializabl
 	@Column(name = "autor", length = 50)
 	private String autor;
 
-	public ContenidoEntity getContenido() {
-		return contenido;
+	public ContenidoLibroEntity(){
+		super();
 	}
-
-	public void setContenido(ContenidoEntity contenido) {
-		this.contenido = contenido;
-	}
-
+	
 	public Date getFecha_publicacion() {
 		return fecha_publicacion;
 	}
