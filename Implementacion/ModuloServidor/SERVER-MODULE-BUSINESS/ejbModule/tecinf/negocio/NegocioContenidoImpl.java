@@ -10,6 +10,7 @@ import javax.naming.NamingException;
 
 import org.jboss.logging.Logger;
 
+import tecinf.negocio.dtos.AprobarContenidoDataType;
 import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ContenidoIngresoDataType;
@@ -29,6 +30,7 @@ import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.UsuarioDao;
 import tecinf.persistencia.daos.UsuarioDescargaContenidoDao;
 import tecinf.persistencia.daos.UsuarioSubeContenidoDao;
+import tecinf.persistencia.daos.VersionContenidoDao;
 import tecinf.persistencia.entities.ContenidoEntity;
 import tecinf.persistencia.entities.ContenidoFotoEntity;
 import tecinf.persistencia.entities.ContenidoLibroEntity;
@@ -54,6 +56,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	private UsuarioDescargaContenidoDao usuarioDescargaContenidoDao = null;
 	private UsuarioSubeContenidoDao usuarioSubeContenidoDao = null;
 	private UsuarioDao usuarioDao = null;
+	private VersionContenidoDao versionContenidoDao = null;
 	
 	private FileSystemUtils fSU = new FileSystemUtils();
 	
@@ -65,6 +68,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		parametroValorDao = PersistenciaFactory.getParametroValorDao();
 		usuarioDao = PersistenciaFactory.getUsuarioDao();
 		usuarioSubeContenidoDao = PersistenciaFactory.getUsuarioSubeContenidoDao();
+		versionContenidoDao = PersistenciaFactory.getVersionContenidoDao();
 		
 	}
 	
@@ -72,8 +76,8 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		ContenidoDataType contenido = null;		
 		ContenidoEntity cont = contenidoDao.findByID(idContenido);
 		if (cont != null){
-			List<ContenidoFotoEntity> fotos = contenidoFotosDao.getAllByContenido(idContenido);		
-			contenido = DataTypesFactory.getContenidoDataType(cont, fotos);
+			//List<ContenidoFotoEntity> fotos = contenidoFotosDao.getAllByContenido(idContenido);		
+			contenido = DataTypesFactory.getContenidoDataType(cont);
 		}
 		return contenido;
 	}
@@ -238,28 +242,53 @@ public class NegocioContenidoImpl implements NegocioContenido {
 				cf.setUrlFoto(CripterDecripter.encrypt(rTo));
 				nC.getFotos().add(cf);
 			}
-		}		
+		}	
+		
+		/*AGREGO LA VERSION DEL CONTENIDO Y QUEDA PENDIENTE A APROBAR*/
+		
+		VersionContenidoEntity vC = new VersionContenidoEntity();
+		vC.setEstadoVersion(EnumEstadosVersionContenido.PENDIENTE_REVISION);
+		vC.setFechaSubida(new Date());
+		vC.setDescripcion("X");
+		vC.setContenido(nC);
+		nC.getVersiones().add(vC);		
+		
+		contenidoDao.persist(nC);
 		
 		/* AGREGO LA CLASE ASOCIATIVA USUARIO-SUBE-CONTENIDO */
 		UsuarioSubeContenidoEntity usc = new UsuarioSubeContenidoEntity();
 		usc.setFechaSubida(new Date());
 		usc.setContenido(nC);
-		usc.setPrecioSubida(/*dt.getPrecio()*/Float.valueOf("0.0"));
+		usc.setPrecioSubida(Float.valueOf("0.0"));
 		UsuarioEntity ue = usuarioDao.findByID(usuario);
 		if (ue == null)
 			throw new Exception("Error al recuperar usuario.");
 		usc.setUsuarioCliente(ue);
 		
-		/*AGREGO LA VERSION DEL CONTENIDO Y QUEDA PENDIENTE A APROBAR*/
-		VersionContenidoEntity vC = new VersionContenidoEntity();
-		vC.setEstadoVersion(EnumEstadosVersionContenido.PENDIENTE_REVISION);
-		vC.setFechaSubida(new Date());
-		vC.setDescripcion("");
-		nC.getVersiones().add(vC);
-		
 		usuarioSubeContenidoDao.persist(usc);
-		contenidoDao.persist(nC);
 		return nC.getId();
+	}
+	
+	public List<AprobarContenidoDataType> obtenerContenidosAAprobar(){
+		List<AprobarContenidoDataType> listaContenidos = new ArrayList<AprobarContenidoDataType>();
+		
+		List<ContenidoEntity> listaContenidosE = contenidoDao.findAll();
+		if (listaContenidosE != null){
+			for (ContenidoEntity c : listaContenidosE){
+				if (c.tieneVersionConEstado(EnumEstadosVersionContenido.PENDIENTE_REVISION))
+					listaContenidos.add(DataTypesFactory.getAprobarContenidoDataType(c));
+				
+			}
+		}
+		return listaContenidos;
+	}
+	
+	public void cambiarEstadoVersion(Integer idVersion, String estado) throws Exception {
+		
+		VersionContenidoEntity v = versionContenidoDao.findByID(idVersion);
+		v.setEstadoVersion(estado);
+		versionContenidoDao.merge(v);
+		
 	}
 	
 }

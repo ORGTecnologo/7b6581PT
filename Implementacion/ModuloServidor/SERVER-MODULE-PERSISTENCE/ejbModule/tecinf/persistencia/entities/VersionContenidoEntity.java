@@ -3,6 +3,7 @@ package tecinf.persistencia.entities;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,7 +26,7 @@ public class VersionContenidoEntity implements Serializable {
 	@SequenceGenerator(name = "version_contenido_secuencia", sequenceName = "version_contenido_seq", allocationSize = 1)
 	private Integer id;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY, targetEntity = ContenidoEntity.class,cascade=CascadeType.ALL)
 	@JoinColumn(name="fk_contenido", nullable=false)
 	private ContenidoEntity contenido;
 	
@@ -34,6 +35,9 @@ public class VersionContenidoEntity implements Serializable {
 	
 	@Column(name="descripcion",nullable=false, length=50)
 	private String descripcion;
+	
+	@Column(name="version",nullable=true, length=50)
+	private String version;
 	
 	@Column(name="fecha_subida",nullable=false)
 	private Date fechaSubida;
@@ -52,7 +56,7 @@ public class VersionContenidoEntity implements Serializable {
 
 	public void setContenido(ContenidoEntity contenido) {
 		this.contenido = contenido;
-	}	
+	}
 
 	public String getEstadoVersion() {
 		return estadoVersion;
@@ -76,6 +80,14 @@ public class VersionContenidoEntity implements Serializable {
 
 	public void setFechaSubida(Date fechaSubida) {
 		this.fechaSubida = fechaSubida;
+	}
+
+	public String getVersion() {
+		return version;
+	}
+
+	public void setVersion(String version) {
+		this.version = version;
 	}
 	
 }

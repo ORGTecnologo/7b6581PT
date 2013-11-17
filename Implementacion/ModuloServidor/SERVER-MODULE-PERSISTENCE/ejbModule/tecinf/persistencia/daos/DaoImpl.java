@@ -46,6 +46,10 @@ public abstract class DaoImpl<K, E> implements Dao<K, E>{
 	public void rollBack(){
 		em.getTransaction().rollback();
 	}
+	
+	public Boolean contains(E entity){
+		return em.contains(entity);
+	}
 
 
 }

@@ -21,6 +21,10 @@ public class UsuarioProveedorEntity extends UsuarioEntity implements Serializabl
 	
 	@Column(name="sitio_web", length=100, nullable=false)
 	private String sitioWeb;
+	
+	public UsuarioProveedorEntity(){
+		super();
+	}
 
 	public String getCodigoQr() {
 		return codigoQr;

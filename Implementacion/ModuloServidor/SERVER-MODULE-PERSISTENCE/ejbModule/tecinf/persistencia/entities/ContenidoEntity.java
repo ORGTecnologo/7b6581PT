@@ -2,7 +2,9 @@ package tecinf.persistencia.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -68,15 +70,23 @@ public abstract class ContenidoEntity implements Serializable {
 	@Column(name = "precio", nullable = true)
 	private Float precio;
 
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="contenido")
-	private List<ContenidoFotoEntity> fotos;
+	@OneToMany(targetEntity=ContenidoFotoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
+	private Set<ContenidoFotoEntity> fotos;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="contenido")
-	private List<VersionContenidoEntity> versiones;
+	@OneToMany(targetEntity=VersionContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
+	private Set<VersionContenidoEntity> versiones;
 	
-	public ContenidoEntity(){
-		fotos = new ArrayList<ContenidoFotoEntity>();
-		versiones = new ArrayList<VersionContenidoEntity>();
+	@OneToMany(targetEntity=VersionContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
+	private Set<UsuarioSubeContenidoEntity> subidas;
+	
+	@OneToMany(targetEntity=VersionContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
+	private Set<UsuarioSubeContenidoEntity> bajadas;
+	
+	public ContenidoEntity() {
+		fotos = new HashSet<ContenidoFotoEntity>();
+		versiones = new HashSet<VersionContenidoEntity>();
+		subidas = new HashSet<UsuarioSubeContenidoEntity>();
+		bajadas = new HashSet<UsuarioSubeContenidoEntity>();
 	}
 	
 	public Integer getId() {
@@ -159,21 +169,54 @@ public abstract class ContenidoEntity implements Serializable {
 		this.precio = precio;
 	}
 
-	public List<ContenidoFotoEntity> getFotos() {
+	public Set<ContenidoFotoEntity> getFotos() {
 		return fotos;
 	}
 
-	public void setFotos(List<ContenidoFotoEntity> fotos) {
+	public void setFotos(Set<ContenidoFotoEntity> fotos) {
 		this.fotos = fotos;
 	}
 
-	public List<VersionContenidoEntity> getVersiones() {
+	
+	
+	public Set<VersionContenidoEntity> getVersiones() {
 		return versiones;
 	}
 
-	public void setVersiones(List<VersionContenidoEntity> versiones) {
+	public void setVersiones(Set<VersionContenidoEntity> versiones) {
 		this.versiones = versiones;
 	}
-	
 
+	public Set<UsuarioSubeContenidoEntity> getSubidas() {
+		return subidas;
+	}
+
+	public void setSubidas(Set<UsuarioSubeContenidoEntity> subidas) {
+		this.subidas = subidas;
+	}
+
+	public Set<UsuarioSubeContenidoEntity> getBajadas() {
+		return bajadas;
+	}
+
+	public void setBajadas(Set<UsuarioSubeContenidoEntity> bajadas) {
+		this.bajadas = bajadas;
+	}
+
+	public Boolean tieneVersionConEstado(String estado){
+		for (VersionContenidoEntity v : this.versiones){
+			if (v.getEstadoVersion().equals(estado))
+				return true;
+		}
+		return false;
+	}
+	
+	public VersionContenidoEntity obtenerVersionConEstado(String estado){
+		for (VersionContenidoEntity v : this.versiones){
+			if (v.getEstadoVersion().equals(estado))
+				return v;
+		}
+		return null;
+	}
+	
 }

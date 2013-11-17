@@ -1,16 +1,21 @@
 package tecinf.persistencia.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -81,6 +86,17 @@ public abstract class UsuarioEntity implements Serializable {
 	
 	@Column(name="tipo_usuario",length=50, nullable=false)
 	private String tipoUsuario;
+	
+	@OneToMany(targetEntity=UsuarioDescargaContenidoEntity.class,fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="usuarioCliente")
+	private List<UsuarioDescargaContenidoEntity> bajadas;
+	
+	@OneToMany(targetEntity=UsuarioSubeContenidoEntity.class,fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="usuarioCliente")
+	private List<UsuarioSubeContenidoEntity> subidas;
+	
+	public UsuarioEntity(){
+		subidas = new ArrayList<UsuarioSubeContenidoEntity>();
+		bajadas = new ArrayList<UsuarioDescargaContenidoEntity>();
+	}
 	
 	public String getUsuario() {
 		return usuario;
@@ -164,6 +180,24 @@ public abstract class UsuarioEntity implements Serializable {
 
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
+	}
+
+	
+
+	public List<UsuarioDescargaContenidoEntity> getBajadas() {
+		return bajadas;
+	}
+
+	public void setBajadas(List<UsuarioDescargaContenidoEntity> bajadas) {
+		this.bajadas = bajadas;
+	}
+
+	public List<UsuarioSubeContenidoEntity> getSubidas() {
+		return subidas;
+	}
+
+	public void setSubidas(List<UsuarioSubeContenidoEntity> subidas) {
+		this.subidas = subidas;
 	}	
 			
 }

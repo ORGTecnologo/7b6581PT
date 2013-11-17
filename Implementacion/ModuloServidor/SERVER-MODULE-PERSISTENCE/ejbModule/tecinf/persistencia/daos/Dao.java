@@ -17,5 +17,7 @@ public interface Dao<K, E> {
 	List<E> findAll();
 
 	public void rollBack();
- 
+	
+	public Boolean contains(E entity);
+	
 }

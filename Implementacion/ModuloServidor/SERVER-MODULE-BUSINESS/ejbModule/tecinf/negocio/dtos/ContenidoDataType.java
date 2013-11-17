@@ -17,10 +17,12 @@ public abstract class ContenidoDataType implements Serializable {
 	protected Integer calificacion;
 	protected Float precio;
 	protected List<String> fotos;
+	protected List<VersionContenidoDataType> versiones;
 	protected String tipoContenido;
 	
 	public ContenidoDataType(){
 		fotos = new ArrayList<String>();
+		versiones = new ArrayList<VersionContenidoDataType>();
 		cantidadDescargas = 0;
 	}
 		
@@ -92,6 +94,13 @@ public abstract class ContenidoDataType implements Serializable {
 	public void setPrecio(Float precio) {
 		this.precio = precio;
 	}
-	
-		
+
+	public List<VersionContenidoDataType> getVersiones() {
+		return versiones;
+	}
+
+	public void setVersiones(List<VersionContenidoDataType> versiones) {
+		this.versiones = versiones;
+	}
+			
 }

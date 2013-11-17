@@ -77,12 +77,15 @@ public class FiltroAutenticacion implements Filter {
 		publicURLs.add("/img/");
 		publicURLs.add("/restws");
 		publicURLs.add("/views/content.html");
+		publicURLs.add("/Images");
+		publicURLs.add("/ImageDispatcherServlet");
 		
 		//Pendientes a pasar a restringidas para admin
 		publicURLs.add("/admin/admin.xhtml");
 		publicURLs.add("/admin/partialCategorias.xhtml");
 		publicURLs.add("/admin/partialSubCategorias.xhtml");
 		publicURLs.add("/admin/partialSubComentarios.xhtml");
+		publicURLs.add("/admin/partialContenidos.xhtml");
 		
 		
 		// URLs de administradores
@@ -111,7 +114,7 @@ public class FiltroAutenticacion implements Filter {
 			if (url.contains(publicURLs.get(i))) { 
 				isPublic = true; 
 				break; 
-			} 
+			}
 		}
 		return isPublic;
 	}

@@ -32,8 +32,9 @@
 		<class>tecinf.persistencia.entities.UsuarioDescargaContenidoEntity</class>
 		  
 		<properties>
+			<property name="hibernate.id.new_generator_mappings" value="true" />
    			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-   			<property name="hibernate.show_sql" value="false" />
+   			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.jdbc.batch_size" value="50" />
 			<property name="hibernate.order_inserts" value="true" />
 			<property name="hibernate.order_updates" value="true" />

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import tecinf.negocio.dtos.AprobarContenidoDataType;
 import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ContenidoIngresoDataType;
@@ -27,6 +28,10 @@ public interface NegocioContenido {
 	
 	public List<DescargaDataType> obtenerDescargasACalificar(String usuario);
 	
+	public List<AprobarContenidoDataType> obtenerContenidosAAprobar();
+	
 	public Integer ingresarNuevoContendo(ContenidoIngresoDataType dt, String usuario) throws Exception;
+	
+	public void cambiarEstadoVersion(Integer idVersion, String estado) throws Exception;
 	
 }

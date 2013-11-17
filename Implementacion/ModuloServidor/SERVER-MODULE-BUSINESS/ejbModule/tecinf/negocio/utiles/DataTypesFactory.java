@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.jboss.logging.Logger;
 
+import tecinf.negocio.dtos.AprobarContenidoDataType;
 import tecinf.negocio.dtos.AuditoriaDataType;
 import tecinf.negocio.dtos.CategoriaContenidoDataType;
 import tecinf.negocio.dtos.ComentarioDataType;
@@ -16,6 +17,7 @@ import tecinf.negocio.dtos.ContenidoVideoDataType;
 import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
+import tecinf.negocio.dtos.VersionContenidoDataType;
 import tecinf.persistencia.entities.AuditoriaEntity;
 import tecinf.persistencia.entities.CategoriaContenidoEntity;
 import tecinf.persistencia.entities.ContenidoEntity;
@@ -27,6 +29,7 @@ import tecinf.persistencia.entities.ContenidoVideoEntity;
 import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
+import tecinf.persistencia.entities.VersionContenidoEntity;
 import tecinf.persistencia.utiles.EnumTiposContenido;
 
 public class DataTypesFactory {
@@ -74,7 +77,7 @@ public class DataTypesFactory {
 		return dt;
 	} 
 	
-	public static ContenidoDataType getContenidoDataType(ContenidoEntity c, List<ContenidoFotoEntity> fotos){
+	public static ContenidoDataType getContenidoDataType(ContenidoEntity c){
 		ContenidoDataType dt = null;
 		
 		if (c.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_LIBRO)){
@@ -102,10 +105,14 @@ public class DataTypesFactory {
 			((ContenidoTemaMusicalDataType)dt).setAlbumTema(((ContenidoTemaMusicalEntity)c).getAlbumTema()); 
 		}
 		
-		if (fotos != null && fotos.size() > 0){
-			for (ContenidoFotoEntity f : fotos){
+		if (c.getFotos() != null && c.getFotos().size() > 0) {
+			for (ContenidoFotoEntity f : c.getFotos())
 				dt.getFotos().add("/SERVER-MODULE-PRESENTATION/Images?" + f.getUrlFoto());
-			}
+		}
+		
+		if (c.getVersiones() != null && c.getVersiones().size() > 0) {
+			for (VersionContenidoEntity v : c.getVersiones())
+				dt.getVersiones().add(getVersionContenidoDataType(v));
 		}
 		
 		dt.setTipoContenido(c.getTipoContenido());
@@ -116,7 +123,18 @@ public class DataTypesFactory {
 		dt.setNombreContenido(c.getNombre());
 		dt.setTamanioContenido(c.getTamanio());
 		dt.setUrlArchivoContenido("/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?" + c.getRutaArchivoContenido());
-		dt.setCantidadDescargas(c.getCantidadDescargas() == null ? 0 : c.getCantidadDescargas()); 
+		dt.setCantidadDescargas(c.getCantidadDescargas() == null ? 0 : c.getCantidadDescargas());
+		
+		return dt;
+	}
+	
+	public static VersionContenidoDataType getVersionContenidoDataType(VersionContenidoEntity e){
+		VersionContenidoDataType dt = new VersionContenidoDataType();
+		
+		dt.setDescripcion(e.getDescripcion());
+		dt.setEstadoVersion(e.getEstadoVersion());
+		dt.setFechaSubida(e.getFechaSubida());
+		dt.setId(e.getId()); 
 		
 		return dt;
 	}
@@ -143,6 +161,19 @@ public class DataTypesFactory {
 		dt.setUsuario(e.getUsuarioCliente().getUsuario());
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		dt.setFecha(e.getFechaValoracion() == null ? "" : sdf.format(e.getFechaValoracion()));
+		
+		return dt;
+	}
+	
+	public static AprobarContenidoDataType getAprobarContenidoDataType(ContenidoEntity c){
+		AprobarContenidoDataType dt = new AprobarContenidoDataType();
+		
+		VersionContenidoEntity v = c.obtenerVersionConEstado(EnumEstadosVersionContenido.PENDIENTE_REVISION);
+		dt.setIdContenido(c.getId());
+		dt.setDescripcionVersion(v.getDescripcion());
+		dt.setNombreContenido(c.getNombre());
+		dt.setVersion(v.getVersion());
+		dt.setIdVersion(v.getId());
 		
 		return dt;
 	}

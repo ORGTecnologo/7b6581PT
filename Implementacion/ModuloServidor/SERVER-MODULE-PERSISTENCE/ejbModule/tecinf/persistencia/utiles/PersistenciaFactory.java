@@ -32,6 +32,8 @@ import tecinf.persistencia.daos.UsuarioDescargaContenidoDao;
 import tecinf.persistencia.daos.UsuarioDescargaContenidoDaoImpl;
 import tecinf.persistencia.daos.UsuarioSubeContenidoDao;
 import tecinf.persistencia.daos.UsuarioSubeContenidoDaoImpl;
+import tecinf.persistencia.daos.VersionContenidoDao;
+import tecinf.persistencia.daos.VersionContenidoDaoImpl;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -98,6 +100,10 @@ public class PersistenciaFactory {
 	
 	public static UsuarioSubeContenidoDao getUsuarioSubeContenidoDao() throws NamingException{
 		return (UsuarioSubeContenidoDao) lookup(UsuarioSubeContenidoDaoImpl.class.getSimpleName(),UsuarioSubeContenidoDao.class.getName());
+	}
+	
+	public static VersionContenidoDao getVersionContenidoDao() throws NamingException{
+		return (VersionContenidoDao) lookup(VersionContenidoDaoImpl.class.getSimpleName(),VersionContenidoDao.class.getName());
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

@@ -40,6 +40,10 @@ public class UsuarioClienteEntity extends UsuarioEntity implements Serializable 
 	@Column(name="ruta_imagen_perfil", length=255)
 	private String rutaImagenPerfil;
 
+	public UsuarioClienteEntity(){
+		super();
+	}
+	
 	public TipoRegistroEntity getTipoRegistro() {
 		return tipoRegistro;
 	}

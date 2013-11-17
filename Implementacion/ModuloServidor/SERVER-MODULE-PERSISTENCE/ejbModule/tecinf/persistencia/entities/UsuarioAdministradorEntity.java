@@ -30,6 +30,8 @@ public class UsuarioAdministradorEntity extends UsuarioEntity implements Seriali
 	
 	private static final long serialVersionUID = 1L;
 	
-	
+	public UsuarioAdministradorEntity(){
+		super();
+	}
 	
 }

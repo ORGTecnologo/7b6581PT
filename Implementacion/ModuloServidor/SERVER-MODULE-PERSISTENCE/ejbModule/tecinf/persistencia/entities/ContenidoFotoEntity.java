@@ -2,6 +2,7 @@ package tecinf.persistencia.entities;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity; 
 import javax.persistence.Column; 
 import javax.persistence.FetchType;
@@ -33,8 +34,8 @@ public class ContenidoFotoEntity implements Serializable {
 	@SequenceGenerator(name = "contenido_foto_secuencia", sequenceName = "contenido_foto_seq", allocationSize = 1)
 	private Integer id;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="fk_contenido",nullable=false)
+	@ManyToOne(fetch=FetchType.LAZY, targetEntity = ContenidoEntity.class,cascade=CascadeType.ALL)
+	@JoinColumn(name="fk_contenido", nullable=false)
 	private ContenidoEntity contenido;	
 	
 	@Column(name = "url_foto", length = 200, nullable=false)
