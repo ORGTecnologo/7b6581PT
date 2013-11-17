@@ -24,5 +24,4 @@ $(document).ready(function(){
 	    mostrarElemento('Nick-Logout-Div');
 	    ocultarElemento('Login-Registro-Div');
     }
-    
 });

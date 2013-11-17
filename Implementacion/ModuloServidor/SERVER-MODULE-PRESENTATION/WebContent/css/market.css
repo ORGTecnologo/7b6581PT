@@ -100,6 +100,12 @@
 		width: 100%;
 	}
 	
+	.facebookLike{
+		position: fixed !important;
+		top: 9%;
+		left: 88%;
+	}
+
 	.carouselInicio{
 		padding-left: 15em;
 		padding-top: 47px;

@@ -24,8 +24,8 @@ function CTES_PROY(){
 	this.TIPO_CONTENIDO_VIDEO = "tipo_contenido_video";
 	this.TIPO_CONTENIDO_LIBRO = "tipo_contenido_libro";
 
-	this.HOST 		  = "http://localhost:8080";
-	this.IP_SERVICIOS = "http://localhost:8080/SERVER-MODULE-PRESENTATION";
+	this.HOST 		  = "http://127.0.0.1:8080";
+	this.IP_SERVICIOS = this.HOST + "/SERVER-MODULE-PRESENTATION";
 }
 
 function JSON_PROY(){

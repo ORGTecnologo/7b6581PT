@@ -10,7 +10,12 @@ function checkearSesionAbierta(){
 	varsProy.nick = usuario;
 	varsProy.token = token;
 
-	return true;
+	if (existeSesionServ(varsProy.nick))
+		return true;
+	else{
+		window.localStorage.clear();		
+		return false;
+	}
 }
 
 function errorControlVaciosFormularioRegistro() {
@@ -65,7 +70,13 @@ function crearUsuario(){
 
 		if(mail.validarMail()){
 			if(contrasenia===contrasenia2){
-				registroUsuario(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel);
+				if (!contrasenia.validarPassword()) console.warn('Desactive esta validacion!!!!');
+//				if (contrasenia.validarPassword())
+					registroUsuario(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel);
+//				else
+//					alert("La contraseña no es segura. La misma debe tener un largo de entre 8 y 15 caracteres;"
+//						+ " debe contener por lo menos 1 numero, 1 caracter especial y 1 mayuscula");
+
 			}
 			else{
 				document.getElementById('inputPass').value = "";
@@ -98,7 +109,12 @@ function crearProveedor(){
 
 		if(mail.validarMail()){
 			if(contrasenia===contrasenia2){
-				registroProveedor(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel,sitioWeb);
+				if (!contrasenia.validarPassword()) console.warn('Desactive esta validacion!!!!');
+//				if (contrasenia.validarPassword())
+					registroProveedor(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel,sitioWeb);
+				// else
+				// 	alert("La contraseña no es segura. La misma debe tener un largo de entre 8 y 15 caracteres;"
+				// 		+ " debe contener por lo menos 1 numero, 1 caracter especial y 1 mayuscula");
 			}
 			else{
 				document.getElementById('inputPass').value = "";

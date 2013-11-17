@@ -140,6 +140,17 @@ function inicializarPrototipos() {
 			return true;
 	}
 
+	String.prototype.validarPassword = function(){
+	//Regresa TRUE si la contrasenia es segura, FALSE en caso contrario
+
+		var passRegExp = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+		if (passRegExp.test(this))
+			return true;
+		else
+			return false;
+
+	}
+
 	Array.prototype.moverElemento = function(index, nuevoIndex){
 
 		// Este metodo mueve el elemento que esta en la posicion index
