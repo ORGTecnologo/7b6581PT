@@ -6,6 +6,8 @@
     <meta name="description" content="Bienvenidos al MarketPlace tecnologo, donde ecnotraras todo lo que te imagines y mas.">
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css" media="screen"/>
+	
 	<link rel="stylesheet" type="text/css" href="css/market.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" media="screen"/>
 	<script src="js/jquery.min.js"></script>
@@ -14,41 +16,45 @@
 <body class="overlay">
 
 <!-- BARRA DE NAVEGACION -->
-	<nav class="navbarFija navbar navbar-default " role="navigation">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target=".navbar-ex1-collapse">
-				<span class="sr-only">Desplegar navegación</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Market Place Tecnologo</a>
-		</div>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+			data-target=".navbar-ex1-collapse">
+			<span class="sr-only">Desplegar navegación</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">Market Place Tecnologo</a>
+	</div>
 
-		<div class="collapse navbar-collapse navbar-ex1-collapse"> 
-			<form class="navbar-form navbar-left" role="search">
-				<div class="form-group col-xs-5">
-					<input type="search" class="form-control" placeholder="Buscar">
-				</div>
-				<button class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
-					<span class="glyphicon glyphicon-search"></span> Buscar</button>
-					<span class="glyphicon glyphicon-search"></span> Opciones</button>
-			</form>
-			<div class="col-md-2 pull-right" id="Login-Registro-Div">
-				<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
-				<ul class="dropdown-menu col-md-2 ">
-					<li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario')">Soy Proveedor</a></li>
-					<li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario')">Soy Cliente</a></li>
-				</ul>
-				<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario')">Login</button>
-			</div>
-			<div class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
-				<a href="#" class="nick">nick</a>
-				<a href="#" onclick="logoutUsuario()">(Logout)</a>
-			</div>
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+    <form class="navbar-form navbar-left" role="search">
+		<div class="form-group col-xs-6">
+			<input id="input-busqueda" type="search" class="form-control" placeholder="Buscar">
 		</div>
-	</nav>
+		<ul class="btn-group">
+			<button onclick="buscarContenidos();" class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
+				<span class="glyphicon glyphicon-search"></span> Buscar</button>
+			<button class="btn btn-primary dropdown-toggle"	type="button" onclick="mostrarElemento('configurarBusqueda',true)"><span class="glyphicon glyphicon-cog"></span></button>
+		</ul>
+	</form>
+ 
+    <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
+		<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
+		<ul class="dropdown-menu">
+			<li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario',true)">Soy Proveedor</a></li>
+			<li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario',true)">Soy Cliente</a></li>
+		</ul>
+		<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
+    </ul>
+	<ul class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
+		<a href="#" class="nick">nick</a>
+		<a href="#" onclick="logoutUsuario()">(Logout)</a>
+	</ul>
+</nav>
 	<div class="col-md-12" style="height:50px;"></div>
 
 <!-- APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS -->	
@@ -59,7 +65,7 @@
 	<div class="row centerContent">
 		<div id="aplicacion1"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h3>Aplicacion 4</h3>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -74,7 +80,7 @@
 	  
 		<div id="aplicacion2"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/mu2.jpg" alt="img/mu2.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/mu2.jpg" alt="img/mu2.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h3>Aplicacion 3</h3>
 					<p>Descripcion</p>
@@ -89,7 +95,7 @@
 
 		<div id="aplicacion3"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/mu3.jpg" alt="img/mu3.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/mu3.jpg" alt="img/mu3.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h3>Aplicacion 2</h3>
 					<p>Descripcion</p>
@@ -104,7 +110,7 @@
 
 		<div id="aplicacion4" class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/mu4.jpg" alt="img/mu4.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/mu4.jpg" alt="img/mu4.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h3>Aplicacion 1</h3>
 					<p>Descripcion</p>
@@ -127,7 +133,7 @@
 	<div class="row centerContent">
 		<div id="libro1"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/li1.jpg" alt="img/mu1.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/li1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h3>Libro 1</h3>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -142,7 +148,7 @@
 		
 		<div id="libro2"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/li2.jpg" alt="img/mu2.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/li2.jpg" alt="img/mu2.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h3>Libro 1</h3>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -157,7 +163,7 @@
 		
 		<div id="libro3"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/li3.jpg" alt="img/mu3.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/li3.jpg" alt="img/mu3.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h3>Libro 1</h3>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -172,7 +178,7 @@
 		
 		<div id="libro4"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/li4.png" alt="img/mu4.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/li4.png" alt="img/mu4.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h3>Libro 1</h3>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -196,7 +202,7 @@
 	<div class="row centerContent">
 		<div id="video1"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h2>Video 1</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -211,7 +217,7 @@
 		
 		<div id="video2"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h2>Video 2</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -226,7 +232,7 @@
 		
 		<div id="video3"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h2>Video 3</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -241,7 +247,7 @@
 		
 		<div id="video4"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h2>Video 4</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -265,7 +271,7 @@
 	<div class="row centerContent">
 		<div id="musica1"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h2>Musica 1</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -280,7 +286,7 @@
 		
 		<div id="musica2"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/mu2.jpg" alt="img/mu2.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/mu2.jpg" alt="img/mu2.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h2>Musica 2</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -295,7 +301,7 @@
 		
 		<div id="musica3"  class="col-sm-5 col-md-3">
 			<div class="thumbnail">
-				<img src="img/mu3.jpg" alt="img/mu3.jpg" class="img-circle miniatura img-responsive">
+				<img src="img/mu3.jpg" alt="img/mu3.jpg" class="img-thumbnail miniatura img-responsive">
 				<div class="caption">
 					<h2>Musica 3</h2>
 					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
@@ -310,7 +316,7 @@
 		
 		<div id="musica4" class="col-sm-5 col-md-3">
 		    <div class="thumbnail">
-		        <img src="img/mu4.jpg" alt="img/mu4.jpg" class="img-circle miniatura img-responsive"
+		        <img src="img/mu4.jpg" alt="img/mu4.jpg" class="img-thumbnail miniatura img-responsive"
 		        />
 		        <div class="caption">
 		            	<h2>Musica 4</h2>
@@ -415,6 +421,37 @@
         </div>
     </div>
 </div>
+
+<!-- CONFIGURAR BUSQUEDA -->
+<div id="configurarBusqueda" class="modal modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button onclick="ocultarElemento('configurarBusqueda')" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title">Modal title</h4>
+		</div>
+		<div class="modal-body">
+			<div class="col-md-12">
+	            <div class="col-md-12">
+	            	<h4>Tipos</h4>
+	                <p><label><input id="id_search-Libros" type="checkbox" checked="true">_Libros</label></p>
+	                <p><label><input id="id_search-Musica" type="checkbox" checked="true">_Musica</label></p>
+	                <p><label><input id="id_search-Apps" type="checkbox" checked="true">_Apps</label></p>
+	                <p><label><input id="id_search-Video" type="checkbox" checked="true">_Video</label></p>
+	            </div>
+	            <div class="col-md-12">
+	            	<h4>Categorias</h4>
+					<select class="selectpicker show-tick form-control" multiple data-live-search="true"id="multiplesCat" data-container="body">
+					</select>
+	            </div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button onclick="ocultarElemento('configurarBusqueda')" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button onclick="actualizarParametrosBusqueda()" type="button" class="btn btn-primary">Guardar Cambios</button>
+		</div>
+	</div>
+</div>
+
 </body>
 
 <script src="js/jquery-ui.js"></script>
@@ -422,6 +459,8 @@
 <script src="js/Prototipos.js"></script>
 <script src="js/holder.js"></script>
 <script src="js/bootstrap.js"></script>
+<script src="js/bootstrap-select.min.js"></script>
+<script src="js/Objetos.js"></script>
 <script src="js/LlamadasAjax.js"></script>
 <script src="js/getSet.js"></script>
 <script src="js/eventos.js"></script>

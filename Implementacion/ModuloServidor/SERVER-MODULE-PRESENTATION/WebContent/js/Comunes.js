@@ -18,6 +18,68 @@ function checkearSesionAbierta(){
 	}
 }
 
+function cargarConfigBusqueda(idSelect){
+	obtenerCategoriasySubcategorias('multiplesCat');
+}
+
+function actualizarParametrosBusqueda(){
+
+	varsProy.PARAM_BUSQ_APPS = document.getElementById("id_search-Apps").checked;
+	varsProy.PARAM_BUSQ_VIDEO = document.getElementById("id_search-Video").checked;
+	varsProy.PARAM_BUSQ_MUSICA = document.getElementById("id_search-Musica").checked;
+	varsProy.PARAM_BUSQ_LIBROS = document.getElementById("id_search-Libros").checked;
+
+	var CatSelected = document.getElementById("multiplesCat").selectedOptions;
+	var categorias = "";
+
+	for (var i = 0; i < CatSelected.length; i++) {
+		if (i!=0)
+			categorias += ';';
+
+		categorias += CatSelected[i].value;
+	}
+
+	varsProy.PARAM_BUSQ_CATEGORIAS = categorias;
+
+	ocultarElemento('configurarBusqueda');
+}
+
+function cargarComboCategorias(idSelect){
+	idSelect || (idSelect = 'id_categoria');
+
+	var select = document.getElementById(idSelect);
+
+	for (var i = 0; i < select.options.length; i++)
+		select.options.remove();
+
+	for (var i = 0; i < jsonProy.categorias.length; i++) {
+		var option1 = document.createElement("option");
+			option1.text = jsonProy.categorias[i].nombre;
+			option1.value = i;//jsonProy.categorias[i].id;
+		select.add(option1,select.options[null]);
+	};
+
+	$('.selectpicker').selectpicker('refresh');
+}
+
+function cargarComboSubCategorias(elem){
+
+	fila = parseInt(elem.value);
+	var subcategorias = jsonProy.categorias[fila].subcategorias;
+
+	var select = document.getElementById('id_subcategoria');
+
+	for (var i = 0; i < select.options.length; i++)
+		select.options.remove();
+
+	for (var i = 0; i < subcategorias.length; i++) {
+		var option1 = document.createElement("option");
+			option1.text = subcategorias[i].nombre;
+			option1.value = i;//jsonProy.categorias[i].id;
+		select.add(option1,select.options[null]);
+	};	
+}
+
 function errorControlVaciosFormularioRegistro() {
 	
 	var error0 = Pintar_hasError(document.getElementById('inputNombre'));

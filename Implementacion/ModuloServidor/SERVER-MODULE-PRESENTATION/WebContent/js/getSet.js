@@ -41,7 +41,9 @@ function mostrarElemento(id,esmodal){
 
 function ocultarElemento(id){
 	var div = $("#" + id)[0];
-
+	
+	$("#" + id).modal('hide')
+	
 	div.classList.remove('show');
 	div.classList.add('hide');
 }

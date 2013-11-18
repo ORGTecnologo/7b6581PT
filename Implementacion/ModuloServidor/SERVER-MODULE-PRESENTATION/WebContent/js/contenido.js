@@ -24,8 +24,6 @@ $(document).ready(function(){
 	    mostrarElemento('Nick-Logout-Div');
 	    ocultarElemento('Login-Registro-Div');
     }
-
-
 });
 
 function cargarDatosDelContenido(){
@@ -139,7 +137,8 @@ function armarContenidoHTML(){
 		comprarBtn.setAttribute('href',Content.Source);
 
 	var pTam = document.getElementById('tamanioCont');
-		pTam.innerText = 'Tamaño:  ' + Content.Tamanio;
+	var MB = Math.round((Content.Tamanio / 1000000) * 10) /10	
+		pTam.innerText = 'Tamaño:  ' + MB + ' MB';
 	
 	var pDesc = document.getElementById('cantDescargas');
 		pDesc.innerText = 'Cantidad de Descargas:  ' + Content.Descargas;
@@ -159,6 +158,7 @@ function armarContenidoHTML(){
 
 	imgContent.setAttribute('src',Content.Imagenes[0]);
 	imgContent.setAttribute('alt',Content.Imagenes[0]);
+	imgContent.setAttribute('class','img-thumbnail');
 	imgContent.setAttribute('style','width: 250px;height: 250px;');
 
 	thumbnailContent.setAttribute('class','thumbnail');

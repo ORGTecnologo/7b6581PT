@@ -44,6 +44,26 @@ function inicializarPrototipos() {
 		return x1;
 	}
 	
+
+	String.prototype.validarMail = function(){
+	//Regresa TRUE si el mail esta bien formado, FALSE en caso contrario	
+		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		if( !emailReg.test(this) )
+			return false;
+		else
+			return true;
+	}
+
+	String.prototype.validarPassword = function(){
+	//Regresa TRUE si la contrasenia es segura, FALSE en caso contrario
+
+		var passRegExp = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
+		if (passRegExp.test(this))
+			return true;
+		else
+			return false;
+	}
+
 	String.prototype.validarFecha = function( ){
 		//Validar el formato de la fecha, y que sea una fecha valida
 		
@@ -130,26 +150,6 @@ function inicializarPrototipos() {
 		}
 		return ret.join( '' );
 	} 
-
-	String.prototype.validarMail = function(){
-	//Regresa TRUE si el mail esta bien formado, FALSE en caso contrario	
-		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-		if( !emailReg.test(this) )
-			return false;
-		else
-			return true;
-	}
-
-	String.prototype.validarPassword = function(){
-	//Regresa TRUE si la contrasenia es segura, FALSE en caso contrario
-
-		var passRegExp = /(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/;
-		if (passRegExp.test(this))
-			return true;
-		else
-			return false;
-
-	}
 
 	Array.prototype.moverElemento = function(index, nuevoIndex){
 

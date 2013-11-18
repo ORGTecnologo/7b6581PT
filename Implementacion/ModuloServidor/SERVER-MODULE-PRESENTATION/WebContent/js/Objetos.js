@@ -14,6 +14,15 @@ function Rol(id,Nombre){
 	this.descripcion = Nombre;
 }
 
+function ParametrosBusqueda(){
+	this.keyword = "";
+	this.libros = true;
+	this.musica = true;
+	this.apps = true;
+	this.videos = true;
+	this.categorias = "all";
+}
+
 function Contenido(){
 
 	this.Id = "";

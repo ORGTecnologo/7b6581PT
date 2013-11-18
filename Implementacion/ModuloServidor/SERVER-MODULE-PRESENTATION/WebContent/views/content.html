@@ -1,6 +1,7 @@
-
+﻿
 <head>
     <title>MarketPlace Tecnologo</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="../css/market.css" media="screen" />
@@ -53,10 +54,10 @@
 			<!---->
 				<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
 				<ul class="dropdown-menu col-md-2 ">
-					<li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario')">Soy Proveedor</a></li>
-					<li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario')">Soy Cliente</a></li>
+					<li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario',true)">Soy Proveedor</a></li>
+					<li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario',true)">Soy Cliente</a></li>
 				</ul>
-				<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario')">Login</button>
+				<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
 			</div>
 			<div class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
 				<a href="#" class="nick">nick</a>

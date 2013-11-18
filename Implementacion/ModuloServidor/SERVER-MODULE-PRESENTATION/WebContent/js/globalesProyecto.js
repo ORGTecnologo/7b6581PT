@@ -12,6 +12,13 @@ function VARS_PROY(){
 //CONTENIDO
 	this.contenidoActual = "";
 	this.idContenido = "";
+
+//PARAMETROS DE BUSCQUEDA
+	this.PARAM_BUSQ_APPS = true;
+	this.PARAM_BUSQ_LIBROS = true;
+	this.PARAM_BUSQ_MUSICA = true;
+	this.PARAM_BUSQ_VIDEO = true;
+	this.PARAM_BUSQ_CATEGORIAS = 'all';
 }
 
 function CTES_PROY(){

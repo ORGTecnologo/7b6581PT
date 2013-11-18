@@ -87,6 +87,7 @@ function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimien
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
+		    ocultarElemento('registroUsuario')
 		}
 		else
 			alert(msg.respuesta);
@@ -241,7 +242,45 @@ function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
 }
 
 //GET___________GET_____________GET
-function obtenerCategoriasySubcategorias(){
+
+function buscarContenidos(){
+
+	var JSONstring = new ParametrosBusqueda();
+
+	JSONstring.libros = varsProy.PARAM_BUSQ_LIBROS;
+	JSONstring.musica = varsProy.PARAM_BUSQ_MUSICA;
+	JSONstring.apps = varsProy.PARAM_BUSQ_APPS;
+	JSONstring.videos = varsProy.PARAM_BUSQ_VIDEO;
+	JSONstring.categorias = varsProy.PARAM_BUSQ_CATEGORIAS;
+	JSONstring.keyword = document.getElementById("input-busqueda").value;
+
+	var msjServidor = JSON.stringify(JSONstring)
+
+	$.ajax({
+		url: ip + '/contenidos/filtrarContenidos/' + JSONstring,
+		type: 'GET',
+		dataType: 'json',
+	})
+	.done(function(msg) {
+		console.log("success");
+		console.log(msg);
+	})
+	.fail(function(msg) {
+		console.log("error");
+		console.log(msg);
+	})
+	.always(function(msg) {
+		console.log("complete");
+		console.log(msg);
+	});
+
+
+
+}
+
+
+function obtenerCategoriasySubcategorias(idSelect){
+	idSelect || (idSelect = 'id_categoria');
 
 	$.ajax({
 		url: ip + '/categoriasContenido/obtenerCategoriasYSubcategorias',
@@ -252,7 +291,7 @@ function obtenerCategoriasySubcategorias(){
 	.done(function(msg) {
 		console.log("Estas son las categorias: " + msg);
 		cargarCategoriasMemoria(msg);
-		cargarComboCategorias();
+		cargarComboCategorias(idSelect);
 	})
 	.fail(function(msg) {
 		console.log("Fallo: " + msg);

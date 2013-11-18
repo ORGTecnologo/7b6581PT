@@ -12,10 +12,13 @@ $(document).ready(function(){
 	      dateFormat: "dd-mm-yy",
 	      maxDate: 0
     });
-   
+   	
+
     $( "#registroUsuario").hide();
     $( "#loginUsuario").hide();
     $( "#Nick-Logout-Div").hide();
+
+	cargarConfigBusqueda('multiplesCat');
 
     if (checkearSesionAbierta()){
 		var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
@@ -24,4 +27,6 @@ $(document).ready(function(){
 	    mostrarElemento('Nick-Logout-Div');
 	    ocultarElemento('Login-Registro-Div');
     }
+	
+   	$('.selectpicker').selectpicker();
 });
