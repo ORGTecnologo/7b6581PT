@@ -20,6 +20,7 @@ function ParametrosBusqueda(){
 	this.musica = true;
 	this.apps = true;
 	this.videos = true;
+	this.pagas = true;
 	this.categorias = "all";
 }
 

@@ -18,6 +18,7 @@ function VARS_PROY(){
 	this.PARAM_BUSQ_LIBROS = true;
 	this.PARAM_BUSQ_MUSICA = true;
 	this.PARAM_BUSQ_VIDEO = true;
+	this.PARAM_BUSQ_PAGAS = true;
 	this.PARAM_BUSQ_CATEGORIAS = 'all';
 }
 

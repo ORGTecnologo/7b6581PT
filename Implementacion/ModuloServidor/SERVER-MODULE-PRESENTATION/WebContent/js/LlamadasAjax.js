@@ -251,6 +251,7 @@ function buscarContenidos(){
 	JSONstring.musica = varsProy.PARAM_BUSQ_MUSICA;
 	JSONstring.apps = varsProy.PARAM_BUSQ_APPS;
 	JSONstring.videos = varsProy.PARAM_BUSQ_VIDEO;
+	JSONstring.pagas = varsProy.PARAM_BUSQ_PAGAS;
 	JSONstring.categorias = varsProy.PARAM_BUSQ_CATEGORIAS;
 	JSONstring.keyword = document.getElementById("input-busqueda").value;
 
