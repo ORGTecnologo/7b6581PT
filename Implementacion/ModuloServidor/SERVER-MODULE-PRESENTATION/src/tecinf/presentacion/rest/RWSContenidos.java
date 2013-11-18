@@ -19,10 +19,11 @@ import tecinf.negocio.NegocioContenido;
 import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ContenidoIngresoDataType;
+import tecinf.negocio.dtos.ContenidoMinimalDataType;
 import tecinf.negocio.dtos.DescargaDataType;
+import tecinf.negocio.dtos.FiltrosContenidoDataType;
 import tecinf.negocio.dtos.GenericJsonResponse;
 import tecinf.negocio.dtos.IContenidoDataType;
-import tecinf.negocio.dtos.ListaFiltrosDataType;
 import tecinf.negocio.dtos.UserSession;
 import tecinf.negocio.utiles.EnumRespuestas;
 import tecinf.negocio.utiles.NegocioFactory;
@@ -77,13 +78,13 @@ public class RWSContenidos {
 	@GET
 	@Path("/filtrarContenidos/{filtros}")
 	@Produces("application/json")
-	public List<ContenidoDataType> filtrarContenidos(@QueryParam("filtros") String filtros) {
-		List<ContenidoDataType> listaContenidos = null;
+	public List<ContenidoMinimalDataType> filtrarContenidos(@PathParam("filtros") String filtros) {
+		List<ContenidoMinimalDataType> listaContenidos = null;
 		try {
 			
 			ObjectMapper mapper = new ObjectMapper();			
-			ListaFiltrosDataType listaFiltros = mapper.readValue(filtros, ListaFiltrosDataType.class); 			
-			listaContenidos = negocioContenido.filtrarContenidos(listaFiltros);
+			FiltrosContenidoDataType filtrosDt = mapper.readValue(filtros, FiltrosContenidoDataType.class); 			
+			listaContenidos = negocioContenido.filtrarContenidos(filtrosDt);
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e); 

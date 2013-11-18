@@ -257,7 +257,7 @@ function buscarContenidos(){
 	var msjServidor = JSON.stringify(JSONstring)
 
 	$.ajax({
-		url: ip + '/contenidos/filtrarContenidos/' + JSONstring,
+		url: ip + '/contenidos/filtrarContenidos/' + msjServidor,
 		type: 'GET',
 		dataType: 'json',
 	})

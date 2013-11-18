@@ -8,9 +8,9 @@ import tecinf.negocio.dtos.AprobarContenidoDataType;
 import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ContenidoIngresoDataType;
+import tecinf.negocio.dtos.ContenidoMinimalDataType;
 import tecinf.negocio.dtos.DescargaDataType;
-import tecinf.negocio.dtos.ListaFiltrosDataType;
-
+import tecinf.negocio.dtos.FiltrosContenidoDataType;
 @Local
 public interface NegocioContenido {
 
@@ -20,7 +20,7 @@ public interface NegocioContenido {
 	
 	public void actualizarDatosDescargas();
 	
-	public List<ContenidoDataType> filtrarContenidos(ListaFiltrosDataType filtros);
+	public List<ContenidoMinimalDataType> filtrarContenidos(FiltrosContenidoDataType filtros);
 	
 	public List<ComentarioDataType> obtenerComentariosAAprobar();
 	

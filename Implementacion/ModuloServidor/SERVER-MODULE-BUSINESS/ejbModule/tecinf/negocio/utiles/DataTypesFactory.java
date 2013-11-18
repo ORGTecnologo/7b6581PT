@@ -11,6 +11,7 @@ import tecinf.negocio.dtos.CategoriaContenidoDataType;
 import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ContenidoLibroDataType;
+import tecinf.negocio.dtos.ContenidoMinimalDataType;
 import tecinf.negocio.dtos.ContenidoSoftwareDataType;
 import tecinf.negocio.dtos.ContenidoTemaMusicalDataType;
 import tecinf.negocio.dtos.ContenidoVideoDataType;
@@ -174,6 +175,20 @@ public class DataTypesFactory {
 		dt.setNombreContenido(c.getNombre());
 		dt.setVersion(v.getVersion());
 		dt.setIdVersion(v.getId());
+		
+		return dt;
+	}
+	
+	public static ContenidoMinimalDataType getContenidoMinimalDataType(ContenidoEntity c){
+		ContenidoMinimalDataType dt = new ContenidoMinimalDataType();
+		
+		dt.setId(c.getId());
+		dt.setNombreContenido(c.getNombre());
+		dt.setPrecio(c.getPrecio() == null || c.getPrecio() == Float.valueOf("0.0") ? "Gratis" : c.getPrecio().toString()); 
+		if (c.getFotos() != null && c.getFotos().size() > 0){
+			for (ContenidoFotoEntity f : c.getFotos())
+				dt.getListaFotos().add(f.getUrlFoto());
+		}
 		
 		return dt;
 	}

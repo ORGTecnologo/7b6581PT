@@ -1,6 +1,7 @@
 package tecinf.persistencia.daos;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,4 +22,24 @@ public class ContenidoDaoImpl extends DaoImpl<Integer, ContenidoEntity> implemen
 		Query namedQuery = em.createNamedQuery("ContenidoEntity.findAll");
 		return (List<ContenidoEntity>)namedQuery.getResultList();
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ContenidoEntity> findByFiltros(Map<String, Object> filtros){	
+			
+		String queryStr = "SELECT e FROM ContenidoEntity e";		
+		/*
+		if (filtros.size() > 0){
+			queryStr += " WHERE";
+			
+			if (filtros.containsKey("libros"))
+				;
+			
+			
+		
+		}
+		*/
+		Query query = em.createQuery(queryStr);		
+		return (List<ContenidoEntity>)query.getResultList();
+	}
+	
 }

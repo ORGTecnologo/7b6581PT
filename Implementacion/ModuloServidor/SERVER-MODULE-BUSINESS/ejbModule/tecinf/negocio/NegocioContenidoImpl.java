@@ -3,7 +3,9 @@ package tecinf.negocio;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.naming.NamingException;
@@ -14,8 +16,9 @@ import tecinf.negocio.dtos.AprobarContenidoDataType;
 import tecinf.negocio.dtos.ComentarioDataType;
 import tecinf.negocio.dtos.ContenidoDataType;
 import tecinf.negocio.dtos.ContenidoIngresoDataType;
+import tecinf.negocio.dtos.ContenidoMinimalDataType;
 import tecinf.negocio.dtos.DescargaDataType;
-import tecinf.negocio.dtos.ListaFiltrosDataType;
+import tecinf.negocio.dtos.FiltrosContenidoDataType;
 import tecinf.negocio.utiles.CripterDecripter;
 import tecinf.negocio.utiles.DataTypesFactory;
 import tecinf.negocio.utiles.EnumEstadosDescarga;
@@ -108,12 +111,27 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		
 	}
 	
-	public List<ContenidoDataType> filtrarContenidos(ListaFiltrosDataType filtros) {
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<ContenidoMinimalDataType> filtrarContenidos(FiltrosContenidoDataType filtros) {		
+		List<ContenidoMinimalDataType> listaItemsContenido = new ArrayList<ContenidoMinimalDataType>();	
 		
+		Map filtrosMap = new HashMap<String, Object>();
 		
+		if (filtros.getLibros())
+			filtrosMap.put("libros", EnumTiposContenido.TIPO_CONTENIDO_LIBRO);
+		if (filtros.getApps())
+			filtrosMap.put("software", EnumTiposContenido.TIPO_CONTENIDO_SOFTWARE);
+		if (filtros.getMusica())
+			filtrosMap.put("temas", EnumTiposContenido.TIPO_CONTENIDO_TEMA);
+		if (filtros.getVideos())
+		filtrosMap.put("videos", EnumTiposContenido.TIPO_CONTENIDO_VIDEO);
 		
-		
-		return new ArrayList<ContenidoDataType>();
+		List<ContenidoEntity> listaContE = contenidoDao.findByFiltros(filtrosMap);
+		if (listaContE != null && listaContE.size() > 0){
+			for (ContenidoEntity c : listaContE)
+				DataTypesFactory.getContenidoMinimalDataType(c);
+		}		
+		return listaItemsContenido;
 	}
 	
 	public List<ComentarioDataType> obtenerComentariosAAprobar(){
