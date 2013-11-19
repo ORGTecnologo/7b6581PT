@@ -30,6 +30,7 @@ public class ContenidoDaoImpl extends DaoImpl<Integer, ContenidoEntity> implemen
 		String filtrosQuery = "";
 		String condicionTipo = "";
 		String condicionKeyWord = "";
+		String condicionCategorias = "";
 		
 		if (filtros.size() > 0){
 			filtrosQuery += " WHERE";
@@ -53,7 +54,19 @@ public class ContenidoDaoImpl extends DaoImpl<Integer, ContenidoEntity> implemen
 			if (filtros.containsKey("keyword"))
 				condicionKeyWord += " ( (upper(e.nombre) like upper(:keywordN)) or (upper(e.descripcion) like upper(:keywordD)) ) AND";
 			
-			filtrosQuery += condicionTipo + condicionKeyWord;
+			/* FILTROS POR CATEGORIAS */
+			if (filtros.containsKey("categorias")){
+				condicionCategorias = " (";
+				Integer x;
+				String[] categorias = ((String)filtros.get("categorias")).split("\\|");
+				for (x = 0; x < categorias.length; x++){
+					condicionCategorias += " e.subcategoria.categoria.id = :cat_" + x.toString() + " OR";
+				}
+				condicionCategorias = condicionCategorias.substring(0 , condicionCategorias.length()-2) + ") AND";
+			}
+			
+			
+			filtrosQuery += condicionTipo + condicionKeyWord + condicionCategorias;
 		}
 		
 		if (!filtrosQuery.isEmpty())
@@ -62,11 +75,20 @@ public class ContenidoDaoImpl extends DaoImpl<Integer, ContenidoEntity> implemen
 		String completeQuery = queryStr + filtrosQuery;
 		Query query = em.createQuery(completeQuery);
 		
+		//Seteo la palabra clave en caso de corresponder
 		if (filtros.containsKey("keyword")){
 			query.setParameter("keywordN", (String)filtros.get("keyword"));
 			query.setParameter("keywordD", (String)filtros.get("keyword"));
 		}
-			
+		
+		//Seteo las categorias en caso de corresponder
+		if (filtros.containsKey("categorias")){
+			Integer x;
+			String[] categorias = ((String)filtros.get("categorias")).split("\\|");
+			for (x = 0; x < categorias.length; x++){
+				query.setParameter("cat_" + x.toString(), Integer.valueOf(categorias[x]));
+			}
+		}
 			
 		return (List<ContenidoEntity>)query.getResultList();
 	}

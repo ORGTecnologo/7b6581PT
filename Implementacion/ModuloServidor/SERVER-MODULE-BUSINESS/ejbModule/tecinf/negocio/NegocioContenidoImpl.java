@@ -27,6 +27,7 @@ import tecinf.negocio.utiles.EnumParametrosValor;
 import tecinf.negocio.utiles.FileSystemUtils;
 import tecinf.negocio.utiles.RandomString;
 import tecinf.negocio.utiles.TimeUtils;
+import tecinf.negocio.utiles.ValidationUtil;
 import tecinf.persistencia.daos.ContenidoDao;
 import tecinf.persistencia.daos.ContenidoFotoDao;
 import tecinf.persistencia.daos.ParametroValorDao;
@@ -126,8 +127,11 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		if (filtros.getVideos())
 			filtrosMap.put("videos", EnumTiposContenido.TIPO_CONTENIDO_VIDEO);
 		
-		if (filtros.getKeyword() != null && !filtros.getKeyword().isEmpty())
+		if (!ValidationUtil.isNullOrEmpty(filtros.getKeyword()))
 			filtrosMap.put("keyword", "%" + filtros.getKeyword().trim() + "%");
+		
+		if (!ValidationUtil.isNullOrEmpty(filtros.getCategorias()) && !filtros.getCategorias().equals("all"))
+			filtrosMap.put("categorias", filtros.getCategorias());
 		
 		
 		List<ContenidoEntity> listaContE = contenidoDao.findByFiltros(filtrosMap);
