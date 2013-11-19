@@ -13,50 +13,49 @@
 	<script src="js/jquery.min.js"></script>
 </head>
 
-<body class="overlay">
-
+<body id="cuerpo" class="overlay">
 <!-- BARRA DE NAVEGACION -->
-<nav class="navbar navbar-default" role="navigation">
-	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse"
-			data-target=".navbar-ex1-collapse">
-			<span class="sr-only">Desplegar navegación</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="#">Market Place Tecnologo</a>
-	</div>
-
-  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
-       otro elemento que se pueda ocultar al minimizar la barra -->
-  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
-    <form class="navbar-form navbar-left" role="search">
-		<div class="form-group col-xs-6">
-			<input id="input-busqueda" type="search" class="form-control" placeholder="Buscar">
+	<nav id='caca' class="navbar navbar-default" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Desplegar navegación</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">Market Place Tecnologo</a>
 		</div>
-		<ul class="btn-group">
-			<button onclick="buscarContenidos();" class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
-				<span class="glyphicon glyphicon-search"></span> Buscar</button>
-			<button class="btn btn-primary dropdown-toggle"	type="button" onclick="mostrarElemento('configurarBusqueda',true)"><span class="glyphicon glyphicon-cog"></span></button>
+<!-- Agrupar los enlaces de navegación, los formularios y cualquier
+	   otro elemento que se pueda ocultar al minimizar la barra -->
+	  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+	    <ul class="navbar-form navbar-left" role="search">
+			<div class="form-group col-xs-6">
+				<input id="input-busqueda" type="search" class="form-control" placeholder="Buscar">
+			</div>
+			<ul class="btn-group">
+				<button onclick="buscarContenidos();" class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
+					<span class="glyphicon glyphicon-search"></span> Buscar</button>
+				<button class="btn btn-primary dropdown-toggle"	type="button" onclick="mostrarElemento('configurarBusqueda',true)"><span class="glyphicon glyphicon-cog"></span></button>
+			</ul>
 		</ul>
-	</form>
- 
-    <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
-		<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
-		<ul class="dropdown-menu">
-			<li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario',true)">Soy Proveedor</a></li>
-			<li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario',true)">Soy Cliente</a></li>
+	    <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
+			<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
+			<ul class="dropdown-menu">
+				<li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario',true)">Soy Proveedor</a></li>
+				<li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario',true)">Soy Cliente</a></li>
+			</ul>
+			<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
+	    </ul>
+		<ul class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
+			<a href="#" class="nick">nick</a>
+			<a href="#" onclick="logoutUsuario()">(Logout)</a>
 		</ul>
-		<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
-    </ul>
-	<ul class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
-		<a href="#" class="nick">nick</a>
-		<a href="#" onclick="logoutUsuario()">(Logout)</a>
-	</ul>
-</nav>
+	</nav>
+
 	<div class="col-md-12" style="height:50px;"></div>
 
+<div id="con-tenedor" class="container">
 <!-- APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS -->	
 	<div class="col-md-12 divContenidosInicial color1Inicio" style="background-image: url(img/appsProy.png);">
 		<h2 class="col-md-12 pull-right styleTits" style="color:black; text-align: left;">Aplicaciones</h2>
@@ -332,7 +331,9 @@
 
 	<div class="col-md-12 separador"></div>
 
-<!-- LOGIN DE USUARIO -->	
+</div>
+
+<!-- LOGIN DE USUARIO -->
 <div id="loginUsuario" class="modal loginDiv modal-dialog" style="width:300px">
     <div class="modal-content">
         <div class="modal-header">
@@ -400,7 +401,7 @@
                         <input type="text" class="form-control col-xs-10" id="inputApellido"/>
                     </p>
                     <p>Orientacion Sexual
-                        <select id="inputSexo" class="form-control col-xs-10">
+                        <select id="inputSexo" class="selectpicker form-control col-xs-10">
                             <option value="masculino" selected="selected">Hombre</option>
                             <option value="femenino">Mujer</option>
                         </select>
@@ -431,13 +432,17 @@
 		</div>
 		<div class="modal-body">
 			<div class="col-md-12">
-	            <div class="col-md-12">
+	            <div class="col-md-12 row" style="margin-right: auto;margin-left: auto;">
 	            	<h4>Tipos</h4>
-	                <p><label><input id="id_search-Libros" type="checkbox" checked="true">_Libros</label></p>
-	                <p><label><input id="id_search-Musica" type="checkbox" checked="true">_Musica</label></p>
-	                <p><label><input id="id_search-Apps" type="checkbox" checked="true">_Apps</label></p>
-	                <p><label><input id="id_search-Video" type="checkbox" checked="true">_Video</label></p>
-	                <p><label><input id="id_search-Pagas" type="checkbox" checked="true">_Pagas</label></p>
+	            	<div class="col-md-6">
+		                <p><label><input id="id_search-Libros" type="checkbox" checked="true">_Libros</label></p>
+		                <p><label><input id="id_search-Musica" type="checkbox" checked="true">_Musica</label></p>
+		                <p><label><input id="id_search-Apps" type="checkbox" checked="true">_Apps</label></p>
+	            	</div>
+	            	<div class="col-md-6">
+		                <p><label><input id="id_search-Video" type="checkbox" checked="true">_Video</label></p>
+		                <p><label><input id="id_search-Pagas" type="checkbox" checked="true">_Pagas</label></p>
+	            	</div>
 	            </div>
 	            <div class="col-md-12">
 	            	<h4>Categorias</h4>
@@ -453,11 +458,142 @@
 	</div>
 </div>
 
+<div id="resultadoBusqueda" class="container hide">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Calificacion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr href="views/content.html?id=1" id="datosContenido1">
+                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
+                <td><a href="views/content.html?id=1">Nombre</a></td>
+                <td>Nullam sapien massa, aliquam in cursus ut, ullamcorper in tortor. Aliquam
+                    mauris arcu, tristique a lobortis vitae, condimentum feugiat justo.</td>
+                <td>4.0</td>
+                <td>2/5</td>
+            </tr>
+            <tr id="datosContenido2">
+                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
+                <td><a href="views/content.html?id=1">Nombre</a></td>
+                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
+                    jkasd</td>
+                <td>Gratis</td>
+                <td>4/5</td>
+            </tr>
+            <tr id="datosContenido3">
+				<td><img src="//placehold.it/50x50" class="img-responsive"></td>
+                <td><a href="views/content.html?id=1">Nombre</a></td>
+                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
+                    jkasd</td>
+                <td>12.0</td>
+                <td>5/5</td>
+            </tr>
+            <tr id="datosContenido4">
+                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
+                <td><a href="views/content.html?id=1">Nombre</a></td>
+                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
+                    jkasd</td>
+                <td>12.0</td>
+                <td>5/5</td>
+            </tr>
+            <tr id="datosContenido5">
+                <td>
+                    <img src="//placehold.it/50x50" class="img-responsive">
+                </td>
+                <td><a href="views/content.html?id=1">Nombre</a></td>
+                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
+                    jkasd</td>
+                <td>12.0</td>
+                <td>5/5</td>
+            </tr>
+            <tr id="datosContenido6" onclick="verContenido()">
+                <td>
+                    <img src="//placehold.it/50x50" class="img-responsive">
+                </td>
+                <td><a href="views/content.html?id=1">Nombre</a></td>
+                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
+                    jkasd</td>
+                <td>12.0</td>
+                <td>5/5</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr href="views/content.html?id=1" id="datosContenido7" onclick="verContenido()">
+                <td>
+                    <img src="//placehold.it/50x50" class="img-responsive">
+                </td>
+                <td><a href="views/content.html?id=1">Nombre</a></td>
+                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
+                    jkasd</td>
+                <td>4.0</td>
+                <td>2/5</td>
+            </tr>
+            <tr id="datosContenido6" onclick="verContenido()">
+                <td>
+                    <img src="//placehold.it/50x50" class="img-responsive">
+                </td>
+                <td><a href="views/content.html?id=1">Nombre</a></td>
+                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
+                    jkasd</td>
+                <td>Gratis</td>
+                <td>4/5</td>
+            </tr>
+            <tr id="datosContenido6" onclick="verContenido()">
+                <td>
+                    <img src="//placehold.it/50x50" class="img-responsive">
+                </td>
+                <td><a href="views/content.html?id=1">Nombre</a></td>
+                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
+                    jkasd</td>
+                <td>12.0</td>
+                <td>5/5</td>
+            </tr>
+            <tr id="datosContenido6" onclick="verContenido()">
+                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
+                <td><a href="views/content.html?id=1">Nombre</a></td>
+                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
+                    jkasd</td>
+                <td>12.0</td>
+                <td>5/5</td>
+            </tr>
+            <tr id="datosContenido6" onclick="verContenido()">
+                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
+                <td><a href="views/content.html?id=1">Nombre</a></td>
+                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
+                    jkasd</td>
+                <td>12.0</td>
+                <td>5/5</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pagination pagination-mini" style="text-align:center">
+        <ul class="pager">
+            <li><a href="#">1</a>
+            </li>
+            <li><a href="#">2</a>
+            </li>
+            <li><a href="#">3</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
 </body>
+
+
+
+
 
 <script src="js/jquery-ui.js"></script>
 <script src="js/globalesProyecto.js"></script>
 <script src="js/Prototipos.js"></script>
+<script src="js/Inicio.js"></script>
 <script src="js/holder.js"></script>
 <script src="js/bootstrap.js"></script>
 <script src="js/bootstrap-select.min.js"></script>
@@ -466,4 +602,3 @@
 <script src="js/getSet.js"></script>
 <script src="js/eventos.js"></script>
 <script src="js/Comunes.js"></script>
-<script src="js/Inicio.js"></script>

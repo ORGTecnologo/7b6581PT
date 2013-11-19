@@ -39,6 +39,7 @@ function CTES_PROY(){
 function JSON_PROY(){
 
 	this.categorias = new Array();
+	this.resultadoBusqueda  = new Array();
 }
 
 var varsProy = new VARS_PROY();

@@ -1,9 +1,12 @@
 /**
  * Archivo de arranque de la aplicacion
  */
+$('#openBtn').click(function(){
+	$('#myModal').modal({show:true})
+});
 
 $(document).ready(function(){
-    
+
 	inicializarPrototipos();
 
     $( "#inputFecha" ).datepicker({
@@ -12,7 +15,6 @@ $(document).ready(function(){
 	      dateFormat: "dd-mm-yy",
 	      maxDate: 0
     });
-   	
 
     $( "#registroUsuario").hide();
     $( "#loginUsuario").hide();

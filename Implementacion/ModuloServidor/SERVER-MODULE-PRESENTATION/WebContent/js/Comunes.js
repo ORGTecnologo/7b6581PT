@@ -35,7 +35,7 @@ function actualizarParametrosBusqueda(){
 
 	for (var i = 0; i < CatSelected.length; i++) {
 		if (i!=0)
-			categorias += ';';
+			categorias += '|';
 
 		categorias += CatSelected[i].value;
 	}

@@ -247,6 +247,8 @@ function buscarContenidos(){
 
 	var JSONstring = new ParametrosBusqueda();
 
+	this.preventDefault;
+
 	JSONstring.libros = varsProy.PARAM_BUSQ_LIBROS;
 	JSONstring.musica = varsProy.PARAM_BUSQ_MUSICA;
 	JSONstring.apps = varsProy.PARAM_BUSQ_APPS;
@@ -265,18 +267,23 @@ function buscarContenidos(){
 	.done(function(msg) {
 		console.log("success");
 		console.log(msg);
+
+		//Cargo los resultados en memoria
+		jsonProy.resultadoBusqueda = msg;
+		ocultarElemento('con-tenedor');
+		mostrarElemento('resultadoBusqueda');
 	})
 	.fail(function(msg) {
 		console.log("error");
 		console.log(msg);
+		jsonProy.resultadoBusqueda = msg;
+		ocultarElemento('con-tenedor');
+		mostrarElemento('resultadoBusqueda');
 	})
 	.always(function(msg) {
 		console.log("complete");
 		console.log(msg);
 	});
-
-
-
 }
 
 
