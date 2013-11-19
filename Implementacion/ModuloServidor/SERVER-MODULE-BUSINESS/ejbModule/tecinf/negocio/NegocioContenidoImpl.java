@@ -124,12 +124,16 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		if (filtros.getMusica())
 			filtrosMap.put("temas", EnumTiposContenido.TIPO_CONTENIDO_TEMA);
 		if (filtros.getVideos())
-		filtrosMap.put("videos", EnumTiposContenido.TIPO_CONTENIDO_VIDEO);
+			filtrosMap.put("videos", EnumTiposContenido.TIPO_CONTENIDO_VIDEO);
+		
+		if (filtros.getKeyword() != null && !filtros.getKeyword().isEmpty())
+			filtrosMap.put("keyword", "%" + filtros.getKeyword().trim() + "%");
+		
 		
 		List<ContenidoEntity> listaContE = contenidoDao.findByFiltros(filtrosMap);
 		if (listaContE != null && listaContE.size() > 0){
 			for (ContenidoEntity c : listaContE)
-				DataTypesFactory.getContenidoMinimalDataType(c);
+				listaItemsContenido.add(DataTypesFactory.getContenidoMinimalDataType(c));
 		}		
 		return listaItemsContenido;
 	}

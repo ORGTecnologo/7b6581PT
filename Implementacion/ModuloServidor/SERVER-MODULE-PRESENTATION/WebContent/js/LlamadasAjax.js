@@ -255,7 +255,7 @@ function buscarContenidos(){
 	JSONstring.categorias = varsProy.PARAM_BUSQ_CATEGORIAS;
 	JSONstring.keyword = document.getElementById("input-busqueda").value;
 
-	var msjServidor = JSON.stringify(JSONstring)
+	var msjServidor = JSON.stringify(JSONstring);
 
 	$.ajax({
 		url: ip + '/contenidos/filtrarContenidos/' + msjServidor,
