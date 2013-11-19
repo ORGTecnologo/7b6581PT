@@ -1,0 +1,47 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="admin.xhtml">
+	<ui:define name="body">
+
+			<h:form>
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Ver registros de ingreso</h2>
+				</div>
+				<div class="col-md-12">
+				<div class="wrapperTablasAdministracion">
+					<h:dataTable value="#{auditoriaMB.listaAuditoria}" var="o"
+						styleClass="order-table" headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row"
+						class="table table-striped">
+		
+						<h:column>
+							<f:facet name="header">Usuario</f:facet>
+							<a href="#">#{o.usuario}</a>
+						</h:column>
+		
+						<h:column>
+							<f:facet name="header">Tipo</f:facet>
+							#{o.usuario}
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">Fecha y hora</f:facet>
+							#{o.fechaOperacion}
+						</h:column>
+						
+					</h:dataTable>
+				</div>
+			</div>
+			</div>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>

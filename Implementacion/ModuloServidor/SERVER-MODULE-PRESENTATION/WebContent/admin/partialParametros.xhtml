@@ -1,0 +1,78 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="admin.xhtml">
+	<ui:define name="body">
+
+			<h:form>
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Gestion de parametros del sistema</h2>
+				</div>
+				<div class="col-md-12">
+				<div class="wrapperTablasAdministracion">
+					<h:dataTable value="#{parametroMB.listaParametros}" var="o"
+						styleClass="order-table" headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row"
+						class="table table-striped">
+		
+						<h:column>
+							<f:facet name="header">Nombre</f:facet>
+							<a href="#">#{o.nombre}</a>
+						</h:column>
+		
+						<h:column>
+							<f:facet name="header">Valor</f:facet>
+							#{o.valor}
+						</h:column>
+						
+						<h:column>
+							<h:commandButton class="btn"
+								action="#{parametroMB.mostrarPanelModificar}" value="Editar">
+								<f:setPropertyActionListener target="#{parametroMB.parametroActual}" value="#{o}" />
+							</h:commandButton>
+						</h:column>
+						
+					</h:dataTable>
+				</div>
+			</div>
+			</div>
+		</h:form>
+	
+		<h:panelGroup id="panelModificar" rendered="#{parametroMB.activoPanelModificar}">
+			<h:form>
+				<div class="modal loginDiv modal-dialog"
+					style="width: 300px">
+					<div class="modal-content">
+						<div class="modal-header">Modificar parametro</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12 col-xs-10">
+									<h4>Datos de Parametro</h4>
+									<p>
+										Nombre <h:inputText disabled="true" value="#{parametroMB.parametroActual.nombre}" type="text" class="col-xs-7 form-control" />
+									</p>
+									<p>
+										Valor <h:inputText value="#{parametroMB.parametroActual.valor}" type="text" class="col-xs-7 form-control" />
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+								<h:commandButton class="btn" id="btnConfirmarModificacion" value="Confirmar" action="#{parametroMB.modificar()}" />
+								<h:commandButton class="btn" value="Cancelar" action="#{parametroMB.ocultarPanelModificar}" />
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</h:panelGroup>
+	
+	
+	</ui:define>
+</ui:composition>
+</html>

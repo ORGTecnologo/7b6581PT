@@ -34,4 +34,6 @@ public interface NegocioContenido {
 	
 	public void cambiarEstadoVersion(Integer idVersion, String estado) throws Exception;
 	
+	public void registrarDescaraContenido(Integer idContenido, String usuario) throws Exception;
+	
 }

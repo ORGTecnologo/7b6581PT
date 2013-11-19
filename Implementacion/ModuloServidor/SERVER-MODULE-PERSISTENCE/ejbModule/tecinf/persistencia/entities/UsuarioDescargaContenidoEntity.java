@@ -74,7 +74,17 @@ public class UsuarioDescargaContenidoEntity implements Serializable {
 	@Column(name="estado_descarga" , nullable=true, length=100)
 	private String estadoDescarga;
 	
+	@OneToOne
+	@JoinColumn(name="version_contenido" , nullable=true)
+	private VersionContenidoEntity versionContenido;
 	
+	public VersionContenidoEntity getVersionContenido() {
+		return versionContenido;
+	}
+
+	public void setVersionContenido(VersionContenidoEntity versionContenido) {
+		this.versionContenido = versionContenido;
+	}
 
 	public String getEstadoDescarga() {
 		return estadoDescarga;

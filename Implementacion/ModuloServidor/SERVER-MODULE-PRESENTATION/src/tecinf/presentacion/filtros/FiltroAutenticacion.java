@@ -86,6 +86,8 @@ public class FiltroAutenticacion implements Filter {
 		publicURLs.add("/admin/partialSubCategorias.xhtml");
 		publicURLs.add("/admin/partialSubComentarios.xhtml");
 		publicURLs.add("/admin/partialContenidos.xhtml");
+		publicURLs.add("/admin/partialAuditoria.xhtml");
+		publicURLs.add("/admin/partialParametros.xhtml");
 		
 		
 		// URLs de administradores
