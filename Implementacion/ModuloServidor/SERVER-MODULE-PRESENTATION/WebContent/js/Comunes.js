@@ -18,6 +18,27 @@ function checkearSesionAbierta(){
 	}
 }
 
+function bloquearPantalla(){
+    'use strict';
+    $.blockUI({ message: '<p><img src="../assets/images/busy.gif" /> Cargando...</p>' ,
+        css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        }
+    });
+}
+
+function desbloquearPantalla(){
+    'use strict';
+    $.unblockUI();
+}
+
+
 function cargarConfigBusqueda(idSelect){
 	obtenerCategoriasySubcategorias('multiplesCat');
 }
