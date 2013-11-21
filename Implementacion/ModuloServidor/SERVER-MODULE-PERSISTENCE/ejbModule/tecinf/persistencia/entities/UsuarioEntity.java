@@ -87,6 +87,9 @@ public abstract class UsuarioEntity implements Serializable {
 	@Column(name="tipo_usuario",length=50, nullable=false)
 	private String tipoUsuario;
 	
+	@Column(name="habilitado",nullable=true)
+	private Boolean habilitado;
+	
 	@OneToMany(targetEntity=UsuarioDescargaContenidoEntity.class,fetch=FetchType.LAZY, cascade = CascadeType.ALL, mappedBy="usuarioCliente")
 	private List<UsuarioDescargaContenidoEntity> bajadas;
 	
@@ -198,6 +201,14 @@ public abstract class UsuarioEntity implements Serializable {
 
 	public void setSubidas(List<UsuarioSubeContenidoEntity> subidas) {
 		this.subidas = subidas;
+	}
+
+	public Boolean getHabilitado() {
+		return habilitado;
+	}
+
+	public void setHabilitado(Boolean habilitado) {
+		this.habilitado = habilitado;
 	}	
-			
+		
 }

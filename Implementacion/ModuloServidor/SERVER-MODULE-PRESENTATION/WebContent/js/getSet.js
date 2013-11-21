@@ -18,6 +18,11 @@ function setRegistroTipo(tipo){
 	varsProy.tipoRegistro = tipo;
 }
 
+function verModales(id){
+	
+	$('#'+id).modal({show:true})
+}
+
 function mostrarElemento(id,esmodal){
 	esmodal || (esmodal = false);
 

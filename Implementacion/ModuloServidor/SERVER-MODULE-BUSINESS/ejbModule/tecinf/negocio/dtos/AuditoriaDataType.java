@@ -8,10 +8,19 @@ public class AuditoriaDataType implements Serializable {
 	
 	private String fechaOperacion;
 	private String usuario;
+	private String tipoUsuario;
 	private String operacion;
 	private String objeto;
 	private String objetoSistema;
 	
+	
+	
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
 	public String getFechaOperacion() {
 		return fechaOperacion;
 	}

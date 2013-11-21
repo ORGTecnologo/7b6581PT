@@ -37,7 +37,8 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-				nick.innerText = varsProy.nick;
+				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
+
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
@@ -83,7 +84,7 @@ function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimien
 
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-				nick.innerText = varsProy.nick;
+				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
@@ -147,6 +148,8 @@ function altaContenido(content){
 
 //PUT__________PUT__________PUT
 function loginUsuario(usuario, contrasenia){
+	bloquearPantalla();
+	
 	$.ajax({
 	   url: ip + '/usuarios/loginCliente',
 	   type: 'PUT',
@@ -167,13 +170,20 @@ function loginUsuario(usuario, contrasenia){
 
 			    window.localStorage.setItem(confProy.sessionStorageUser, msg.usuario);
 			    window.localStorage.setItem(confProy.sessionStorageToken, msg.token);
-
+			    window.localStorage.setItem(confProy.sessionStorageRol, msg.tipoUsuario);
+				
 			ocultarElemento('loginUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-				nick.innerText = varsProy.nick;
+				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
+			
+			if(msg.tipoUsuario === confProy.ROL_ADMINISTRADOR)
+				location.href = confProy.URL_ADMIN_HOME;
+				
+			//redireccion javascript confProy.URL_ADMIN_HOME
+
 		}
 		else
 			alert(msg.respuesta);
@@ -182,6 +192,7 @@ function loginUsuario(usuario, contrasenia){
 		console.log(msg);
 		alert('Nombre de usuario o contrasenia incorrectos!!');
 	});
+	desbloquearPantalla();
 }
 
 function logoutUsuario(){
@@ -245,16 +256,20 @@ function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
 
 function buscarContenidos(){
 
+	bloquearPantalla();
 	var JSONstring = new ParametrosBusqueda();
+
+	this.preventDefault;
 
 	JSONstring.libros = varsProy.PARAM_BUSQ_LIBROS;
 	JSONstring.musica = varsProy.PARAM_BUSQ_MUSICA;
 	JSONstring.apps = varsProy.PARAM_BUSQ_APPS;
 	JSONstring.videos = varsProy.PARAM_BUSQ_VIDEO;
+	JSONstring.pagas = varsProy.PARAM_BUSQ_PAGAS;
 	JSONstring.categorias = varsProy.PARAM_BUSQ_CATEGORIAS;
 	JSONstring.keyword = document.getElementById("input-busqueda").value;
 
-	var msjServidor = JSON.stringify(JSONstring)
+	var msjServidor = JSON.stringify(JSONstring);
 
 	$.ajax({
 		url: ip + '/contenidos/filtrarContenidos/' + msjServidor,
@@ -264,18 +279,24 @@ function buscarContenidos(){
 	.done(function(msg) {
 		console.log("success");
 		console.log(msg);
+
+		//Cargo los resultados en memoria
+		jsonProy.resultadoBusqueda = msg;
+		ocultarElemento('con-tenedor');
+		mostrarElemento('resultadoBusqueda');
 	})
 	.fail(function(msg) {
 		console.log("error");
 		console.log(msg);
+		jsonProy.resultadoBusqueda = msg;
+		ocultarElemento('con-tenedor');
+		mostrarElemento('resultadoBusqueda');
 	})
 	.always(function(msg) {
 		console.log("complete");
 		console.log(msg);
+		desbloquearPantalla();
 	});
-
-
-
 }
 
 
@@ -308,8 +329,20 @@ function existeSesionServ(user){
 		async: false,
 	})
 	.done(function(msg) {
-		console.log("success");
-		console.log(msg);
+		console.log("success" + msg);
+		if(msg != "FALLA"){
+			
+			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
+
+
+	    	mostrarElemento('Nick-Logout-Div');
+	    	ocultarElemento('Login-Registro-Div');
+			window.localStorage.setItem(confProy.sessionStorageRol,msg.tipoUsuario);
+		}
+		else{
+			window.localStorage.clear();
+		}
 		return true;
 	})
 	.fail(function(msg) {

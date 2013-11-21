@@ -27,8 +27,8 @@ import tecinf.negocio.utiles.EnumParametrosValor;
 import tecinf.negocio.utiles.FileSystemUtils;
 import tecinf.negocio.utiles.RandomString;
 import tecinf.negocio.utiles.TimeUtils;
+import tecinf.negocio.utiles.ValidationUtil;
 import tecinf.persistencia.daos.ContenidoDao;
-import tecinf.persistencia.daos.ContenidoFotoDao;
 import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.UsuarioDao;
 import tecinf.persistencia.daos.UsuarioDescargaContenidoDao;
@@ -54,7 +54,6 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	private Logger logger = Logger.getLogger(NegocioContenidoImpl.class);
 	
 	private ContenidoDao contenidoDao = null;
-	private ContenidoFotoDao contenidoFotosDao = null;
 	private ParametroValorDao parametroValorDao = null;
 	private UsuarioDescargaContenidoDao usuarioDescargaContenidoDao = null;
 	private UsuarioSubeContenidoDao usuarioSubeContenidoDao = null;
@@ -66,7 +65,6 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	public NegocioContenidoImpl() throws NamingException { 
 		
 		contenidoDao = PersistenciaFactory.getContenidoDao();
-		contenidoFotosDao = PersistenciaFactory.getContenidoFotoDao();
 		usuarioDescargaContenidoDao = PersistenciaFactory.getUsuarioDescargaContenidoDao();
 		parametroValorDao = PersistenciaFactory.getParametroValorDao();
 		usuarioDao = PersistenciaFactory.getUsuarioDao();
@@ -124,12 +122,19 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		if (filtros.getMusica())
 			filtrosMap.put("temas", EnumTiposContenido.TIPO_CONTENIDO_TEMA);
 		if (filtros.getVideos())
-		filtrosMap.put("videos", EnumTiposContenido.TIPO_CONTENIDO_VIDEO);
+			filtrosMap.put("videos", EnumTiposContenido.TIPO_CONTENIDO_VIDEO);
+		
+		if (!ValidationUtil.isNullOrEmpty(filtros.getKeyword()))
+			filtrosMap.put("keyword", "%" + filtros.getKeyword().trim() + "%");
+		
+		if (!ValidationUtil.isNullOrEmpty(filtros.getCategorias()) && !filtros.getCategorias().equals("all"))
+			filtrosMap.put("categorias", filtros.getCategorias());
+		
 		
 		List<ContenidoEntity> listaContE = contenidoDao.findByFiltros(filtrosMap);
 		if (listaContE != null && listaContE.size() > 0){
 			for (ContenidoEntity c : listaContE)
-				DataTypesFactory.getContenidoMinimalDataType(c);
+				listaItemsContenido.add(DataTypesFactory.getContenidoMinimalDataType(c));
 		}		
 		return listaItemsContenido;
 	}
@@ -179,8 +184,8 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	public List<DescargaDataType> obtenerDescargasACalificar(String usuario){
 		List<DescargaDataType> listaDescargasACalificar = new ArrayList<DescargaDataType>();
 		
-		List<UsuarioDescargaContenidoEntity> descargas = usuarioDescargaContenidoDao.getDonwloadsByUserAndState(usuario, EnumEstadosDescarga.VALORACION_NO_HABILITADA);
-			
+		List<UsuarioDescargaContenidoEntity> descargas = usuarioDescargaContenidoDao.getDonwloadsByUserAndState(usuario, EnumEstadosDescarga.VALORACION_HABILITADA);
+		
 		
 		return listaDescargasACalificar;
 	}
@@ -306,6 +311,24 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		VersionContenidoEntity v = versionContenidoDao.findByID(idVersion);
 		v.setEstadoVersion(estado);
 		versionContenidoDao.merge(v);
+		
+	}
+	
+	public void registrarDescaraContenido(Integer idContenido, String usuario) throws Exception {
+		
+		ContenidoEntity c = contenidoDao.findByID(idContenido);
+		UsuarioEntity u = usuarioDao.findByID(usuario);
+		
+		UsuarioDescargaContenidoEntity udc = new UsuarioDescargaContenidoEntity();
+		udc.setVersionContenido(c.obtenerVersionConEstado(EnumEstadosVersionContenido.APROBADA));
+		udc.setCalificacionDescarga(null);
+		udc.setContenido(c);
+		udc.setDescripcionValoracion("");
+		udc.setEstadoDescarga(EnumEstadosDescarga.VALORACION_NO_HABILITADA);
+		udc.setFechaDescarga(new Date());
+		udc.setUsuarioCliente(u);
+		
+		usuarioDescargaContenidoDao.persist(udc);
 		
 	}
 	

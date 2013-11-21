@@ -16,14 +16,14 @@ $(document).ready(function(){
 	      dateFormat: "dd-mm-yy",
 	      maxDate: 0
     });
-   
-    if (checkearSesionAbierta()){
-		var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-			nick.innerText = varsProy.nick;
+   checkearSesionAbierta();
+  //   if (checkearSesionAbierta()){
+		// var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+		// 	nick.innerText = varsProy.nick;
 
-	    mostrarElemento('Nick-Logout-Div');
-	    ocultarElemento('Login-Registro-Div');
-    }
+	 //    mostrarElemento('Nick-Logout-Div');
+	 //    ocultarElemento('Login-Registro-Div');
+  //   }
 });
 
 function cargarDatosDelContenido(){

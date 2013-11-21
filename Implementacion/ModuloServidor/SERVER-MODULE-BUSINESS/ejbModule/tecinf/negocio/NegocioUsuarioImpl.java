@@ -75,16 +75,13 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 	}
 
 	public void modificarUsuario(UsuarioDataType u) throws Exception {
-
-		/*
-		 * UsuarioEntity ue = usuarioDao.findById(u.getUsuario()); if (ue ==
-		 * null) throw new Exception("El usuario no existe");
-		 * 
-		 * ue.setApellidos(u.getApellidos());
-		 * ue.setContrasenia(u.getContrasenia()); ue.setNombres(u.getNombres());
-		 * 
-		 * usuarioDao.merge(ue);
-		 */
+		
+		 UsuarioEntity ue = usuarioDao.findByID(u.getUsuario()); 
+		 if (ue == null) 
+			 throw new Exception("El usuario no existe");
+		 ue.setApellidos(u.getApellidos());
+		 ue.setContrasenia(u.getContrasenia()); ue.setNombres(u.getNombres());		 
+		 usuarioDao.merge(ue);
 	}
 
 	public LoginRespDataType loginUsuario(String usuario, String contrasenia) {
@@ -152,6 +149,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		((UsuarioClienteEntity) ue).setTipoRegistro(tipoRegistro);
 		((UsuarioClienteEntity) ue).setRutaImagenPerfil("");
 		ue.setTipoUsuario(EnumTipoUsuario.USUARIO_CLIENTE);
+		ue.setHabilitado(true);
 		
 		//Creo la estructura de directorios para los usuarios cliente
 		if (!(new FileSystemUtils()).crearEstructuraDirectorioUsuarioCliente(ue.getUsuario()))
@@ -189,6 +187,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		ue.setUsuario(dt.getUsuario());
 		((UsuarioProveedorEntity) ue).setSitioWeb(dt.getSitioWeb());
 		ue.setTipoUsuario(EnumTipoUsuario.USUARIO_PROVEEDOR);		
+		ue.setHabilitado(true);
 		
 		//Creo la estructura de directorios para los usuarios proveedores
 		if (!(new FileSystemUtils()).crearEstructuraDirectorioUsuarioProveedor(ue.getUsuario()))
@@ -266,4 +265,24 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		}
 	}
 
+	public List<UsuarioDataType> buscarPorFiltros(String tipoUsuario, String nick, String email){
+		List<UsuarioDataType> listaUsuarios = new ArrayList<UsuarioDataType>();
+		
+		List<UsuarioEntity> listaUsuariosE = usuarioDao.findAllByFiltros(tipoUsuario, nick, email);
+		if (listaUsuariosE != null){
+			for (UsuarioEntity e : listaUsuariosE)
+				listaUsuarios.add(DataTypesFactory.getUsuarioDataType(e));
+		}
+		
+		return listaUsuarios;
+	}
+	
+	public void cambiarEstadoUsuario(UsuarioDataType u) throws Exception {
+		UsuarioEntity ue = usuarioDao.findByID(u.getUsuario());
+		if (ue == null)
+			throw new Exception("Usuario no encontrado en la base de datos");
+		ue.setHabilitado(u.getHabilitado() == null || !u.getHabilitado() ? true : false);
+		usuarioDao.merge(ue);		
+	}
+	
 }

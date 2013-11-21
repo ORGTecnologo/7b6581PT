@@ -2,21 +2,35 @@
 function checkearSesionAbierta(){
 
 	var usuario = window.localStorage.getItem(confProy.sessionStorageUser);
-	var token = window.localStorage.getItem(confProy.sessionStorageToken);
 
 	if (usuario === null)
 		return false;
 
 	varsProy.nick = usuario;
-	varsProy.token = token;
 
-	if (existeSesionServ(varsProy.nick))
-		return true;
-	else{
-		window.localStorage.clear();		
-		return false;
-	}
+	existeSesionServ(varsProy.nick);
 }
+
+function bloquearPantalla(){
+    'use strict';
+    $.blockUI({ message: '<p><img src="../img/busy.gif" /> Cargando...</p>' ,
+        css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        }
+    });
+}
+
+function desbloquearPantalla(){
+    'use strict';
+    $.unblockUI();
+}
+
 
 function cargarConfigBusqueda(idSelect){
 	obtenerCategoriasySubcategorias('multiplesCat');
@@ -28,13 +42,14 @@ function actualizarParametrosBusqueda(){
 	varsProy.PARAM_BUSQ_VIDEO = document.getElementById("id_search-Video").checked;
 	varsProy.PARAM_BUSQ_MUSICA = document.getElementById("id_search-Musica").checked;
 	varsProy.PARAM_BUSQ_LIBROS = document.getElementById("id_search-Libros").checked;
+	varsProy.PARAM_BUSQ_PAGAS = document.getElementById("id_search-Pagas").checked;
 
 	var CatSelected = document.getElementById("multiplesCat").selectedOptions;
 	var categorias = "";
 
 	for (var i = 0; i < CatSelected.length; i++) {
 		if (i!=0)
-			categorias += ';';
+			categorias += '|';
 
 		categorias += CatSelected[i].value;
 	}

@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="admin.xhtml">
+	<ui:define name="body">
+
+		<h:form>
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Gestion usuarios</h2>
+				</div>
+				<div class="col-md-12">
+				<fieldset>
+					<legend>Filtros</legend>
+					<div class="row">
+						
+							<div class="col-md-4">
+								Nick
+								<h:inputText value="#{usuarioMB.filtroNick}" class="col-md-10 form-control"/>
+							</div>
+							<div class="col-md-4">
+								Email
+								<h:inputText value="#{usuarioMB.filtroEmail}"	class="col-md-10 form-control" />
+							</div>
+							<div class="col-md-2">
+								Tipo de usuario
+								<h:selectOneMenu value="#{usuarioMB.filtroTipoUsuario}"
+									class="selectpicker">
+									<f:selectItem itemLabel="Todos" itemValue="todos" />
+									<f:selectItem itemLabel="Administrador"
+										itemValue="usuario_administrador" />
+									<f:selectItem itemLabel="Proveedor"
+										itemValue="usuario_proveedor" />
+									<f:selectItem itemLabel="Cliente"
+										itemValue="usuario_cliente" />
+								</h:selectOneMenu>
+							</div>
+						</div>
+						<div class="row">
+						<div class="col-md-12 ">
+							<h:commandButton action="#{usuarioMB.filtrarUsuarios}" value="Filtrar" class="btn pull-right">
+							</h:commandButton>
+						</div>
+						</div>
+					
+					</fieldset>
+				</div>
+			</div>
+			<div class="col-md-12">
+				<div class="wrapperTablasAdministracion">
+					<h:dataTable value="#{usuarioMB.listaUsuarios}" var="o"
+						styleClass="order-table" headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row"
+						class="table table-striped" id="tablaUsuarios">
+
+						<h:column>
+							<f:facet name="header">Usuario</f:facet>
+							<a href="#">#{o.usuario}</a>
+						</h:column>
+						<h:column>
+							<f:facet name="header">Email</f:facet>
+                                #{o.correoElectronico}
+                            </h:column>
+						<h:column>
+							<f:facet name="header">Nomkbre</f:facet>
+                                #{o.nombres}
+                            </h:column>
+						<h:column>
+							<f:facet name="header">Apellido</f:facet>
+                                #{o.apellidos}
+                            </h:column>
+
+						<h:column>
+							<h:commandButton class="btn"
+								action="#{usuarioMB.mostrarPanelModificar}"
+								value="#{o.habilitado == true ? 'Deshabilitar' : 'Habilitar' }">
+								<f:setPropertyActionListener target="#{usuarioMB.usuarioActual}"
+									value="#{o}" />
+							</h:commandButton>
+						</h:column>
+					</h:dataTable>
+				</div>
+			</div>
+		</h:form>
+
+
+		<h:panelGroup id="panelAprobar"
+			rendered="#{usuarioMB.activoPanelModificar}">
+			<h:form>
+				<div class="modal loginDiv modal-dialog" style="width: 300px">
+					<div class="modal-content">
+						<div class="modal-header">Habilitar/Deshabilitar usuario</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12 col-xs-10">
+									<h4>¿Seguro que desea cammbiar el estado de
+										#{usuarioMB.usuarioActual.usuario}?</h4>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<h:commandButton class="btn" value="Confirmar"
+								action="#{usuarioMB.cambiarEstado}" />
+							<h:commandButton class="btn" value="Cancelar"
+								action="#{usuarioMB.ocultarPanelModificar}" />
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</h:panelGroup>
+
+	</ui:define>
+</ui:composition>
+</html>

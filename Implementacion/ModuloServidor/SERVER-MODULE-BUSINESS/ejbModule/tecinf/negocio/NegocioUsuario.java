@@ -34,5 +34,9 @@ public interface NegocioUsuario {
 	
 	public Boolean logout(String usuario, String token);
 	
+	public List<UsuarioDataType> buscarPorFiltros(String tipoUsuario, String nick, String email);
+	
+	public void cambiarEstadoUsuario(UsuarioDataType u) throws Exception;
+	
 }
 

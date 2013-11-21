@@ -24,12 +24,13 @@ public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implem
     //private String filePath;
     
     public void init() {
-        // the file data.xls is under web application folder
-        //filePath = "/BaseDatosRecursos/pruebas/software/sublime_64.tar.bz2";	
+    	
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	
+    	
+    	String idContenido = request.getParameter("idContenido");
     	String qString = request.getQueryString();
     	String qStringDecripted = CripterDecripter.decrypt(qString);
     	

@@ -1,9 +1,12 @@
 /**
  * Archivo de arranque de la aplicacion
  */
+$('#openBtn').click(function(){
+	$('#myModal').modal({show:true})
+});
 
 $(document).ready(function(){
-    
+
 	inicializarPrototipos();
 
     $( "#inputFecha" ).datepicker({
@@ -12,7 +15,6 @@ $(document).ready(function(){
 	      dateFormat: "dd-mm-yy",
 	      maxDate: 0
     });
-   	
 
     $( "#registroUsuario").hide();
     $( "#loginUsuario").hide();
@@ -20,13 +22,14 @@ $(document).ready(function(){
 
 	cargarConfigBusqueda('multiplesCat');
 
-    if (checkearSesionAbierta()){
-		var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-			nick.innerText = varsProy.nick;
+	checkearSesionAbierta();
+  //   if (checkearSesionAbierta()){
+		// var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+		// 	nick.innerText = varsProy.nick;
 
-	    mostrarElemento('Nick-Logout-Div');
-	    ocultarElemento('Login-Registro-Div');
-    }
+	 //    mostrarElemento('Nick-Logout-Div');
+	 //    ocultarElemento('Login-Registro-Div');
+  //   }
 	
    	$('.selectpicker').selectpicker();
 });

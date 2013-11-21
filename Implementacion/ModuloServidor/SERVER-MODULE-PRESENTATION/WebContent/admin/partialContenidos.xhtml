@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -15,40 +13,46 @@
 					<h2>Gestion de versiones de contenidos</h2>
 				</div>
 				<div class="col-md-12">
-				<div class="wrapperTablasAdministracion">
-					<h:dataTable value="#{contenidoMB.listaVersionesPendientes}" var="o"
-						styleClass="order-table" headerClass="order-table-header"
-						rowClasses="order-table-odd-row,order-table-even-row"
-						class="table table-striped">
-		
-						<h:column>
-							<f:facet name="header">Nombre</f:facet>
-							#{o.nombreContenido}
-						</h:column>
-		
-						<h:column>
-							<f:facet name="header"></f:facet>
-							<a href="/SERVER-MODULE-PRESENTATION/views/content.html?id=#{o.idContenido}">Ver</a>
-						</h:column>
-						<h:column>
-							<h:commandButton class="btn" action="#{contenidoMB.mostrarPanelAprobar}" value="Aprobar">
-								<f:setPropertyActionListener target="#{contenidoMB.versionActual}" value="#{o}" />
-							</h:commandButton>
-						</h:column>
-						<h:column>
-							<h:commandButton class="btn" action="#{contenidoMB.mostrarPanelRechazar}" value="Rechazar">
-								<f:setPropertyActionListener target="#{contenidoMB.versionActual}" value="#{o}" />
-							</h:commandButton>
-						</h:column>
-					</h:dataTable>
+					<div class="wrapperTablasAdministracion">
+						<h:dataTable value="#{contenidoMB.listaVersionesPendientes}"
+							var="o" styleClass="order-table" headerClass="order-table-header"
+							rowClasses="order-table-odd-row,order-table-even-row"
+							class="table table-striped">
+
+							<h:column>
+								<f:facet name="header">Nombre</f:facet>
+                                                        #{o.nombreContenido}
+                                                </h:column>
+
+							<h:column>
+								<f:facet name="header"></f:facet>
+								<a
+									href="/SERVER-MODULE-PRESENTATION/views/content.html?id=#{o.idContenido}">Ver</a>
+							</h:column>
+							<h:column>
+								<h:commandButton class="btn"
+									action="#{contenidoMB.mostrarPanelAprobar}" value="Aprobar">
+									<f:setPropertyActionListener
+										target="#{contenidoMB.versionActual}" value="#{o}" />
+								</h:commandButton>
+							</h:column>
+							<h:column>
+								<h:commandButton class="btn"
+									action="#{contenidoMB.mostrarPanelRechazar}" value="Rechazar">
+									<f:setPropertyActionListener
+										target="#{contenidoMB.versionActual}" value="#{o}" />
+								</h:commandButton>
+							</h:column>
+						</h:dataTable>
+					</div>
 				</div>
 			</div>
-			</div>
 		</h:form>
-		
 
-		
-		<h:panelGroup id="panelAprobar" rendered="#{contenidoMB.activoPanelAprobar}">
+
+
+		<h:panelGroup id="panelAprobar"
+			rendered="#{contenidoMB.activoPanelAprobar}">
 			<h:form>
 				<div class="modal loginDiv modal-dialog" style="width: 300px">
 					<div class="modal-content">
@@ -61,15 +65,18 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<h:commandButton class="btn" value="Confirmar" action="#{contenidoMB.aprobar}" />
-							<h:commandButton class="btn" value="Cancelar" action="#{contenidoMB.ocultarPanelAprobar}" />
+							<h:commandButton class="btn" value="Confirmar"
+								action="#{contenidoMB.aprobar}" />
+							<h:commandButton class="btn" value="Cancelar"
+								action="#{contenidoMB.ocultarPanelAprobar}" />
 						</div>
 					</div>
 				</div>
 			</h:form>
 		</h:panelGroup>
-		
-		<h:panelGroup id="panelRechazar" rendered="#{contenidoMB.activoPanelRechazar}">
+
+		<h:panelGroup id="panelRechazar"
+			rendered="#{contenidoMB.activoPanelRechazar}">
 			<h:form>
 				<div class="modal loginDiv modal-dialog" style="width: 300px">
 					<div class="modal-content">
@@ -82,8 +89,10 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<h:commandButton class="btn" value="Confirmar" action="#{contenidoMB.rechazar}" />
-							<h:commandButton class="btn" value="Cancelar" action="#{contenidoMB.ocultarPanelRechazar}" />
+							<h:commandButton class="btn" value="Confirmar"
+								action="#{contenidoMB.rechazar}" />
+							<h:commandButton class="btn" value="Cancelar"
+								action="#{contenidoMB.ocultarPanelRechazar}" />
 						</div>
 					</div>
 				</div>

@@ -21,8 +21,14 @@ JSONstring.keyword = document.getElementById("input-busqueda").value;
 	private Boolean videos;
 	private String categorias;
 	private String keyword;
-	
-	
+	private Boolean pagas;
+		
+	public Boolean getPagas() {
+		return pagas;
+	}
+	public void setPagas(Boolean pagas) {
+		this.pagas = pagas;
+	}
 	public Boolean getLibros() {
 		return libros;
 	}
