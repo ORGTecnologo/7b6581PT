@@ -135,7 +135,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	}
 	
 	public List<ComentarioDataType> obtenerComentariosAAprobar(){
-		List<ComentarioDataType> comentariosPendientes = new ArrayList<>();
+		List<ComentarioDataType> comentariosPendientes = new ArrayList<ComentarioDataType>();
 		
 		List<UsuarioDescargaContenidoEntity> listaDescargasPendientes = usuarioDescargaContenidoDao.getDonwloadsByState(EnumEstadosDescarga.PENDIENTE_VALIDACION);
 		if (listaDescargasPendientes != null){
@@ -146,7 +146,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	}
 	
 	public List<ComentarioDataType> obtenerComentariosDeContenido(Integer idContenido){
-		List<ComentarioDataType> comentariosContenido = new ArrayList<>();
+		List<ComentarioDataType> comentariosContenido = new ArrayList<ComentarioDataType>();
 		
 		List<UsuarioDescargaContenidoEntity> listaDescargasContenido = usuarioDescargaContenidoDao.getContentDonwloadsByState(idContenido, EnumEstadosDescarga.VALIDADO_OK);
 		if (listaDescargasContenido != null){
@@ -177,7 +177,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	}
 	
 	public List<DescargaDataType> obtenerDescargasACalificar(String usuario){
-		List<DescargaDataType> listaDescargasACalificar = new ArrayList<>();
+		List<DescargaDataType> listaDescargasACalificar = new ArrayList<DescargaDataType>();
 		
 		List<UsuarioDescargaContenidoEntity> descargas = usuarioDescargaContenidoDao.getDonwloadsByUserAndState(usuario, EnumEstadosDescarga.VALORACION_NO_HABILITADA);
 			
