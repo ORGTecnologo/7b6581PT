@@ -18,7 +18,16 @@ public abstract class UsuarioDataType implements Serializable {
 	protected Date fechaNacimientoDate;
 	protected String telefonoMovil;
 	protected String correoElectronico;
+	protected Boolean habilitado;
 	
+	
+	
+	public Boolean getHabilitado() {
+		return habilitado;
+	}
+	public void setHabilitado(Boolean habilitado) {
+		this.habilitado = habilitado;
+	}
 	public String getUsuario() {
 		return usuario;
 	}

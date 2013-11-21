@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import tecinf.persistencia.entities.ContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 
 @Stateless
@@ -69,6 +70,19 @@ public class UsuarioDaoImpl extends DaoImpl<String , UsuarioEntity> implements U
 			return (UsuarioEntity)namedQuery.getSingleResult();
 		
 		return null;
+	}
+	
+	@SuppressWarnings({ "unchecked" })
+	public List<UsuarioEntity> findAllByFiltros(String tipoUsuario, String nick, String email){
+		String queryStr = "SELECT e FROM UsuarioEntity e "
+				+ "WHERE (e.tipoUsuario = :tipoUsuario OR :tipoUsuario = 'todos') "
+				+ " AND (:nick = '' OR  upper(e.usuario) like upper(:nick))"
+				+ " AND (:email = '' OR upper(e.correoElectronico) like upper(:email) )";
+		Query query = em.createQuery(queryStr);
+		query.setParameter("tipoUsuario", tipoUsuario == null ? "" : tipoUsuario);
+		query.setParameter("email", email == null ? "" : "%" + email + "%");
+		query.setParameter("nick", nick == null ? "" : "%" + nick + "%");
+		return (List<UsuarioEntity>)query.getResultList();
 	}
 	
 }

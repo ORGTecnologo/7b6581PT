@@ -29,3 +29,5 @@ $(document).ready(function(){
 function loadABMCategorias(){
 	$("#wrapperAdministracion").load("/SERVER-MODULE-PRESENTATION/admin/partialCategorias.xhtml");	
 }
+
+$('.selectpicker').selectpicker();

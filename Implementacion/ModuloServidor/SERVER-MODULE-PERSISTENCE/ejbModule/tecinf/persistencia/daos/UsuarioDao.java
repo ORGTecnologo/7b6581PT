@@ -19,4 +19,6 @@ public interface UsuarioDao extends Dao<String , UsuarioEntity> {
 	
 	public UsuarioEntity findByWebSite(String sitioWeb);
 	
+	public List<UsuarioEntity> findAllByFiltros(String tipoUsuario, String nick, String email);
+	
 }

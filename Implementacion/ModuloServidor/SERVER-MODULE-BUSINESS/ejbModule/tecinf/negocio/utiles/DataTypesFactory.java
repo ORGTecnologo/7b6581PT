@@ -17,8 +17,10 @@ import tecinf.negocio.dtos.ContenidoTemaMusicalDataType;
 import tecinf.negocio.dtos.ContenidoVideoDataType;
 import tecinf.negocio.dtos.ParametroValorDataType;
 import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
+import tecinf.negocio.dtos.UsuarioAdministradorDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
+import tecinf.negocio.dtos.UsuarioProveedorDataType;
 import tecinf.negocio.dtos.VersionContenidoDataType;
 import tecinf.persistencia.entities.AuditoriaEntity;
 import tecinf.persistencia.entities.CategoriaContenidoEntity;
@@ -30,6 +32,7 @@ import tecinf.persistencia.entities.ContenidoTemaMusicalEntity;
 import tecinf.persistencia.entities.ContenidoVideoEntity;
 import tecinf.persistencia.entities.ParametroValorEntity;
 import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
+import tecinf.persistencia.entities.UsuarioAdministradorEntity;
 import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.entities.VersionContenidoEntity;
@@ -49,18 +52,28 @@ public class DataTypesFactory {
 	}
 	
 	public static UsuarioDataType getUsuarioDataType(UsuarioEntity u){
-		UsuarioDataType dt = null;		
+		UsuarioDataType dt = null;
+		
+		
+		
 		if (u.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE)){
 			dt = new UsuarioClienteDataType();
-			dt.setApellidos(u.getApellidos());
-			dt.setContrasenia(u.getContrasenia());
-			dt.setCorreoElectronico(u.getCorreoElectronico());
-			dt.setFechaNacimientoDate(u.getFechaNacimiento());
-			dt.setNombres(u.getNombres());
-			dt.setSexo(u.getSexo());
-			dt.setTelefonoMovil(u.getTelefonoMovil());	
-			dt.setUsuario(u.getUsuario());
+		} else if (u.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR)){
+			dt = new UsuarioProveedorDataType();			
+		} else if (u.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR)){
+			dt = new UsuarioAdministradorDataType();
 		}
+		
+		dt.setApellidos(u.getApellidos());
+		dt.setContrasenia(u.getContrasenia());
+		dt.setCorreoElectronico(u.getCorreoElectronico());
+		dt.setFechaNacimientoDate(u.getFechaNacimiento());
+		dt.setNombres(u.getNombres());
+		dt.setSexo(u.getSexo());
+		dt.setTelefonoMovil(u.getTelefonoMovil());	
+		dt.setUsuario(u.getUsuario());
+		dt.setHabilitado(u.getHabilitado());
+		
 		return dt;
 	}
 	
