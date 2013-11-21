@@ -37,7 +37,8 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-				nick.innerText = varsProy.nick;
+				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
+
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
@@ -83,7 +84,7 @@ function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimien
 
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-				nick.innerText = varsProy.nick;
+				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
@@ -173,10 +174,16 @@ function loginUsuario(usuario, contrasenia){
 				
 			ocultarElemento('loginUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-				nick.innerText = varsProy.nick;
+				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
+			
+			if(msg.tipoUsuario === confProy.ROL_ADMINISTRADOR)
+				location.href = confProy.URL_ADMIN_HOME;
+				
+			//redireccion javascript confProy.URL_ADMIN_HOME
+
 		}
 		else
 			alert(msg.respuesta);
@@ -324,8 +331,10 @@ function existeSesionServ(user){
 	.done(function(msg) {
 		console.log("success" + msg);
 		if(msg != "FALLA"){
+			
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-			nick.innerText = varsProy.nick;
+				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
+
 
 	    	mostrarElemento('Nick-Logout-Div');
 	    	ocultarElemento('Login-Registro-Div');
