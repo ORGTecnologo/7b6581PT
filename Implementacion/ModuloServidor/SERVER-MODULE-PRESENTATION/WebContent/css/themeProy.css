@@ -1,0 +1,171 @@
+/* Metroid theme from Bootply for Bootstrap 2.x - License: GPL */
+
+@import url('http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+
+/* bootstrap overrides */
+body {
+    font-family:'Open Sans',Arial,Helvetica,Sans-Serif;
+}
+
+a {
+    color:#0072BC;
+}
+
+.dropdown-menu, .nav-pills .dropdown-menu {
+	border-radius:0;
+}
+
+.navbar .nav>.active>a, .navbar .nav>.active>a:hover, .navbar .nav>.active>a:focus {
+        box-shadow:inset 0 0 0;
+        -webkit-box-shadow:inset 0 0 0;
+        text-shadow:0;
+}
+
+.nav-pills li a, .nav-tabs li a, .table-bordered, .table-bordered td,
+.table-bordered thead:first-child tr:first-child>th:first-child,
+.table-bordered tbody:last-child tr:last-child>td:first-child{
+	border-radius:0;	
+}
+  
+.nav-list>li>a, .nav-list, .nav-header {
+	text-shadow:0 0 0;
+}
+    
+.nav-list {
+	border:0;  
+}
+
+.pagination li a, .pager li a {
+	border-radius:0;	
+}
+
+
+.btn {
+  	border-width:1px;
+    border-style:solid;
+	/*border-radius:0;*/
+    background-image:none;
+    box-shadow: 0 0 0;
+}
+
+.btn-primary {
+	background-color:#0072BC;
+}
+
+.navbar-search .search-query {
+	border-radius:0;
+    border:0;
+}
+
+.navbar-inner {
+	border-radius:0;
+    background-image: none;
+  	font-weight:400;
+}
+  
+.navbar-inverse .brand, .navbar-inverse .nav > li > a{
+	color:#efefef;
+    text-shadow:0 0 0;
+}
+
+.alert {
+	border-radius:0;
+}
+
+.well {
+	border-radius:0;
+    -webkit-box-shadow:inset 0 0 0;
+    -moz-box-shadow:inset 0 0 0;
+    box-shadow:inset 0 0 0;
+  	background-color:#f0f0f0;
+}
+  
+.label {
+	border-radius:0;
+    font-weight:300;
+    color:#ffffff;
+    background-color:#bbb;
+}
+    
+.badge {
+    font-weight:300;
+}
+
+.progress {
+	border-radius:0;
+}
+      
+input[type=text], input[type=password],textarea, select, .search-query {
+	/*border-radius:0;*/
+}
+
+
+/* custom theme */
+header {
+	padding-bottom:10px;
+}
+
+a.header-dropdown {
+  font-size: 26px;
+  font-weight:200;
+  text-decoration:none;
+}
+
+footer {
+    padding:20px;
+    /*background-color:#797979;
+    color:#ededed;*/
+    vertical-align:bottom;
+}
+
+footer a {
+    /*color:#fff;*/
+}
+
+.bg-color-blue {
+   background-color: #0072BC !important;
+}
+.bg-color-blueRoyal {
+   background-color: #605eba !important;
+}
+.bg-color-green {
+   background-color: #01a31c !important;
+}
+.bg-color-greenDark {
+   background-color: #008641 !important;
+}
+.bg-color-red {
+   background-color: #ab1c48 !important;
+}
+.bg-color-yellow {
+   background-color: #ffc40d !important;
+}
+.bg-color-orange {
+   background-color: #CD4900 !important;
+}
+.bg-color-pink {
+   background-color: #c3325f !important;
+}
+.bg-color-purple {
+   background-color: #7D26CD !important;
+}
+.bg-color-darken {
+   background-color: #1c1c1c !important;
+}
+
+.tile {
+	border:0;
+	border-radius:0;
+	color:#FFFFFF;
+    height:140px;
+ 	font-weight:200;
+}
+
+.tile a {
+	color:#FFFFFF;
+}
+
+.panel {
+    border-radius: 0;
+}
+

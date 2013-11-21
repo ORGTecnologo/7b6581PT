@@ -26,6 +26,7 @@ function CTES_PROY(){
 
 	this.sessionStorageUser   = 'user_proyMPTecnologo';
 	this.sessionStorageToken  = 'token_proyMPTecnologo';
+	this.sessionStorageRol    = 'rol_proyMPTecnologo';
 
 	this.TIPO_CONTENIDO_MUSICA= "tipo_contenido_tema";
 	this.TIPO_CONTENIDO_APP   = "tipo_contenido_software";

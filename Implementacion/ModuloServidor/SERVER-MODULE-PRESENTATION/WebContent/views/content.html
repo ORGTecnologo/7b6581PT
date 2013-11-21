@@ -3,14 +3,19 @@
     <title>MarketPlace Tecnologo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" media="screen" />
+   
+   	<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="../css/market.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" media="screen" />
-
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-select.min.css" media="screen"/>
+	<link rel="stylesheet" type="text/css" href="../css/bootstrap-glyphicons.css">
+	<!--[if lt IE 9]><script src="../js/html5.js"></script><![endif]-->
+	<link rel="stylesheet" type="text/css" href="../css/themeProy.css">
+	
 	<script src="../js/jquery.min.js"></script>
 </head>
 
-<body>
+<body style="background-color: whitesmoke;">
 
 	<div id="fb-root"></div>
 	<script>
@@ -27,103 +32,42 @@
 		!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');
 	</script>
 
-
 <!-- BARRA DE NAVEGACION -->
-	<nav class="navbar navbar-default" role="navigation">
-	  <!-- El logotipo y el icono que despliega el menú se agrupan
-	       para mostrarlos menújor en los dispositivos móviles -->
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse"
-				data-target=".navbar-ex1-collapse">
-				<span class="sr-only">Desplegar navegación</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a class="navbar-brand" href="#">Market Place Tecnologo</a>
-		</div>
-		<div class="collapse navbar-collapse navbar-ex1-collapse"> 
-			<form class="navbar-form navbar-left" role="search">
-				<div class="form-group">
-					<input type="search" class="form-control" placeholder="Buscar">
-				</div>
-				<button class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
-					<span class="glyphicon glyphicon-search"></span> Buscar</button>
-			</form>
-			<div class="col-md-2 pull-right" id="Login-Registro-Div">
-			<!---->
-				<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
-				<ul class="dropdown-menu col-md-2 ">
-					<li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario',true)">Soy Proveedor</a></li>
-					<li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario',true)">Soy Cliente</a></li>
-				</ul>
-				<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
-			</div>
-			<div class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
-				<a href="#" class="nick">nick</a>
-				<a href="#" onclick="logoutUsuario()">(Logout)</a>
-			</div>
-		</div>
-	</nav>
-
-<!--LOGIN DE USUARIO -->
-	<div id="loginUsuario" class="modal loginDiv hide">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true" onclick="ocultarElemento('loginUsuario')">X</button>
-			<h3>Iniciar Sesion</h3>
-		</div>
-		<div class="modal-body">
-			<div class="row">
-				<div class="col-md-12">
-					<h4>Datos de Usuario</h4>
-					<p>Correo <input type="text" class="col-md-12 form-control" id="loginCorreo"></p>
-					<p>Contrase&ntilde;a <input type="password" class="col-md-12 form-control" id="loginPass"></p>
-				</div>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<button type="button" data-dismiss="modal" class="btn" onclick="ocultarElemento('loginUsuario')">Cerrar</button>
-			<button type="button" class="btn btn-primary" onclick="IniciarSesion()">Confirmar</button>
-		</div>
+<nav id='caca' class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse"
+			data-target=".navbar-ex1-collapse">
+			<span class="sr-only">Desplegar navegación</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="#">Market Place Tecnologo</a>
 	</div>
-
-<!--REGISTRO DE USUARIO -->
-	<div id="registroUsuario" class="modal registerDiv hide">
-		<div class="modal-header">
-	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true" 
-	    		onclick="ocultarElemento('registroUsuario')">X</button>
-	    	<h3>Registro de Usuario</h3>
-	  	</div>
-		<div class="modal-body">
-			<div class="row">
-				<div class="col-md-6">
-					<h4>Datos de Usuario</h4>
-					<p>Correo    			<input type="email" class="col-md-12 form-control" id="inputCorreo"></p>
-					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="inputPass"></p>
-					<p>Contrase&ntilde;a    <input type="password" class="col-md-12 form-control" id="inputPass2"></p>
-					<p>Nombre Usuario  		<input type="text" class="col-md-12 form-control" id="inputNick"></p>
-					<p id="sitioWeb_p">Sitio Web <input type="text" class="col-md-12 form-control" id="inputWeb"></p>
-				</div>
-				<div class="col-md-6">
-					<h4>Datos Personales</h4>
-					<p>Nombres	    		<input type="text" class="col-md-12 form-control" id="inputNombre"></p>
-					<p>Apellidos    		<input type="text" class="col-md-12 form-control" id="inputApellido"></p>
-					<p>Sexo 
-						<select id="inputSexo" class="col-md-12 form-control">
-							<option value="masculino" selected>Hombre</option>
-							<option value="femenino">Mujer</option>
-						</select>
-					</p>					
-					<p>Fecha de Nacimiento  <input type="text" class="col-md-12 form-control" id="inputFecha"></p>
-					<p>Telefono Movil    	<input type="tel" class="col-md-12 form-control" id="inputTel" onkeypress="return onlyNumbersDano(event)"></p>
-				</div>
-			</div>
+  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+    <ul class="navbar-form navbar-left" role="search">
+		<div class="form-group col-xs-6">
+			<input id="input-busqueda" type="search" class="form-control input-md" placeholder="Buscar">
 		</div>
-		<div class="modal-footer">
-			<button type="button" data-dismiss="modal" class="btn" onclick="ocultarElemento('registroUsuario')">Cerrar</button>
-			<button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
-		</div>
-	</div>
+		<ul class="btn-group">
+			<button onclick="buscarContenidos();" class="btn btn-primary" style="margin-top: initial;">
+				<span class="glyphicon glyphicon-search"></span> Buscar</button>
+			<button class="btn btn-primary dropdown-toggle"	type="button" onclick="verModales('configurarBusqueda');"><span class="glyphicon glyphicon-cog"></span></button>
+		</ul>
+	</ul>
+    <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
+		<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
+		<ul class="dropdown-menu">
+			<li><a href="#" onclick="setRegistroTipo('proveedor');verModales('registroUsuario')">Soy Proveedor</a></li>
+			<li><a href="#" onclick="setRegistroTipo('cliente');verModales('registroUsuario')">Soy Cliente</a></li>
+		</ul>
+		<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
+    </ul>
+	<ul class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
+		<a href="#" class="nick">nick</a>
+		<a href="#" onclick="logoutUsuario()">(Logout)</a>
+	</ul>
+</nav>
 
 <!-- CONTENIDO / CUERPO DE LA VISTA -->
 	<div class="col-md-16" style="min-height: 395px;width: 100%;">
@@ -168,14 +112,142 @@
 	<a href="https://twitter.com/share" class="twitter-share-button" data-lang="es" data-count="none" data-dnt="true">Twittear</a>
 	<div class="fb-like" data-href="http://127.0.0.1:8080/SERVER-MODULE-PRESENTATION/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>
 	</div>
-
 </body>
+
+<!-- CONFIGURAR BUSQUEDA -->
+<div id="configurarBusqueda" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Configurar Busqueda</h3>
+			</div>
+			<div class="modal-body">
+		        <div class="col-md-12">
+		            <div class="col-md-12 row" style="margin-right: auto;margin-left: auto;">
+		                <h4>Tipos</h4>
+		                <div class="col-md-6">
+		                    <p><label><input id="id_search-Libros" type="checkbox" checked="true">_Libros</label></p>
+		                    <p><label><input id="id_search-Musica" type="checkbox" checked="true">_Musica</label></p>
+		                    <p><label><input id="id_search-Apps" type="checkbox" checked="true">_Apps</label></p>
+		                </div>
+		                <div class="col-md-6">
+		                    <p><label><input id="id_search-Video" type="checkbox" checked="true">_Video</label></p>
+		                    <p><label><input id="id_search-Pagas" type="checkbox" checked="true">_Pagas</label></p>
+		                </div>
+		            </div>
+		            <div class="col-md-12">
+	                	<h4>Categorias</h4>
+		                <select class="selectpicker show-tick form-control" multiple="" data-live-search="true" id="multiplesCat" data-container="body"></select>
+		            </div>
+		        </div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal">Close</button>
+		        <button onclick="actualizarParametrosBusqueda()" type="button" class="btn btn-primary">Guardar Cambios</button>	
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- REGISTRO DE USUARIO -->
+<div id="registroUsuario" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Registro de Usuario</h3>
+		</div>
+		<div class="modal-body">
+	            <div class="row">
+	                <div class="col-md-6 col-xs-5">
+	                    	<h4>Datos de Usuario</h4>
+	                    <p>Correo
+	                        <input type="email" class="col-xs-10 form-control" id="inputCorreo"
+	                        autocomplete="on"/>
+	                    </p>
+	                    <p>Contraseña
+	                        <input type="password" class="col-xs-10 form-control" id="inputPass"/>
+	                    </p>
+	                    <p>Contraseña
+	                        <input type="password" class="col-xs-10 form-control" id="inputPass2"/>
+	                    </p>
+	                    <p>Nombre Usuario
+	                        <input type="text" class="col-xs-10 form-control" id="inputNick"
+	                        autocomplete="autocomplete"/>
+	                    </p>
+	                    <p id="sitioWeb_p">Sitio Web
+	                        <input type="text" class="col-xs-10 form-control" id="inputWeb"/>
+	                    </p>
+	                </div>
+	                <div class="col-md-6 col-xs-5">
+	                    	<h4>Datos Personales</h4>
+	                    <p>Nombres
+	                        <input type="text" class="form-control col-xs-10" id="inputNombre"/>
+	                    </p>
+	                    <p>Apellidos
+	                        <input type="text" class="form-control col-xs-10" id="inputApellido"/>
+	                    </p>
+	                    <p>Orientacion Sexual
+	                        <select id="inputSexo" class="selectpicker form-control col-xs-10">
+	                            <option value="masculino" selected="selected">Hombre</option>
+	                            <option value="femenino">Mujer</option>
+	                        </select>
+	                    </p>
+	                    <p>Fecha de Nacimiento
+	                        <input type="text" class="col-xs-10 form-control" id="inputFecha"/>
+	                    </p>
+	                    <p>Telefono Movil
+	                        <input type="tel" class="col-xs-10 form-control" id="inputTel"
+	                        onkeypress="return onlyNumbersDano(event)" />
+	                    </p>
+	                </div>
+	            </div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal">Cerrar</button>
+	        <button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
+		</div>
+		</div>
+	</div>
+</div>
+
+<!-- LOGIN DE USUARIO -->
+<div id="loginUsuario" class="modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">×</button>
+				<h3>Login de Usuario</h3>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+	                <div class="col-md-12 col-xs-10">
+	                    	<h4>Datos de Usuario</h4>
+	                    <p>Correo
+	                        <input type="text" class="col-xs-7 form-control" id="loginCorreo"
+	                        autocomplete="on"/>
+	                    </p>
+	                    <p>Contraseña
+	                        <input type="password" class="col-xs-7 form-control" id="loginPass"/>
+	                    </p>
+	                </div>
+	            </div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" onclick="IniciarSesion()">Confirmar</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script src="../js/jquery-ui.js"></script>
 <script src="../js/globalesProyecto.js"></script>
 <script src="../js/Prototipos.js"></script>
 <script src="../js/Objetos.js"></script>
 <script src="../js/holder.js"></script>
+<script src="js/blockUI.js"></script>
 <script src="../js/bootstrap.js"></script>
 <script src="../js/LlamadasAjax.js"></script>
 <script src="../js/getSet.js"></script>

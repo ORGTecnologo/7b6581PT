@@ -324,7 +324,7 @@ textarea {
 }
 
 a {
-  color: #4DA3EE;
+  color: #428bca;
   text-decoration: none;
 }
 
@@ -368,7 +368,7 @@ img {
 }
 
 .img-circle {
-  border-radius: -39%;
+  border-radius: 50%;
 }
 
 hr {
@@ -4326,7 +4326,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 @media (min-width: 768px) {
   .navbar-form {
-    width: 739px;
+    width: auto;
     padding-top: 0;
     padding-bottom: 0;
     margin-right: 0;
@@ -4981,7 +4981,6 @@ a.thumbnail:focus {
 .thumbnail > img {
   margin-right: auto;
   margin-left: auto;
-  max-height: 204px; max-width: 300px;
 }
 
 .thumbnail .caption {
@@ -5994,12 +5993,11 @@ body.modal-open,
 }
 
 .carousel {
-  position: absolute;
-  z-index: 1000;
+  position: relative;
 }
 
 .carousel-inner {
-  position: absolute;
+  position: relative;
   width: 100%;
   overflow: hidden;
 }

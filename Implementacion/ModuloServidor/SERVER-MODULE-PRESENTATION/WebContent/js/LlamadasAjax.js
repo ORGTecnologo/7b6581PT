@@ -147,6 +147,8 @@ function altaContenido(content){
 
 //PUT__________PUT__________PUT
 function loginUsuario(usuario, contrasenia){
+	bloquearPantalla();
+	
 	$.ajax({
 	   url: ip + '/usuarios/loginCliente',
 	   type: 'PUT',
@@ -167,7 +169,8 @@ function loginUsuario(usuario, contrasenia){
 
 			    window.localStorage.setItem(confProy.sessionStorageUser, msg.usuario);
 			    window.localStorage.setItem(confProy.sessionStorageToken, msg.token);
-
+			    window.localStorage.setItem(confProy.sessionStorageRol, msg.tipoUsuario);
+				
 			ocultarElemento('loginUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
 				nick.innerText = varsProy.nick;
@@ -182,6 +185,7 @@ function loginUsuario(usuario, contrasenia){
 		console.log(msg);
 		alert('Nombre de usuario o contrasenia incorrectos!!');
 	});
+	desbloquearPantalla();
 }
 
 function logoutUsuario(){
@@ -245,6 +249,7 @@ function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
 
 function buscarContenidos(){
 
+	bloquearPantalla();
 	var JSONstring = new ParametrosBusqueda();
 
 	this.preventDefault;
@@ -283,6 +288,7 @@ function buscarContenidos(){
 	.always(function(msg) {
 		console.log("complete");
 		console.log(msg);
+		desbloquearPantalla();
 	});
 }
 
@@ -316,8 +322,18 @@ function existeSesionServ(user){
 		async: false,
 	})
 	.done(function(msg) {
-		console.log("success");
-		console.log(msg);
+		console.log("success" + msg);
+		if(msg != "FALLA"){
+			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+			nick.innerText = varsProy.nick;
+
+	    	mostrarElemento('Nick-Logout-Div');
+	    	ocultarElemento('Login-Registro-Div');
+			window.localStorage.setItem(confProy.sessionStorageRol,msg.tipoUsuario);
+		}
+		else{
+			window.localStorage.clear();
+		}
 		return true;
 	})
 	.fail(function(msg) {

@@ -2,25 +2,18 @@
 function checkearSesionAbierta(){
 
 	var usuario = window.localStorage.getItem(confProy.sessionStorageUser);
-	var token = window.localStorage.getItem(confProy.sessionStorageToken);
 
 	if (usuario === null)
 		return false;
 
 	varsProy.nick = usuario;
-	varsProy.token = token;
 
-	if (existeSesionServ(varsProy.nick))
-		return true;
-	else{
-		window.localStorage.clear();		
-		return false;
-	}
+	existeSesionServ(varsProy.nick);
 }
 
 function bloquearPantalla(){
     'use strict';
-    $.blockUI({ message: '<p><img src="../assets/images/busy.gif" /> Cargando...</p>' ,
+    $.blockUI({ message: '<p><img src="../img/busy.gif" /> Cargando...</p>' ,
         css: {
             border: 'none',
             padding: '15px',
