@@ -42,6 +42,7 @@ public class ParametroMB implements Serializable {
 		try {
 			negocioParametros.actualizarParametro(parametroActual);
 			listaParametros = negocioParametros.obtenerTodos();
+			activoPanelModificar = false;
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e);
 		}		

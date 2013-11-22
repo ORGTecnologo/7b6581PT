@@ -93,6 +93,21 @@ public class RWSContenidos {
 	}
 	
 	@GET
+	@Path("/obtenerTopContenidos")
+	@Produces("application/json")
+	public List<ContenidoMinimalDataType> obtenerTopContenidos(@QueryParam("cantidad") String cantidadContenidos, @QueryParam("tipo") String tipoContenido) {
+		List<ContenidoMinimalDataType> listaContenidos = null;
+		try {
+					
+			listaContenidos = negocioContenido.obtenerTopContenidos(Integer.valueOf(cantidadContenidos), tipoContenido);
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}
+		return listaContenidos;
+	}
+	
+	@GET
 	@Path("/obtenerComentariosAAprobar")
 	@Produces("application/json")
 	public List<ComentarioDataType> obtenerComentariosAAprobar(@Context HttpServletRequest req) {

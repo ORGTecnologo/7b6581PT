@@ -17,6 +17,7 @@ import javax.ws.rs.core.Context;
 import org.jboss.logging.Logger;
 
 import tecinf.negocio.NegocioUsuario;
+import tecinf.negocio.dtos.EditarUsuarioDataType;
 import tecinf.negocio.dtos.GenericJsonResponse;
 import tecinf.negocio.dtos.LoginDataType;
 import tecinf.negocio.dtos.LoginRespDataType;
@@ -26,9 +27,11 @@ import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.dtos.UsuarioProveedorDataType;
 import tecinf.negocio.utiles.EnumRespuestas;
+import tecinf.negocio.utiles.EnumTipoUsuario;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.presentacion.utiles.ConstantesSession;
 import tecinf.presentacion.utiles.JSonUtils;
+import tecinf.presentacion.utiles.RightsChecker;
 
 
 @Path("/usuarios")
@@ -230,6 +233,52 @@ public class RWSUsuarios {
 			logger.error(e.getMessage() , e); 
 		}				
 		return session;
+	}
+	
+	@GET
+	@Path("/verUsuario/{usuario}")
+	@Produces("application/json")
+	public UsuarioDataType verUsuario(@Context HttpServletRequest req, @PathParam("usuario") String usuario) {
+		UsuarioDataType usr = null;
+		try {			
+			HttpSession s = req.getSession();
+			UserSession session = (UserSession) s.getAttribute(ConstantesSession.keyUsuarioSession);
+			RightsChecker rc = new RightsChecker();
+			rc.checkCustomerRights(session);
+			if ( (session.getUsuario().equals(usuario)) || session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) ){
+				negocioUsuario = NegocioFactory.getNegocioUsuario();
+				usr = negocioUsuario.verInfoUsuario(usuario); 		
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}				
+		return usr;
+	}
+	
+	@PUT
+	@Path("/verUsuario")
+	@Produces("application/json")
+	public GenericJsonResponse editarUsuario(@Context HttpServletRequest req, EditarUsuarioDataType datosUsuario) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {
+			
+			HttpSession s = req.getSession();
+			UserSession session = (UserSession) s.getAttribute(ConstantesSession.keyUsuarioSession);
+			RightsChecker rc = new RightsChecker();
+			rc.checkCustomerRights(session);
+			if (session == null || (!session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE) && !session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR)) )
+				throw new Exception("OPERACION_NO_PERMITIDA");
+		
+			datosUsuario.setTipoUsuario(session.getTipoUsuario());
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario.editarPerfilUsuario(session.getUsuario(), datosUsuario);
+			
+		} catch (Exception e) {
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+			resp.setMensageOperacion(e.getMessage());
+			logger.error(e.getMessage() , e); 
+		}
+		return resp;
 	}
 	
 }

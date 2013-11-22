@@ -32,7 +32,6 @@ import tecinf.persistencia.entities.ContenidoTemaMusicalEntity;
 import tecinf.persistencia.entities.ContenidoVideoEntity;
 import tecinf.persistencia.entities.ParametroValorEntity;
 import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
-import tecinf.persistencia.entities.UsuarioAdministradorEntity;
 import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.entities.VersionContenidoEntity;
@@ -217,6 +216,7 @@ public class DataTypesFactory {
 		
 		dt.setId(c.getId());
 		dt.setNombreContenido(c.getNombre());
+		dt.setDescripcionContenido(c.getDescripcion());
 		dt.setPrecio(c.getPrecio() == null || c.getPrecio() == Float.valueOf("0.0") ? "Gratis" : c.getPrecio().toString()); 
 		if (c.getFotos() != null && c.getFotos().size() > 0){
 			for (ContenidoFotoEntity f : c.getFotos())

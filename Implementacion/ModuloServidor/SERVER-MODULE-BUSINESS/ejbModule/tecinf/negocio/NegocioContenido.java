@@ -22,6 +22,8 @@ public interface NegocioContenido {
 	
 	public List<ContenidoMinimalDataType> filtrarContenidos(FiltrosContenidoDataType filtros);
 	
+	public List<ContenidoMinimalDataType> obtenerTopContenidos(Integer cantidad, String tipo) throws Exception;
+	
 	public List<ComentarioDataType> obtenerComentariosAAprobar();
 	
 	public List<ComentarioDataType> obtenerComentariosDeContenido(Integer idContenido);

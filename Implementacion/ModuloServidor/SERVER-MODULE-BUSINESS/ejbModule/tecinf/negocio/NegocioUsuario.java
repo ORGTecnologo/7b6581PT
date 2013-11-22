@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import tecinf.negocio.dtos.EditarUsuarioDataType;
 import tecinf.negocio.dtos.LoginRespDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
@@ -38,5 +39,8 @@ public interface NegocioUsuario {
 	
 	public void cambiarEstadoUsuario(UsuarioDataType u) throws Exception;
 	
+	public UsuarioDataType verInfoUsuario(String nick) throws Exception;
+	
+	public void editarPerfilUsuario(String nick, EditarUsuarioDataType datos) throws Exception;
 }
 

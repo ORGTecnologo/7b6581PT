@@ -93,4 +93,12 @@ public class ContenidoDaoImpl extends DaoImpl<Integer, ContenidoEntity> implemen
 		return (List<ContenidoEntity>)query.getResultList();
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<ContenidoEntity> findTopContents(Integer cantidad, String tipo) {		
+		String queryStr = "SELECT E from ContenidoEntity e WHERE e.tipoContenido = :tipoUsuario ORDER BY e.cantidadDescargas";		
+		Query query = em.createQuery(queryStr);
+		query.setParameter("tipoUsuario", tipo);
+		return (List<ContenidoEntity>)query.setMaxResults(cantidad).getResultList();
+	}
+	
 }

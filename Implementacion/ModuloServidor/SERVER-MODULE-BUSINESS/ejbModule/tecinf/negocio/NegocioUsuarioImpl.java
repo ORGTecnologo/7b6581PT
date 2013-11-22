@@ -10,6 +10,7 @@ import javax.naming.NamingException;
 
 import org.jboss.logging.Logger;
 
+import tecinf.negocio.dtos.EditarUsuarioDataType;
 import tecinf.negocio.dtos.LoginRespDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
@@ -23,6 +24,7 @@ import tecinf.negocio.utiles.EnumTipoUsuario;
 import tecinf.negocio.utiles.FileSystemUtils;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.negocio.utiles.RandomString;
+import tecinf.negocio.utiles.ValidationUtil;
 import tecinf.persistencia.daos.EstadoUsuarioDao;
 import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.SessionDao;
@@ -93,26 +95,32 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 			resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA);
 		} else {
 			
-			//Auditoria
-			negocioAuditoria.registrarAuditoria(ue.getUsuario(), new Date(), ConstantesAuditoria.ID_OBJETO_USUARIO, ConstantesAuditoria.ID_OPERACION_LOGIN, ue.getUsuario());
-					
-			//Respuesta
-			resp.setRespuesta(EnumRespuestas.RESPUESTA_OK);
-			String tkn = (new RandomString(50).nextString()); /* token de 50 caracteres */
-			resp.setToken(tkn);
-			resp.setUsuario(ue.getUsuario());
-			resp.setTipoUsuario(ue.getTipoUsuario());
+			if (ue.getHabilitado()){
 			
-			//Session
-			/*
-			SessionEntity session = new SessionEntity();
-			session.setUsuario(ue.getUsuario()); 
-			session.setTimeStamp(new Date());
-			session.setTipoUsuario(ue.getTipoUsuario());
-			session.setToken(tkn);
-			session.setTimeStamp(updateTimeStamp(new Date())); 
-			sessionDao.persist(session);
-			*/
+				//Auditoria
+				negocioAuditoria.registrarAuditoria(ue.getUsuario(), new Date(), ConstantesAuditoria.ID_OBJETO_USUARIO, ConstantesAuditoria.ID_OPERACION_LOGIN, ue.getUsuario());
+				
+				//Respuesta
+				resp.setRespuesta(EnumRespuestas.RESPUESTA_OK);
+				String tkn = (new RandomString(50).nextString()); /* token de 50 caracteres */
+				resp.setToken(tkn);
+				resp.setUsuario(ue.getUsuario());
+				resp.setTipoUsuario(ue.getTipoUsuario());
+				
+				//Session
+				/*
+				SessionEntity session = new SessionEntity();
+				session.setUsuario(ue.getUsuario()); 
+				session.setTimeStamp(new Date());
+				session.setTipoUsuario(ue.getTipoUsuario());
+				session.setToken(tkn);
+				session.setTimeStamp(updateTimeStamp(new Date())); 
+				sessionDao.persist(session);
+				*/
+			
+			} else {
+				resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA + "|" + "USUARIO_NO_HABILITADO");
+			}
 		}
 		return resp;
 	}
@@ -284,5 +292,41 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		ue.setHabilitado(u.getHabilitado() == null || !u.getHabilitado() ? true : false);
 		usuarioDao.merge(ue);		
 	}
+	
+	public UsuarioDataType verInfoUsuario(String nick) throws Exception {
+		if (ValidationUtil.isNullOrEmpty(nick))
+			throw new Exception("PARAMETRO_NO_VALIDO");
+		UsuarioEntity usrE = usuarioDao.findByID(nick);
+		if (usrE == null )
+			throw new Exception("USUARIO_NO_ENCONTRADO");
+		return DataTypesFactory.getUsuarioDataType(usrE);
+	}
+	
+	public void editarPerfilUsuario(String nick, EditarUsuarioDataType datos) throws Exception {
+		if (ValidationUtil.isNullOrEmpty(nick))
+			throw new Exception("PARAMETRO_NO_VALIDO");
+		UsuarioEntity usrE = usuarioDao.findByID(nick);
+		if (usrE == null )
+			throw new Exception("USUARIO_NO_ENCONTRADO");
+		
+		if (ValidationUtil.isNullOrEmpty(datos.getContrasenia()) || ValidationUtil.isNullOrEmpty(datos.getContrasenia2()) || datos.getContrasenia().equals(datos.getContrasenia2()))
+			throw new Exception("CONTRASENIAS_NO_COINCIDEN");
+			
+		if (datos.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE)){
+			
+		} else if (datos.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR)){
+		
+		}
+		
+		usrE.setApellidos(datos.getApellidos());
+		usrE.setContrasenia(datos.getContrasenia());
+		usrE.setNombres(datos.getNombres());
+		usrE.setSexo(datos.getSexo()); 
+		usrE.setTelefonoMovil(datos.getTelefonoMovil()); 
+
+		usuarioDao.merge(usrE);		
+	}
+	
+	
 	
 }

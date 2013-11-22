@@ -1,6 +1,7 @@
 package tecinf.negocio;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -136,6 +137,24 @@ public class NegocioContenidoImpl implements NegocioContenido {
 			for (ContenidoEntity c : listaContE)
 				listaItemsContenido.add(DataTypesFactory.getContenidoMinimalDataType(c));
 		}		
+		return listaItemsContenido;
+	}
+	
+	public List<ContenidoMinimalDataType> obtenerTopContenidos(Integer cantidad, String tipo) throws Exception {
+		List<ContenidoMinimalDataType> listaItemsContenido = new ArrayList<ContenidoMinimalDataType>();
+		String[] tiposValidos = {EnumTiposContenido.TIPO_CONTENIDO_LIBRO , EnumTiposContenido.TIPO_CONTENIDO_SOFTWARE, EnumTiposContenido.TIPO_CONTENIDO_TEMA, EnumTiposContenido.TIPO_CONTENIDO_VIDEO};  
+		
+		if (!Arrays.asList(tiposValidos).contains(tipo))
+			throw new Exception("TIPO_NO_VALIDO");
+		if (cantidad == null)
+			throw new Exception("CANTIDAD_NO_VALIDA");
+		
+		List<ContenidoEntity> listaContE = contenidoDao.findTopContents(cantidad, tipo);
+		if (listaContE != null){
+			for (ContenidoEntity e : listaContE)
+				listaItemsContenido.add(DataTypesFactory.getContenidoMinimalDataType(e));
+		}
+		
 		return listaItemsContenido;
 	}
 	
