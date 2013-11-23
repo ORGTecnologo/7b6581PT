@@ -37,6 +37,7 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.href = '/SERVER-MODULE-PRESENTATION/views/perfil.html?nick='+varsProy.nick;			
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
 
@@ -84,6 +85,7 @@ function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimien
 
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.href = '/SERVER-MODULE-PRESENTATION/views/perfil.html?nick='+varsProy.nick;			
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
 		    mostrarElemento('Nick-Logout-Div',false);
@@ -174,6 +176,7 @@ function loginUsuario(usuario, contrasenia){
 				
 			ocultarElemento('loginUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.href = '/SERVER-MODULE-PRESENTATION/views/perfil.html?nick='+varsProy.nick;
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
 		    mostrarElemento('Nick-Logout-Div',false);
@@ -301,6 +304,25 @@ function buscarContenidos(){
 	})
 }
 
+function obtenerDatosdeUsuario(nick){
+
+	console.log('Este es el nick: ' + nick);
+	$.ajax({
+		url: ip + '/usuarios/verUsuario/' + nick,
+		type: 'GET',
+		dataType: 'json',
+	})
+	.done(function(msg) {
+		console.log(msg);
+		cargarDatosdeUsuario(msg);
+	})
+	.fail(function(msg) {
+		console.log("error");
+	})
+	.always(function(msg) {
+		console.log("complete");
+	});
+}
 
 function obtenerCategoriasySubcategorias(idSelect){
 	idSelect || (idSelect = 'id_categoria');
@@ -336,6 +358,7 @@ function existeSesionServ(user){
 			window.localStorage.clear();
 		else if (msg != "FALLA"){
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.href = '/SERVER-MODULE-PRESENTATION/views/perfil.html?nick='+varsProy.nick;
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
 	    	mostrarElemento('Nick-Logout-Div');
