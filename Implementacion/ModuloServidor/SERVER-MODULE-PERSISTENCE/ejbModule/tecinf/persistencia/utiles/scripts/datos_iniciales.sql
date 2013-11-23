@@ -115,4 +115,4 @@ values('proveedor','proveedor','ed53a12cecc92e4014e5f0438e17185a','proveedor@pro
 insert into usuarios_proveedor (codigo_qr , sitio_web, usuario) values('','www.proveedor.com' , 'proveedor');
 
 
-update parametros set valor_parametro = 'contenido_libro;contenido_video;contenido_musica;contenido_software' where nombre_parametro = 'directoriosUsuariosProveedores';
+update parametros set valor_parametro = 'contenido_libro;contenido_video;contenido_musica;contenido_software;tmp' where nombre_parametro = 'directoriosUsuariosProveedores';

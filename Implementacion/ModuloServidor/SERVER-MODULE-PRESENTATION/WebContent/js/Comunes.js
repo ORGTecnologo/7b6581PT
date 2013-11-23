@@ -77,6 +77,26 @@ function cargarComboCategorias(idSelect){
 	$('.selectpicker').selectpicker('refresh');
 }
 
+function cargarComboMultCategorias(idSelect){
+	idSelect || (idSelect = 'id_categoria');
+
+	//TODO PELO, combo multiples categorias
+
+	var select = document.getElementById(idSelect);
+
+	for (var i = 0; i < select.options.length; i++)
+		select.options.remove();
+
+	for (var i = 0; i < jsonProy.categorias.length; i++) {
+		var option1 = document.createElement("option");
+			option1.text = jsonProy.categorias[i].nombre;
+			option1.value = i;//jsonProy.categorias[i].id;
+		select.add(option1,select.options[null]);
+	};
+
+	$('.selectpicker').selectpicker('refresh');
+}
+
 function cargarComboSubCategorias(elem){
 
 	fila = parseInt(elem.value);
@@ -309,4 +329,52 @@ function cargarPuntuacion(puntuacion,origen){
 			star5.setAttribute('alt',origen + 'img/estrellaNoAct.png');			
 		break;
 	}
+}
+
+
+function cargarResultadoBusqueda(pag){
+    pag || (pag = 0);
+
+	var lengthFor = 10;
+	var html = "";
+	if (jsonProy.resultadoBusqueda.length < 10)
+		lengthFor = jsonProy.resultadoBusqueda.length;
+
+	for (var i = (pag*10 + 0); i < (pag*10 + 10); i++) {
+
+		if (!(i >= lengthFor)) {
+			var id     = jsonProy.resultadoBusqueda[i].id;
+			var nombre = jsonProy.resultadoBusqueda[i].nombreContenido;
+			var desc   = jsonProy.resultadoBusqueda[i].descripcionContenido;
+			var foto   = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.resultadoBusqueda[i].listaFotos[0];
+			var precio = jsonProy.resultadoBusqueda[i].precio;
+
+
+	        html += "<tr><td><img src='" + foto + "' alt='" + foto + "' class='img-responsive' style='widht:50px;height:50px'></td>"
+						+ "<td><a href='views/content.html?id=" + id + "'>" + nombre + "</a></td>"
+						+ "<td>" + desc + "</td>"
+						+ "<td>" + precio + "</td>"
+						+ "<td>" + 100 + "/5</td>"
+		            + "</tr>";
+		};
+	};
+	var tbody = document.getElementById('cuerpoBusqueda');
+		tbody.innerHTML = html;
+}
+
+function cargarPaginadoDinamico(){
+
+	var pagination = document.getElementById('paginadoBusqueda');
+
+	var cantPaginas = jsonProy.resultadoBusqueda.length / 10;
+		cantPaginas += 0.99;
+	var indice = parseInt(cantPaginas.toFixed());
+
+	var html = "";
+
+	for (var i = 0; i < indice; i++) {
+		var numero = i + 1;
+		html += "<li><a href='#' onclick='cargarResultadoBusqueda('" + i + "')>" + numero +"</a></li>";
+	};
+	pagination.innerHTML = html;	
 }

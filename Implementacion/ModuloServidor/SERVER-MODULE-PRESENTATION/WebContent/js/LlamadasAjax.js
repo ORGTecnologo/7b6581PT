@@ -282,8 +282,14 @@ function buscarContenidos(){
 
 		//Cargo los resultados en memoria
 		jsonProy.resultadoBusqueda = msg;
+		
+		cargarResultadoBusqueda();
+		cargarPaginadoDinamico();
+		
 		ocultarElemento('con-tenedor');
 		mostrarElemento('resultadoBusqueda');
+		
+		desbloquearPantalla();
 	})
 	.fail(function(msg) {
 		console.log("error");
@@ -291,12 +297,8 @@ function buscarContenidos(){
 		jsonProy.resultadoBusqueda = msg;
 		ocultarElemento('con-tenedor');
 		mostrarElemento('resultadoBusqueda');
+		desbloquearPantalla();	
 	})
-	.always(function(msg) {
-		console.log("complete");
-		console.log(msg);
-		desbloquearPantalla();
-	});
 }
 
 
@@ -329,12 +331,12 @@ function existeSesionServ(user){
 		async: false,
 	})
 	.done(function(msg) {
-		console.log("success" + msg);
-		if(msg != "FALLA"){
-			
+		console.log("success = " + msg);
+		if(msg === undefined)
+			window.localStorage.clear();
+		else if (msg != "FALLA"){
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
-
 
 	    	mostrarElemento('Nick-Logout-Div');
 	    	ocultarElemento('Login-Registro-Div');
@@ -409,14 +411,11 @@ function esUnicoNick(nick){
 	});
 }
 
-
-
 function respuestaPares(){
 
 	this.filtro = "";
 	this.valor = "";
 }
-
 
 /*var respuesta = new respuestaPares();
 	respuesta.filtro = "categoria"
