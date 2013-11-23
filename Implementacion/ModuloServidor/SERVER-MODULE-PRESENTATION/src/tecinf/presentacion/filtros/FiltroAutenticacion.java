@@ -92,6 +92,7 @@ public class FiltroAutenticacion implements Filter {
 		adminURLs.add("/admin/partialAuditoria.xhtml");
 		adminURLs.add("/admin/partialParametros.xhtml");
 		adminURLs.add("/admin/partialUsuarios.xhtml");
+		adminURLs.add("/views/perfil.html");
 		
 		// URLs de proveedores
 		supplierURLs = new ArrayList<String>(); 
@@ -104,6 +105,8 @@ public class FiltroAutenticacion implements Filter {
 		// URLs de clientes
 		clientURLs = new ArrayList<String>();
 		clientURLs.add("/FileDispatcherServlet");
+		clientURLs.add("/views/perfil.html");
+		
 		
 	}
 	

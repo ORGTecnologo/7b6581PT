@@ -11,6 +11,9 @@ public class DescargaDataType implements Serializable {
 	private Integer idContenido;
 	private String nombreContenido;
 	private String fechaDescarga;
+	private String tipoContenido;
+	private String foto;
+	private Integer calificacion;
 	
 	
 	public Integer getIdDescarga() {
@@ -37,7 +40,23 @@ public class DescargaDataType implements Serializable {
 	public void setFechaDescarga(String fechaDescarga) {
 		this.fechaDescarga = fechaDescarga;
 	}
-	
-	
+	public String getTipoContenido() {
+		return tipoContenido;
+	}
+	public void setTipoContenido(String tipoContenido) {
+		this.tipoContenido = tipoContenido;
+	}
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+	public Integer getCalificacion() {
+		return calificacion;
+	}
+	public void setCalificacion(Integer calificacion) {
+		this.calificacion = calificacion;
+	}
 	
 }

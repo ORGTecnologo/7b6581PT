@@ -32,7 +32,9 @@ import javax.persistence.Table;
 	
 	@NamedQuery(name = "UsuarioDescargaContenidoEntity.findAllByUsuarioAndEstado", 
 		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.estadoDescarga = :estado and e.usuarioCliente.usuario = :usuario") ,	
-		
+	
+	@NamedQuery(name = "UsuarioDescargaContenidoEntity.findByUsuarioAndContenido", 
+		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.usuarioCliente.usuario = :usuario and e.contenido.id = :idContenido") ,
 		
 })
 

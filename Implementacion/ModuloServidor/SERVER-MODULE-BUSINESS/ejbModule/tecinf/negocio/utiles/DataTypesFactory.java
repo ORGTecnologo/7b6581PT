@@ -15,6 +15,7 @@ import tecinf.negocio.dtos.ContenidoMinimalDataType;
 import tecinf.negocio.dtos.ContenidoSoftwareDataType;
 import tecinf.negocio.dtos.ContenidoTemaMusicalDataType;
 import tecinf.negocio.dtos.ContenidoVideoDataType;
+import tecinf.negocio.dtos.DescargaDataType;
 import tecinf.negocio.dtos.ParametroValorDataType;
 import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.dtos.UsuarioAdministradorDataType;
@@ -146,7 +147,7 @@ public class DataTypesFactory {
 		dt.setIdContenido(c.getId());
 		dt.setNombreContenido(c.getNombre());
 		dt.setTamanioContenido(c.getTamanio());
-		dt.setUrlArchivoContenido("/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?" + c.getRutaArchivoContenido());
+		dt.setUrlArchivoContenido("/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?idContenido=" + c.getId() + "&rutaContenido=" + c.getRutaArchivoContenido());
 		dt.setCantidadDescargas(c.getCantidadDescargas() == null ? 0 : c.getCantidadDescargas());
 		
 		return dt;
@@ -222,6 +223,28 @@ public class DataTypesFactory {
 			for (ContenidoFotoEntity f : c.getFotos())
 				dt.getListaFotos().add(f.getUrlFoto());
 		}
+		dt.setCalificacion(c.getCalificacion() == null ? 0 : c.getCalificacion());
+		
+		return dt;
+	}
+	
+	public static DescargaDataType getDescargaDataType(UsuarioDescargaContenidoEntity e){
+		DescargaDataType dt = new DescargaDataType();
+		
+		dt.setFechaDescarga(e.getFechaDescarga() == null ? "" : String.valueOf(e.getFechaDescarga().getTime())); 
+		dt.setIdContenido(e.getContenido().getId());
+		dt.setIdDescarga(e.getId());
+		dt.setNombreContenido(e.getContenido().getNombre());
+		if (e.getContenido().getFotos() != null){
+			for (ContenidoFotoEntity f : e.getContenido().getFotos()){
+				dt.setFoto(f.getUrlFoto());
+				break;
+			}
+		} else {
+			dt.setFoto("");
+		}
+		dt.setCalificacion(e.getContenido().getCalificacion());
+		dt.setTipoContenido(e.getContenido().getTipoContenido());
 		
 		return dt;
 	}

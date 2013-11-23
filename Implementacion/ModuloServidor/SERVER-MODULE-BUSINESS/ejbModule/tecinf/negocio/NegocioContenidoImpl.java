@@ -204,7 +204,10 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		List<DescargaDataType> listaDescargasACalificar = new ArrayList<>();
 		
 		List<UsuarioDescargaContenidoEntity> descargas = usuarioDescargaContenidoDao.getDonwloadsByUserAndState(usuario, EnumEstadosDescarga.VALORACION_HABILITADA);
-		
+		if (descargas != null){
+			for (UsuarioDescargaContenidoEntity d : descargas)
+				DataTypesFactory.getDescargaDataType(d);
+		}
 		
 		return listaDescargasACalificar;
 	}
@@ -255,8 +258,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		String nuevoDirectorio = (new RandomString(10)).nextString();
 		String dirCont = fSU.crearDirectorioContenido(usuario, directorioTipoContenido, nuevoDirectorio);
 		String tmpDir = fSU.obtenerDirectorioUsuario(FileSystemUtils.DIRECTORIO_USUARIOS_PROVEEDORES, FileSystemUtils.DIRECTORIO_TEMPORALES, usuario);
-		
-		nC.setRutaArchivoContenido(CripterDecripter.encrypt(nuevoDirectorio)); 
+				
 		nC.setTamanio(fSU.getFileSize(tmpDir + "/" + dt.getSource()));	
 				
 		String rFrom = tmpDir + "/" + dt.getSource();
@@ -267,6 +269,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		} catch (Exception e) { 
 			logger.error(e.getMessage() , e); 
 		}
+		nC.setRutaArchivoContenido(CripterDecripter.encrypt(rTo)); 
 		
 		/* AGREGO LAS FOTOS DEL CONTENIDO */
 		if (dt.getImagenes() != null) {	
@@ -338,16 +341,26 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		ContenidoEntity c = contenidoDao.findByID(idContenido);
 		UsuarioEntity u = usuarioDao.findByID(usuario);
 		
-		UsuarioDescargaContenidoEntity udc = new UsuarioDescargaContenidoEntity();
-		udc.setVersionContenido(c.obtenerVersionConEstado(EnumEstadosVersionContenido.APROBADA));
-		udc.setCalificacionDescarga(null);
-		udc.setContenido(c);
-		udc.setDescripcionValoracion("");
-		udc.setEstadoDescarga(EnumEstadosDescarga.VALORACION_NO_HABILITADA);
-		udc.setFechaDescarga(new Date());
-		udc.setUsuarioCliente(u);
-		
-		usuarioDescargaContenidoDao.persist(udc);
+		Boolean correspondeRegistro = false;
+		UsuarioDescargaContenidoEntity udcCheck = usuarioDescargaContenidoDao.getDownloadByUserAndContent(usuario, idContenido);
+		if (udcCheck == null){
+			correspondeRegistro = true;
+		} else if (udcCheck.getVersionContenido().getId() != c.obtenerVersionConEstado(EnumEstadosVersionContenido.APROBADA).getId())
+			correspondeRegistro = true;
+			
+		if (correspondeRegistro) {
+			
+			UsuarioDescargaContenidoEntity udc = new UsuarioDescargaContenidoEntity();
+			udc.setVersionContenido(c.obtenerVersionConEstado(EnumEstadosVersionContenido.APROBADA));
+			udc.setCalificacionDescarga(null);
+			udc.setContenido(c);
+			udc.setDescripcionValoracion("");
+			udc.setEstadoDescarga(EnumEstadosDescarga.VALORACION_NO_HABILITADA);
+			udc.setFechaDescarga(new Date());
+			udc.setUsuarioCliente(u);
+			
+			usuarioDescargaContenidoDao.persist(udc);
+		}
 		
 	}
 	
