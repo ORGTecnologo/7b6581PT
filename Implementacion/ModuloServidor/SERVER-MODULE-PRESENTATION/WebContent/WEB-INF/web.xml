@@ -26,9 +26,11 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     <listener>
         <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
     </listener>
+    <!-- 
     <listener>
         <listener-class>tecinf.presentacion.procesos.InicioProcesos</listener-class>
     </listener>
+     -->
     <listener>
         <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
     </listener>

@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -15,8 +16,10 @@ import javax.servlet.http.HttpSession;
 import org.jboss.logging.Logger;
 
 import tecinf.negocio.NegocioContenido;
+import tecinf.negocio.NegocioParametros;
 import tecinf.negocio.dtos.UserSession;
 import tecinf.negocio.utiles.CripterDecripter;
+import tecinf.negocio.utiles.EnumParametrosValor;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.presentacion.utiles.ConstantesSession;
  
@@ -50,7 +53,16 @@ public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implem
 			logger.error(e.getMessage() , e);
 		}
     	
-    	File file = new File(qStringDecripted);
+    	NegocioParametros negocioParametros = null;
+		try {
+			negocioParametros = NegocioFactory.getNegocioParametros();
+		} catch (NamingException e) {
+			logger.error(e.getMessage() , e); 
+		}
+    	String rutaBase = negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.RUTA_BASE_SISTEMA_ARCHIVOS);
+    	
+    	String rutaCompletaArchivo = rutaBase + qStringDecripted;
+    	File file = new File(rutaCompletaArchivo);
         
         int length = 0;
         ServletOutputStream outStream = response.getOutputStream();

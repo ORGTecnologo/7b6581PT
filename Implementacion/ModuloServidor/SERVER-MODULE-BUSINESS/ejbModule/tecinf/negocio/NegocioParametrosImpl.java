@@ -25,7 +25,7 @@ public class NegocioParametrosImpl implements NegocioParametros {
 	
 	@Override
 	public String obtenerParametroPorNombre(String nombre) {
-		return parametroDao.findByID(nombre).getValorParametro();		
+		return parametroDao.findByID(nombre).getValorParametro();
 	}
 	
 	public List<ParametroValorDataType> obtenerTodos(){
