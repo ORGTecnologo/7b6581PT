@@ -30,7 +30,7 @@ public class UsuarioSubeContenidoEntity implements Serializable {
 	@JoinColumn(name="usuario", nullable=false)
 	private UsuarioEntity usuarioCliente;
 	
-	@ManyToOne(cascade=CascadeType.MERGE)
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="contenido", nullable=false)
 	private ContenidoEntity contenido;
 	
