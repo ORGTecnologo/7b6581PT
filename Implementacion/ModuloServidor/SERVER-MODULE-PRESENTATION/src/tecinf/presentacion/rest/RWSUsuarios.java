@@ -243,8 +243,8 @@ public class RWSUsuarios {
 		try {			
 			HttpSession s = req.getSession();
 			UserSession session = (UserSession) s.getAttribute(ConstantesSession.keyUsuarioSession);
-			RightsChecker rc = new RightsChecker();
-			rc.checkCustomerRights(session);
+			//RightsChecker rc = new RightsChecker();
+			//rc.checkCustomerRights(session);
 			if ( (session.getUsuario().equals(usuario)) || session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) ){
 				negocioUsuario = NegocioFactory.getNegocioUsuario();
 				usr = negocioUsuario.verInfoUsuario(usuario); 		

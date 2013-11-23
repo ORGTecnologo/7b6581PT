@@ -49,9 +49,7 @@ public class DataTypesFactory {
 	}
 	
 	public static UsuarioDataType getUsuarioDataType(UsuarioEntity u){
-		UsuarioDataType dt = null;
-		
-		
+		UsuarioDataType dt = null;	
 		
 		if (u.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE)){
 			dt = new UsuarioClienteDataType();
@@ -64,7 +62,7 @@ public class DataTypesFactory {
 		dt.setApellidos(u.getApellidos());
 		dt.setContrasenia(u.getContrasenia());
 		dt.setCorreoElectronico(u.getCorreoElectronico());
-		dt.setFechaNacimientoDate(u.getFechaNacimiento());
+		dt.setFechaNacimientoTimeStamp(u.getFechaNacimiento() == null ? 0 : u.getFechaNacimiento().getTime());
 		dt.setNombres(u.getNombres());
 		dt.setSexo(u.getSexo());
 		dt.setTelefonoMovil(u.getTelefonoMovil());	

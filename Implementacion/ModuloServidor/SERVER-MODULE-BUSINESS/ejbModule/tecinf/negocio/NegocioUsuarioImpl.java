@@ -1,5 +1,6 @@
 package tecinf.negocio;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -133,6 +134,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 
 	public LoginRespDataType registroUsuarioCliente(UsuarioClienteDataType dt) throws Exception {
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		UsuarioEntity ue;
 
 		if (existeUsuario(dt.getUsuario()))
@@ -148,7 +150,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		ue.setCorreoElectronico(dt.getCorreoElectronico());
 		EstadoUsuarioEntity estado = estadoUsuarioDao.findByID(EnumClavesEntidades.ESTADO_USUARIO_HABILITADO);
 		ue.setEstadoUsuario(estado);
-		ue.setFechaNacimiento(dt.getFechaNacimientoDate());
+		ue.setFechaNacimiento(sdf.parse(dt.getFechaNacimiento()));
 		ue.setNombres(dt.getNombres());
 		ue.setSexo(dt.getSexo());
 		ue.setTelefonoMovil(dt.getTelefonoMovil());
@@ -170,6 +172,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 	
 	public LoginRespDataType registroUsuarioProveedor(UsuarioProveedorDataType dt) throws Exception {
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		UsuarioEntity ue;
 
 		if (existeUsuario(dt.getUsuario()))
@@ -187,8 +190,8 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		ue.setContrasenia(pwdHash);
 		ue.setCorreoElectronico(dt.getCorreoElectronico());
 		EstadoUsuarioEntity estado = estadoUsuarioDao.findByID(EnumClavesEntidades.ESTADO_USUARIO_HABILITADO);
-		ue.setEstadoUsuario(estado);
-		ue.setFechaNacimiento(dt.getFechaNacimientoDate());
+		ue.setEstadoUsuario(estado);		
+		ue.setFechaNacimiento(sdf.parse(dt.getFechaNacimiento()));
 		ue.setNombres(dt.getNombres());
 		ue.setSexo(dt.getSexo());
 		ue.setTelefonoMovil(dt.getTelefonoMovil());
