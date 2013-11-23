@@ -101,6 +101,7 @@ public class FiltroAutenticacion implements Filter {
 		supplierURLs.add("/FileDispatcherServlet");
 		supplierURLs.add("/proveedor/upload");
 		supplierURLs.add("/proveedor/FileUploadServlet");
+		supplierURLs.add("/views/perfil.html");
 					
 		// URLs de clientes
 		clientURLs = new ArrayList<String>();

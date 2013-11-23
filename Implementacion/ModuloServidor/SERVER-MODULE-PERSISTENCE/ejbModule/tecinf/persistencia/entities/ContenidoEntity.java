@@ -84,17 +84,17 @@ public abstract class ContenidoEntity implements Serializable {
 	@OneToMany(targetEntity=VersionContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
 	private Set<VersionContenidoEntity> versiones;
 	
-	@OneToMany(targetEntity=VersionContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
+	@OneToMany(targetEntity=UsuarioSubeContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
 	private Set<UsuarioSubeContenidoEntity> subidas;
 	
-	@OneToMany(targetEntity=VersionContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
-	private Set<UsuarioSubeContenidoEntity> bajadas;
+	@OneToMany(targetEntity=UsuarioDescargaContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
+	private Set<UsuarioDescargaContenidoEntity> bajadas;
 	
 	public ContenidoEntity() {
 		fotos = new HashSet<ContenidoFotoEntity>();
 		versiones = new HashSet<VersionContenidoEntity>();
 		subidas = new HashSet<UsuarioSubeContenidoEntity>();
-		bajadas = new HashSet<UsuarioSubeContenidoEntity>();
+		bajadas = new HashSet<UsuarioDescargaContenidoEntity>();
 	}
 	
 	public Integer getId() {
@@ -183,9 +183,7 @@ public abstract class ContenidoEntity implements Serializable {
 
 	public void setFotos(Set<ContenidoFotoEntity> fotos) {
 		this.fotos = fotos;
-	}
-
-	
+	}	
 	
 	public Set<VersionContenidoEntity> getVersiones() {
 		return versiones;
@@ -201,13 +199,13 @@ public abstract class ContenidoEntity implements Serializable {
 
 	public void setSubidas(Set<UsuarioSubeContenidoEntity> subidas) {
 		this.subidas = subidas;
-	}
+	}	
 
-	public Set<UsuarioSubeContenidoEntity> getBajadas() {
+	public Set<UsuarioDescargaContenidoEntity> getBajadas() {
 		return bajadas;
 	}
 
-	public void setBajadas(Set<UsuarioSubeContenidoEntity> bajadas) {
+	public void setBajadas(Set<UsuarioDescargaContenidoEntity> bajadas) {
 		this.bajadas = bajadas;
 	}
 

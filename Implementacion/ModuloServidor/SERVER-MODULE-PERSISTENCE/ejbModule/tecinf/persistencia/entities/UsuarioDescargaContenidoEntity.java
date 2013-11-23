@@ -53,7 +53,7 @@ public class UsuarioDescargaContenidoEntity implements Serializable {
 	@JoinColumn(name="usuario", nullable=false)
 	private UsuarioEntity usuarioCliente;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="contenido", nullable=false)
 	private ContenidoEntity contenido;
 	

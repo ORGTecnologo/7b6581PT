@@ -358,6 +358,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 			udc.setEstadoDescarga(EnumEstadosDescarga.VALORACION_NO_HABILITADA);
 			udc.setFechaDescarga(new Date());
 			udc.setUsuarioCliente(u);
+			c.getBajadas().add(udc);
 			
 			usuarioDescargaContenidoDao.persist(udc);
 		}
