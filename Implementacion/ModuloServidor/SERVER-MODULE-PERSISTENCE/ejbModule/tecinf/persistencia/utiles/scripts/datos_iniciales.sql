@@ -116,3 +116,7 @@ insert into usuarios_proveedor (codigo_qr , sitio_web, usuario) values('','www.p
 
 
 update parametros set valor_parametro = 'contenido_libro;contenido_video;contenido_musica;contenido_software;tmp' where nombre_parametro = 'directoriosUsuariosProveedores';
+
+update usuarios set habilitado = true ;
+
+

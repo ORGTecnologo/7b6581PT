@@ -298,7 +298,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		vC.setContenido(nC);
 		nC.getVersiones().add(vC);		
 		
-		contenidoDao.persist(nC);
+		//contenidoDao.persist(nC);
 		
 		/* AGREGO LA CLASE ASOCIATIVA USUARIO-SUBE-CONTENIDO */
 		UsuarioSubeContenidoEntity usc = new UsuarioSubeContenidoEntity();

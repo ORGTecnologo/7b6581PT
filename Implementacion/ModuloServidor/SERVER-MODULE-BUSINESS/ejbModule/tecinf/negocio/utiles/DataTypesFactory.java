@@ -1,9 +1,6 @@
 package tecinf.negocio.utiles;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
-
-import org.jboss.logging.Logger;
 
 import tecinf.negocio.dtos.AprobarContenidoDataType;
 import tecinf.negocio.dtos.AuditoriaDataType;
@@ -40,7 +37,7 @@ import tecinf.persistencia.utiles.EnumTiposContenido;
 
 public class DataTypesFactory {
 	
-	private static Logger logger = Logger.getLogger(DataTypesFactory.class);
+	//private static Logger logger = Logger.getLogger(DataTypesFactory.class);
 	
 	public static ParametroValorDataType getParametroValorDataType(ParametroValorEntity e){
 		ParametroValorDataType dt = new ParametroValorDataType();
@@ -139,6 +136,9 @@ public class DataTypesFactory {
 			for (VersionContenidoEntity v : c.getVersiones())
 				dt.getVersiones().add(getVersionContenidoDataType(v));
 		}
+		
+		dt.setVideoMovil(c.getVideoMovil() == null ? "" : c.getVideoMovil());
+		dt.setVideoWeb(c.getVideoWeb() == null ? "" : c.getVideoWeb());
 		
 		dt.setTipoContenido(c.getTipoContenido());
 		dt.setPrecio(c.getPrecio() == null ? 0 : c.getPrecio());

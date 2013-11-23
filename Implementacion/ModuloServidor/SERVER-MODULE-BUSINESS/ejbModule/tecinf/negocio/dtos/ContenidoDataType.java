@@ -19,13 +19,27 @@ public abstract class ContenidoDataType implements Serializable {
 	protected List<String> fotos;
 	protected List<VersionContenidoDataType> versiones;
 	protected String tipoContenido;
+	protected String videoWeb;
+	protected String videoMovil;
 	
 	public ContenidoDataType(){
 		fotos = new ArrayList<String>();
 		versiones = new ArrayList<VersionContenidoDataType>();
 		cantidadDescargas = 0;
 	}
-		
+
+	public String getVideoWeb() {
+		return videoWeb;
+	}
+	public void setVideoWeb(String videoWeb) {
+		this.videoWeb = videoWeb;
+	}
+	public String getVideoMovil() {
+		return videoMovil;
+	}
+	public void setVideoMovil(String videoMovil) {
+		this.videoMovil = videoMovil;
+	}
 	public String getTipoContenido() {
 		return tipoContenido;
 	}

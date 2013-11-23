@@ -1,9 +1,7 @@
 package tecinf.persistencia.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -73,7 +71,13 @@ public abstract class ContenidoEntity implements Serializable {
 	
 	@Column(name = "precio", nullable = true)
 	private Float precio;
+	
+	@Column(name = "video_web", length = 500, nullable = true)
+	private String videoWeb;
 
+	@Column(name = "video_movil", length = 500, nullable = true)
+	private String videoMovil;
+	
 	@OneToMany(targetEntity=ContenidoFotoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
 	private Set<ContenidoFotoEntity> fotos;
 	
@@ -230,6 +234,21 @@ public abstract class ContenidoEntity implements Serializable {
 	public void setSubcategoria(SubCategoriaContenidoEntity subcategoria) {
 		this.subcategoria = subcategoria;
 	}
-	
-	
+
+	public String getVideoWeb() {
+		return videoWeb;
+	}
+
+	public void setVideoWeb(String videoWeb) {
+		this.videoWeb = videoWeb;
+	}
+
+	public String getVideoMovil() {
+		return videoMovil;
+	}
+
+	public void setVideoMovil(String videoMovil) {
+		this.videoMovil = videoMovil;
+	}
+		
 }

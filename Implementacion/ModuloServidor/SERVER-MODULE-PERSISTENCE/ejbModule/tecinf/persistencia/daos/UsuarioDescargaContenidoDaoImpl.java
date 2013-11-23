@@ -55,7 +55,9 @@ public class UsuarioDescargaContenidoDaoImpl  extends DaoImpl<Integer, UsuarioDe
 		Query namedQuery = em.createNamedQuery("UsuarioDescargaContenidoEntity.findByUsuarioAndContenido");
 		namedQuery.setParameter("idContenido", idContenido);
 		namedQuery.setParameter("usuario", usuario);
-		return (UsuarioDescargaContenidoEntity)namedQuery.getSingleResult();		
+		if (namedQuery.getResultList().size() > 0)			
+			return (UsuarioDescargaContenidoEntity)namedQuery.getSingleResult();	
+		return null;
 	}
 
 }
