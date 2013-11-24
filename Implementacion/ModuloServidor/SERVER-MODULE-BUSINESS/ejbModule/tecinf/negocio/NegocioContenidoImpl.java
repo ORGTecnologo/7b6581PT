@@ -79,8 +79,12 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		ContenidoDataType contenido = null;		
 		ContenidoEntity cont = contenidoDao.findByID(idContenido);
 		if (cont != null){
-			//List<ContenidoFotoEntity> fotos = contenidoFotosDao.getAllByContenido(idContenido);		
-			contenido = DataTypesFactory.getContenidoDataType(cont);
+			//List<ContenidoFotoEntity> fotos = contenidoFotosDao.getAllByContenido(idContenido);
+			VersionContenidoEntity version = cont.obtenerVersionConEstado(EnumEstadosVersionContenido.APROBADA);
+			
+			/* muestro la informacion de contenidos que fueron aprobados */
+			if (version != null)
+				contenido = DataTypesFactory.getContenidoDataType(cont);
 		}
 		return contenido;
 	}
@@ -104,6 +108,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 						}						
 					}
 					c.setCalificacion(cantDescargasConCalificacion == 0 ? 0 : sumaCalificacion / cantDescargasConCalificacion);
+					c.setCantidadDescargas(c.getBajadas().size());
 					contenidoDao.merge(c);
 				}
 			}

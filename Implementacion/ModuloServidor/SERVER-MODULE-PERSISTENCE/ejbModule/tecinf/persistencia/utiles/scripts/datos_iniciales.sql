@@ -114,6 +114,9 @@ insert into usuarios (usuario,apellidos,contrasenia,correo_electronico,fecha_nac
 values('proveedor','proveedor','ed53a12cecc92e4014e5f0438e17185a','proveedor@proveedor.com','1980-06-16','proveedor','095632145','H','Masculino','usuario_proveedor');
 insert into usuarios_proveedor (codigo_qr , sitio_web, usuario) values('','www.proveedor.com' , 'proveedor');
 
+insert into usuarios (usuario,apellidos,contrasenia,correo_electronico,fecha_nacimiento,nombres,telefono_movil,id_estado,sexo,tipo_usuario)
+values('cliente','cliente','4983a0ab83ed86e0e7213c8783940193','cliente@cliente.com','1980-06-16','cliente','095632145','H','Masculino','usuario_cliente');
+insert into usuarios_cliente(ruta_imagen_perfil, usuario, id_tipo_registro) values ('ruta','cliente',1);
 
 update parametros set valor_parametro = 'contenido_libro;contenido_video;contenido_musica;contenido_software;tmp' where nombre_parametro = 'directoriosUsuariosProveedores';
 
