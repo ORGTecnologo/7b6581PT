@@ -350,7 +350,7 @@ function cargarResultadoBusqueda(pag){
 			var precio = jsonProy.resultadoBusqueda[i].precio;
 
 
-	        html += "<tr><td><img src='" + foto + "' alt='" + foto + "' class='img-responsive' style='widht:50px;height:50px'></td>"
+	        html += "<tr><td><img src='" + foto + "' alt='" + foto + "' class='img-responsive' style='width:50px;height:50px'></td>"
 						+ "<td><a href='views/content.html?id=" + id + "'>" + nombre + "</a></td>"
 						+ "<td>" + desc + "</td>"
 						+ "<td>" + precio + "</td>"
