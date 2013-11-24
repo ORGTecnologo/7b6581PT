@@ -78,6 +78,9 @@ public abstract class ContenidoEntity implements Serializable {
 	@Column(name = "video_movil", length = 500, nullable = true)
 	private String videoMovil;
 	
+	@Column(name = "proveedor_contenido", length = 500, nullable = true)
+	private String proveedorContenido;
+	
 	@OneToMany(targetEntity=ContenidoFotoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
 	private Set<ContenidoFotoEntity> fotos;
 	
@@ -96,7 +99,7 @@ public abstract class ContenidoEntity implements Serializable {
 		subidas = new HashSet<UsuarioSubeContenidoEntity>();
 		bajadas = new HashSet<UsuarioDescargaContenidoEntity>();
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -107,6 +110,14 @@ public abstract class ContenidoEntity implements Serializable {
 
 	public String getDescripcion() {
 		return descripcion;
+	}
+	
+	public String getProveedorContenido() {
+		return proveedorContenido;
+	}
+
+	public void setProveedorContenido(String proveedorContenido) {
+		this.proveedorContenido = proveedorContenido;
 	}
 
 	public void setDescripcion(String descripcion) {

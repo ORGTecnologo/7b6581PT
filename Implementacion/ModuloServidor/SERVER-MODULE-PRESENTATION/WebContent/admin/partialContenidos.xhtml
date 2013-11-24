@@ -15,32 +15,29 @@
 				<div class="col-md-12">
 					<div class="wrapperTablasAdministracion">
 						<h:dataTable value="#{contenidoMB.listaVersionesPendientes}"
-							var="o" styleClass="order-table" headerClass="order-table-header"
-							rowClasses="order-table-odd-row,order-table-even-row"
-							class="table table-striped">
+						var="o" styleClass="order-table" headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row"
+						class="table table-striped" width="300">
 
 							<h:column>
 								<f:facet name="header">Nombre</f:facet>
-                                                        #{o.nombreContenido}
-                                                </h:column>
+								<a href="/SERVER-MODULE-PRESENTATION/views/content.html?id=#{o.idContenido}" target="_blank">
+	                           		#{o.nombreContenido}
+	                           	</a>
+		                   	</h:column>
 
 							<h:column>
-								<f:facet name="header"></f:facet>
-								<a
-									href="/SERVER-MODULE-PRESENTATION/views/content.html?id=#{o.idContenido}">Ver</a>
+								<f:facet name="header">Proveedor</f:facet>
+								<a href="#" target="_blank">#{o.proveedor}</a>
 							</h:column>
-							<h:column>
-								<h:commandButton class="btn"
-									action="#{contenidoMB.mostrarPanelAprobar}" value="Aprobar">
-									<f:setPropertyActionListener
-										target="#{contenidoMB.versionActual}" value="#{o}" />
+							<h:column >
+								<h:commandButton class="btn" action="#{contenidoMB.mostrarPanelAprobar}" value="Aprobar">
+									<f:setPropertyActionListener target="#{contenidoMB.versionActual}" value="#{o}" />
 								</h:commandButton>
 							</h:column>
 							<h:column>
-								<h:commandButton class="btn"
-									action="#{contenidoMB.mostrarPanelRechazar}" value="Rechazar">
-									<f:setPropertyActionListener
-										target="#{contenidoMB.versionActual}" value="#{o}" />
+								<h:commandButton class="btn" action="#{contenidoMB.mostrarPanelRechazar}" value="Rechazar">
+									<f:setPropertyActionListener target="#{contenidoMB.versionActual}" value="#{o}" />
 								</h:commandButton>
 							</h:column>
 						</h:dataTable>
