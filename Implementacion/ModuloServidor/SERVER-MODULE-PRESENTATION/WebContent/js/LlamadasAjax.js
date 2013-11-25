@@ -231,6 +231,8 @@ function logoutUsuario(){
 
 		    window.localStorage.removeItem(confProy.sessionStorageUser);
 		    window.localStorage.removeItem(confProy.sessionStorageToken);
+
+		    window.location.href = confProy.IP_SERVICIOS;
 		}
 		else
 			alert(msg.resultadoOperacion);
@@ -272,11 +274,11 @@ function enviarCalificacion(idDescarga, puntaje, comentario){
 		url: ip + '/contenidos/calificarDescarga',
 		type: 'PUT',
 		dataType: 'json',
-		data: {
-			idDescarga   : idDescarga, 
-			calificacion : puntaje,
-			comentario   : comentario
-		},
+		data: JSON.stringify({
+			'idDescarga'   : idDescarga, 
+			'calificacion' : puntaje,
+			'comentario'   : comentario
+		}),
 	})
 	.done(function(msg) {
 		console.log("success");
@@ -422,7 +424,6 @@ function obtenerUsuariosServ(){
 	$.ajax({
 	   url: ip + '/usuarios/listarUsuarios',
 	   type: 'GET',
-	   data: '',
 	   datatype: "json",
 	   contentType: "application/json",
 	})
@@ -459,7 +460,7 @@ function esUnicoNick(nick){
 	$.ajax({
 	   url: ip + '/usuarios/',
 	   type: 'GET',
-	   data: {'usuario' : nick,},
+	   data: JSON.stringify({'usuario' : nick,}),
 	   datatype: "json",
 	   contentType: "application/json",
 	})
@@ -492,7 +493,7 @@ function obtenerContenidoPorId(idContenido){
 	  url: ip + '/contenidos/obtenerInfoContenido/'+idContenido,
 	  type: 'GET',
 	  dataType: 'json',
-	  data: '',
+	  contentType: 'application/json',
 	})
 	.done(function(msg) {
 		console.log(msg);
@@ -545,21 +546,43 @@ function obtenerContenidoPorId(idContenido){
 function obtenerContenidosACalificar(){
 
 	$.ajax({
-		url: ip + 'contenidos/obtenerDescargasACalificar',
+		url: ip + '/contenidos/obtenerDescargasACalificar',
 		type: 'GET',
 		dataType: 'json',
+		contentType: 'application/json',
 	})
 	.done(function(msg) {
 		console.log("success " + msg);
 		jsonProy.contentidosACalificar = msg;
 
-		cargarTablaPendientesDeCalificacion();
+		cargarTablaPendientesCalificacion();
 	})
 	.fail(function(msg) {
 		console.log("error" + msg);
 	})
 	.always(function(msg) {
 		console.log("complete" + msg);
+		desbloquearPantalla();
+	});
+	
+}
+
+function obtenerContenidosUsuario(){
+
+	$.ajax({
+		url: ip + '/contenidos/obtenerTodasLasDescargas',
+		type: 'GET',
+		dataType: 'json',
+		contentType: 'application/json',
+	})
+	.done(function(msg) {
+		console.log("success: " + msg);
+	})
+	.fail(function(msg) {
+		console.log("error: " + msg);
+	})
+	.always(function(msg) {
+		console.log("complete: " + msg);
 	});
 	
 }
