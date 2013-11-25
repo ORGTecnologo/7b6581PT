@@ -42,7 +42,7 @@ function CTES_PROY(){
 	this.TIPO_CONTENIDO_LIBRO = "tipo_contenido_libro";
 
 //URLS...
-	this.HOST 		  = "http://127.0.0.1:8080";
+	this.HOST 		  = "http://localhost:8080";
 	this.IP_SERVICIOS = this.HOST + "/SERVER-MODULE-PRESENTATION";
 	this.URL_CONTENIDO = this.IP_SERVICIOS + '/views/content.html?id=';
 	this.URL_PERFIL = this.IP_SERVICIOS + '/views/perfil.html?nick=';
@@ -54,6 +54,7 @@ function JSON_PROY(){
 	this.categorias = new Array();
 	this.resultadoBusqueda  = new Array();
 	this.contentidosACalificar = new Array();
+	this.misContenidos = new Array();
 }
 
 var varsProy = new VARS_PROY();

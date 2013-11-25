@@ -2,6 +2,7 @@
 $(document).ready(function(){
 
     $('#div_comentarContenido').hide();
+    $('#div_nuevoReclamo').hide();
 
     cargarDatosDeUsuario();
 
@@ -93,44 +94,6 @@ function getStringTipoContenido(tipoContenido){
       return 'LIBRO';
     break;
   }
-
-
-}
-
-function cargarTablaPendientesCalificacion(pag){
-    pag || (pag = 0);
-
-  var lengthFor = 10;
-  var html = "";
-  if (jsonProy.contentidosACalificar.length < 10)
-    lengthFor = jsonProy.contentidosACalificar.length;
-
-  for (var i = (pag*10 + 0); i < (pag*10 + 10); i++) {
-
-    if (!(i >= lengthFor)) {
-      var idContenido   = jsonProy.contentidosACalificar[i].idContenido;
-      var idDescarga    = jsonProy.contentidosACalificar[i].idDescarga;
-      var nombre        = jsonProy.contentidosACalificar[i].nombreContenido;
-      var fechaDescarga = jsonProy.contentidosACalificar[i].fechaDescarga;
-      var foto          = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.contentidosACalificar[i].foto;
-      var tipoContenido = jsonProy.contentidosACalificar[i].tipoContenido;
-          tipoContenido = getStringTipoContenido(tipoContenido);
-
-
-      html += "<tr><td><img class='thumbnail' src='" + foto + "' style='width: 50px;height: 50px;'></td>"
-           + "<td><a href='" + confProy.URL_CONTENIDO + idContenido + "'>" + nombre + "</a></td>"
-           + "<td>" + tipoContenido + "</td>"
-           + "<td><div class='row'><div class='col-xs-5'>"
-           + "<select id='valorCalificacion_" + idDescarga + "' class='form-control input-sm selectpicker' style='min-width: 4.5em;'>"
-           + "<option>-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>"
-           + "</div><div class='col-md-1'><button id='confirmarCalificacion_" + idDescarga + "_"+ idContenido +"' onclick='agregarComentario(this)' class='btn btn-xs'>Ok</button>"
-           + "</div></div></td></tr>";
-
-    };
-  };
-  var tbody = document.getElementById('tbody_pendientes');
-    tbody.innerHTML = html;
-
 }
 
 function habilitarEdicion(){
@@ -220,7 +183,42 @@ function verCalificacionesPendientes(){
    mostrarElemento('div_contenidosPendientes');
 }
 
-function cargarMisContenidos(pag){
+function cargarTablaPendientesCalificacion(pag){
+    pag || (pag = 0);
+
+  var lengthFor = 10;
+  var html = "";
+  if (jsonProy.contentidosACalificar.length < 10)
+    lengthFor = jsonProy.contentidosACalificar.length;
+
+  for (var i = (pag*10 + 0); i < (pag*10 + 10); i++) {
+
+    if (!(i >= lengthFor)) {
+      var idContenido   = jsonProy.contentidosACalificar[i].idContenido;
+      var idDescarga    = jsonProy.contentidosACalificar[i].idDescarga;
+      var nombre        = jsonProy.contentidosACalificar[i].nombreContenido;
+      var fechaDescarga = jsonProy.contentidosACalificar[i].fechaDescarga;
+      var foto          = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.contentidosACalificar[i].foto;
+      var tipoContenido = jsonProy.contentidosACalificar[i].tipoContenido;
+          tipoContenido = getStringTipoContenido(tipoContenido);
+
+
+      html += "<tr><td><img class='thumbnail' src='" + foto + "' style='width: 50px;height: 50px;'></td>"
+           + "<td><a href='" + confProy.URL_CONTENIDO + idContenido + "'>" + nombre + "</a></td>"
+           + "<td>" + tipoContenido + "</td>"
+           + "<td><div class='row'><div class='col-xs-5'>"
+           + "<select id='valorCalificacion_" + idDescarga + "' class='form-control input-sm selectpicker' style='min-width: 4.5em;'>"
+           + "<option>-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>"
+           + "</div><div class='col-md-1'><button id='confirmarCalificacion_" + idDescarga + "_"+ idContenido +"' onclick='agregarComentario(this)' class='btn btn-xs'>Ok</button>"
+           + "</div></div></td></tr>";
+
+    };
+  };
+  var tbody = document.getElementById('tbody_pendientes');
+    tbody.innerHTML = html;
+}
+
+function cargarTablaMisContenidos(pag){
     pag || (pag = 0);
 
   var lengthFor = 10;
@@ -231,22 +229,23 @@ function cargarMisContenidos(pag){
   for (var i = (pag*10 + 0); i < (pag*10 + 10); i++) {
 
     if (!(i >= lengthFor)) {
-      var id     = jsonProy.misContenidos[i].id;
-      var nombre = jsonProy.misContenidos[i].nombreContenido;
-      var desc   = jsonProy.misContenidos[i].descripcionContenido;
-      var foto   = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.misContenidos[i].listaFotos[0];
-      var precio = jsonProy.misContenidos[i].precio;
+      var idContenido   = jsonProy.misContenidos[i].idContenido;
+      var idDescarga    = jsonProy.misContenidos[i].idDescarga;
+      var nombre        = jsonProy.misContenidos[i].nombreContenido;
+      var fechaDescarga = jsonProy.misContenidos[i].fechaDescarga;
+      var foto          = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.misContenidos[i].foto;
+      var tipoContenido = jsonProy.misContenidos[i].tipoContenido;
+          tipoContenido = getStringTipoContenido(tipoContenido);
 
-
-          html += "<tr><td><img src='" + foto + "' alt='" + foto + "' class='img-responsive' style='width:50px;heigth:50px'></td>"
-            + "<td><a href='views/content.html?id=" + id + "'>" + nombre + "</a></td>"
-            + "<td>" + desc + "</td>"
-            + "<td>" + precio + "</td>"
-            + "<td>" + 100 + "/5</td>"
-                + "</tr>";
+      html += "<tr><td><img class='thumbnail' src='" + foto + "' style='width: 50px;height: 50px;'></td>"
+           + "<td><a href='" + confProy.URL_CONTENIDO + idContenido + "'>" + nombre + "</a></td>"
+           + "<td>" + tipoContenido + "</td>"
+           + "<td><div class='row'><div class='col-xs-5'>4/5</div>"
+           + "<button class='btn btn-xs' id='generarReclamo_" + idDescarga + "_"+ idContenido +"' onclick='generarNuevoReclamo(this)'><i class='glyphicon glyphicon-question-sign'></i></button>"
+           + "</div></td></tr>";
     };
   };
-  var tbody = document.getElementById('cuerpoBusqueda');
+  var tbody = document.getElementById('tbody_contenidos');
     tbody.innerHTML = html;
 }
 
@@ -261,6 +260,15 @@ function agregarComentario(btn){
 
 }
 
+function generarNuevoReclamo(btn){
+
+  var arrIds = btn.id.split('_');
+  varsProy.idDescargaContenido = arrIds[1];
+  varsProy.idContenido = arrIds[2];
+
+  verModales('div_nuevoReclamo');
+}
+
 function confirmarCalificacion(){
 
   var puntaje = document.getElementById('valorCalificacion_' + varsProy.idDescargaContenido).value;
@@ -269,4 +277,14 @@ function confirmarCalificacion(){
   enviarCalificacion(varsProy.idDescargaContenido, puntaje, comentario);
 
   ocultarElemento('div_comentarContenido');  
+}
+
+function confirmarAltaReclamo(){
+
+  var titulo = document.getElementById('id_reclamo_titulo').value;
+  var comentario = document.getElementById('id_reclamo_asociado').value;
+
+  enviarReclamo(varsProy.idDescargaContenido,titulo,comentario);
+
+  ocultarElemento('div_nuevoReclamo');  
 }
