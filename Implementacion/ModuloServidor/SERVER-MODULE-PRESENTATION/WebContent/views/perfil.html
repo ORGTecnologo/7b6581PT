@@ -78,28 +78,30 @@
             <p>Telefono<input id="id_telefono_perfil" class="form-control" id="appendedInput" type="tel" placeholder="Telefono" disabled="true"></p><br>
             <p>Fecha de Nacimiento<input id="id_fechaNac_perfil" class="form-control" id="appendedInput" placeholder="Fecha de Nacimiento" disabled="true"></p><br>                               
         </div>
-<!-- ACA VAN LOS DIVS RESTANTES -->
-        <div id="div_contenidosPendientes" class="col-md-7 hide">
-          <p class="lead text-center">Pendientes de Evaluacion</p>
-          <table class="table table-hover">
-            <thead><tr><th></th><th>Nombre</th><th>Tipo</th><th>Puntuacion</th></tr></thead>
-            <tbody id="tbody_pendientes">
-                <tr>
-                    <td><img class="img-circle" src="//placehold.it/50x50"></td>
-                    <td><a href="">Android SDK</a></td>
-                    <td>Software</td>
-                    <td>
-                        <div class="row">
-                          <div class="col-xs-5">
-                              <select class="form-control input-sm selectpicker"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
-                          </div>
-                              <button class="btn btn-xs">Ok</button>
-                      </div>
-                    </td>
-              </tr>
-            </tbody>
-          </table>
-      </div>
+
+<!-- CONTENIDOS PENDIENTES DE CALIFICACION -->
+<div id="div_contenidosPendientes" class="col-md-7 hide">
+  <p class="lead text-center">Pendientes de Evaluacion</p>
+  <table class="table table-hover">
+    <thead><tr><th></th><th>Nombre</th><th>Tipo</th><th>Puntuacion</th></tr></thead>
+    <tbody id="tbody_pendientes">
+        <tr>
+            <td><img class="thumbnail" src="//placehold.it/50x50"></td>
+            <td><a href="confProy.URL_CONTENIDO + idCont">Android SDK</a></td>
+            <td>Software</td>
+            <td>
+                <div class="row">
+                    <div class="col-xs-5">
+                        <select id="valorCalificacion_1" class="form-control input-sm selectpicker"><option>-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+                    </div>
+                        <button id="confirmarCalificacion_1_3" onclick="agregarComentario(this)" class="btn btn-xs">Ok</button>
+                </div>
+            </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <!-- DIV CONTENIDOS DE USUARIO -->
       <div id="div_contenidosUsuario" class="col-md-7 hide">
           <p class="lead text-center">Mis contenidos</p>
@@ -120,10 +122,12 @@
             </tbody>
           </table>            
         </div>
+
 <!-- ACA VAN LOS DIVS RESTANTES-->
-        <div id="btnGuardar" class="btn-group btn-group-horizontal col-md-2 pull-rigth ">
+        <div id="btnGuardar" class="btn-group btn-group-horizontal col-md-2 pull-rigth hide">
            <button class="btn btn-default" onclick="editarPerfil()">Guardar</button>
-        </div>    
+        </div>  
+
     </div>
 </div>
 
@@ -143,6 +147,28 @@
     </table>
     <div class="pagination pagination-mini" style="display: initial;">
         <ul class="pager" id="paginadoBusqueda"></ul>
+    </div>
+</div>
+
+<!-- CALIFICAR CONTENIDO -->
+<div id="div_comentarContenido" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Calificar contenido</h3>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+              <p>Que piensas sobre esta aplicacion?</p>
+              <textarea id="id_comentario_asociado" type='text' class="form-control" rows='5'></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary" onclick="confirmarCalificacion()">Confirmar</button>
+        </div>
+        </div>
     </div>
 </div>
 
@@ -277,18 +303,18 @@
     </div>
 </div>
 
-        <script src="../js/Plugins/jquery-ui.js"></script>
-        <script src="../js/globalesProyecto.js"></script>
-        <script src="../js/Prototipos.js"></script>
-        <script src="../js/Inicio.js"></script>
-        <script src="../js/Plugins/holder.js"></script>
-        <script src="../js/blockUI.js"></script>
-        <script src="../js/Plugins/bootstrap.js"></script>
-        <script src="../js/Plugins/bootstrap-select.min.js"></script>
-        <script src="../js/Objetos.js"></script>
-        <script src="../js/LlamadasAjax.js"></script>
-        <script src="../js/getSet.js"></script>
-        <script src="../js/eventos.js"></script>
-        <script src="../js/Comunes.js"></script>
-        <script src="../js/perfil.js"></script>
+    <script src="../js/Plugins/jquery-ui.js"></script>
+    <script src="../js/globalesProyecto.js"></script>
+    <script src="../js/Prototipos.js"></script>
+    <script src="../js/Inicio.js"></script>
+    <script src="../js/Plugins/holder.js"></script>
+    <script src="../js/blockUI.js"></script>
+    <script src="../js/Plugins/bootstrap.js"></script>
+    <script src="../js/Plugins/bootstrap-select.min.js"></script>
+    <script src="../js/Objetos.js"></script>
+    <script src="../js/LlamadasAjax.js"></script>
+    <script src="../js/getSet.js"></script>
+    <script src="../js/eventos.js"></script>
+    <script src="../js/Comunes.js"></script>
+    <script src="../js/perfil.js"></script>
 </html>

@@ -235,7 +235,7 @@ function logoutUsuario(){
 
 function guardarCambiosPerfil(nombre,apellido,sexo,fechaNacimiento,tel,sitioWeb){
 	$.ajax({
-		url: ip + '/usuarios/modificar',
+		url: ip + '/usuarios/modificarUsuario',
 		type: 'PUT',
 		data:JSON.stringify({
 			'nombres'     	 : nombre,
@@ -246,7 +246,7 @@ function guardarCambiosPerfil(nombre,apellido,sexo,fechaNacimiento,tel,sitioWeb)
 			'fechaNacimiento': fechaNacimiento,
 		}),
 		datatype: "json",
-		contentType: "application/json",
+		//contentType: "application/json",
 	})
 	.done(function(msg){
 		console.log(msg);
@@ -255,6 +255,29 @@ function guardarCambiosPerfil(nombre,apellido,sexo,fechaNacimiento,tel,sitioWeb)
 	.fail(function(msg){
 		console.log(msg);
 		alert("Ocurrio un error inesperado al intentar actualizar el perfil.");		
+	});
+}
+
+function enviarCalificacion(idDescarga, puntaje, comentario){
+ 
+	$.ajax({
+		url: ip + '/contenidos/calificarDescarga',
+		type: 'PUT',
+		dataType: 'json',
+		data: {
+			idDescarga   : idDescarga, 
+			calificacion : puntaje,
+			comentario   : comentario
+		},
+	})
+	.done(function(msg) {
+		console.log("success");
+	})
+	.fail(function(msg) {
+		console.log("error");
+	})
+	.always(function(msg) {
+		console.log("complete");
 	});
 }
 
@@ -317,7 +340,7 @@ function obtenerDatosdeUsuario(nick){
 	})
 	.done(function(msg) {
 		console.log(msg);
-		cargarDatosdeUsuario(msg);
+		cargarHtmlDatosdeUsuario(msg);
 	})
 	.fail(function(msg) {
 		console.log("error");
@@ -506,4 +529,26 @@ function obtenerContenidoPorId(idContenido){
 	.fail(function(msg) {
 		console.log("Fallo el pedido " + msg);
 	});
+}
+
+function obtenerContenidosACalificar(){
+
+	$.ajax({
+		url: ip + 'contenidos/obtenerDescargasACalificar',
+		type: 'GET',
+		dataType: 'json',
+	})
+	.done(function(msg) {
+		console.log("success " + msg);
+		jsonProy.contentidosACalificar = msg;
+
+		cargarTablaPendientesDeCalificacion();
+	})
+	.fail(function(msg) {
+		console.log("error" + msg);
+	})
+	.always(function(msg) {
+		console.log("complete" + msg);
+	});
+	
 }

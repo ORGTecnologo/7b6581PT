@@ -1,6 +1,8 @@
 
 $(document).ready(function(){
 
+    $('#div_comentarContenido').hide();
+
     cargarDatosDeUsuario();
 
     $( "#id_fechaNac_perfil").datepicker({
@@ -28,7 +30,7 @@ function cargarDatosDeUsuario(){
     desbloquearPantalla();
 }
 
-function cargarDatosdeUsuario(msg){
+function cargarHtmlDatosdeUsuario(msg){
 
     bloquearPantalla();
 
@@ -73,6 +75,40 @@ function cargarDatosdeUsuario(msg){
       // msg.sexo
       // msg.fechaNacimiento //Null?
       // msg.habilitado
+}
+
+function cargarTablaPendientesCalificacion(){
+    pag || (pag = 0);
+
+  var lengthFor = 10;
+  var html = "";
+  if (jsonProy.contentidosACalificar.length < 10)
+    lengthFor = jsonProy.contentidosACalificar.length;
+
+  for (var i = (pag*10 + 0); i < (pag*10 + 10); i++) {
+
+    if (!(i >= lengthFor)) {
+      var idContenido   = jsonProy.contentidosACalificar[i].idContenido;
+      var idDescarga    = jsonProy.contentidosACalificar[i].idDescarga;
+      var nombre        = jsonProy.contentidosACalificar[i].nombreContenido;
+      var fechaDescarga = jsonProy.contentidosACalificar[i].fechaDescarga;
+      var foto          = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.contentidosACalificar[i].foto;
+      var tipoContenido = jsonProy.contentidosACalificar[i].tipoContenido;
+
+      html += "<tr><td><img class='thumbnail' src='" + foto + "'></td>"
+           + "<td><a href='" + confProy.URL_CONTENIDO + id + "'>" + nombre + "</a></td>"
+           + "<td>" + tipoContenido + "</td>"
+           + "<td><div class='row'><div class='col-xs-5'>"
+           + "<select id='valorCalificacion_" + idDescarga + "' class='form-control input-sm selectpicker'>"
+           + "<option>-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>"
+           + "</div><button id='confirmarCalificacion_" + idDescarga + "_"+ idContenido +"' onclick='agregarComentario(this)' class='btn btn-xs'>Ok</button>"
+           + "</div></td></tr>";
+
+    };
+  };
+  var tbody = document.getElementById('tbody_pendientes');
+    tbody.innerHTML = html;
+
 }
 
 function habilitarEdicion(){
@@ -189,4 +225,25 @@ function cargarMisContenidos(pag){
   };
   var tbody = document.getElementById('cuerpoBusqueda');
     tbody.innerHTML = html;
+}
+
+function agregarComentario(btn){
+
+  var arrIds = btn.id.split('_');
+  varsProy.idDescargaContenido = arrIds[1];
+  varsProy.idContenido = arrIds[2];
+
+//  $('#div_comentarContenido').show();
+  verModales('div_comentarContenido');
+
+}
+
+function confirmarCalificacion(){
+
+  var puntaje = document.getElementById('valorCalificacion_' + varsProy.idDescargaContenido).value;
+  var comentario = document.getElementById('id_comentario_asociado').value;
+
+  enviarCalificacion(varsProy.idDescargaContenido, puntaje, comentario);
+
+  ocultarElemento('div_comentarContenido');  
 }

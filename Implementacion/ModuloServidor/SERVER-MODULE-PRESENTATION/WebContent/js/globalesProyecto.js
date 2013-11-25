@@ -12,6 +12,7 @@ function VARS_PROY(){
 //CONTENIDO
 	this.contenidoActual = "";
 	this.idContenido = "";
+	this.idDescargaContenido = "";
 
 //PARAMETROS DE BUSCQUEDA
 	this.PARAM_BUSQ_APPS = true;
@@ -43,6 +44,7 @@ function CTES_PROY(){
 //URLS...
 	this.HOST 		  = "http://127.0.0.1:8080";
 	this.IP_SERVICIOS = this.HOST + "/SERVER-MODULE-PRESENTATION";
+	this.URL_CONTENIDO = this.IP_SERVICIOS + '/views/content.html?id=';
 	this.URL_ADMIN_HOME = this.IP_SERVICIOS + '/admin/admin.xhtml';
 }
 
@@ -50,6 +52,7 @@ function JSON_PROY(){
 
 	this.categorias = new Array();
 	this.resultadoBusqueda  = new Array();
+	this.contentidosACalificar = new Array();
 }
 
 var varsProy = new VARS_PROY();

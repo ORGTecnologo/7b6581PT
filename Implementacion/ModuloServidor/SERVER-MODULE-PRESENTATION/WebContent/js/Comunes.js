@@ -349,7 +349,7 @@ function cargarResultadoBusqueda(pag){
 
 
 	        html += "<tr><td><img src='" + foto + "' alt='" + foto + "' class='img-responsive' style='width:50px;heigth:50px'></td>"
-						+ "<td><a href='views/content.html?id=" + id + "'>" + nombre + "</a></td>"
+						+ "<td><a href='" + confProy.URL_CONTENIDO + id + "'>" + nombre + "</a></td>"
 						+ "<td>" + desc + "</td>"
 						+ "<td>" + precio + "</td>"
 						+ "<td>" + 100 + "/5</td>"
