@@ -157,7 +157,7 @@ function enviarReclamo(idDescarga, titulo, comentario){
  
  	bloquearPantalla();
 	$.ajax({
-		url: ip + '/contenidos/regisrarReclamoContenido',
+		url: ip + '/contenidos/registrarReclamoContenido',
 		type: 'POST',
 		dataType: 'json',
         contentType: "application/json",
