@@ -11,6 +11,7 @@ import javax.naming.NamingException;
 
 import org.jboss.logging.Logger;
 
+import tecinf.negocio.dtos.CambiarContraseniaDataType;
 import tecinf.negocio.dtos.EditarUsuarioDataType;
 import tecinf.negocio.dtos.LoginRespDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
@@ -321,6 +322,30 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		usuarioDao.merge(usrE);
 	}
 	
-	
+	public void cambiarContrasenia(String nick, CambiarContraseniaDataType dt) throws Exception {
+		
+		if (dt == null)
+			throw new Exception("PARAMETRO_INVALIDO");
+		
+		if (ValidationUtil.isNullOrEmpty(dt.getConfirmacionContraseniaNueva()) ||
+			ValidationUtil.isNullOrEmpty(dt.getContraseniaNueva()) ||
+			ValidationUtil.isNullOrEmpty(dt.getConfirmacionContraseniaNueva()))
+				throw new Exception("Contrsenia anterior, nueva y confirmacion obligatorias");
+			
+		UsuarioEntity usuario = usuarioDao.findByID(nick);
+		if (usuario == null)
+			throw new Exception("Usuario no encontrado");
+		
+		String hashedPwd = Encriptacion.encriptarMD5(dt.getContraseniaAnterior());
+		if (usuario.getContrasenia().equals(hashedPwd))
+			throw new Exception("Contrasña anterior inválida");
+		if (!dt.getConfirmacionContraseniaNueva().equals(dt.getContraseniaNueva()))
+			throw new Exception("Las nuevas contraseñas no coinciden.");
+		
+		hashedPwd = Encriptacion.encriptarMD5(dt.getContraseniaNueva());
+		usuario.setContrasenia(hashedPwd);
+		
+		usuarioDao.merge(usuario);
+	}
 	
 }
