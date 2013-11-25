@@ -42,7 +42,7 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="#">Market Place Tecnologo</a>
+		<a class="navbar-brand" href="127.0.0.1:8080/SERVER-MODULE-PRESENTATION">Market Place Tecnologo</a>
 	</div>
   <div class="collapse navbar-collapse navbar-ex1-collapse"> 
     <ul class="navbar-form navbar-left" role="search">
@@ -64,11 +64,15 @@
 		<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
     </ul>
 	<ul class="nav navbar-nav navbar-right" id="Nick-Logout-Div" style="display: none;margin-right: initial;margin-top: 0.7em;" hidden>
-        <a class="nick" role="button" href="#"><i class="glyphicon glyphicon-user"></i> nick </a>
-		<a href="#" onclick="logoutUsuario()"><i class="glyphicon glyphicon-lock"></i> Logout</a>
+        <a class="nick dropdown-toggle" data-toggle="dropdown" role="button" href="#"><i class="glyphicon glyphicon-user"></i> nick <span class="caret"></span></a>
+		<ul class="dropdown-menu">
+		    <li><a href="http://127.0.0.1:8080/SERVER-MODULE-PRESENTATION/proveedor/AltaContenido.html">Crear Contenido</a></li>
+		    <li><a id="dd_verPerfil" href="#">Ver Perfil</a></li>
+		    <li class="divider"></li>
+		    <li><a href="#" onclick="logoutUsuario()"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+		</ul>
 	</ul>
 </nav>
-
 <div class="col-md-12" style="height:100px;"></div>
 
 <!-- CONTENIDO / CUERPO DE LA VISTA -->

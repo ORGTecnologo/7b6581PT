@@ -37,9 +37,11 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-				nick.href = '/SERVER-MODULE-PRESENTATION/views/perfil.html?nick='+varsProy.nick;			
+				nick.href = confProy.URL_PERFIL+varsProy.nick;
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
+			var btnVerPerfil = document.getElementById("dd_verPerfil");
+				btnVerPerfil.href = confProy.URL_PERFIL + varsProy.nick;
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
@@ -85,8 +87,11 @@ function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimien
 
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-				nick.href = '/SERVER-MODULE-PRESENTATION/views/perfil.html?nick='+varsProy.nick;			
+				nick.href = confProy.URL_PERFIL+varsProy.nick;
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
+
+			var btnVerPerfil = document.getElementById("dd_verPerfil");
+				btnVerPerfil.href = confProy.URL_PERFIL + varsProy.nick;;
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
@@ -176,8 +181,11 @@ function loginUsuario(usuario, contrasenia){
 				
 			ocultarElemento('loginUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-				nick.href = '/SERVER-MODULE-PRESENTATION/views/perfil.html?nick='+varsProy.nick;
+				nick.href = confProy.URL_PERFIL+varsProy.nick;
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
+
+			var btnVerPerfil = document.getElementById("dd_verPerfil");
+				btnVerPerfil.href = confProy.URL_PERFIL + varsProy.nick;;
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
@@ -384,9 +392,12 @@ function existeSesionServ(user){
 			window.localStorage.clear();
 		else if (msg != "FALLA"){
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-				nick.href = '/SERVER-MODULE-PRESENTATION/views/perfil.html?nick='+varsProy.nick;
+				nick.href = confProy.URL_PERFIL+varsProy.nick;
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
+			var btnVerPerfil = document.getElementById("dd_verPerfil");
+				btnVerPerfil.href = confProy.URL_PERFIL + varsProy.nick;;
+	    	
 	    	mostrarElemento('Nick-Logout-Div');
 	    	ocultarElemento('Login-Registro-Div');
 			window.localStorage.setItem(confProy.sessionStorageRol,msg.tipoUsuario);

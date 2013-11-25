@@ -45,6 +45,7 @@ function CTES_PROY(){
 	this.HOST 		  = "http://127.0.0.1:8080";
 	this.IP_SERVICIOS = this.HOST + "/SERVER-MODULE-PRESENTATION";
 	this.URL_CONTENIDO = this.IP_SERVICIOS + '/views/content.html?id=';
+	this.URL_PERFIL = this.IP_SERVICIOS + '/views/perfil.html?nick=';
 	this.URL_ADMIN_HOME = this.IP_SERVICIOS + '/admin/admin.xhtml';
 }
 
