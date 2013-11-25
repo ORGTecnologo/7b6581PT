@@ -122,4 +122,8 @@ update parametros set valor_parametro = 'contenido_libro;contenido_video;conteni
 
 update usuarios set habilitado = true ;
 
+insert into categoria_reclamo (id,descripcion) values (1, 'Categoria generica');
+
+
+
 

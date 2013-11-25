@@ -21,17 +21,22 @@ import tecinf.negocio.dtos.ContenidoIngresoDataType;
 import tecinf.negocio.dtos.ContenidoMinimalDataType;
 import tecinf.negocio.dtos.DescargaDataType;
 import tecinf.negocio.dtos.FiltrosContenidoDataType;
+import tecinf.negocio.dtos.ReclamoDataType;
+import tecinf.negocio.utiles.ConstantesReclamo;
 import tecinf.negocio.utiles.CripterDecripter;
 import tecinf.negocio.utiles.DataTypesFactory;
 import tecinf.negocio.utiles.EnumEstadosDescarga;
+import tecinf.negocio.utiles.EnumEstadosReclamo;
 import tecinf.negocio.utiles.EnumEstadosVersionContenido;
 import tecinf.negocio.utiles.EnumParametrosValor;
 import tecinf.negocio.utiles.FileSystemUtils;
 import tecinf.negocio.utiles.RandomString;
 import tecinf.negocio.utiles.TimeUtils;
 import tecinf.negocio.utiles.ValidationUtil;
+import tecinf.persistencia.daos.CategoriaReclamoDao;
 import tecinf.persistencia.daos.ContenidoDao;
 import tecinf.persistencia.daos.ParametroValorDao;
+import tecinf.persistencia.daos.ReclamoDao;
 import tecinf.persistencia.daos.UsuarioDao;
 import tecinf.persistencia.daos.UsuarioDescargaContenidoDao;
 import tecinf.persistencia.daos.UsuarioSubeContenidoDao;
@@ -43,6 +48,7 @@ import tecinf.persistencia.entities.ContenidoSoftwareEntity;
 import tecinf.persistencia.entities.ContenidoTemaMusicalEntity;
 import tecinf.persistencia.entities.ContenidoVideoEntity;
 import tecinf.persistencia.entities.ParametroValorEntity;
+import tecinf.persistencia.entities.ReclamoEntity;
 import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.entities.UsuarioSubeContenidoEntity;
@@ -61,6 +67,8 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	private UsuarioSubeContenidoDao usuarioSubeContenidoDao = null;
 	private UsuarioDao usuarioDao = null;
 	private VersionContenidoDao versionContenidoDao = null;
+	private ReclamoDao reclamoDao = null;
+	private CategoriaReclamoDao categoriaReclamoDao = null;
 	
 	private FileSystemUtils fSU = new FileSystemUtils();
 	
@@ -72,6 +80,8 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		usuarioDao = PersistenciaFactory.getUsuarioDao();
 		usuarioSubeContenidoDao = PersistenciaFactory.getUsuarioSubeContenidoDao();
 		versionContenidoDao = PersistenciaFactory.getVersionContenidoDao();
+		reclamoDao = PersistenciaFactory.getReclamoDao();
+		categoriaReclamoDao = PersistenciaFactory.getCategoriaReclamoDao();
 		
 	}
 	
@@ -217,7 +227,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		List<UsuarioDescargaContenidoEntity> descargas = usuarioDescargaContenidoDao.getDonwloadsByUserAndState(usuario, EnumEstadosDescarga.VALORACION_HABILITADA);
 		if (descargas != null){
 			for (UsuarioDescargaContenidoEntity d : descargas)
-				DataTypesFactory.getDescargaDataType(d);
+				listaDescargasACalificar.add(DataTypesFactory.getDescargaDataType(d));
 		}
 		
 		return listaDescargasACalificar;
@@ -383,6 +393,65 @@ public class NegocioContenidoImpl implements NegocioContenido {
 			usuarioDescargaContenidoDao.persist(udc);
 		}
 		
+	}
+	
+	public void calificarDescaraContenido(DescargaDataType dt, String usuario) throws Exception {
+		
+		if (dt == null)
+			throw new Exception("PARAMETRO_INVALIDO");
+		
+		UsuarioDescargaContenidoEntity descarga = usuarioDescargaContenidoDao.findByID(dt.getIdDescarga());
+		if (descarga == null)
+			throw new Exception("DESCARGA_NO_ENC0NTRADA");
+		
+		if (!usuario.equals(descarga.getUsuarioCliente().getUsuario()))
+			throw new Exception("USUARIO_NO_AUTORIZADO_A_CALIFICAR");
+		
+		descarga.setCalificacionDescarga(dt.getCalificacion());
+		descarga.setDescripcionValoracion(dt.getComentario());
+		
+		usuarioDescargaContenidoDao.merge(descarga);
+	}
+	
+	public void registrarReclamo(ReclamoDataType dt) throws Exception {
+		
+		UsuarioDescargaContenidoEntity descarga = usuarioDescargaContenidoDao.findByID(dt.getIdDescarga());		
+		if (descarga == null)
+			throw new Exception("DESCARGA_NO_ENCONTRADA");
+		
+		ReclamoEntity reclamo = new ReclamoEntity();
+		reclamo.setCategoria(categoriaReclamoDao.findByID(ConstantesReclamo.ID_CATEGORIA_RECLAMO_DEFAULT));
+		reclamo.setDescarga(descarga);
+		reclamo.setDescripcion(dt.getDescripcion()); 
+		reclamo.setFechaReclamo(new Date());
+		reclamo.setTitulo(dt.getTitulo());
+		reclamo.setEstado(EnumEstadosReclamo.RECLAMO_PENDIENTE); 
+		
+		reclamoDao.persist(reclamo);
+	}
+	
+	public List<ReclamoDataType> obtenerReclamosPendientes() {
+		List<ReclamoDataType> listaReclamo = new ArrayList<ReclamoDataType>();
+		
+		List<ReclamoEntity> listaReclamosE = reclamoDao.findAllByState(EnumEstadosReclamo.RECLAMO_PENDIENTE);
+		if (listaReclamosE != null){
+			for (ReclamoEntity e : listaReclamosE)
+				listaReclamo.add(DataTypesFactory.getReclamoDataType(e));
+		}
+		
+		return listaReclamo;
+	}
+	
+	public void resolverReclamo(ReclamoDataType dt) throws Exception {
+		
+		ReclamoEntity reclamo = reclamoDao.findByID(dt.getId());
+		if (reclamo == null)
+			throw new Exception("RECLAMO_NO_ENCONTRADO");
+		
+		reclamo.setEstado(EnumEstadosReclamo.RECLAMO_RESUELTO);
+		reclamo.setFechaReclamo(new Date());
+		
+		reclamoDao.merge(reclamo);
 	}
 	
 }

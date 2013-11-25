@@ -11,6 +11,7 @@ import tecinf.negocio.dtos.ContenidoIngresoDataType;
 import tecinf.negocio.dtos.ContenidoMinimalDataType;
 import tecinf.negocio.dtos.DescargaDataType;
 import tecinf.negocio.dtos.FiltrosContenidoDataType;
+import tecinf.negocio.dtos.ReclamoDataType;
 @Local
 public interface NegocioContenido {
 
@@ -37,5 +38,13 @@ public interface NegocioContenido {
 	public void cambiarEstadoVersion(Integer idVersion, String estado) throws Exception;
 	
 	public void registrarDescaraContenido(Integer idContenido, String usuario) throws Exception;
+	
+	public void calificarDescaraContenido(DescargaDataType dt, String usuario) throws Exception;
+	
+	public void registrarReclamo(ReclamoDataType dt) throws Exception;
+	
+	public List<ReclamoDataType> obtenerReclamosPendientes();
+	
+	public void resolverReclamo(ReclamoDataType dt) throws Exception;
 	
 }

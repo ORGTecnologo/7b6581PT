@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -24,6 +25,7 @@ import tecinf.negocio.dtos.DescargaDataType;
 import tecinf.negocio.dtos.FiltrosContenidoDataType;
 import tecinf.negocio.dtos.GenericJsonResponse;
 import tecinf.negocio.dtos.IContenidoDataType;
+import tecinf.negocio.dtos.ReclamoDataType;
 import tecinf.negocio.dtos.UserSession;
 import tecinf.negocio.utiles.EnumRespuestas;
 import tecinf.negocio.utiles.NegocioFactory;
@@ -154,6 +156,26 @@ public class RWSContenidos {
 		return listaDescargas;
 	}
 	
+	@PUT
+	@Path("/calificarDescarga")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public GenericJsonResponse calificarDescarga(@Context HttpServletRequest req, DescargaDataType dt) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {
+			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
+			(new RightsChecker()).checkCustomerRights(uSession);
+			negocioContenido.calificarDescaraContenido(dt, uSession.getUsuario());	
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
+			resp.setIdObjeto(String.valueOf(dt.getIdDescarga()));
+		} catch (Exception e) {
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+			resp.setMensageOperacion(e.getMessage());
+			logger.error(e.getMessage() , e); 
+		}
+		return resp;
+	}
+	
 	@POST
 	@Path("/altaContenido")
 	@Consumes("application/json")
@@ -165,6 +187,25 @@ public class RWSContenidos {
 			(new RightsChecker()).checkSupplierRights(uSession);
 			Integer id = negocioContenido.ingresarNuevoContendo(dt, uSession.getUsuario()); 
 			resp.setIdObjeto(String.valueOf(id));
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
+		} catch (Exception e) {
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+			resp.setMensageOperacion(e.getMessage()); 
+			logger.error(e.getMessage() , e); 
+		}
+		return resp;
+	}
+	
+	@POST
+	@Path("/registrarReclamoContenido")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public GenericJsonResponse registrarReclamoContenido(@Context HttpServletRequest req, ReclamoDataType dt) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {
+			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
+			(new RightsChecker()).checkCustomerRights(uSession);
+			negocioContenido.registrarReclamo(dt); 
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);

@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import tecinf.persistencia.entities.ContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 
 @Stateless

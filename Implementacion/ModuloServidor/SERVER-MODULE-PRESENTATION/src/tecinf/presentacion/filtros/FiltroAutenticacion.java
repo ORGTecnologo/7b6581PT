@@ -92,6 +92,7 @@ public class FiltroAutenticacion implements Filter {
 		adminURLs.add("/admin/partialAuditoria.xhtml");
 		adminURLs.add("/admin/partialParametros.xhtml");
 		adminURLs.add("/admin/partialUsuarios.xhtml");
+		adminURLs.add("/admin/partialReclamos.xhtml");
 		adminURLs.add("/views/perfil.html");
 		
 		// URLs de proveedores

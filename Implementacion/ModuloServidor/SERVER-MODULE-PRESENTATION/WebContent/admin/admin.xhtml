@@ -1,12 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:f="http://java.sun.com/jsf/core">
 
 <head>
-    <title>Administracion - MarketPlace</title>
-    <meta charset="utf-8"></meta>
+	<meta charset="utf-8"></meta>
+    <title>Administración - MarketPlace</title>    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" ></meta>
     <meta name="description" content="Pagina de administracion del marketplace."></meta>
 	
@@ -15,6 +15,18 @@
 	<link rel="stylesheet" type="text/css" href="../css/Admin_Home.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-select.min.css" media="screen" />
 	<link rel="stylesheet" type="text/css" href="../css/market.css" media="screen" />	
+	<link rel="stylesheet" type="text/css" href="../css/css-popup.css" media="screen" />	
+	
+	<script src="/SERVER-MODULE-PRESENTATION/js/Plugins/jquery.min.js"></script>
+	<script src="/SERVER-MODULE-PRESENTATION/js/Plugins/jquery-ui.js"></script>
+	<script src="/SERVER-MODULE-PRESENTATION/js/Plugins/holder.js"></script>
+	<script src="/SERVER-MODULE-PRESENTATION/js/Plugins/bootstrap.js"></script>
+	<script src="/SERVER-MODULE-PRESENTATION/js/LlamadasAjax.js"></script>
+	<script src="/SERVER-MODULE-PRESENTATION/js/getSet.js"></script>
+	<script src="/SERVER-MODULE-PRESENTATION/js/Prototipos.js"></script>
+	<script src="/SERVER-MODULE-PRESENTATION/js/Plugins/bootstrap-select.min.js"></script>
+	<script src="/SERVER-MODULE-PRESENTATION/js/admin.js"></script>
+	<script src="/SERVER-MODULE-PRESENTATION/js/Plugins/css-popup.js"></script>
 </head>
 
 <body>
@@ -41,6 +53,7 @@
 				<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialCategorias.xhtml">Categorias</a></li>
 				<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialSubCategorias.xhtml">Subcategorias</a></li>
 				<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialParametros.xhtml">Parametros del sistema</a></li>
+				<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialReclamos.xhtml">Gestión de reclamos</a></li>
 				<li><a href="#" onclick="logoutUsuario()">Salir del sistema</a></li>
 			</ul>	
 		</div>
@@ -52,15 +65,8 @@
 			</div>
 		</div>
 		</div>
+		<div id="blanket" style="display:none;"></div>	
 </body>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/jquery-ui.js"></script>
-<script src="../js/holder.js"></script>
-<script src="../js/bootstrap.js"></script>
-<script src="../js/LlamadasAjax.js"></script>
-<script src="../js/getSet.js"></script>
-<script src="../js/Prototipos.js"></script>
-<script src="../js/bootstrap-select.min.js"></script>
-<script src="../js/admin.js"></script>
+
 </html>
 

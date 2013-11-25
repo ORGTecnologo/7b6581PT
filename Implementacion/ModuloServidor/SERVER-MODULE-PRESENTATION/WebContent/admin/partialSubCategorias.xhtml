@@ -10,61 +10,58 @@
 	<ui:define name="body">
 
 		<h:form>
-			<div class="row">
-				<div class="col-md-12">
-					<h2>Gestion de sub categorias</h2>
+			<div>
+				<h2>Gestion de sub categorias</h2>
+				
+				<h:commandButton action="#{subCategoriaMB.mostrarPanelIngreso}" style="float:right" class="btn" value="Nuevo">
+				
+				</h:commandButton>
+			</div>
+			<div class="wrapperTablasAdministracion">
+				<h:dataTable value="#{subCategoriaMB.listaSubCategorias}" var="o"
+					styleClass="order-table" headerClass="order-table-header"
+					rowClasses="order-table-odd-row,order-table-even-row"
+					class="table table-striped">
+	
+					<h:column>
+						<f:facet name="header">Nombre</f:facet>
+						#{o.nombre}
+					</h:column>
+	
+					<h:column>
+						<f:facet name="header">Descripcion</f:facet>
+						#{o.descripcion}
+					</h:column>
 					
-					<h:commandButton style="float:right" class="btn" action="#{subCategoriaMB.mostrarPanelIngreso}" value="Nuevo">
-						<!--  <h:graphicImage library="images" class="btnNuevo" value="../img/agregarServicio.jpeg" />  -->
-					</h:commandButton>
-				</div>
-				<div class="col-md-12">
-				<div class="wrapperTablasAdministracion">
-					<h:dataTable value="#{subCategoriaMB.listaSubCategorias}" var="o"
-						styleClass="order-table" headerClass="order-table-header"
-						rowClasses="order-table-odd-row,order-table-even-row"
-						class="table table-striped">
-		
-						<h:column>
-							<f:facet name="header">Nombre</f:facet>
-							#{o.nombre}
-						</h:column>
-		
-						<h:column>
-							<f:facet name="header">Descripcion</f:facet>
-							#{o.descripcion}
-						</h:column>
-						
-						<h:column>
-							<f:facet name="header">Categoria</f:facet>
-							#{o.categoria.nombre}	
-						</h:column>
-						
-						<!-- column header -->
-						<!-- row record -->
-						<h:column>
-							<f:facet name="header">Habilitado</f:facet>
-							#{o.habilitadaStr}
-						</h:column>
-		
-						<h:column>
-							<h:commandButton class="btn" value="Editar" action="#{subCategoriaMB.mostrarPanelEditar}" >
-								<f:setPropertyActionListener target="#{subCategoriaMB.currentSubCategoria}" value="#{o}" />
-							</h:commandButton>
-						</h:column>
-						<h:column>
-							<h:commandButton class="btn" action="#{subCategoriaMB.mostrarPanelEliminar}" value="#{o.captionBtnHabilitarDeshabilitar}">
-								<f:setPropertyActionListener target="#{subCategoriaMB.currentSubCategoria}" value="#{o}" />
-							</h:commandButton>
-						</h:column>
-					</h:dataTable>
-				</div>
+					<h:column>
+						<f:facet name="header">Categoria</f:facet>
+						#{o.categoria.nombre}	
+					</h:column>
+					
+					<!-- column header -->
+					<!-- row record -->
+					<h:column>
+						<f:facet name="header">Habilitado</f:facet>
+						#{o.habilitadaStr}
+					</h:column>
+	
+					<h:column>
+						<h:commandButton class="btn" value="Editar" action="#{subCategoriaMB.mostrarPanelEditar}" >
+							<f:setPropertyActionListener target="#{subCategoriaMB.currentSubCategoria}" value="#{o}" />
+						</h:commandButton>
+					</h:column>
+					<h:column>
+						<h:commandButton class="btn" action="#{subCategoriaMB.mostrarPanelEliminar}" value="#{o.captionBtnHabilitarDeshabilitar}">
+							<f:setPropertyActionListener target="#{subCategoriaMB.currentSubCategoria}" value="#{o}" />
+						</h:commandButton>
+					</h:column>
+				</h:dataTable>
 			</div>
-			</div>
-		</h:form>
+	</h:form>
 		
 
-		<h:panelGroup id="panelModificar" rendered="#{subCategoriaMB.activoPanelEditar}">
+		<h:panelGroup id="panelModificar" rendered="#{subCategoriaMB.activoPanelEditar}" >
+		
 			<h:form>
 				<div class="modal loginDiv modal-dialog"
 					style="width: 300px">
@@ -141,6 +138,7 @@
 				</div>
 			</h:form>
 		</h:panelGroup>
+
 
 		<h:panelGroup id="panelEliminar" rendered="#{subCategoriaMB.activoPanelEliminar}">
 			<h:form>

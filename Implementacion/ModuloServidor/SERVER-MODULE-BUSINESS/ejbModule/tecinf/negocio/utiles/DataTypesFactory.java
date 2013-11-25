@@ -14,6 +14,7 @@ import tecinf.negocio.dtos.ContenidoTemaMusicalDataType;
 import tecinf.negocio.dtos.ContenidoVideoDataType;
 import tecinf.negocio.dtos.DescargaDataType;
 import tecinf.negocio.dtos.ParametroValorDataType;
+import tecinf.negocio.dtos.ReclamoDataType;
 import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.dtos.UsuarioAdministradorDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
@@ -29,6 +30,7 @@ import tecinf.persistencia.entities.ContenidoSoftwareEntity;
 import tecinf.persistencia.entities.ContenidoTemaMusicalEntity;
 import tecinf.persistencia.entities.ContenidoVideoEntity;
 import tecinf.persistencia.entities.ParametroValorEntity;
+import tecinf.persistencia.entities.ReclamoEntity;
 import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
@@ -244,6 +246,20 @@ public class DataTypesFactory {
 		}
 		dt.setCalificacion(e.getContenido().getCalificacion());
 		dt.setTipoContenido(e.getContenido().getTipoContenido());
+		
+		return dt;
+	}
+
+	public static ReclamoDataType getReclamoDataType(ReclamoEntity e){
+		ReclamoDataType dt = new ReclamoDataType();
+		
+		dt.setDescripcion(e.getDescripcion());
+		dt.setFechaReclamo(e.getFechaReclamo());
+		dt.setId(e.getId());
+		dt.setTitulo(e.getTitulo());
+		dt.setIdContenido(e.getDescarga().getContenido().getId());
+		dt.setIdDescarga(e.getDescarga().getId());
+		dt.setAutor(e.getDescarga().getUsuarioCliente().getUsuario());
 		
 		return dt;
 	}
