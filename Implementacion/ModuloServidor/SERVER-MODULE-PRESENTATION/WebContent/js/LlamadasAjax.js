@@ -153,6 +153,34 @@ function altaContenido(content){
 	
 }
 
+function enviarReclamo(idDescarga, titulo, comentario){
+ 
+ 	bloquearPantalla();
+	$.ajax({
+		url: ip + '/contenidos/regisrarReclamoContenido',
+		type: 'POST',
+		dataType: 'json',
+        contentType: "application/json",
+		data: JSON.stringify({
+			'idDescarga' : idDescarga,
+			'titulo' 	 : titulo,
+			'descripcion' : comentario
+		}),
+	})
+	.done(function(msg) {
+		console.log("success: " + msg);
+		alert('Reclamo enviado con exito, alguien del staff se comunicara con ud a la brevedad!');
+	})
+	.fail(function(msg) {
+		console.log("error: " + msg);
+		alert('Ocurrio un error inesperado!');		
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
+	});
+}
+
+
 //PUT__________PUT__________PUT
 function loginUsuario(usuario, contrasenia){
 	bloquearPantalla();
@@ -202,11 +230,16 @@ function loginUsuario(usuario, contrasenia){
 	.fail(function(msg) {
 		console.log(msg);
 		alert('Nombre de usuario o contrasenia incorrectos!!');
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
 	});
-	desbloquearPantalla();
 }
 
 function logoutUsuario(){
+
+	bloquearPantalla();
+
 	$.ajax({
 	   url: ip + '/usuarios/logout',
 	   type: 'PUT',
@@ -240,10 +273,16 @@ function logoutUsuario(){
 	.fail(function(msg) {
 		console.log(msg);
 		alert("Fallo del sistema, intente de nuevo o contacte con el administrador!!");
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
 	});
+
 }
 
 function guardarCambiosPerfil(nombre,apellido,sexo,fechaNacimiento,tel,sitioWeb){
+
+	bloquearPantalla();
 	$.ajax({
 		url: ip + '/usuarios/editarUsuario',
 		type: 'PUT',
@@ -265,11 +304,16 @@ function guardarCambiosPerfil(nombre,apellido,sexo,fechaNacimiento,tel,sitioWeb)
 	.fail(function(msg){
 		console.log(msg);
 		alert("Ocurrio un error inesperado al intentar actualizar el perfil.");		
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
 	});
 }
 
 function enviarCalificacion(idDescarga, puntaje, comentario){
  
+ 	bloquearPantalla();
+
 	$.ajax({
 		url: ip + '/contenidos/calificarDescarga',
 		type: 'PUT',
@@ -282,13 +326,14 @@ function enviarCalificacion(idDescarga, puntaje, comentario){
 		}),
 	})
 	.done(function(msg) {
-		console.log("success");
+		
+		obtenerContenidosUsuario();
 	})
 	.fail(function(msg) {
-		console.log("error");
+		console.log("error: " + msg);
 	})
 	.always(function(msg) {
-		console.log("complete");
+	 	desbloquearPantalla();
 	});
 }
 
@@ -297,6 +342,7 @@ function enviarCalificacion(idDescarga, puntaje, comentario){
 function buscarContenidos(){
 
 	bloquearPantalla();
+
 	var JSONstring = new ParametrosBusqueda();
 
 	this.preventDefault;
@@ -328,8 +374,6 @@ function buscarContenidos(){
 		
 		ocultarElemento('con-tenedor');
 		mostrarElemento('resultadoBusqueda');
-		
-		desbloquearPantalla();
 	})
 	.fail(function(msg) {
 		console.log("error");
@@ -337,13 +381,15 @@ function buscarContenidos(){
 		jsonProy.resultadoBusqueda = msg;
 		ocultarElemento('con-tenedor');
 		mostrarElemento('resultadoBusqueda');
-		desbloquearPantalla();	
 	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
+	});
 }
 
 function obtenerDatosdeUsuario(nick){
+	bloquearPantalla();
 
-	console.log('Este es el nick: ' + nick);
 	$.ajax({
 		url: ip + '/usuarios/verUsuario/' + nick,
 		type: 'GET',
@@ -357,7 +403,7 @@ function obtenerDatosdeUsuario(nick){
 		console.log("error");
 	})
 	.always(function(msg) {
-		console.log("complete");
+	 	desbloquearPantalla();
 	});
 }
 
@@ -381,6 +427,8 @@ function obtenerCategoriasySubcategorias(idSelect){
 }
 
 function existeSesionServ(user){
+
+	bloquearPantalla();
 
 	$.ajax({
 		url: ip + '/usuarios/checkSession/' + user,
@@ -416,9 +464,8 @@ function existeSesionServ(user){
 		return false;
 	})
 	.always(function(msg) {
-		console.log("complete");
-		console.log(msg);
-	});	
+	 	desbloquearPantalla();
+	});
 }
 
 function obtenerUsuariosServ(){
@@ -490,6 +537,8 @@ function respuestaPares(){
 
 function obtenerContenidoPorId(idContenido){
 
+	bloquearPantalla();
+
 	$.ajax({
 	  url: ip + '/contenidos/obtenerInfoContenido/'+idContenido,
 	  type: 'GET',
@@ -541,10 +590,15 @@ function obtenerContenidoPorId(idContenido){
 	})
 	.fail(function(msg) {
 		console.log("Fallo el pedido " + msg);
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
 	});
 }
 
 function obtenerContenidosACalificar(){
+
+	bloquearPantalla();
 
 	$.ajax({
 		url: ip + '/contenidos/obtenerDescargasACalificar',
@@ -562,13 +616,14 @@ function obtenerContenidosACalificar(){
 		console.log("error" + msg);
 	})
 	.always(function(msg) {
-		console.log("complete" + msg);
 		desbloquearPantalla();
 	});
 	
 }
 
 function obtenerContenidosUsuario(){
+
+	bloquearPantalla();
 
 	$.ajax({
 		url: ip + '/contenidos/obtenerTodasLasDescargas',
@@ -578,12 +633,15 @@ function obtenerContenidosUsuario(){
 	})
 	.done(function(msg) {
 		console.log("success: " + msg);
+		jsonProy.misContenidos = msg;
+
+		cargarTablaMisContenidos();
 	})
 	.fail(function(msg) {
 		console.log("error: " + msg);
 	})
 	.always(function(msg) {
-		console.log("complete: " + msg);
+	 	desbloquearPantalla();
 	});
 	
 }
