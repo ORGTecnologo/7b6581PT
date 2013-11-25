@@ -31,7 +31,6 @@ function desbloquearPantalla(){
     $.unblockUI();
 }
 
-
 function cargarConfigBusqueda(idSelect){
 	obtenerCategoriasySubcategorias('multiplesCat');
 }
@@ -331,7 +330,6 @@ function cargarPuntuacion(puntuacion,origen){
 	}
 }
 
-
 function cargarResultadoBusqueda(pag){
     pag || (pag = 0);
 
@@ -350,7 +348,7 @@ function cargarResultadoBusqueda(pag){
 			var precio = jsonProy.resultadoBusqueda[i].precio;
 
 
-	        html += "<tr><td><img src='" + foto + "' alt='" + foto + "' class='img-responsive' style='widht:50px;height:50px'></td>"
+	        html += "<tr><td><img src='" + foto + "' alt='" + foto + "' class='img-responsive' style='width:50px;heigth:50px'></td>"
 						+ "<td><a href='views/content.html?id=" + id + "'>" + nombre + "</a></td>"
 						+ "<td>" + desc + "</td>"
 						+ "<td>" + precio + "</td>"

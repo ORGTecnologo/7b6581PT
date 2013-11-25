@@ -233,25 +233,28 @@ function logoutUsuario(){
 	});
 }
 
-function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
+function guardarCambiosPerfil(nombre,apellido,sexo,fechaNacimiento,tel,sitioWeb){
 	$.ajax({
-		url: ip + '/usuarios/modificarUsuario',
+		url: ip + '/usuarios/modificar',
 		type: 'PUT',
 		data:JSON.stringify({
-			'usuario'	  : usuario,
-			'contrasenia' : contrasenia,
-			'nombres'     : nombre,
-			'apellidos'   : apellido,
-			'rol'		  : rol
+			'nombres'     	 : nombre,
+			'apellidos'   	 : apellido,
+			'sitioWeb'		 : sitioWeb,
+			'telefonoMovil'	 : tel,
+			'sexo'			 : sexo,
+			'fechaNacimiento': fechaNacimiento,
 		}),
 		datatype: "json",
 		contentType: "application/json",
 	})
 	.done(function(msg){
 		console.log(msg);
+		alert("Perfil actualizado con exito!");
 	})
-	.fail(function(){
+	.fail(function(msg){
 		console.log(msg);
+		alert("Ocurrio un error inesperado al intentar actualizar el perfil.");		
 	});
 }
 
