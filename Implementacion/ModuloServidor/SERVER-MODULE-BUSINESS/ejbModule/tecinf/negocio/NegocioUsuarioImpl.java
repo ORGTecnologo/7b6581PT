@@ -306,28 +306,29 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 	}
 	
 	public void editarPerfilUsuario(String nick, EditarUsuarioDataType datos) throws Exception {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		
 		if (ValidationUtil.isNullOrEmpty(nick))
 			throw new Exception("PARAMETRO_NO_VALIDO");
+		
 		UsuarioEntity usrE = usuarioDao.findByID(nick);
 		if (usrE == null )
 			throw new Exception("USUARIO_NO_ENCONTRADO");
-		
-		if (ValidationUtil.isNullOrEmpty(datos.getContrasenia()) || ValidationUtil.isNullOrEmpty(datos.getContrasenia2()) || datos.getContrasenia().equals(datos.getContrasenia2()))
-			throw new Exception("CONTRASENIAS_NO_COINCIDEN");
 			
 		if (datos.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE)){
 			
 		} else if (datos.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR)){
-		
+			((UsuarioProveedorEntity)usrE).setSitioWeb(datos.getSitioWeb());
 		}
 		
-		usrE.setApellidos(datos.getApellidos());
-		usrE.setContrasenia(datos.getContrasenia());
-		usrE.setNombres(datos.getNombres());
-		usrE.setSexo(datos.getSexo()); 
-		usrE.setTelefonoMovil(datos.getTelefonoMovil()); 
+		usrE.setApellidos(ValidationUtil.isNullOrEmpty(datos.getApellidos()) ? "" : datos.getApellidos());
+		usrE.setNombres(ValidationUtil.isNullOrEmpty(datos.getNombres()) ? "" : datos.getNombres());
+		usrE.setSexo(ValidationUtil.isNullOrEmpty(datos.getSexo()) ? "" : datos.getSexo()); 
+		usrE.setTelefonoMovil(ValidationUtil.isNullOrEmpty(datos.getTelefonoMovil()) ? "Sin definir" : datos.getTelefonoMovil()); 
+		usrE.setFechaNacimiento(ValidationUtil.isNullOrEmpty(datos.getFechaNacimiento()) ? new Date() : sdf.parse(datos.getFechaNacimiento())); 
 
-		usuarioDao.merge(usrE);		
+		usuarioDao.merge(usrE);
 	}
 	
 	

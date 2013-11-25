@@ -243,7 +243,7 @@ function logoutUsuario(){
 
 function guardarCambiosPerfil(nombre,apellido,sexo,fechaNacimiento,tel,sitioWeb){
 	$.ajax({
-		url: ip + '/usuarios/modificarUsuario',
+		url: ip + '/usuarios/editarUsuario',
 		type: 'PUT',
 		data:JSON.stringify({
 			'nombres'     	 : nombre,
@@ -254,7 +254,7 @@ function guardarCambiosPerfil(nombre,apellido,sexo,fechaNacimiento,tel,sitioWeb)
 			'fechaNacimiento': fechaNacimiento,
 		}),
 		datatype: "json",
-		//contentType: "application/json",
+		contentType: "application/json",
 	})
 	.done(function(msg){
 		console.log(msg);

@@ -254,7 +254,8 @@ public class RWSUsuarios {
 	}
 	
 	@PUT
-	@Path("/modificarUsuario")
+	@Path("/editarUsuario")
+	@Consumes("application/json")
 	@Produces("application/json")
 	public GenericJsonResponse editarUsuario(@Context HttpServletRequest req, EditarUsuarioDataType datosUsuario) {
 		GenericJsonResponse resp = new GenericJsonResponse();
@@ -270,7 +271,7 @@ public class RWSUsuarios {
 			datosUsuario.setTipoUsuario(session.getTipoUsuario());
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			negocioUsuario.editarPerfilUsuario(session.getUsuario(), datosUsuario);
-			
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
 			resp.setMensageOperacion(e.getMessage());

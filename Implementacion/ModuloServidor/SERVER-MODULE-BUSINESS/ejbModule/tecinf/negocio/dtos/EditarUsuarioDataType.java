@@ -8,8 +8,6 @@ public class EditarUsuarioDataType implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String sitioWeb;
-	private String contrasenia;
-	private String contrasenia2;
 	private String nombres;
 	private String apellidos;
 	private String sexo;
@@ -24,18 +22,6 @@ public class EditarUsuarioDataType implements Serializable {
 	}
 	public void setSitioWeb(String sitioWeb) {
 		this.sitioWeb = sitioWeb;
-	}
-	public String getContrasenia() {
-		return contrasenia;
-	}
-	public void setContrasenia(String contrasenia) {
-		this.contrasenia = contrasenia;
-	}
-	public String getContrasenia2() {
-		return contrasenia2;
-	}
-	public void setContrasenia2(String contrasenia2) {
-		this.contrasenia2 = contrasenia2;
 	}
 	public String getNombres() {
 		return nombres;
