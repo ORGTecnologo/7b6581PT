@@ -6,15 +6,6 @@ public class FiltrosContenidoDataType implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-/*	
-JSONstring.libros = varsProy.PARAM_BUSQ_LIBROS;
-JSONstring.musica = varsProy.PARAM_BUSQ_MUSICA;
-JSONstring.apps = varsProy.PARAM_BUSQ_APPS;
-JSONstring.videos = varsProy.PARAM_BUSQ_VIDEO;
-JSONstring.categorias = varsProy.PARAM_BUSQ_CATEGORIAS;
-JSONstring.keyword = document.getElementById("input-busqueda").value; 
-*/
-	
 	private Boolean libros;
 	private Boolean musica;
 	private Boolean apps;

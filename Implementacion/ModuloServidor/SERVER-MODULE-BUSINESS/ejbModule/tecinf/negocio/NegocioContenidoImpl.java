@@ -331,7 +331,13 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		UsuarioSubeContenidoEntity usc = new UsuarioSubeContenidoEntity();
 		usc.setFechaSubida(new Date());
 		usc.setContenido(nC);
-		usc.setPrecioSubida(Float.valueOf("0.0"));
+		Float precio = 0.0f;
+		try {
+			precio = Float.valueOf(dt.getPrecio());
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e);
+		}
+		usc.setPrecioSubida(precio);
 		UsuarioEntity ue = usuarioDao.findByID(usuario);
 		if (ue == null)
 			throw new Exception("Error al recuperar usuario.");
@@ -407,8 +413,9 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		if (!usuario.equals(descarga.getUsuarioCliente().getUsuario()))
 			throw new Exception("USUARIO_NO_AUTORIZADO_A_CALIFICAR");
 		
-		descarga.setCalificacionDescarga(dt.getCalificacion());
-		descarga.setDescripcionValoracion(dt.getComentario());
+		descarga.setCalificacionDescarga(dt.getCalificacion() == null ? 0 : dt.getCalificacion());
+		descarga.setDescripcionValoracion(ValidationUtil.isNullOrEmpty(dt.getComentario()) ? "" : dt.getComentario());
+		descarga.setEstadoDescarga(EnumEstadosDescarga.FINALIZADO);
 		
 		usuarioDescargaContenidoDao.merge(descarga);
 	}
