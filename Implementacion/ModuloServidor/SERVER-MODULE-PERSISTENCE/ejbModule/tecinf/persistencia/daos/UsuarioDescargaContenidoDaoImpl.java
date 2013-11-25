@@ -59,5 +59,12 @@ public class UsuarioDescargaContenidoDaoImpl  extends DaoImpl<Integer, UsuarioDe
 			return (UsuarioDescargaContenidoEntity)namedQuery.getSingleResult();	
 		return null;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public List<UsuarioDescargaContenidoEntity> getDonwloadsByUser(String usuario) {
+		Query query = em.createQuery("SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.usuarioCliente.usuario = :usuario");
+		query.setParameter("usuario", usuario);
+		return (List<UsuarioDescargaContenidoEntity>)query.getResultList();
+	}
 
 }

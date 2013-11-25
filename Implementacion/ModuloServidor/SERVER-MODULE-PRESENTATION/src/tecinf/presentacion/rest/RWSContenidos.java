@@ -156,6 +156,22 @@ public class RWSContenidos {
 		return listaDescargas;
 	}
 	
+	@GET
+	@Path("/obtenerTodasLasDescargas")
+	@Produces("application/json")
+	public List<DescargaDataType> obtenerTodasLasDescargas(@Context HttpServletRequest req) {
+		List<DescargaDataType> listaDescargas = null;
+		try {
+			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
+			(new RightsChecker()).checkCustomerRights(uSession);
+			listaDescargas = negocioContenido.obtenerTodasLasDescargas(uSession.getUsuario()); 
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}
+		return listaDescargas;
+	}
+	
 	@PUT
 	@Path("/calificarDescarga")
 	@Consumes("application/json")

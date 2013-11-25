@@ -12,6 +12,8 @@ public interface UsuarioDescargaContenidoDao extends Dao<Integer, UsuarioDescarg
 	
 	public List<UsuarioDescargaContenidoEntity> getDonwloadsByState(String estado);
 	
+	public List<UsuarioDescargaContenidoEntity> getDonwloadsByUser(String usuario);
+	
 	public List<UsuarioDescargaContenidoEntity> getDonwloadsByUserAndState(String usuario, String estado);
 	
 	public UsuarioDescargaContenidoEntity getDownloadByUserAndContent(String usuario, Integer idContenido);

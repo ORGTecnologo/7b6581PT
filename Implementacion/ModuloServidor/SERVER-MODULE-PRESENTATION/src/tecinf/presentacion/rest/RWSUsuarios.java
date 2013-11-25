@@ -151,26 +151,6 @@ public class RWSUsuarios {
 		return resp;
 	}
 	
-	@PUT
-	@Path("/modificarUsuario")
-	@Produces("application/json")
-	@Consumes("application/json")
-	public GenericJsonResponse modificarUsuario(UsuarioDataType ud){
-		GenericJsonResponse resp = new GenericJsonResponse();
-		try {
-			
-			negocioUsuario = NegocioFactory.getNegocioUsuario();
-			negocioUsuario.modificarUsuario(ud); 
-			
-			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
-		} catch (Exception e) {
-			logger.error(e.getMessage() , e); 
-			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_FALLA);
-			resp.setMensageOperacion(e.getMessage());
-		}				
-		return resp;
-	}
-	
 	@POST
 	@Path("/registrarUsuario")
 	@Produces("application/json")

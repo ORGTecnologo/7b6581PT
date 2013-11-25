@@ -77,16 +77,6 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 
 	}
 
-	public void modificarUsuario(UsuarioDataType u) throws Exception {
-		
-		 UsuarioEntity ue = usuarioDao.findByID(u.getUsuario()); 
-		 if (ue == null) 
-			 throw new Exception("El usuario no existe");
-		 ue.setApellidos(u.getApellidos());
-		 ue.setContrasenia(u.getContrasenia()); ue.setNombres(u.getNombres());		 
-		 usuarioDao.merge(ue);
-	}
-
 	public LoginRespDataType loginUsuario(String usuario, String contrasenia) {
 
 		LoginRespDataType resp = new LoginRespDataType();

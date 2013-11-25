@@ -454,4 +454,16 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		reclamoDao.merge(reclamo);
 	}
 	
+	public List<DescargaDataType> obtenerTodasLasDescargas(String usuario) {
+		List<DescargaDataType> listaDescargas = new ArrayList<DescargaDataType>();
+		
+		List<UsuarioDescargaContenidoEntity> descargasE = usuarioDescargaContenidoDao.getDonwloadsByUser(usuario);
+		if (descargasE != null) {
+			for (UsuarioDescargaContenidoEntity e : descargasE)
+				listaDescargas.add(DataTypesFactory.getDescargaDataType(e));
+		}
+		
+		return listaDescargas;
+	}
+	
 }
