@@ -77,7 +77,27 @@ function cargarHtmlDatosdeUsuario(msg){
       // msg.habilitado
 }
 
-function cargarTablaPendientesCalificacion(){
+function getStringTipoContenido(tipoContenido){
+
+  switch(tipoContenido){
+    case  confProy.TIPO_CONTENIDO_MUSICA:
+      return 'MUSICA';    
+    break;
+    case  confProy.TIPO_CONTENIDO_APP:
+      return 'SOFTWARE';
+    break;        
+    case  confProy.TIPO_CONTENIDO_VIDEO:
+      return 'VIDEO';
+    break;        
+    case  confProy.TIPO_CONTENIDO_LIBRO:
+      return 'LIBRO';
+    break;
+  }
+
+
+}
+
+function cargarTablaPendientesCalificacion(pag){
     pag || (pag = 0);
 
   var lengthFor = 10;
@@ -94,15 +114,17 @@ function cargarTablaPendientesCalificacion(){
       var fechaDescarga = jsonProy.contentidosACalificar[i].fechaDescarga;
       var foto          = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.contentidosACalificar[i].foto;
       var tipoContenido = jsonProy.contentidosACalificar[i].tipoContenido;
+          tipoContenido = getStringTipoContenido(tipoContenido);
 
-      html += "<tr><td><img class='thumbnail' src='" + foto + "'></td>"
-           + "<td><a href='" + confProy.URL_CONTENIDO + id + "'>" + nombre + "</a></td>"
+
+      html += "<tr><td><img class='thumbnail' src='" + foto + "' style='width: 50px;height: 50px;'></td>"
+           + "<td><a href='" + confProy.URL_CONTENIDO + idContenido + "'>" + nombre + "</a></td>"
            + "<td>" + tipoContenido + "</td>"
            + "<td><div class='row'><div class='col-xs-5'>"
-           + "<select id='valorCalificacion_" + idDescarga + "' class='form-control input-sm selectpicker'>"
+           + "<select id='valorCalificacion_" + idDescarga + "' class='form-control input-sm selectpicker' style='min-width: 4.5em;'>"
            + "<option>-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>"
-           + "</div><button id='confirmarCalificacion_" + idDescarga + "_"+ idContenido +"' onclick='agregarComentario(this)' class='btn btn-xs'>Ok</button>"
-           + "</div></td></tr>";
+           + "</div><div class='col-md-1'><button id='confirmarCalificacion_" + idDescarga + "_"+ idContenido +"' onclick='agregarComentario(this)' class='btn btn-xs'>Ok</button>"
+           + "</div></div></td></tr>";
 
     };
   };
@@ -182,6 +204,8 @@ function verContenidosUsuario(){
    ocultarElemento('div_contenidosPendientes');
    mostrarElemento('div_contenidosUsuario');
 
+   obtenerContenidosUsuario();
+
    desbloquearPantalla();
 }
 
@@ -192,9 +216,8 @@ function verCalificacionesPendientes(){
    ocultarElemento('div_datosUsuario');
    ocultarElemento('btnGuardar');
    ocultarElemento('div_contenidosUsuario');
+   obtenerContenidosACalificar();
    mostrarElemento('div_contenidosPendientes');
-
-   desbloquearPantalla();
 }
 
 function cargarMisContenidos(pag){
