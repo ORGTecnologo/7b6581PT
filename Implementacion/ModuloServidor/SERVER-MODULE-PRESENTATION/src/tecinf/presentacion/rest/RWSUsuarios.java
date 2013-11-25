@@ -254,7 +254,7 @@ public class RWSUsuarios {
 	}
 	
 	@PUT
-	@Path("/verUsuario")
+	@Path("/modificarUsuario")
 	@Produces("application/json")
 	public GenericJsonResponse editarUsuario(@Context HttpServletRequest req, EditarUsuarioDataType datosUsuario) {
 		GenericJsonResponse resp = new GenericJsonResponse();

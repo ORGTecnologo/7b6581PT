@@ -36,7 +36,7 @@ public class Encriptacion {
 	} 
 	
 	public static void main (String[] args){
-		System.out.print(encriptarMD5("proveedor"));		
+		System.out.print(encriptarMD5("cliente"));		
 	}
 	
 }

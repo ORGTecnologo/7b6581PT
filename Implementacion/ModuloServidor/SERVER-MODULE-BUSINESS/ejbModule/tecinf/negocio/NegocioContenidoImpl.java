@@ -1,5 +1,6 @@
 package tecinf.negocio;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -78,8 +79,12 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		ContenidoDataType contenido = null;		
 		ContenidoEntity cont = contenidoDao.findByID(idContenido);
 		if (cont != null){
-			//List<ContenidoFotoEntity> fotos = contenidoFotosDao.getAllByContenido(idContenido);		
-			contenido = DataTypesFactory.getContenidoDataType(cont);
+			//List<ContenidoFotoEntity> fotos = contenidoFotosDao.getAllByContenido(idContenido);
+			VersionContenidoEntity version = cont.obtenerVersionConEstado(EnumEstadosVersionContenido.APROBADA);
+			
+			/* muestro la informacion de contenidos que fueron aprobados */
+			if (version != null)
+				contenido = DataTypesFactory.getContenidoDataType(cont);
 		}
 		return contenido;
 	}
@@ -103,6 +108,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 						}						
 					}
 					c.setCalificacion(cantDescargasConCalificacion == 0 ? 0 : sumaCalificacion / cantDescargasConCalificacion);
+					c.setCantidadDescargas(c.getBajadas().size());
 					contenidoDao.merge(c);
 				}
 			}
@@ -134,8 +140,13 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		
 		List<ContenidoEntity> listaContE = contenidoDao.findByFiltros(filtrosMap);
 		if (listaContE != null && listaContE.size() > 0){
-			for (ContenidoEntity c : listaContE)
-				listaItemsContenido.add(DataTypesFactory.getContenidoMinimalDataType(c));
+			for (ContenidoEntity c : listaContE){
+				VersionContenidoEntity version = c.obtenerVersionConEstado(EnumEstadosVersionContenido.APROBADA);
+				
+				/* obtengo solamente los contenidos aprobados */
+				if (version != null)
+					listaItemsContenido.add(DataTypesFactory.getContenidoMinimalDataType(c));				
+			}
 		}		
 		return listaItemsContenido;
 	}
@@ -216,33 +227,38 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		
 		ContenidoEntity nC = null;
 		String directorioTipoContenido = "";
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		
 		/* CARGO DATOS DEL CONTENIDO */
 		if (dt.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_LIBRO)){
 			nC = new ContenidoLibroEntity();
-			
+			((ContenidoLibroEntity)nC).setAutor(ValidationUtil.isNullOrEmpty(dt.getAutor()) ? "desconocido" : dt.getAutor() );
+			((ContenidoLibroEntity)nC).setCantidadPaginas(ValidationUtil.isNullOrEmpty(dt.getPaginas()) ? 0 : Integer.valueOf(dt.getPaginas()) );
+			((ContenidoLibroEntity)nC).setFecha_publicacion(ValidationUtil.isNullOrEmpty(dt.getFechaPublicacion()) ? null : sdf.parse(dt.getFechaPublicacion()) );
 			
 			directorioTipoContenido = FileSystemUtils.DIRECTORIO_CONTENIDO_LIBRO;
 			nC.setTipoContenido(EnumTiposContenido.TIPO_CONTENIDO_LIBRO);
 		} else if (dt.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_SOFTWARE)){
 			nC = new ContenidoSoftwareEntity();
 			((ContenidoSoftwareEntity)nC).setEsTrial(dt.getEsTrial().equals("on") ? true : false);
-			((ContenidoSoftwareEntity)nC).setRequisitosMinimos(dt.getRequisitosMinimos());
+			((ContenidoSoftwareEntity)nC).setRequisitosMinimos(dt.getRequisitosMinimos());	
 			
 			directorioTipoContenido = FileSystemUtils.DIRECTORIO_CONTENIDO_SOFTWARE;
 			nC.setTipoContenido(EnumTiposContenido.TIPO_CONTENIDO_SOFTWARE);
 		} else if (dt.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_TEMA)){
 			nC = new ContenidoTemaMusicalEntity();
-			((ContenidoTemaMusicalEntity)nC).setAlbumTema(dt.getAlbumTema());
-			((ContenidoTemaMusicalEntity)nC).setArtistaTema(dt.getArtistaTema());
+			((ContenidoTemaMusicalEntity)nC).setAlbumTema(ValidationUtil.isNullOrEmpty(dt.getAlbumTema()) ? "desconocido" : dt.getAlbumTema() );
+			((ContenidoTemaMusicalEntity)nC).setArtistaTema(ValidationUtil.isNullOrEmpty(dt.getArtistaTema()) ? "desconocido" : dt.getArtistaTema());
+			((ContenidoTemaMusicalEntity)nC).setDuracionTema(ValidationUtil.isNullOrEmpty(dt.getDuracionTema()) ? "00:00" : dt.getDuracionTema() );
 			
 			
 			directorioTipoContenido = FileSystemUtils.DIRECTORIO_CONTENIDO_TEMA;
 			nC.setTipoContenido(EnumTiposContenido.TIPO_CONTENIDO_TEMA);
 		} else if (dt.getTipoContenido().equals(EnumTiposContenido.TIPO_CONTENIDO_VIDEO)){
 			nC = new ContenidoVideoEntity();
-			((ContenidoVideoEntity)nC).setCalidadVideo(dt.getCalidadVideo());
-			((ContenidoVideoEntity)nC).setDuracionVideo(dt.getDuracionVideo());
+			((ContenidoVideoEntity)nC).setCalidadVideo(ValidationUtil.isNullOrEmpty(dt.getCalidadVideo()) ? "estandar" : dt.getCalidadVideo() );
+			((ContenidoVideoEntity)nC).setDuracionVideo(ValidationUtil.isNullOrEmpty(dt.getDuracionVideo()) ? "00:00" : dt.getDuracionVideo() );
+			((ContenidoVideoEntity)nC).setFormatoVideo((ValidationUtil.isNullOrEmpty(dt.getFormatoVideo()) ? "avi" : dt.getFormatoVideo() ));
 			
 			directorioTipoContenido = FileSystemUtils.DIRECTORIO_CONTENIDO_VIDEO;
 			nC.setTipoContenido(EnumTiposContenido.TIPO_CONTENIDO_VIDEO);
@@ -253,7 +269,8 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		nC.setDescripcion(dt.getDescripcion());
 		nC.setNombre(dt.getNombre());
 		nC.setPrecio(Float.valueOf(/*dt.getPrecio()*/"5.0"));
-		nC.setVersion("1.0");		
+		nC.setVersion("1.0");	
+		nC.setProveedorContenido(usuario);
 		
 		String nuevoDirectorio = (new RandomString(10)).nextString();
 		String dirCont = fSU.crearDirectorioContenido(usuario, directorioTipoContenido, nuevoDirectorio);
@@ -345,8 +362,11 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		UsuarioDescargaContenidoEntity udcCheck = usuarioDescargaContenidoDao.getDownloadByUserAndContent(usuario, idContenido);
 		if (udcCheck == null){
 			correspondeRegistro = true;
-		} else if (udcCheck.getVersionContenido().getId() != c.obtenerVersionConEstado(EnumEstadosVersionContenido.APROBADA).getId())
-			correspondeRegistro = true;
+		} else {
+			VersionContenidoEntity version = c.obtenerVersionConEstado(EnumEstadosVersionContenido.APROBADA);
+			if (version != null && udcCheck.getVersionContenido().getId() != version.getId())
+				correspondeRegistro = true;
+		}			
 			
 		if (correspondeRegistro) {
 			

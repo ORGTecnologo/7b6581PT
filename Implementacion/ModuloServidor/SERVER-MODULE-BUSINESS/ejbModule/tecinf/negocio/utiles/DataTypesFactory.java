@@ -206,6 +206,7 @@ public class DataTypesFactory {
 		dt.setNombreContenido(c.getNombre());
 		dt.setVersion(v.getVersion());
 		dt.setIdVersion(v.getId());
+		dt.setProveedor(c.getProveedorContenido());
 		
 		return dt;
 	}

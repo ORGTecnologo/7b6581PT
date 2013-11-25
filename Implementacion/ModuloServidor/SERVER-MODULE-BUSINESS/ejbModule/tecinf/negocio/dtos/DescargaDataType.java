@@ -13,8 +13,7 @@ public class DescargaDataType implements Serializable {
 	private String fechaDescarga;
 	private String tipoContenido;
 	private String foto;
-	private Integer calificacion;
-	
+	private Integer calificacion;	
 	
 	public Integer getIdDescarga() {
 		return idDescarga;
