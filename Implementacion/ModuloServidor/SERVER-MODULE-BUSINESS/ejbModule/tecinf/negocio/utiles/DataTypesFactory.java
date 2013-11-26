@@ -34,6 +34,7 @@ import tecinf.persistencia.entities.ReclamoEntity;
 import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
+import tecinf.persistencia.entities.UsuarioProveedorEntity;
 import tecinf.persistencia.entities.VersionContenidoEntity;
 import tecinf.persistencia.utiles.EnumTiposContenido;
 
@@ -56,7 +57,8 @@ public class DataTypesFactory {
 		if (u.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE)){
 			dt = new UsuarioClienteDataType();
 		} else if (u.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR)){
-			dt = new UsuarioProveedorDataType();			
+			dt = new UsuarioProveedorDataType();
+			((UsuarioProveedorDataType)dt).setSitioWeb(((UsuarioProveedorEntity)u).getSitioWeb());
 		} else if (u.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR)){
 			dt = new UsuarioAdministradorDataType();
 		}

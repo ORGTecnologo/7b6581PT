@@ -84,7 +84,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		String hashedPassword = Encriptacion.encriptarMD5(contrasenia);
 		UsuarioEntity ue = usuarioDao.findByEmailAndPassword(usuario,hashedPassword);
 		if (ue == null) {
-			resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA);
+			resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA + "|" + "Usuario no registrado en el sistema");
 		} else {
 			
 			if (ue.getHabilitado()){
@@ -111,7 +111,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 				*/
 			
 			} else {
-				resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA + "|" + "USUARIO_NO_HABILITADO");
+				resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA + "|" + "Usuario no habilitado");
 			}
 		}
 		return resp;
@@ -310,7 +310,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		if (datos.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE)){
 			
 		} else if (datos.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR)){
-			((UsuarioProveedorEntity)usrE).setSitioWeb(datos.getSitioWeb());
+			((UsuarioProveedorEntity)usrE).setSitioWeb(ValidationUtil.isNullOrEmpty(datos.getSitioWeb()) ? "Sin definir" : datos.getSitioWeb());
 		}
 		
 		usrE.setApellidos(ValidationUtil.isNullOrEmpty(datos.getApellidos()) ? "" : datos.getApellidos());
