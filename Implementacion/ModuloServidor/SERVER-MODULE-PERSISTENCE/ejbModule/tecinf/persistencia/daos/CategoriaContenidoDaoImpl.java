@@ -1,6 +1,7 @@
 package tecinf.persistencia.daos;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -36,6 +37,30 @@ public class CategoriaContenidoDaoImpl extends DaoImpl<Integer, CategoriaConteni
 		if (namedQuery.getResultList().size() > 0)
 			return (CategoriaContenidoEntity)namedQuery.getSingleResult();
 		return null;
+	}
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public List<CategoriaContenidoEntity> findAllByFiltros(Map filtros) {
+		String queryString = "select e from CategoriaContenidoEntity e";
+		
+		String conds = "";
+		if (filtros.containsKey("nombre"))
+			conds += " (upper(e.nombre) like upper(:nombre)) AND";
+		if (filtros.containsKey("descripcion"))
+			conds += " (upper(e.descripcion) like upper(:descripcion)) AND";
+		if (filtros.containsKey("habilitada")) 
+			conds += " (e.habilitado = :habilitada)) AND";
+		queryString = queryString + (conds.isEmpty() ? "" : " WHERE " + conds.substring(0 , conds.length() - 3));
+		Query query = em.createQuery(queryString);
+		
+		if (filtros.containsKey("nombre"))
+			query.setParameter("nombre", "%" + filtros.get("nombre") + "%");
+		if (filtros.containsKey("descripcion"))
+			query.setParameter("descripcion", "%" + filtros.get("descripcion") + "%");
+		if (filtros.containsKey("habilitada"))
+			query.setParameter("habilitada", filtros.get("habilitada"));
+		
+		return (List<CategoriaContenidoEntity>)query.getResultList();
 	}
 	
 }

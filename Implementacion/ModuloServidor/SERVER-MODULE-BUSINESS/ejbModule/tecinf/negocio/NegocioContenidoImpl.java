@@ -329,8 +329,8 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		vC.setContenido(nC);
 		nC.getVersiones().add(vC);		
 		
-		Integer idCategoria = Integer.valueOf(ValidationUtil.isNullOrEmpty(dt.getSubcategoria()) ? "8" : dt.getSubcategoria() );
-		SubCategoriaContenidoEntity subcategoria = subCategoriaContenidoDao.findByID(idCategoria);
+		Integer idSubCategoria = Integer.valueOf(ValidationUtil.isNullOrEmpty(dt.getSubcategoria()) ? "8" : dt.getSubcategoria() );
+		SubCategoriaContenidoEntity subcategoria = subCategoriaContenidoDao.findByID(idSubCategoria);
 		nC.setSubcategoria(subcategoria);
 		
 		//contenidoDao.persist(nC);

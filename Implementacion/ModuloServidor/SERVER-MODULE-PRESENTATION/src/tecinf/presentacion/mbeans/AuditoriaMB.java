@@ -81,7 +81,7 @@ public class AuditoriaMB implements Serializable {
 			filtros.put("hasta", sdf.parse(filtroHasta));
 		if (!ValidationUtil.isNullOrEmpty(filtroUsuario))
 			filtros.put("usuario", filtroUsuario);
-		listaAuditoria = negocioAuditoria.obtenerRegistroDeIngresos(filtros);		
+		listaAuditoria = negocioAuditoria.obtenerRegistroDeIngresos(filtros);
 	}
 	
 }

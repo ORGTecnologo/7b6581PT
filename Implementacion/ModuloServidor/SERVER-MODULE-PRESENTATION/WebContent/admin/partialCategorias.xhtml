@@ -10,44 +10,84 @@
 	<ui:define name="body">
 
 		<h:form>
-			<div>
-				<h2>Gestion de categorias</h2>
-				
-				<h:commandButton class="btn" style="float:right" action="#{categoriaMB.mostrarPanelIngreso}" value="Nuevo">
-				</h:commandButton>
+			<div class="row">
+				<div class="col-md-12">
+					<div>
+						<h2>Gestion de categorias</h2>
+						
+						<h:commandButton class="btn" style="float:right" action="#{categoriaMB.mostrarPanelIngreso}" value="Nuevo">
+						</h:commandButton>
+					</div>
+				</div>
 			</div>
-			<div class="wrapperTablasAdministracion">
-				<h:dataTable value="#{categoriaMB.listaCategorias}" var="o"
-					styleClass="order-table" headerClass="order-table-header"
-					rowClasses="order-table-odd-row,order-table-even-row"
-					class="table table-striped">
-	
-					<h:column>
-						<f:facet name="header">Nombre</f:facet>
-						#{o.nombre}
-					</h:column>
-	
-					<h:column>
-						<f:facet name="header">Descripcion</f:facet>
-						#{o.descripcion}
-					</h:column>
-					
-					<h:column>
-						<f:facet name="header">Habilitado</f:facet>
-						#{o.habilitadaStr} 
-					</h:column>
-	
-					<h:column>
-						<h:commandButton class="btn" value="Editar" action="#{categoriaMB.mostrarPanelEditar}" >
-							<f:setPropertyActionListener target="#{categoriaMB.currentCategoria}" value="#{o}" />
-						</h:commandButton>
-					</h:column>
-					<h:column>
-						<h:commandButton class="btn" action="#{categoriaMB.mostrarPanelEliminar}" value="#{o.captionBtnHabilitarDeshabilitar}"> 
-							<f:setPropertyActionListener target="#{categoriaMB.currentCategoria}" value="#{o}" />
-						</h:commandButton>
-					</h:column>
-				</h:dataTable>
+			<div class="row">
+				<div class="col-md-12">
+					<fieldset>
+						<legend>Filtros</legend>
+						<div class="row">						
+							<div class="col-md-3">
+								Nombre
+						  		<h:inputText value="#{categoriaMB.filtroNombre}" class="col-md-10 form-control"/>							
+							</div>
+							<div class="col-md-3">
+								Descripcion
+								<h:inputText value="#{categoriaMB.filtroDescripcion}" class="col-md-10 form-control"/>
+							</div>
+							<div class="col-md-3">
+								Estado
+								<h:selectOneMenu value="#{categoriaMB.filtroEstado}" class="selectpicker">
+									<f:selectItem itemLabel="Todas" itemValue="T" />
+									<f:selectItem itemLabel="Habilitadas" itemValue="H" />
+									<f:selectItem itemLabel="Deshabilitadas"	itemValue="D" />
+								</h:selectOneMenu>
+							</div>
+						
+							<div class="row">
+								<div class="col-md-12 ">
+									<h:commandButton action="#{categoriaMB.filtrar}" value="Filtrar" class="btn pull-right">
+									</h:commandButton>
+								</div>
+							</div>	
+						</div>				
+					</fieldset>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="wrapperTablasAdministracion">
+						<h:dataTable value="#{categoriaMB.listaCategorias}" var="o"
+							styleClass="order-table" headerClass="order-table-header"
+							rowClasses="order-table-odd-row,order-table-even-row"
+							class="table table-striped">
+			
+							<h:column>
+								<f:facet name="header">Nombre</f:facet>
+								#{o.nombre}
+							</h:column>
+			
+							<h:column>
+								<f:facet name="header">Descripcion</f:facet>
+								#{o.descripcion}
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">Habilitado</f:facet>
+								#{o.habilitadaStr} 
+							</h:column>
+			
+							<h:column>
+								<h:commandButton class="btn" value="Editar" action="#{categoriaMB.mostrarPanelEditar}" >
+									<f:setPropertyActionListener target="#{categoriaMB.currentCategoria}" value="#{o}" />
+								</h:commandButton>
+							</h:column>
+							<h:column>
+								<h:commandButton class="btn" action="#{categoriaMB.mostrarPanelEliminar}" value="#{o.captionBtnHabilitarDeshabilitar}"> 
+									<f:setPropertyActionListener target="#{categoriaMB.currentCategoria}" value="#{o}" />
+								</h:commandButton>
+							</h:column>
+						</h:dataTable>
+					</div>
+				</div>
 			</div>
 		</h:form>
 		
@@ -141,7 +181,9 @@
 		</h:form>
 		</h:panelGroup>
 
-
+		<script>
+			$('.selectpicker').selectpicker();
+		</script>
 	</ui:define>
 </ui:composition>
 </html>
