@@ -222,16 +222,15 @@ function loginUsuario(usuario, contrasenia){
 			
 			if(msg.tipoUsuario === confProy.ROL_ADMINISTRADOR)
 				location.href = confProy.URL_ADMIN_HOME;
-				
-			//redireccion javascript confProy.URL_ADMIN_HOME
-
 		}
-		else
-			alert(msg.respuesta);
+		else{
+			var mensaje = split(msg.respuesta,'|');
+			alert(mensaje[1]);
+		}
 	})
 	.fail(function(msg) {
 		console.log(msg);
-		alert('Nombre de usuario o contrasenia incorrectos!!');
+		alert(msg);//'Nombre de usuario o contrasenia incorrectos!!');
 	})
 	.always(function(msg) {
 	 	desbloquearPantalla();
@@ -337,6 +336,42 @@ function enviarCalificacion(idDescarga, puntaje, comentario){
 	.always(function(msg) {
 	 	desbloquearPantalla();
 	});
+}
+
+function enviarCambioPassword(nick,pass,newPass,newPass2){
+
+	bloquearPantalla();
+
+	$.ajax({
+		url: ip + '/usuarios/cambiarContrasenia',
+		type: 'PUT',
+		dataType: 'json',
+		contentType : 'application/json',		
+		data: JSON.stringify({
+				'usuario' 					  : nick,
+				'contraseniaAnterior' 		  : pass,
+				'contraseniaNueva' 			  : newPass,
+				'confirmacionContraseniaNueva': newPass2,
+			}),
+	})
+	.done(function(msg) {
+		console.log("success: " + msg);
+		if (msg.resultadoOperacion === 'OK'){
+			alert('Contraseña actualizada con exito');
+			ocultarElemento('password_modal')
+		}
+		else
+			alert(msg.mensageOperacion);
+
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+		desbloquearPantalla();
+	});
+	
 }
 
 //GET___________GET_____________GET

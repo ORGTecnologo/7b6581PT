@@ -289,3 +289,31 @@ function confirmarAltaReclamo(){
 
   ocultarElemento('div_nuevoReclamo');  
 }
+
+function validarNuevaContraseña(){
+
+  var oldPass  = document.getElementById('oldPass').value;
+  var newPass  = document.getElementById('newPass').value;
+  var newPass2 = document.getElementById('reTypePass').value;
+
+  if (oldPass === "" || newPass === "" || newPass2 === "")
+    alert('Ha dejado campos vacios!!');
+  else{
+    if(newPass === newPass2){
+      if(newPass.validarPassword()){
+        if(newPass2.validarPassword()){
+          enviarCambioPassword(varsProy.nick,oldPass,newPass,newPass2);
+        }
+        alert('La nueva contraseña no es segura. Intente nuevamente!');
+      }
+      else
+        alert('La nueva contraseña no es segura. Intente nuevamente!');
+    }
+    else
+      alert('La nueva contraseña no conicide con la confirmacion de la misma. Intente nuevamente!');
+  }
+}
+
+function cambiarPassword(){
+  verModales('password_modal');
+}

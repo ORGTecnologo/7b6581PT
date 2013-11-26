@@ -23,7 +23,7 @@ function cargarIndexTop(tipo){
     break;
     case confProy.TIPO_CONTENIDO_VIDEO:
       idElem = "containerVideo";
-      topAux = jsonProy.top_videos;
+      topAux = jsonProy.top_video;
     break;
     case confProy.TIPO_CONTENIDO_LIBRO:
       idElem = "containerLibro";

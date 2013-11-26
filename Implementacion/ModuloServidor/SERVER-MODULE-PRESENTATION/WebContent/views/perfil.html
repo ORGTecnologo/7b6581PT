@@ -67,9 +67,10 @@
         <div class="col-md-3">
           <p><img id="id_img_perfil" src="//placehold.it/200x200" class="img-polaroid thumbnail img-responsive" style="width: 200px;height: 200px;"></p>
             <p id="id_nick_perfil" class="lead text-center">Pelotinelli</p>
-            <ul class="list-group col-md-10">
+            <ul class="list-group col-md-10" style="cursor: pointer;">
                 <li id="btn_verPerfil" onclick="mostrarVerPerfil()" class="list-group-item">Ver Perfil</li>
                 <li id="btn_Editar" onclick="habilitarEdicion()" class="list-group-item">Editar Perfil</li>
+                <li id="btn_EditPass" onclick="cambiarPassword()" class="list-group-item">Cambiar Contraseña</li>
                 <li id="btn_misContenidos" onclick="verContenidosUsuario()" class="list-group-item">Mis Contenidos</li> 
                 <li id="btn_misContenidos" onclick="verCalificacionesPendientes()" class="list-group-item">Calificaciones Pendientes</li>
             </ul>            
@@ -203,6 +204,42 @@
 
 </body>
 
+
+<!-- CAMBIAR CONTRASENIA -->
+<div id="password_modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Cambiar contraseña<span class="extra-title muted"></span></h3>
+            </div>
+            <div class="modal-body form-horizontal">
+                <div class="container">
+                    <p>Contraseña actual
+                        <input type="password" placeholder="contraseña actual" class="col-xs-7 form-control" id="oldPass"
+                        autocomplete="on"/>
+                    </p>
+                    <br>
+                    <br>
+                    <p>Nueva contraseña
+                        <input type="password" placeholder="nueva contraseña" class="col-xs-7 form-control" id="newPass"/>
+                    </p>
+                    <br>
+                    <br>
+                    <p>Repita la nueva contraseña
+                        <input type="password" placeholder="nueva contraseña" class="col-xs-7 form-control" id="reTypePass"/>
+                    </p>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                <button class="btn btn-primary" onclick="validarNuevaContraseña()" aria-hidden="true">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- CONFIGURAR BUSQUEDA -->
 <div id="configurarBusqueda" class="modal fade" tabindex="-1" role="dialog">
