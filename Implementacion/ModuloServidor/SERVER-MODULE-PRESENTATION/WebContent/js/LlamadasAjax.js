@@ -347,8 +347,6 @@ function buscarContenidos(){
 
 	var JSONstring = new ParametrosBusqueda();
 
-	this.preventDefault;
-
 	JSONstring.libros = varsProy.PARAM_BUSQ_LIBROS;
 	JSONstring.musica = varsProy.PARAM_BUSQ_MUSICA;
 	JSONstring.apps = varsProy.PARAM_BUSQ_APPS;
@@ -389,10 +387,12 @@ function buscarContenidos(){
 	});
 }
 
-function obtenerTopContenidos(cant,tipo){
+function obtenerTopContenidos(tipo){
+
+	bloquearPantalla();
 
 	$.ajax({
-		url: "/contenidos/obtenerTopContenidos?cantidad="+ cant +"&tipo=" + tipo,
+		url: ip + "/contenidos/obtenerTopContenidos?cantidad="+ confProy.CANT_CONTENIDOS_INDEX +"&tipo=" + tipo,
 		type: 'GET',
 		dataType: 'json',
 	})
@@ -405,6 +405,7 @@ function obtenerTopContenidos(cant,tipo){
 	})
 	.always(function(msg) {
 		console.log("complete");
+		desbloquearPantalla();
 	});
 }
 

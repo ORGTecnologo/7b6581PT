@@ -30,6 +30,8 @@ function CTES_PROY(){
 	this.sessionStorageToken  = 'token_proyMPTecnologo';
 	this.sessionStorageRol    = 'rol_proyMPTecnologo';
 
+	this.CANT_CONTENIDOS_INDEX = 4;
+	
 //ROLES
 	this.ROL_ADMINISTRADOR	= 'usuario_administrador';
 	this.ROL_PROVEEDOR 		= 'usuario_proveedor';
@@ -55,6 +57,8 @@ function JSON_PROY(){
 	this.resultadoBusqueda  = new Array();
 	this.contentidosACalificar = new Array();
 	this.misContenidos = new Array();
+
+	//TOPS POR TIPO
 	this.top_musica = new Array();
 	this.top_video = new Array();
 	this.top_software = new Array();
