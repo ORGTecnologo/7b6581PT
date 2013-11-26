@@ -54,7 +54,7 @@ function cargarHtmlTop(topAux,idElem,pag){
       var rutaDescarga  = "";
 
       html += "<div class='col-sm-5 col-md-3'><div class='thumbnail'>"
-            + "<img src='" + foto + "' class='img-thumbnail miniatura img-responsive'>"
+            + "<img src='" + foto + "' class='img-thumbnail miniatura img-responsive' style='width:200px;height:200px;'>"
             + "<div class='caption'><h2>" + nombre + "</h2>"
             + "<p>" + descripcion + "</p>"
             + "<p class='precio'><a href='" + confProy.URL_CONTENIDO + idContenido + "' class='btn btn-primary' role='button'>Ver</a>"
