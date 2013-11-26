@@ -87,7 +87,7 @@ function cargarComboCategorias(idSelect){
 	for (var i = 0; i < jsonProy.categorias.length; i++) {
 		var option1 = document.createElement("option");
 			option1.text = jsonProy.categorias[i].nombre;
-			option1.value = i;//jsonProy.categorias[i].id;
+			option1.value = jsonProy.categorias[i].id;
 		select.add(option1,select.options[null]);
 	};
 
@@ -105,7 +105,7 @@ function cargarComboMultCategorias(idSelect){
 	for (var i = 0; i < jsonProy.categorias.length; i++) {
 		var option1 = document.createElement("option");
 			option1.text = jsonProy.categorias[i].nombre;
-			option1.value = jsonProy.categorias[i].id;//i;
+			option1.value = jsonProy.categorias[i].id;
 			option1.selected = true;
 		select.add(option1,select.options[null]);
 	};
@@ -126,7 +126,7 @@ function cargarComboSubCategorias(elem){
 	for (var i = 0; i < subcategorias.length; i++) {
 		var option1 = document.createElement("option");
 			option1.text = subcategorias[i].nombre;
-			option1.value = i;//jsonProy.categorias[i].id;
+			option1.value = jsonProy.categorias[i].id;
 		select.add(option1,select.options[null]);
 	};	
 }
