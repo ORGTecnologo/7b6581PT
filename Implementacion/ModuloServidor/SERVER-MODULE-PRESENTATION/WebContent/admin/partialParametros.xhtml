@@ -4,7 +4,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
 
 <ui:composition template="admin.xhtml">
 	<ui:define name="body">
@@ -42,6 +44,39 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="wrapperTablasAdministracion">
+					<rich:dataTable id="dtParametros" align="center"
+						value="#{parametroMB.listaParametros}" var="o" height="232px"
+						width="287px" rowClasses="odd-row, even-row"
+						enableContextMenu="false" noDataLabel="Sin estados"
+						onRowMouseOver="this.style.backgroundColor='#FFEBDA'"
+						onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'">
+							
+							<f:facet name="header">Estados</f:facet>
+						
+							<rich:column width="100" align="left">
+								<f:facet name="header">Nombre</f:facet>
+								<h:outputText value="#{o.nombre}" id="nombre"/>
+							</rich:column>
+							<rich:column width="150" align="left">
+								<f:facet name="header">valor</f:facet>
+								<h:outputText  value="#{o.valor}" id="valor" />
+							</rich:column>
+							
+							<rich:column width="12">
+								<a4j:commandLink reRender="pnlEditarEstado" id="EditLink" oncomplete="#{rich:component('pnlEditarEstado')}.show()">
+									<h:graphicImage value="/web/imagenes/Editar.png" style="border:0" />
+									<f:setPropertyActionListener value="#{o}" target="#{parametroMB.parametroActual}" />
+								</a4j:commandLink>
+								<rich:toolTip for="EditLink" value="Editar" styleClass="tooltipStyle"/>
+							</rich:column>
+							
+							<f:facet name="footer">
+								<rich:datascroller id="ds" for="dtParametros"></rich:datascroller>
+							</f:facet>
+							
+						</rich:dataTable>
+					
+					<!-- 
 						<h:dataTable value="#{parametroMB.listaParametros}" var="o"
 							styleClass="order-table" headerClass="order-table-header"
 							rowClasses="order-table-odd-row,order-table-even-row"
@@ -65,6 +100,7 @@
 							</h:column>
 							
 						</h:dataTable>
+						 -->
 					</div>
 				</div>
 			</div>
@@ -90,7 +126,7 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-								<h:commandButton class="btn" id="btnConfirmarModificacion" value="Confirmar" action="#{parametroMB.modificar()}" />
+								<h:commandButton oncomplete="showDialog()" class="btn" id="btnConfirmarModificacion" value="Confirmar" action="#{parametroMB.modificar()}" />
 								<h:commandButton class="btn" value="Cancelar" action="#{parametroMB.ocultarPanelModificar}" />
 						</div>
 					</div>
@@ -98,6 +134,7 @@
 			</h:form>
 		</h:panelGroup>
 	
+		
 	
 	</ui:define>
 </ui:composition>
