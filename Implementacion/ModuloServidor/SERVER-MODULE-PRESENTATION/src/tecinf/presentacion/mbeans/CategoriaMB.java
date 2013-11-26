@@ -119,6 +119,7 @@ public class CategoriaMB implements Serializable {
 			activoPanelIngreso = false;
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarIngreso", e.getMessage());
+			logger.error(e.getMessage() , e);
 		}
 		
 	}

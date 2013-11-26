@@ -186,7 +186,7 @@ public class RWSContenidos {
 			resp.setIdObjeto(String.valueOf(dt.getIdDescarga()));
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
-			resp.setMensageOperacion(e.getMessage());
+			resp.setMensajeOperacion(e.getMessage());
 			logger.error(e.getMessage() , e); 
 		}
 		return resp;
@@ -206,7 +206,7 @@ public class RWSContenidos {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
-			resp.setMensageOperacion(e.getMessage()); 
+			resp.setMensajeOperacion(e.getMessage()); 
 			logger.error(e.getMessage() , e); 
 		}
 		return resp;
@@ -225,7 +225,7 @@ public class RWSContenidos {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
-			resp.setMensageOperacion(e.getMessage()); 
+			resp.setMensajeOperacion(e.getMessage()); 
 			logger.error(e.getMessage() , e); 
 		}
 		return resp;

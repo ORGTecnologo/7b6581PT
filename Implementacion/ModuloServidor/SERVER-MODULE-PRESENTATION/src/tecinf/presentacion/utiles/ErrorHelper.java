@@ -5,8 +5,9 @@ import javax.faces.context.FacesContext;
 
 public class ErrorHelper {
 	
-	public void setErrorMessage(String idComponente, String mensage){
-		FacesContext.getCurrentInstance().addMessage(idComponente, new FacesMessage(mensage));		
+	public void setErrorMessage(String idComponente, String mensaje){
+		FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,mensaje,mensaje);
+		FacesContext.getCurrentInstance().addMessage(idComponente, message);
 	}
 
 }

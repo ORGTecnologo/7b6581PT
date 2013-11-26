@@ -138,7 +138,9 @@
 							</div>
 						</div>						
 						<div class="modal-footer">
-							<h:message for="btnConfirmarIngreso" class="error" />
+							<div>
+								<h:message for="btnConfirmarIngreso" class="ERROR" />
+							</div>
 							<h:commandButton class="btn" id="btnConfirmarIngreso" value="Confirmar" action="#{categoriaMB.crearCategoria}" />
 							<h:commandButton class="btn" value="Cancelar" action="#{categoriaMB.ocultarPanelIngreso}" />
 						</div>

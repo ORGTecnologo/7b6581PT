@@ -82,8 +82,8 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 		categoria = new CategoriaContenidoEntity();
 		categoria.setDescripcion(dt.getDescripcion());
 		categoria.setNombre(dt.getNombre());
-		categoria.setHabilitado(dt.getHabilitada());
-		categoria.setRutaImagen("");
+		categoria.setHabilitado(true);
+		categoria.setRutaImagen("ruta");
 		
 		categoriaContenidoDao.persist(categoria);
 		
