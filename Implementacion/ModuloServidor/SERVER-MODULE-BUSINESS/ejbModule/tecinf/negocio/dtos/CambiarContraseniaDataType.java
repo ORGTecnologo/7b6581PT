@@ -6,11 +6,18 @@ public class CambiarContraseniaDataType implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
+	private String usuario;
 	private String contraseniaAnterior;
 	private String contraseniaNueva;
 	private String confirmacionContraseniaNueva;
 	
 	
+	public String getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
+	}
 	public String getContraseniaAnterior() {
 		return contraseniaAnterior;
 	}

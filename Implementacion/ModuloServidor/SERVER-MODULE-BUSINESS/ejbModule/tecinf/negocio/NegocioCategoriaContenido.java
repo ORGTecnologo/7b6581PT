@@ -17,6 +17,8 @@ public interface NegocioCategoriaContenido {
 	
 	public List<SubCategoriaContenidoDataType> obtenerSubCategorias();
 	
+	public List<SubCategoriaContenidoDataType> obtenerSubCategoriasPorFiltros(Map filtros);
+	
 	public List<CategoriaContenidoDataType> obtenerCategorias();
 	
 	public List<CategoriaContenidoDataType> obtenerCategoriasPorFiltros(Map filtros);

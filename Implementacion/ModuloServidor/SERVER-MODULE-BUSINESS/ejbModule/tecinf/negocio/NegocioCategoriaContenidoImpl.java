@@ -218,6 +218,18 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 		return listaSubCat;
 	}
 	
+	public List<SubCategoriaContenidoDataType> obtenerSubCategoriasPorFiltros(Map filtros){
+		List<SubCategoriaContenidoDataType> listaSubCat = new ArrayList<SubCategoriaContenidoDataType>(); 
+		
+		List<SubCategoriaContenidoEntity> listaSubCatE = subCategoriaContenidoDao.findAllByFiltros(filtros);
+		if (listaSubCatE != null){
+			for (SubCategoriaContenidoEntity s : listaSubCatE)
+				listaSubCat.add(DataTypesFactory.getSubCategoriaContenidoDataType(s));
+		}
+		
+		return listaSubCat;
+	}
+	
 	public List<CategoriaContenidoDataType> obtenerCategorias(){
 		List<CategoriaContenidoDataType> listaCat = new ArrayList<CategoriaContenidoDataType>(); 
 		

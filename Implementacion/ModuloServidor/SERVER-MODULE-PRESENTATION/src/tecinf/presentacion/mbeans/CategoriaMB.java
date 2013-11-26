@@ -115,7 +115,7 @@ public class CategoriaMB implements Serializable {
 	public void crearCategoria(){
 		try {			
 			negocioCategoria.ingresarCategoria(this.nuevaCategoria);		
-			listaCategorias = negocioCategoria.obtenerTodasCategoriasYSubcategorias();
+			listaCategorias = negocioCategoria.obtenerCategoriasPorFiltros(filtros);
 			activoPanelIngreso = false;
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarIngreso", e.getMessage());
@@ -126,7 +126,7 @@ public class CategoriaMB implements Serializable {
 	public void editarCategoria(){
 		try {			
 			negocioCategoria.modificarCategoria(this.currentCategoria);		
-			listaCategorias = negocioCategoria.obtenerTodasCategoriasYSubcategorias();		
+			listaCategorias = negocioCategoria.obtenerCategoriasPorFiltros(filtros);
 			activoPanelEditar = false;
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarModificacion", e.getMessage());
@@ -136,7 +136,7 @@ public class CategoriaMB implements Serializable {
 	public void cambiarEstadoCategoria(){
 		try {			
 			negocioCategoria.cambiarEstadoCategoria(this.currentCategoria);	
-			listaCategorias = negocioCategoria.obtenerTodasCategoriasYSubcategorias();		
+			listaCategorias = negocioCategoria.obtenerCategoriasPorFiltros(filtros);
 			activoPanelEliminar = false;
 		} catch (Exception e) {
 			eH.setErrorMessage("", e.getMessage());

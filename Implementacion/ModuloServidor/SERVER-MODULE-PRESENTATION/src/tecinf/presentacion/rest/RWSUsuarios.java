@@ -17,6 +17,7 @@ import javax.ws.rs.core.Context;
 import org.jboss.logging.Logger;
 
 import tecinf.negocio.NegocioUsuario;
+import tecinf.negocio.dtos.CambiarContraseniaDataType;
 import tecinf.negocio.dtos.EditarUsuarioDataType;
 import tecinf.negocio.dtos.GenericJsonResponse;
 import tecinf.negocio.dtos.LoginDataType;
@@ -251,6 +252,30 @@ public class RWSUsuarios {
 			datosUsuario.setTipoUsuario(session.getTipoUsuario());
 			negocioUsuario = NegocioFactory.getNegocioUsuario();
 			negocioUsuario.editarPerfilUsuario(session.getUsuario(), datosUsuario);
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
+		} catch (Exception e) {
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+			resp.setMensageOperacion(e.getMessage());
+			logger.error(e.getMessage() , e); 
+		}
+		return resp;
+	}
+	
+	@PUT
+	@Path("/cambiarContrasenia")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public GenericJsonResponse cambiarContrasenia(@Context HttpServletRequest req, CambiarContraseniaDataType datos) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {
+			
+			HttpSession s = req.getSession();
+			UserSession session = (UserSession) s.getAttribute(ConstantesSession.keyUsuarioSession);
+			if (session == null || !session.getUsuario().equals(datos.getUsuario()))
+				throw new Exception("OPERACION_NO_PERMITIDA");
+		
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario.cambiarContrasenia(session.getUsuario(), datos);
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);

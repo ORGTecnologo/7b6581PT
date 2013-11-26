@@ -12,12 +12,10 @@
 		<h:form>
 			<div class="row">
 				<div class="col-md-12">
-					<div>
-						<h2>Gestion de categorias</h2>
-						
-						<h:commandButton class="btn" style="float:right" action="#{categoriaMB.mostrarPanelIngreso}" value="Nuevo">
-						</h:commandButton>
-					</div>
+					<h2>Gestion de categorias</h2>
+					
+					<h:commandButton class="btn" style="float:right" action="#{categoriaMB.mostrarPanelIngreso}" value="Nuevo">
+					</h:commandButton>
 				</div>
 			</div>
 			<div class="row">
@@ -108,11 +106,6 @@
 									<p>
 										Descripcion <h:inputText value="#{categoriaMB.currentCategoria.descripcion}" type="text" class="col-xs-7 form-control" />
 									</p>
-									<!-- 
-									<p>
-										Habilitada <h:selectBooleanCheckbox value="#{categoriaMB.currentCategoria.habilitada}" type="checkbox"/>
-									</p>
-									 -->
 								</div>
 							</div>
 						</div>
@@ -141,11 +134,6 @@
 									<p>
 										Descripcion <h:inputText value="#{categoriaMB.nuevaCategoria.descripcion}" type="text" class="col-xs-7 form-control" />
 									</p>
-									<!-- 
-									<p>
-										Habilitada <h:selectBooleanCheckbox value="#{categoriaMB.nuevaCategoria.habilitada}" type="checkbox"/>
-									</p>
-									 -->
 								</div>
 							</div>
 						</div>						
