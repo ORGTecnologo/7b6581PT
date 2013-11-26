@@ -2,6 +2,7 @@ package tecinf.negocio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.naming.NamingException;
@@ -31,6 +32,18 @@ public class NegocioParametrosImpl implements NegocioParametros {
 	public List<ParametroValorDataType> obtenerTodos(){
 		List<ParametroValorDataType> listaParametros = new ArrayList<ParametroValorDataType>();
 		List<ParametroValorEntity> listaE = parametroDao.findAll();
+		
+		if (listaE != null){
+			for (ParametroValorEntity e : listaE)
+				listaParametros.add(DataTypesFactory.getParametroValorDataType(e));			
+		}
+		
+		return listaParametros;
+	}
+	
+	public List<ParametroValorDataType> obtenerTodosPorFiltros(Map filtros){
+		List<ParametroValorDataType> listaParametros = new ArrayList<ParametroValorDataType>();
+		List<ParametroValorEntity> listaE = parametroDao.findAllByFiltros(filtros);
 		
 		if (listaE != null){
 			for (ParametroValorEntity e : listaE)

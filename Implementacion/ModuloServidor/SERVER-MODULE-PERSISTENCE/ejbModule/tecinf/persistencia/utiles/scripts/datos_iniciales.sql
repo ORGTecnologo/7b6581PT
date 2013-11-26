@@ -124,6 +124,6 @@ update usuarios set habilitado = true ;
 
 insert into categoria_reclamo (id,descripcion) values (1, 'Categoria generica');
 
-
+insert into parametros(nombre_parametro,valor_parametro) values ('cantidadTopContenidos' , '4');
 
 
