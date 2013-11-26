@@ -37,6 +37,7 @@ import tecinf.persistencia.daos.CategoriaReclamoDao;
 import tecinf.persistencia.daos.ContenidoDao;
 import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.ReclamoDao;
+import tecinf.persistencia.daos.SubCategoriaContenidoDao;
 import tecinf.persistencia.daos.UsuarioDao;
 import tecinf.persistencia.daos.UsuarioDescargaContenidoDao;
 import tecinf.persistencia.daos.UsuarioSubeContenidoDao;
@@ -49,6 +50,7 @@ import tecinf.persistencia.entities.ContenidoTemaMusicalEntity;
 import tecinf.persistencia.entities.ContenidoVideoEntity;
 import tecinf.persistencia.entities.ParametroValorEntity;
 import tecinf.persistencia.entities.ReclamoEntity;
+import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.entities.UsuarioSubeContenidoEntity;
@@ -69,6 +71,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	private VersionContenidoDao versionContenidoDao = null;
 	private ReclamoDao reclamoDao = null;
 	private CategoriaReclamoDao categoriaReclamoDao = null;
+	private SubCategoriaContenidoDao subCategoriaContenidoDao = null;
 	
 	private FileSystemUtils fSU = new FileSystemUtils();
 	
@@ -82,6 +85,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		versionContenidoDao = PersistenciaFactory.getVersionContenidoDao();
 		reclamoDao = PersistenciaFactory.getReclamoDao();
 		categoriaReclamoDao = PersistenciaFactory.getCategoriaReclamoDao();
+		subCategoriaContenidoDao = PersistenciaFactory.getSubCategoriaContenidoDao();
 		
 	}
 	
@@ -325,13 +329,23 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		vC.setContenido(nC);
 		nC.getVersiones().add(vC);		
 		
+		Integer idSubCategoria = Integer.valueOf(ValidationUtil.isNullOrEmpty(dt.getSubcategoria()) ? "8" : dt.getSubcategoria() );
+		SubCategoriaContenidoEntity subcategoria = subCategoriaContenidoDao.findByID(idSubCategoria);
+		nC.setSubcategoria(subcategoria);
+		
 		//contenidoDao.persist(nC);
 		
 		/* AGREGO LA CLASE ASOCIATIVA USUARIO-SUBE-CONTENIDO */
 		UsuarioSubeContenidoEntity usc = new UsuarioSubeContenidoEntity();
 		usc.setFechaSubida(new Date());
 		usc.setContenido(nC);
-		usc.setPrecioSubida(Float.valueOf("0.0"));
+		Float precio = 0.0f;
+		try {
+			precio = Float.valueOf(dt.getPrecio());
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e);
+		}
+		usc.setPrecioSubida(precio);
 		UsuarioEntity ue = usuarioDao.findByID(usuario);
 		if (ue == null)
 			throw new Exception("Error al recuperar usuario.");
@@ -407,8 +421,9 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		if (!usuario.equals(descarga.getUsuarioCliente().getUsuario()))
 			throw new Exception("USUARIO_NO_AUTORIZADO_A_CALIFICAR");
 		
-		descarga.setCalificacionDescarga(dt.getCalificacion());
-		descarga.setDescripcionValoracion(dt.getComentario());
+		descarga.setCalificacionDescarga(dt.getCalificacion() == null ? 0 : dt.getCalificacion());
+		descarga.setDescripcionValoracion(ValidationUtil.isNullOrEmpty(dt.getComentario()) ? "" : dt.getComentario());
+		descarga.setEstadoDescarga(EnumEstadosDescarga.FINALIZADO);
 		
 		usuarioDescargaContenidoDao.merge(descarga);
 	}

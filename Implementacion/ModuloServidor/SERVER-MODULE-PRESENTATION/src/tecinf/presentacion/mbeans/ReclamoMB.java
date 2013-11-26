@@ -69,5 +69,7 @@ public class ReclamoMB implements Serializable {
 		this.activoPanelResolver = activoPanelResolver;
 	}
 	
+	public void mostrarPanelResolver() { activoPanelResolver = true; }
+	public void ocultarPanelResolver() { activoPanelResolver = false; }
 	
 }

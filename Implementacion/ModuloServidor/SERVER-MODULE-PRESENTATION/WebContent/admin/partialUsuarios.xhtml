@@ -27,8 +27,7 @@
 							</div>
 							<div class="col-md-2">
 								Tipo de usuario
-								<h:selectOneMenu value="#{usuarioMB.filtroTipoUsuario}"
-									class="selectpicker">
+								<h:selectOneMenu value="#{usuarioMB.filtroTipoUsuario}" class="selectpicker">
 									<f:selectItem itemLabel="Todos" itemValue="todos" />
 									<f:selectItem itemLabel="Administrador"
 										itemValue="usuario_administrador" />
@@ -111,7 +110,9 @@
 				</div>
 			</h:form>
 		</h:panelGroup>
-
+		<script>
+			$('.selectpicker').selectpicker();
+		</script>
 	</ui:define>
 </ui:composition>
 </html>

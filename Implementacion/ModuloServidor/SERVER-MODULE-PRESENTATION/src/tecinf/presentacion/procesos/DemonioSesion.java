@@ -32,7 +32,7 @@ public class DemonioSesion {
         		
         		negocioParametros = NegocioFactory.getNegocioParametros();
         		
-        		logger.info("Ejecucion de demonio de chequeo de sesiones");
+        		//logger.info("Ejecucion de demonio de chequeo de sesiones");
         		NegocioUsuario negocioUsuario = NegocioFactory.getNegocioUsuario();
         		negocioUsuario.executeSessionsRefresh();
         		

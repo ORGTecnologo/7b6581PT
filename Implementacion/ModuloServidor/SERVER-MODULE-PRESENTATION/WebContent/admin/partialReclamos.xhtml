@@ -23,26 +23,28 @@
 		
 						<h:column>
 							<f:facet name="header">Título</f:facet>
-							<a href="#">#{o.titulo}</a>
+							#{o.titulo}
 						</h:column>
 		
 						<h:column>
 							<f:facet name="header">Autor</f:facet>
-							<a href="/SERVER-MODULE-PRESENTATION/views/perfil.html?nick=#{o.autor}">#{o.autor}</a>							
+							<a target="_blank" href="/SERVER-MODULE-PRESENTATION/views/perfil.html?nick=#{o.autor}">#{o.autor}</a>							
 						</h:column>
 						
 						<h:column>
-							<f:facet name="header">Fecha y hora reclamo</f:facet>
-							#{o.fechaReclamo}
-						</h:column>
+							<f:facet name="header">Fecha y hora</f:facet>
+							<h:outputText value="#{o.fechaReclamo}">
+								<f:convertDateTime timeZone="GMT-02:00" type="date" pattern="dd-MM-yyyy HH:mm"/>
+							</h:outputText>
+						</h:column>							
 						
 						<h:column>
 							<f:facet name="header">Contenido</f:facet>
-							<a href="/SERVER-MODULE-PRESENTATION/views/content.html?id=#{o.idContenido}">Ver</a>
+							<a target="_blank" href="/SERVER-MODULE-PRESENTATION/views/content.html?id=#{o.idContenido}">Ver</a>
 						</h:column>
 						
 						<h:column>
-							<h:commandButton class="btn" action="#{reclamoMB.resolverReclamo}" value="Resolver"> 
+							<h:commandButton class="btn" action="#{reclamoMB.mostrarPanelResolver}" value="Detalle"> 
 								<f:setPropertyActionListener target="#{reclamoMB.reclamoActual}" value="#{o}" />
 							</h:commandButton>
 						</h:column>
@@ -52,7 +54,36 @@
 			</div>
 			</div>
 		</h:form>
-
+	
+		<h:panelGroup id="panelDetalle" rendered="#{reclamoMB.activoPanelResolver}">
+			<h:form>
+				<div class="modal loginDiv modal-dialog" style="width: 500px">
+					<div class="modal-content">
+						<div class="modal-header">Detalle del reclamo</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12 col-xs-10">
+									<p>
+										Título 
+										<h:outputText value="#{reclamoMB.reclamoActual.titulo}" type="text" class="col-xs-7 form-control" />
+									</p>
+									<p>
+										Descripción 
+										<h:inputTextarea style="resize: none;height: 150px;" disabled="true" value="#{reclamoMB.reclamoActual.descripcion}" type="text" class="col-xs-7 form-control" />
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<h:commandButton class="btn" id="btnConfirmarResolucion" value="Confirmar" action="#{reclamoMB.resolverReclamo}" />
+							<h:commandButton class="btn" value="Cancelar" action="#{reclamoMB.ocultarPanelResolver}" />
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</h:panelGroup>
+	
+	
 	</ui:define>
 </ui:composition>
 </html>

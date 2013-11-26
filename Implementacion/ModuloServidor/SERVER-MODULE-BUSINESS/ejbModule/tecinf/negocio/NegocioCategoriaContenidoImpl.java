@@ -2,6 +2,7 @@ package tecinf.negocio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.naming.NamingException;
@@ -221,6 +222,18 @@ public class NegocioCategoriaContenidoImpl implements NegocioCategoriaContenido 
 		List<CategoriaContenidoDataType> listaCat = new ArrayList<CategoriaContenidoDataType>(); 
 		
 		List<CategoriaContenidoEntity> listaSubCatE = categoriaContenidoDao.findAll();
+		if (listaSubCatE != null){
+			for (CategoriaContenidoEntity s : listaSubCatE)
+				listaCat.add(DataTypesFactory.getCategoriaContenidoDataType(s));
+		}
+		
+		return listaCat;
+	}
+	
+	public List<CategoriaContenidoDataType> obtenerCategoriasPorFiltros(Map filtros){
+		List<CategoriaContenidoDataType> listaCat = new ArrayList<CategoriaContenidoDataType>(); 
+		
+		List<CategoriaContenidoEntity> listaSubCatE = categoriaContenidoDao.findAllByFiltros(filtros);
 		if (listaSubCatE != null){
 			for (CategoriaContenidoEntity s : listaSubCatE)
 				listaCat.add(DataTypesFactory.getCategoriaContenidoDataType(s));

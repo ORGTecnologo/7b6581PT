@@ -1,0 +1,47 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="admin.xhtml">
+	<ui:define name="body">
+
+			<h:form>
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Cambiar contraseña</h2>
+				</div>
+				<div class="col-md-12">
+				<div class="wrapperTablasAdministracion">
+					<div id="panelCambioContrasenia">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12 col-xs-10">
+									<p>
+										Contraseña anterior <h:inputSecret value="#{cambiarContraseniaMB.cambiarContraseniaDataType.contraseniaAnterior}" type="text" class="col-xs-7 form-control" />
+									</p>
+									<p>
+										Nueva contraseña <h:inputSecret value="#{cambiarContraseniaMB.cambiarContraseniaDataType.contraseniaNueva}" type="text" class="col-xs-7 form-control" />
+									</p>
+									<p>
+										Confirmar nueva contraseña <h:inputSecret value="#{cambiarContraseniaMB.cambiarContraseniaDataType.confirmacionContraseniaNueva}" type="text" class="col-xs-7 form-control" />
+									</p>
+								</div>
+							</div>
+						</div>						
+						<div class="modal-footer">
+							<h:message for="btnConfirmar" class="error" />
+							<h:commandButton class="btn" id="btnConfirmar" value="Confirmar" action="#{cambiarContraseniaMB.cambiarContrasenia}" />
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
+</html>

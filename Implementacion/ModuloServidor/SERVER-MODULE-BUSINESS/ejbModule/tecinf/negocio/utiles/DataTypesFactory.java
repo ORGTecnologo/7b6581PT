@@ -225,6 +225,7 @@ public class DataTypesFactory {
 				dt.getListaFotos().add(f.getUrlFoto());
 		}
 		dt.setCalificacion(c.getCalificacion() == null ? 0 : c.getCalificacion());
+		dt.setUrlDescarga("/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?idContenido=" + c.getId() + "&rutaContenido=" + c.getRutaArchivoContenido());
 		
 		return dt;
 	}

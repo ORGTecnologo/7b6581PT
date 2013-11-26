@@ -320,7 +320,7 @@ function enviarCalificacion(idDescarga, puntaje, comentario){
 		url: ip + '/contenidos/calificarDescarga',
 		type: 'PUT',
 		dataType: 'json',
-	    contentType: "application/json",
+		contentType : 'application/json',
 		data: JSON.stringify({
 			'idDescarga'   : idDescarga, 
 			'calificacion' : puntaje,

@@ -330,14 +330,14 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		if (ValidationUtil.isNullOrEmpty(dt.getConfirmacionContraseniaNueva()) ||
 			ValidationUtil.isNullOrEmpty(dt.getContraseniaNueva()) ||
 			ValidationUtil.isNullOrEmpty(dt.getConfirmacionContraseniaNueva()))
-				throw new Exception("Contrsenia anterior, nueva y confirmacion obligatorias");
+				throw new Exception("Contraseña anterior, nueva y confirmacion obligatorias");
 			
 		UsuarioEntity usuario = usuarioDao.findByID(nick);
 		if (usuario == null)
 			throw new Exception("Usuario no encontrado");
 		
 		String hashedPwd = Encriptacion.encriptarMD5(dt.getContraseniaAnterior());
-		if (usuario.getContrasenia().equals(hashedPwd))
+		if (!usuario.getContrasenia().equals(hashedPwd))
 			throw new Exception("Contrasña anterior inválida");
 		if (!dt.getConfirmacionContraseniaNueva().equals(dt.getContraseniaNueva()))
 			throw new Exception("Las nuevas contraseñas no coinciden.");
