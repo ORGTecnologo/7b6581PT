@@ -209,7 +209,7 @@ function cargarTablaPendientesCalificacion(pag){
            + "<td><div class='row'><div class='col-xs-5'>"
            + "<select id='valorCalificacion_" + idDescarga + "' class='form-control input-sm selectpicker' style='min-width: 4.5em;'>"
            + "<option>-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>"
-           + "</div><div class='col-md-1'><button id='confirmarCalificacion_" + idDescarga + "_"+ idContenido +"' onclick='agregarComentario(this)' class='btn btn-xs'>Ok</button>"
+           + "</div><div class='col-md-1'><button title='Calificar' id='confirmarCalificacion_" + idDescarga + "_"+ idContenido +"' onclick='agregarComentario(this)' class='btn btn-xs'>Ok</button>"
            + "</div></div></td></tr>";
 
     };
@@ -233,6 +233,7 @@ function cargarTablaMisContenidos(pag){
       var idDescarga    = jsonProy.misContenidos[i].idDescarga;
       var nombre        = jsonProy.misContenidos[i].nombreContenido;
       var fechaDescarga = jsonProy.misContenidos[i].fechaDescarga;
+      var calificacion  = jsonProy.contentidosACalificar[i].calificacion;      
       var foto          = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.misContenidos[i].foto;
       var tipoContenido = jsonProy.misContenidos[i].tipoContenido;
           tipoContenido = getStringTipoContenido(tipoContenido);
@@ -240,8 +241,8 @@ function cargarTablaMisContenidos(pag){
       html += "<tr><td><img class='thumbnail' src='" + foto + "' style='width: 50px;height: 50px;'></td>"
            + "<td><a href='" + confProy.URL_CONTENIDO + idContenido + "'>" + nombre + "</a></td>"
            + "<td>" + tipoContenido + "</td>"
-           + "<td><div class='row'><div class='col-xs-5'>4/5</div>"
-           + "<button class='btn btn-xs' id='generarReclamo_" + idDescarga + "_"+ idContenido +"' onclick='generarNuevoReclamo(this)'><i class='glyphicon glyphicon-question-sign'></i></button>"
+           + "<td><div class='row'><div class='col-xs-5'>" + calificacion + "/5</div>"
+           + "<button title='Reclamo' class='btn btn-xs' id='generarReclamo_" + idDescarga + "_"+ idContenido +"' onclick='generarNuevoReclamo(this)'><i class='glyphicon glyphicon-question-sign'></i></button>"
            + "</div></td></tr>";
     };
   };

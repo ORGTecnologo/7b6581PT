@@ -10,6 +10,14 @@
     <link rel="stylesheet" href="../css/FU_style.css">
     <link rel="stylesheet" href="../css/bootstrap.css" media="screen"/>
     <link rel="stylesheet" href="../css/FU_jquery.fileupload-ui.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" media="screen"/>
+    <link href="../css/bootstrap-glyphicons.css" type="text/css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
+    <link href="../css/themeProy.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-select.min.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../css/market.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" media="screen"/>
+    <script src="../js/Plugins/jquery.min.js"></script>
 </head>
 
 <script>
@@ -39,12 +47,12 @@
   <div class="collapse navbar-collapse navbar-ex1-collapse"> 
     <ul class="navbar-form navbar-left" role="search">
         <div class="form-group col-xs-6">
-            <input id="input-busqueda" type="search" class="form-control input-md" placeholder="Buscar" style="height: initial;">
+            <input id="input-busqueda" type="search" class="form-control input-md" placeholder="Buscar" style="height: initial;min-width: 25em;">
         </div>
         <ul class="btn-group">
             <button onclick="buscarContenidos();" class="btn btn-primary" style="margin-top: initial;">
                 <span class="glyphicon glyphicon-search"></span> Buscar</button>
-            <button class="btn btn-primary dropdown-toggle" type="button" onclick="verModales('configurarBusqueda');/*mostrarElemento('configurarBusqueda',true)*/"><span class="glyphicon glyphicon-cog"></span></button>
+            <button class="btn btn-primary dropdown-toggle" type="button" onclick="verModales('configurarBusqueda');"><span class="glyphicon glyphicon-cog"></span></button>
         </ul>
     </ul>
     <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
@@ -58,8 +66,9 @@
     <ul class="nav navbar-nav navbar-right" id="Nick-Logout-Div" style="display: none;margin-right: initial;margin-top: 0.7em;" hidden>
         <a class="nick dropdown-toggle" data-toggle="dropdown" role="button" href="#"><i class="glyphicon glyphicon-user"></i> nick <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/proveedor/AltaContenido.html">Crear Contenido</a></li>
-            <li><a id="dd_verPerfil" href="#">Ver Perfil</a></li>
+            <li id="opt_irAltaContenido"><a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/proveedor/AltaContenido.html"><i class="glyphicon glyphicon-cloud-upload"></i> Crear Contenido</a></li>
+            <li id="opt_irAdministracion"><a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/admin/admin.xhtml"><i class="glyphicon glyphicon-wrench"></i> Administracion</a></li>
+            <li><a id="dd_verPerfil" href="#"><i class="glyphicon glyphicon-user"></i> Ver Perfil</a></li>
             <li class="divider"></li>
             <li><a href="#" onclick="logoutUsuario()"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
         </ul>

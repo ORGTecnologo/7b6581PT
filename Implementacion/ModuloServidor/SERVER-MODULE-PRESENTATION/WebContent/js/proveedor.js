@@ -144,7 +144,7 @@ function enviarAltaContenido(){
 	content.Precio        = document.getElementById("id_precio").value;
 	content.tipoContenido = document.getElementById("id_tipoContenido").value;
 	content.Categoria 	  = document.getElementById("id_categoria").value;
-	content.subcategoria  = document.getElementById("id_subcategoria").value;
+	content.Subcategoria  = document.getElementById("id_subcategoria").value;
 
 	//MUSICA
 	content.duracionTema  = document.getElementById("id_duracionMusica").value;

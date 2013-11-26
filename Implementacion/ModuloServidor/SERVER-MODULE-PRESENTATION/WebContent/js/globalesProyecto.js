@@ -55,6 +55,10 @@ function JSON_PROY(){
 	this.resultadoBusqueda  = new Array();
 	this.contentidosACalificar = new Array();
 	this.misContenidos = new Array();
+	this.top_musica = new Array();
+	this.top_video = new Array();
+	this.top_software = new Array();
+	this.top_libros = new Array();
 }
 
 var varsProy = new VARS_PROY();

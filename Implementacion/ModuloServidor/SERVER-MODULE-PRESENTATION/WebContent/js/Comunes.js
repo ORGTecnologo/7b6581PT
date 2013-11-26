@@ -11,6 +11,24 @@ function checkearSesionAbierta(){
 	existeSesionServ(varsProy.nick);
 }
 
+function mostrarElementosSegunUsuario(tipoUsuario){
+
+	switch(tipoUsuario){
+		case confProy.ROL_ADMINISTRADOR:
+			$('#opt_irAltaContenido').show();
+			$('#opt_irAdministracion').show();
+		break;
+		case confProy.ROL_PROVEEDOR:
+			$('#opt_irAltaContenido').show();
+			$('#opt_irAdministracion').hide();				
+		break;
+		case confProy.ROL_CLIENTE:
+			$('#opt_irAltaContenido').hide();
+			$('#opt_irAdministracion').hide();				
+		break;
+	}
+}
+
 function bloquearPantalla(){
     'use strict';
     $.blockUI({ message: '<p><img src="../img/busy.gif" /> Cargando...</p>' ,
@@ -79,8 +97,6 @@ function cargarComboCategorias(idSelect){
 function cargarComboMultCategorias(idSelect){
 	idSelect || (idSelect = 'id_categoria');
 
-	//TODO PELO, combo multiples categorias
-
 	var select = document.getElementById(idSelect);
 
 	for (var i = 0; i < select.options.length; i++)
@@ -89,7 +105,8 @@ function cargarComboMultCategorias(idSelect){
 	for (var i = 0; i < jsonProy.categorias.length; i++) {
 		var option1 = document.createElement("option");
 			option1.text = jsonProy.categorias[i].nombre;
-			option1.value = i;//jsonProy.categorias[i].id;
+			option1.value = jsonProy.categorias[i].id;//i;
+			option1.selected = true;
 		select.add(option1,select.options[null]);
 	};
 

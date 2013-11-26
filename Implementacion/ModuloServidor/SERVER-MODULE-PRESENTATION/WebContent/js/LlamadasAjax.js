@@ -217,6 +217,8 @@ function loginUsuario(usuario, contrasenia){
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
+
+			mostrarElementosSegunUsuario(msg.tipoUsuario);
 			
 			if(msg.tipoUsuario === confProy.ROL_ADMINISTRADOR)
 				location.href = confProy.URL_ADMIN_HOME;
@@ -326,11 +328,11 @@ function enviarCalificacion(idDescarga, puntaje, comentario){
 		}),
 	})
 	.done(function(msg) {
-		
 		obtenerContenidosUsuario();
+		alert('Calificacion enviada con exito!');
 	})
 	.fail(function(msg) {
-		console.log("error: " + msg);
+		alert('Ocurrio un error inesperado!');
 	})
 	.always(function(msg) {
 	 	desbloquearPantalla();
@@ -387,6 +389,25 @@ function buscarContenidos(){
 	});
 }
 
+function obtenerTopContenidos(cant,tipo){
+
+	$.ajax({
+		url: "/contenidos/obtenerTopContenidos?cantidad="+ cant +"&tipo=" + tipo,
+		type: 'GET',
+		dataType: 'json',
+	})
+	.done(function(msg) {
+		cargarTopEnMemoria(tipo,msg);
+		cargarIndexTop(tipo);
+	})
+	.fail(function(msg) {
+		console.log("error");
+	})
+	.always(function(msg) {
+		console.log("complete");
+	});
+}
+
 function obtenerDatosdeUsuario(nick){
 	bloquearPantalla();
 
@@ -419,7 +440,10 @@ function obtenerCategoriasySubcategorias(idSelect){
 	.done(function(msg) {
 		console.log("Estas son las categorias: " + msg);
 		cargarCategoriasMemoria(msg);
-		cargarComboCategorias(idSelect);
+		if(idSelect === 'multiplesCat')
+			cargarComboMultCategorias(idSelect);
+		else
+			cargarComboCategorias(idSelect);
 	})
 	.fail(function(msg) {
 		console.log("Fallo: " + msg);
@@ -452,6 +476,8 @@ function existeSesionServ(user){
 	    	mostrarElemento('Nick-Logout-Div');
 	    	ocultarElemento('Login-Registro-Div');
 			window.localStorage.setItem(confProy.sessionStorageRol,msg.tipoUsuario);
+
+			mostrarElementosSegunUsuario(msg.tipoUsuario);
 		}
 		else{
 			window.localStorage.clear();
