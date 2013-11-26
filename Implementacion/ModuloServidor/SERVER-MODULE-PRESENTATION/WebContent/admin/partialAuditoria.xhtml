@@ -10,10 +10,45 @@
 	<ui:define name="body">
 
 			<h:form>
+				
 			<div class="row">
 				<div class="col-md-12">
 					<h2>Ver registros de ingreso</h2>
 				</div>
+				
+				<div class="col-md-12">
+					<fieldset>
+						<legend>Filtros</legend>
+						<div class="row">						
+							<div class="col-md-3">
+								Desde
+								<div class="input-append date">
+							  		<h:inputText value="#{auditoriaMB.filtroDesde}" class="col-md-10 form-control"/>
+							  		<span class="add-on"><i class="icon-th"></i></span>
+								</div>
+								
+							</div>
+							<div class="col-md-3">
+								Hasta
+								<div class="input-append date">
+									<h:inputText value="#{auditoriaMB.filtroHasta}" class="col-md-10 form-control"/>
+									<span class="add-on"><i class="icon-th"></i></span>
+								</div>
+							</div>
+							<div class="col-md-3">
+								Usuario
+								<h:inputText value="#{auditoriaMB.filtroUsuario}" class="col-md-10 form-control"/>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 ">
+								<h:commandButton action="#{auditoriaMB.filtrar}" value="Filtrar" class="btn pull-right">
+								</h:commandButton>
+							</div>
+						</div>					
+					</fieldset>
+				</div>
+				
 				<div class="col-md-12">
 				<div class="wrapperTablasAdministracion">
 					<h:dataTable value="#{auditoriaMB.listaAuditoria}" var="o"
@@ -41,7 +76,12 @@
 			</div>
 			</div>
 		</h:form>
-
+		
+		<script>
+			$('.input-append.date').datepicker({
+				format: "dd/mm/yyyy"
+			});
+		</script>
 	</ui:define>
 </ui:composition>
 </html>

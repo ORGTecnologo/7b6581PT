@@ -3,6 +3,7 @@ package tecinf.negocio;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.naming.NamingException;
@@ -34,10 +35,10 @@ public class NegocioAuditoriaImpl implements NegocioAuditoria {
 		
 	}
 	
-	public List<AuditoriaDataType> obtenerRegistroDeIngresos(){
+	public List<AuditoriaDataType> obtenerRegistroDeIngresos(Map filtros) {
 		List<AuditoriaDataType> listaIngresos = new ArrayList<AuditoriaDataType>(); 
 		
-		List<AuditoriaEntity> listaIngresosE = auditoriaDao.getHistoryByOperation(ConstantesAuditoria.ID_OPERACION_LOGIN);
+		List<AuditoriaEntity> listaIngresosE = auditoriaDao.getAccesosByFiltos(filtros);
 		if (listaIngresosE != null){
 			for (AuditoriaEntity a : listaIngresosE)
 				listaIngresos.add(DataTypesFactory.getAuditoriaDataType(a));

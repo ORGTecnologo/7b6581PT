@@ -37,6 +37,7 @@ import tecinf.persistencia.daos.CategoriaReclamoDao;
 import tecinf.persistencia.daos.ContenidoDao;
 import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.ReclamoDao;
+import tecinf.persistencia.daos.SubCategoriaContenidoDao;
 import tecinf.persistencia.daos.UsuarioDao;
 import tecinf.persistencia.daos.UsuarioDescargaContenidoDao;
 import tecinf.persistencia.daos.UsuarioSubeContenidoDao;
@@ -49,6 +50,7 @@ import tecinf.persistencia.entities.ContenidoTemaMusicalEntity;
 import tecinf.persistencia.entities.ContenidoVideoEntity;
 import tecinf.persistencia.entities.ParametroValorEntity;
 import tecinf.persistencia.entities.ReclamoEntity;
+import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.entities.UsuarioSubeContenidoEntity;
@@ -69,6 +71,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 	private VersionContenidoDao versionContenidoDao = null;
 	private ReclamoDao reclamoDao = null;
 	private CategoriaReclamoDao categoriaReclamoDao = null;
+	private SubCategoriaContenidoDao subCategoriaContenidoDao = null;
 	
 	private FileSystemUtils fSU = new FileSystemUtils();
 	
@@ -82,6 +85,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		versionContenidoDao = PersistenciaFactory.getVersionContenidoDao();
 		reclamoDao = PersistenciaFactory.getReclamoDao();
 		categoriaReclamoDao = PersistenciaFactory.getCategoriaReclamoDao();
+		subCategoriaContenidoDao = PersistenciaFactory.getSubCategoriaContenidoDao();
 		
 	}
 	
@@ -324,6 +328,10 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		vC.setDescripcion("X");
 		vC.setContenido(nC);
 		nC.getVersiones().add(vC);		
+		
+		Integer idCategoria = Integer.valueOf(ValidationUtil.isNullOrEmpty(dt.getSubcategoria()) ? "8" : dt.getSubcategoria() );
+		SubCategoriaContenidoEntity subcategoria = subCategoriaContenidoDao.findByID(idCategoria);
+		nC.setSubcategoria(subcategoria);
 		
 		//contenidoDao.persist(nC);
 		
