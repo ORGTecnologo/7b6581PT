@@ -163,5 +163,26 @@ function enviarAltaContenido(){
 	content.formatoVideo  = document.getElementById("id_formato").value;
 	content.calidadVideo  = document.getElementById("id_calidad").value;
 
+
+
+
+	//validaciones
+	validarDatos();
+	if (!Precio.isNumeric)
+		alert
+	duracionTema
+	duracionVideo
+	cantidadPaginas
+
+
 	altaContenido(content);
+}
+
+function validacionesGralesAltaContenido(precio,tipo,cat,subcat){
+
+	if(precio == null || tipo == null || cat == null || subcat)
+		alert('Todos los campos son obligatorios!!');
+	else
+		if (!precio.isNumeric())
+			alert('El precio no es valido');
 }

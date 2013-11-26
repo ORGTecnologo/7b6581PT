@@ -224,7 +224,7 @@ function loginUsuario(usuario, contrasenia){
 				location.href = confProy.URL_ADMIN_HOME;
 		}
 		else{
-			var mensaje = split(msg.respuesta,'|');
+			var mensaje = msg.respuesta.split('|')
 			alert(mensaje[1]);
 		}
 	})
@@ -361,8 +361,7 @@ function enviarCambioPassword(nick,pass,newPass,newPass2){
 			ocultarElemento('password_modal')
 		}
 		else
-			alert(msg.mensageOperacion);
-
+			alert(msg.mensajeOperacion);
 	})
 	.fail(function() {
 		console.log("error");

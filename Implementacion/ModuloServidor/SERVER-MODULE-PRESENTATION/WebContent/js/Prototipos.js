@@ -104,7 +104,21 @@ function inicializarPrototipos() {
 		}
 		return true;
 	}
-	
+
+	String.prototype.isDuracion = function( ){
+
+		if (this == undefined)
+			return false
+
+		var validChars = '0123456789:';
+
+		for(var i = 0; i < this.length; i++) {
+			if(validChars.indexOf(this.charAt(i)) == -1)
+				return false;
+		}
+		return true;
+	}
+
 	String.prototype.esSimboloMatematico = function( ){
 
 		if (this == undefined)

@@ -104,7 +104,7 @@
                     <select id="id_subcategoria" class="form-control" >
                     </select>
                 </p>
-                <p>Precio<input id="id_precio" class="form-control" type="tel"></input></p>
+                <p>Precio<input id="id_precio" class="form-control" type="tel" onkeypress="return onlyPrice(event)"></input></p>
             </div>        
             <div class="col-md-6">
                 <p>Nombre <input id="id_nombre" type="text" class="form-control col-lg-3"></input></p>
@@ -115,7 +115,7 @@
             <div id="esp_libro" class="col-md-6 hide">    
                 <p>Fecha Publicacion <input id="id_fechaPublicacion" type="text" class="form-control col-lg-1"></input></p>
                 <p>Autor <input id="id_autor" type="text" class="form-control col-lg-1"></input></p>
-                <p>Cantidad de Paginas <input id="id_cantPag" type="text" class="form-control col-lg-1"></input></p>
+                <p>Cantidad de Paginas <input id="id_cantPag" type="text" class="form-control col-lg-1" onkeypress="return onlyNumbersDano(event)"></input></p>
             </div>
                 <!-- App -->
             <div id="esp_app" class="col-md-6">
@@ -125,13 +125,13 @@
             </div>
                 <!-- Video -->
             <div id="esp_video" class="col-md-6 hide">
-                <p>Duracion <input id="id_duracion" type="text" class="form-control col-lg-1"></input></p>
+                <p>Duracion <input id="id_duracion" type="text" class="form-control col-lg-1" onkeypress="return onlyDesc(event)"></input></p>
                 <p>Formato <input id="id_formato" type="text" class="form-control col-lg-1"></input></p>
                 <p>Calidad <input id="id_calidad" type="text" class="form-control col-lg-1"></input></p>
             </div>            
                 <!-- Musica -->
             <div id="esp_musica" class="col-md-6 hide">
-                <p>Duracion<input id="id_duracionMusica" type="text" class="form-control col-lg-1"></input></p>
+                <p>Duracion<input id="id_duracionMusica" type="text" class="form-control col-lg-1" onkeypress="return onlyDesc(event)"></input></p>
                 <p>Artista <input id="id_artista" type="text" class="form-control col-lg-1"></input></p>
                 <p>Album<input id="id_album" type="text" class="form-control col-lg-1"></input></p>
             </div>        
@@ -278,28 +278,6 @@
         </tr>
         {% } %}
     </script>
-
-    <script src="../js/Plugins/jquery.min.js"></script>
-    <script src="../js/Plugins/jquery-ui.js"></script>    
-    <script src="../js/Plugins/bootstrap.js"></script>    
-    <script src="../js/proveedor.js"></script>    
-    <script src="../js/globalesProyecto.js"></script> 
-    <script src="../js/Objetos.js"></script>   
-    <script src="../js/Prototipos.js"></script>
-    <script src="../js/LlamadasAjax.js"></script>
-
-    <script src="../js/FU_vendor/jquery.ui.widget.js"></script>
-    <script src="../js/FU_vendor/FU_tmpl.min.js"></script>
-    <script src="../js/FU_vendor/FU_load-image.min.js"></script>
-    <script src="../js/FU_vendor/FU_canvas-to-blob.min.js"></script>
-    <script src="../js/FU_vendor/FU_bootstrap-image-gallery.min.js"></script>
-    <script src="../js/FU_vendor/FU_jquery.iframe-transport.js"></script>
-    <script src="../js/FU_vendor/FU_jquery.fileupload.js"></script>
-    <script src="../js/FU_vendor/FU_jquery.fileupload-fp.js"></script>
-    <script src="../js/FU_vendor/FU_jquery.fileupload-ui.js"></script>
-    <script src="../js/FU_vendor/FU_locale.js"></script>
-    <script src="../js/FU_vendor/FU_main.js"></script>
-
 
 <!-- RESULTADOS DE BUSQUEDA -->
 <div id="resultadoBusqueda" class="container hide">
@@ -450,5 +428,32 @@
         </div>
     </div>
 </div>
+
+
+    <script src="../js/Plugins/jquery.min.js"></script>
+    <script src="../js/Plugins/jquery-ui.js"></script>    
+    <script src="../js/Plugins/bootstrap.js"></script>
+    <script src="../js/Plugins/bootstrap-select.min.js"></script>    
+    <script src="../js/proveedor.js"></script>    
+    <script src="../js/globalesProyecto.js"></script> 
+    <script src="../js/Objetos.js"></script>   
+    <script src="../js/Prototipos.js"></script>
+    <script src="../js/LlamadasAjax.js"></script>
+    <script src="../js/getSet.js"></script>
+    <script src="../js/Inicio.js"></script>
+    <script src="../js/Comunes.js"></script>
+    <script src="../js/blockUI.js"></script>    
+
+    <script src="../js/FU_vendor/jquery.ui.widget.js"></script>
+    <script src="../js/FU_vendor/FU_tmpl.min.js"></script>
+    <script src="../js/FU_vendor/FU_load-image.min.js"></script>
+    <script src="../js/FU_vendor/FU_canvas-to-blob.min.js"></script>
+    <script src="../js/FU_vendor/FU_bootstrap-image-gallery.min.js"></script>
+    <script src="../js/FU_vendor/FU_jquery.iframe-transport.js"></script>
+    <script src="../js/FU_vendor/FU_jquery.fileupload.js"></script>
+    <script src="../js/FU_vendor/FU_jquery.fileupload-fp.js"></script>
+    <script src="../js/FU_vendor/FU_jquery.fileupload-ui.js"></script>
+    <script src="../js/FU_vendor/FU_locale.js"></script>
+    <script src="../js/FU_vendor/FU_main.js"></script>
 
 </html>

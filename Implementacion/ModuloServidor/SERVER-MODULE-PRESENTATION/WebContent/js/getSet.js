@@ -4,6 +4,26 @@ function onlyNumbersDano(evt){
             return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
 }
 
+function onlyPrice(evt){
+//Solo admite el ingreso de numeros
+    var keyPressed = (evt.which) ? evt.which : event.keyCode;
+    	console.log('key = ' + keyPressed);
+    	if (keyPressed === 46)
+    		return true;
+    	else
+            return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
+}
+
+function onlyDesc(evt){
+//Solo admite el ingreso de numeros
+    var keyPressed = (evt.which) ? evt.which : event.keyCode;
+    	console.log('key = ' + keyPressed);
+    	if (keyPressed === 58)
+    		return true;
+    	else
+            return !(keyPressed > 31 && (keyPressed < 48 || keyPressed > 57));
+}
+
 function Pintar_hasError(input){
 //Esta funcion pinta de rojo el input
 	if (input.value == ""){
@@ -19,7 +39,7 @@ function setRegistroTipo(tipo){
 }
 
 function verModales(id){
-	
+
 	switch(id){
 		case 'registroUsuario':
 			if (varsProy.tipoRegistro == 'proveedor')
