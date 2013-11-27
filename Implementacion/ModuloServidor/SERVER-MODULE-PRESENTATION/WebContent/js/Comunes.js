@@ -49,6 +49,13 @@ function desbloquearPantalla(){
     $.unblockUI();
 }
 
+function confirmar(){
+	if(confirm('Estas a punto de descargar este contenido, deseas continuar?'))
+		return true;
+	else
+		return false;
+}
+
 function cargarConfigBusqueda(idSelect){
 	obtenerCategoriasySubcategorias('multiplesCat');
 }
@@ -373,9 +380,12 @@ function cargarResultadoBusqueda(pag){
 	if (expresion < 0)
 		lengthFor = aMostrar;
 
+	if(pag == aMostrar-1)
+		lengthFor = aMostrar;
+
 	for (var i = (pag*10 + 0); i < (pag*10 + 10); i++) {
 
-		if (!(i >= lengthFor)) {
+		if (!(i >= (pag*10 + lengthFor))) {
 			var id     = jsonProy.resultadoBusqueda[i].id;
 			var nombre = jsonProy.resultadoBusqueda[i].nombreContenido;
 			var desc   = jsonProy.resultadoBusqueda[i].descripcionContenido;
