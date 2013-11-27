@@ -157,7 +157,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		//Creo la estructura de directorios para los usuarios cliente
 		if (!(new FileSystemUtils()).crearEstructuraDirectorioUsuarioCliente(ue.getUsuario()))
 			throw new Exception("Error al crear directorio de usuario");
-		negocioAuditoria.registrarAuditoria(ue.getUsuario(), new Date(), ConstantesAuditoria.ID_OBJETO_USUARIO, ConstantesAuditoria.ID_OPERACION_ALTA, ue.getUsuario());
+		//negocioAuditoria.registrarAuditoria(ue.getUsuario(), new Date(), ConstantesAuditoria.ID_OBJETO_USUARIO, ConstantesAuditoria.ID_OPERACION_ALTA, ue.getUsuario());
 		usuarioDao.persist(ue);
 		
 		return loginUsuario(dt.getCorreoElectronico(), dt.getContrasenia());
