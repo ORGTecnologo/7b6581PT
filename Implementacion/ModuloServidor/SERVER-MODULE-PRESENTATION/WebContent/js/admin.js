@@ -1,33 +1,28 @@
 //admin.js
 
-$(document).ready(function(){
-    
-	inicializarPrototipos();
-
-    $( "#inputFecha" ).datepicker({
-	      changeMonth: true,
-	      changeYear: true,
-	      dateFormat: "dd-mm-yy",
-	      maxDate: 0
-    });
-   
-    $( "#div_altaServicio").hide();
-
-    if (checkearSesionAbierta()){
-		var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
-			nick.innerText = varsProy.nick;
-
-	    mostrarElemento('Nick-Logout-Div');
-	    ocultarElemento('Login-Registro-Div');
-    }
-});
-
-
-
 /* funciones que cargan los abms en el backend del administrador */
 
-function loadABMCategorias(){
-	$("#wrapperAdministracion").load("/SERVER-MODULE-PRESENTATION/admin/partialCategorias.xhtml");	
-}
+function logoutUsuario(){
 
-$('.selectpicker').selectpicker();
+	$.ajax({
+	   url: confProy.IP_WEBSERVICES + '/usuarios/logout',
+	   type: 'PUT',
+	   data: JSON.stringify({
+		   usuario : window.localStorage.getItem(confProy.sessionStorageUser),
+		   token : '',
+	   }),
+	   datatype: "json",
+	   contentType: "application/json",
+	})
+	.done(function(msg) {
+		
+	})
+	.fail(function(msg) {
+		console.log(msg);
+		alert("Fallo del sistema, intente de nuevo o contacte con el administrador!!");
+	})
+	.always(function(msg) {
+		window.location.href = "/SERVER-MODULE-PRESENTATION/index.html";
+	});
+
+}

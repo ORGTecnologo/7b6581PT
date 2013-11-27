@@ -119,7 +119,7 @@ function altaContenido(content){
 	$.ajax({
 		url: ip + '/contenidos/altaContenido',
 		type: 'POST',
-		dataType: 'application/json',
+		dataType: 'json',
 		contentType: 'application/json',
 		
 		data: JSON.stringify({

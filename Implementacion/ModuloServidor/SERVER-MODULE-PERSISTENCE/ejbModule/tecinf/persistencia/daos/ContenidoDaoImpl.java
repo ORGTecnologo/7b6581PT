@@ -94,6 +94,30 @@ public class ContenidoDaoImpl extends DaoImpl<Integer, ContenidoEntity> implemen
 	}
 	
 	@SuppressWarnings("unchecked")
+	public List<ContenidoEntity> findAllByFiltros(@SuppressWarnings("rawtypes") Map filtros) {
+		String queryString = "SELECT e FROM ContenidoEntity e";
+		
+		String conds = "";
+		if (filtros.containsKey("usuario"))
+			conds += " (upper(e.proveedorContenido) like upper(:usuario)) AND";
+		if (filtros.containsKey("nombre"))
+			conds += " (upper(e.nombre) like upper(:nombre)) AND";
+		if (filtros.containsKey("tipo"))
+			conds += " (e.tipoContenido = :tipo) AND";
+		
+		queryString = queryString + (conds.isEmpty() ? "" : " WHERE " + conds.substring(0 , conds.length() - 3));
+		Query query = em.createQuery(queryString);
+		
+		if (filtros.containsKey("usuario"))
+			query.setParameter("usuario",  "%" + filtros.get("usuario") + "%");
+		if (filtros.containsKey("nombre"))
+			query.setParameter("nombre",  "%" + filtros.get("nombre") + "%");
+		if (filtros.containsKey("tipo"))
+			query.setParameter("tipo", filtros.get("tipo"));
+		return (List<ContenidoEntity>)query.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<ContenidoEntity> findTopContents(Integer cantidad, String tipo) {		
 		String queryStr = "SELECT E from ContenidoEntity e WHERE e.tipoContenido = :tipoUsuario ORDER BY e.cantidadDescargas";		
 		Query query = em.createQuery(queryStr);

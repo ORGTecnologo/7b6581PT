@@ -1,6 +1,7 @@
 package tecinf.negocio;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Local;
 
@@ -15,7 +16,7 @@ import tecinf.negocio.dtos.ReclamoDataType;
 @Local
 public interface NegocioContenido {
 
-	public ContenidoDataType obtenerDatosContenido(int idContenido);	
+	public ContenidoDataType obtenerDatosContenido(int idContenido, Boolean fullPrivileges);	
 	
 	public void actualizarDatosContenidos();
 	
@@ -33,7 +34,7 @@ public interface NegocioContenido {
 	
 	public List<DescargaDataType> obtenerTodasLasDescargas(String usuario);
 	
-	public List<AprobarContenidoDataType> obtenerContenidosAAprobar();
+	public List<AprobarContenidoDataType> obtenerContenidosAAprobar(@SuppressWarnings("rawtypes") Map filtros);
 	
 	public Integer ingresarNuevoContendo(ContenidoIngresoDataType dt, String usuario) throws Exception;
 	

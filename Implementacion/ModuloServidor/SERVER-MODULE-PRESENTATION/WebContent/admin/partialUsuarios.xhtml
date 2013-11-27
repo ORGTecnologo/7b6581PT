@@ -54,7 +54,7 @@
 
 						<h:column>
 							<f:facet name="header">Usuario</f:facet>
-							<a href="#">#{o.usuario}</a>
+							<a target="_blank" href="/SERVER-MODULE-PRESENTATION/views/perfil.html?nick=#{o.usuario}">#{o.usuario}</a>
 						</h:column>
 						<h:column>
 							<f:facet name="header">Email</f:facet>
@@ -70,11 +70,8 @@
                             </h:column>
 
 						<h:column>
-							<h:commandButton class="btn"
-								action="#{usuarioMB.mostrarPanelModificar}"
-								value="#{o.habilitado == true ? 'Deshabilitar' : 'Habilitar' }">
-								<f:setPropertyActionListener target="#{usuarioMB.usuarioActual}"
-									value="#{o}" />
+							<h:commandButton class="btn" action="#{usuarioMB.mostrarPanelModificar}" value="#{o.habilitado == true ? 'Deshabilitar' : 'Habilitar' }">
+								<f:setPropertyActionListener target="#{usuarioMB.usuarioActual}" value="#{o}" />
 							</h:commandButton>
 						</h:column>
 					</h:dataTable>

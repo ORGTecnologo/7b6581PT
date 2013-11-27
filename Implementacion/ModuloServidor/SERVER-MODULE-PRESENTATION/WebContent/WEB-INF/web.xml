@@ -89,6 +89,9 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
         <param-value>Development</param-value>
     </context-param>
     
+    
+    
+    <!-- LANZADO DE PROCESOS AUTOMATICOS -->
     <listener>
         <listener-class>tecinf.presentacion.procesos.InicioProcesos</listener-class>
     </listener>

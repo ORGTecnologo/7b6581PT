@@ -43,40 +43,7 @@
 				</div>
 			<div class="row">
 				<div class="col-md-12">
-					<div class="wrapperTablasAdministracion">
-					<rich:dataTable id="dtParametros" align="center"
-						value="#{parametroMB.listaParametros}" var="o" height="232px"
-						width="287px" rowClasses="odd-row, even-row"
-						enableContextMenu="false" noDataLabel="Sin estados"
-						onRowMouseOver="this.style.backgroundColor='#FFEBDA'"
-						onRowMouseOut="this.style.backgroundColor='#{a4jSkin.rowBackgroundColor}'">
-							
-							<f:facet name="header">Estados</f:facet>
-						
-							<rich:column width="100" align="left">
-								<f:facet name="header">Nombre</f:facet>
-								<h:outputText value="#{o.nombre}" id="nombre"/>
-							</rich:column>
-							<rich:column width="150" align="left">
-								<f:facet name="header">valor</f:facet>
-								<h:outputText  value="#{o.valor}" id="valor" />
-							</rich:column>
-							
-							<rich:column width="12">
-								<a4j:commandLink reRender="pnlEditarEstado" id="EditLink" oncomplete="#{rich:component('pnlEditarEstado')}.show()">
-									<h:graphicImage value="/web/imagenes/Editar.png" style="border:0" />
-									<f:setPropertyActionListener value="#{o}" target="#{parametroMB.parametroActual}" />
-								</a4j:commandLink>
-								<rich:toolTip for="EditLink" value="Editar" styleClass="tooltipStyle"/>
-							</rich:column>
-							
-							<f:facet name="footer">
-								<rich:datascroller id="ds" for="dtParametros"></rich:datascroller>
-							</f:facet>
-							
-						</rich:dataTable>
-					
-					<!-- 
+					<div class="wrapperTablasAdministracion">					
 						<h:dataTable value="#{parametroMB.listaParametros}" var="o"
 							styleClass="order-table" headerClass="order-table-header"
 							rowClasses="order-table-odd-row,order-table-even-row"
@@ -93,14 +60,12 @@
 							</h:column>
 							
 							<h:column>
-								<h:commandButton class="btn"
-									action="#{parametroMB.mostrarPanelModificar}" value="Editar">
+								<h:commandButton class="btn" action="#{parametroMB.mostrarPanelModificar}" value="Editar">
 									<f:setPropertyActionListener target="#{parametroMB.parametroActual}" value="#{o}" />
 								</h:commandButton>
 							</h:column>
 							
 						</h:dataTable>
-						 -->
 					</div>
 				</div>
 			</div>
@@ -115,12 +80,15 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12 col-xs-10">
-									<h4>Datos de Parametro</h4>
+									<h4>Datos de Parámetro</h4>
 									<p>
-										Nombre <h:inputText disabled="true" value="#{parametroMB.parametroActual.nombre}" type="text" class="col-xs-7 form-control" />
+										Nombre
+										<h:inputText disabled="true" value="#{parametroMB.parametroActual.nombre}" type="text" class="col-xs-7 form-control" />
 									</p>
 									<p>
-										Valor <h:inputText value="#{parametroMB.parametroActual.valor}" type="text" class="col-xs-7 form-control" />
+										Valor
+										<h:inputText id="valor" value="#{parametroMB.parametroActual.valor}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(valor obligatorio)" />
+										<h:message for="valor" style="color:red" />
 									</p>
 								</div>
 							</div>
@@ -132,9 +100,7 @@
 					</div>
 				</div>
 			</h:form>
-		</h:panelGroup>
-	
-		
+		</h:panelGroup>		
 	
 	</ui:define>
 </ui:composition>

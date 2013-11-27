@@ -100,17 +100,21 @@
 								<div class="col-md-12 col-xs-10">
 									<h4>Datos de categoría</h4>
 									<p>
-										Nombre <h:inputText value="#{categoriaMB.currentCategoria.nombre}" type="text" class="col-xs-7 form-control" />
+										Nombre 
+										<h:inputText id="nombreMod" value="#{categoriaMB.currentCategoria.nombre}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatorio)" />
+										<h:message for="nombreMod" style="color:red" />
 									</p>
 									<p>
-										Descripción <h:inputText value="#{categoriaMB.currentCategoria.descripcion}" type="text" class="col-xs-7 form-control" />
+										Descripción 
+										<h:inputText id="descripcionMod" value="#{categoriaMB.currentCategoria.descripcion}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatoria)" />
+										<h:message for="descripcionMod" style="color:red" />
 									</p>
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
 								<h:commandButton class="btn" id="btnConfirmarModificacion" value="Confirmar" action="#{categoriaMB.editarCategoria}" />
-								<h:commandButton class="btn" value="Cancelar" action="#{categoriaMB.ocultarPanelEditar}" />
+								<h:commandButton immediate="true" class="btn" value="Cancelar" action="#{categoriaMB.ocultarPanelEditar}" />
 						</div>
 					</div>
 				</div>
@@ -127,10 +131,14 @@
 								<div class="col-md-12 col-xs-10">
 									<h4>Datos de categoría</h4>
 									<p>
-										Nombre <h:inputText value="#{categoriaMB.nuevaCategoria.nombre}" type="text" class="col-xs-7 form-control" />
+										Nombre 
+										<h:inputText id="nombreIng" value="#{categoriaMB.nuevaCategoria.nombre}" type="text" class="col-xs-7 form-control"  required="true" requiredMessage="(obligatorio)" />
+										<h:message for="nombreIng" style="color:red" />
 									</p>
 									<p>
-										Descripción <h:inputText value="#{categoriaMB.nuevaCategoria.descripcion}" type="text" class="col-xs-7 form-control" />
+										Descripción 
+										<h:inputText id="descripcionIng" value="#{categoriaMB.nuevaCategoria.descripcion}" type="text" class="col-xs-7 form-control"  required="true" requiredMessage="(obligatoria)" />
+										<h:message for="descripcionIng" style="color:red" />
 									</p>
 								</div>
 							</div>
@@ -138,7 +146,7 @@
 						<div class="modal-footer">	
 							<p><h:message for="btnConfirmarIngreso" /></p>						
 							<h:commandButton class="btn" id="btnConfirmarIngreso" value="Confirmar" action="#{categoriaMB.crearCategoria}" />
-							<h:commandButton class="btn" value="Cancelar" action="#{categoriaMB.ocultarPanelIngreso}" />
+							<h:commandButton immediate="true" class="btn" value="Cancelar" action="#{categoriaMB.ocultarPanelIngreso}" />
 						</div>
 					</div>
 				</div>
