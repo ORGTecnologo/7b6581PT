@@ -21,13 +21,19 @@
 							<div class="row">
 								<div class="col-md-12 col-xs-10">
 									<p>
-										Contraseña anterior <h:inputSecret value="#{cambiarContraseniaMB.cambiarContraseniaDataType.contraseniaAnterior}" type="text" class="col-xs-7 form-control" />
+										Contraseña anterior 
+										<h:inputSecret id="passwAnt" value="#{cambiarContraseniaMB.cambiarContraseniaDataType.contraseniaAnterior}" type="text" class="col-xs-7 form-control"  required="true" requiredMessage="(obligatorio)" />
+										<h:message for="passwAnt" style="color:red" />
 									</p>
 									<p>
-										Nueva contraseña <h:inputSecret value="#{cambiarContraseniaMB.cambiarContraseniaDataType.contraseniaNueva}" type="text" class="col-xs-7 form-control" />
+										Nueva contraseña 
+										<h:inputSecret id="passw1" value="#{cambiarContraseniaMB.cambiarContraseniaDataType.contraseniaNueva}" type="text" class="col-xs-7 form-control"  required="true" requiredMessage="(obligatorio)" />
+										<h:message for="passw1" style="color:red" />
 									</p>
 									<p>
-										Confirmar nueva contraseña <h:inputSecret value="#{cambiarContraseniaMB.cambiarContraseniaDataType.confirmacionContraseniaNueva}" type="text" class="col-xs-7 form-control" />
+										Confirmar nueva contraseña 
+										<h:inputSecret id="passw2" value="#{cambiarContraseniaMB.cambiarContraseniaDataType.confirmacionContraseniaNueva}" type="text" class="col-xs-7 form-control"  required="true" requiredMessage="(obligatorio)" />
+										<h:message for="passw2" style="color:red" />
 									</p>
 								</div>
 							</div>

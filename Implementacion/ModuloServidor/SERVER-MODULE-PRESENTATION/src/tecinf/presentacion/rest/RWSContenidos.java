@@ -1,5 +1,6 @@
 package tecinf.presentacion.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.NamingException;
@@ -149,11 +150,11 @@ public class RWSContenidos {
 	@Path("/obtenerDescargasACalificar")
 	@Produces("application/json")
 	public List<DescargaDataType> obtenerDescargasACalificar(@Context HttpServletRequest req) {
-		List<DescargaDataType> listaDescargas = null;
+		List<DescargaDataType> listaDescargas = new ArrayList<DescargaDataType>();
 		try {
-			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
-			(new RightsChecker()).checkCustomerRights(uSession);
-			listaDescargas = negocioContenido.obtenerDescargasACalificar(uSession.getUsuario()); 
+			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);			
+			if (uSession != null && (uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE) || uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR)) )
+				listaDescargas = negocioContenido.obtenerDescargasACalificar(uSession.getUsuario()); 
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e); 
@@ -165,10 +166,11 @@ public class RWSContenidos {
 	@Path("/obtenerTodasLasDescargas")
 	@Produces("application/json")
 	public List<DescargaDataType> obtenerTodasLasDescargas(@Context HttpServletRequest req) {
-		List<DescargaDataType> listaDescargas = null;
+		List<DescargaDataType> listaDescargas = new ArrayList<DescargaDataType>();
 		try {
 			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
-			(new RightsChecker()).checkCustomerRights(uSession);
+			if (uSession == null || uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) )
+				throw new Exception("Operacion no permitida");
 			listaDescargas = negocioContenido.obtenerTodasLasDescargas(uSession.getUsuario()); 
 			
 		} catch (Exception e) {
@@ -185,7 +187,8 @@ public class RWSContenidos {
 		GenericJsonResponse resp = new GenericJsonResponse();
 		try {
 			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
-			(new RightsChecker()).checkCustomerRights(uSession);
+			if (uSession == null || uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) )
+				throw new Exception("Operacion no permitida");
 			negocioContenido.calificarDescaraContenido(dt, uSession.getUsuario());	
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 			resp.setIdObjeto(String.valueOf(dt.getIdDescarga()));
@@ -225,7 +228,8 @@ public class RWSContenidos {
 		GenericJsonResponse resp = new GenericJsonResponse();
 		try {
 			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
-			(new RightsChecker()).checkCustomerRights(uSession);
+			if (uSession == null || uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) )
+				throw new Exception("Operacion no permitida");
 			negocioContenido.registrarReclamo(dt); 
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 		} catch (Exception e) {
