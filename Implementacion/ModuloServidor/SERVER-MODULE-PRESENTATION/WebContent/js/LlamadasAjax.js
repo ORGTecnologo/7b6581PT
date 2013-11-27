@@ -153,12 +153,12 @@ function altaContenido(content){
 	})
 	.fail(function(msg) {
 		console.debug('FALLO AL CREAR CONTENIDO: ' + msg);
+		$('#con-tenedor').hide();
 		mostrarElemento('mensajeContenidoError');
 		alertify.success('Ocurrio un error inesperado!!');
 	})
 	.always(function(msg) {
 		desbloquearPantalla();
-		$('#con-tenedor').hide();
 	});
 	
 }

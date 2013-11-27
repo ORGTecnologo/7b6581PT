@@ -79,8 +79,8 @@ function actualizarParametrosBusqueda(){
 	}
 
 	varsProy.PARAM_BUSQ_CATEGORIAS = categorias;
-
-	ocultarElemento('configurarBusqueda');
+	alertify.success('Parametros de busqueda actualizados');
+	//ocultarElemento('configurarBusqueda');
 }
 
 function cargarComboCategorias(idSelect){
@@ -174,7 +174,7 @@ function errorControlVaciosFormularioRegistro() {
 		error9 = Pintar_hasError(document.getElementById('inputWeb'));
 	
 	if(error0 || error1 || error2 || error3 || error4 || error5 || error6 || error7 || error8 || error9){
-		alert('Ha dejado campos sin completar!!!');
+		alertify.error('Ha dejado campos sin completar!!!');
 		return true;
 	}
 	else
@@ -210,22 +210,22 @@ function crearUsuario(){
 		if(mail.validarMail()){
 			if(contrasenia===contrasenia2){
 				if (!contrasenia.validarPassword()) console.warn('Desactive esta validacion!!!!');
-//				if (contrasenia.validarPassword())
+				if (contrasenia.validarPassword())
 					registroUsuario(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel);
-//				else
-//					alert("La contraseña no es segura. La misma debe tener un largo de entre 8 y 15 caracteres;"
-//						+ " debe contener por lo menos 1 numero, 1 caracter especial y 1 mayuscula");
+				else
+					alertify.error("La contraseña no es segura. La misma debe tener un largo de entre 8 y 15 caracteres;"
+						+ " debe contener por lo menos 1 numero, 1 caracter especial y 1 mayuscula");
 			}
 			else{
 				document.getElementById('inputPass').value = "";
 				document.getElementById('inputPass2').value = "";
-				alert('Las contrasenas no coinciden, intentelo nuevamente!!');
+				alertify.error('Las contrasenas no coinciden, intentelo nuevamente!!');
 			}
 		}
 		else{
 			var email = document.getElementById('inputCorreo');
 			email.parentElement.setAttribute('class','has-error');
-			alert('El correo no es valido!!');
+			alertify.error('El correo no es valido!!');
 		}
 	}
 }
@@ -248,22 +248,22 @@ function crearProveedor(){
 		if(mail.validarMail()){
 			if(contrasenia===contrasenia2){
 				if (!contrasenia.validarPassword()) console.warn('Desactive esta validacion!!!!');
-				//if (contrasenia.validarPassword())
+				if (contrasenia.validarPassword())
 					registroProveedor(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel,sitioWeb);
-				// else
-				// 	alert("La contraseña no es segura. La misma debe tener un largo de entre 8 y 15 caracteres;"
-				// 		+ " debe contener por lo menos 1 numero, 1 caracter especial y 1 mayuscula");
+				else
+				 	alertify.error("La contraseña no es segura. La misma debe tener un largo de entre 8 y 15 caracteres;"
+				 		+ " debe contener por lo menos 1 numero, 1 caracter especial y 1 mayuscula");
 			}
 			else{
 				document.getElementById('inputPass').value = "";
 				document.getElementById('inputPass2').value = "";
-				alert('Las contrasenas no coinciden, intentelo nuevamente!!');
+				alertify.error('Las contrasenas no coinciden, intentelo nuevamente!!');
 			}
 		}
 		else{
 			var email = document.getElementById('inputCorreo');
 			email.parentElement.setAttribute('class','has-error');
-			alert('El correo no es valido!!');
+			alertify.error('El correo no es valido!!');
 		}
 	}
 }
@@ -276,7 +276,7 @@ function IniciarSesion(){
 	if (correo.validarMail())
 		loginUsuario(correo,pass);
 	else
-		alert("Correo Invalido");
+		alertify.error("Correo Invalido");
 }
 
 function cargarPuntuacion(puntuacion,origen){
