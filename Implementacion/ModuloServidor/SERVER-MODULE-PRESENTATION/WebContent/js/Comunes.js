@@ -399,8 +399,9 @@ function cargarPaginadoDinamico(){
 	var pagination = document.getElementById('paginadoBusqueda');
 
 	var cantPaginas = jsonProy.resultadoBusqueda.length / 10;
-		cantPaginas += 0.99;
 	var indice = parseInt(cantPaginas.toFixed());
+	if(cantPaginas > indice)
+		indice++;
 
 	var html = "";
 

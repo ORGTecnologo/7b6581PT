@@ -241,7 +241,7 @@ function cargarTablaMisContenidos(pag){
       var idDescarga    = jsonProy.misContenidos[i].idDescarga;
       var nombre        = jsonProy.misContenidos[i].nombreContenido;
       var fechaDescarga = jsonProy.misContenidos[i].fechaDescarga;
-      var calificacion  = jsonProy.contentidosACalificar[i].calificacion;      
+      var calificacion  = jsonProy.misContenidos[i].calificacion;      
       var foto          = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.misContenidos[i].foto;
       var tipoContenido = jsonProy.misContenidos[i].tipoContenido;
           tipoContenido = getStringTipoContenido(tipoContenido);

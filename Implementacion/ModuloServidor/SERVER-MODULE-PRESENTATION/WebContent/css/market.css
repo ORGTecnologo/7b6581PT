@@ -66,6 +66,12 @@
 		height: 4.5em;
 	}
 
+	.descripcionContenido{
+		text-overline-mode: skip-white-space;
+		text-overflow: ellipsis;
+		overflow-wrap: break-word;
+	}
+
 /*	.modal {
 		left: 50%;
 		bottom: auto;
