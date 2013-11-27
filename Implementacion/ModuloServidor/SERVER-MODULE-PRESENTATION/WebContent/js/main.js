@@ -66,7 +66,7 @@ function cargarHtmlTop(topAux,idElem,pag){
             + "<div class='caption'><h2 class='tituloTops'>" + nombre + "</h2>"
             + "<p class='descripcionTops'>" + descripcion + "</p>"
             + "<p class='precio'><a href='" + confProy.URL_CONTENIDO + idContenido + "' class='btn btn-primary' role='button'>Ver</a>"
-            + "<a href='" + rutaDescarga + "' class='btn btn-default' role='button'>Descargar</a>"  
+            + "<a href='" + rutaDescarga + "' onclick='return confirmar();' class='btn btn-default' role='button'>Descargar</a>"  
             + formatPrice + "</p></div></div></div>";
     };
   };
