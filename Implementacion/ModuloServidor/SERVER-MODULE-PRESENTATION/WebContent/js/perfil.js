@@ -184,20 +184,25 @@ function verCalificacionesPendientes(){
 }
 
 function cargarTablaPendientesCalificacion(pag){
-    pag || (pag = 0);
+  pag || (pag = 0);
 
-  var lengthFor = 10;
-  var html = "";
 
   if (jsonProy.contentidosACalificar === undefined)
-    jsonProy.contentidosACalificar = new Array();
+    jsonProy.contentidosACalificar = new Array()
 
-  if (jsonProy.contentidosACalificar.length < 10)
-    lengthFor = jsonProy.contentidosACalificar.length;
+  var html = "";
+  var aMostrar = jsonProy.contentidosACalificar.length % 10;;
+  var expresion = jsonProy.contentidosACalificar.length - aMostrar - (10 * pag);
+  var lengthFor = 10;
+  if (expresion <= 0)
+    lengthFor = aMostrar;
 
+  if((pag == aMostrar-1) && (pag > 0))
+    lengthFor = aMostrar;
+  
   for (var i = (pag*10 + 0); i < (pag*10 + 10); i++) {
 
-    if (!(i >= lengthFor)) {
+    if (!(i >= (pag*10 + lengthFor))) {
       var idContenido   = jsonProy.contentidosACalificar[i].idContenido;
       var idDescarga    = jsonProy.contentidosACalificar[i].idDescarga;
       var nombre        = jsonProy.contentidosACalificar[i].nombreContenido;
@@ -225,18 +230,22 @@ function cargarTablaPendientesCalificacion(pag){
 function cargarTablaMisContenidos(pag){
     pag || (pag = 0);
 
-  var lengthFor = 10;
-  var html = "";
-
   if (jsonProy.misContenidos === undefined)
-    jsonProy.misContenidos = new Array();
+    jsonProy.misContenidos = new Array()
 
-  if (jsonProy.misContenidos.length < 10)
-    lengthFor = jsonProy.misContenidos.length;
+  var html = "";
+  var aMostrar = jsonProy.misContenidos.length % 10;;
+  var expresion = jsonProy.misContenidos.length - aMostrar - (10 * pag);
+  var lengthFor = 10;
+  if (expresion <= 0)
+    lengthFor = aMostrar;
 
+  if((pag == aMostrar-1) && (pag > 0))
+    lengthFor = aMostrar;
+  
   for (var i = (pag*10 + 0); i < (pag*10 + 10); i++) {
 
-    if (!(i >= lengthFor)) {
+    if (!(i >= (pag*10 + lengthFor))) {
       var idContenido   = jsonProy.misContenidos[i].idContenido;
       var idDescarga    = jsonProy.misContenidos[i].idDescarga;
       var nombre        = jsonProy.misContenidos[i].nombreContenido;

@@ -135,12 +135,13 @@ function cargarComboMultCategorias(idSelect){
 
 function cargarComboSubCategorias(elem){
 
-	var idCat = parseInt(elem.value);
-	var fila = jsonProy.categorias.obtenerPosicionPorID(idCat);
-	var subcategorias = jsonProy.categorias[fila].subcategorias;
-
 	var select = document.getElementById('id_subcategoria');
 	if (select != null){
+
+		var idCat = parseInt(elem.value);
+		var fila = jsonProy.categorias.obtenerPosicionPorID(idCat);
+		var subcategorias = jsonProy.categorias[fila].subcategorias;
+
 		var largo = select.options.length;
 
 		for (var i = 0; i < largo; i++)
@@ -381,7 +382,7 @@ function cargarResultadoBusqueda(pag){
 	if (expresion < 0)
 		lengthFor = aMostrar;
 
-	if(pag == aMostrar-1)
+	if((pag == aMostrar-1) && (pag > 0))
 		lengthFor = aMostrar;
 
 	for (var i = (pag*10 + 0); i < (pag*10 + 10); i++) {
@@ -422,6 +423,44 @@ function cargarPaginadoDinamico(){
 	for (var i = 0; i < indice; i++) {
 		var numero = i + 1;
 		html += "<li><a href='#' onclick='cargarResultadoBusqueda(" + i + ")'>" + numero +"</a></li>";
+	};
+	pagination.innerHTML = html;	
+}
+
+function cargarPaginadoPendientes(){
+
+	var pagination = document.getElementById('paginadoPendientes');
+
+	var cantPaginas = jsonProy.contentidosACalificar.length / 10;
+	
+	var indice = parseInt(cantPaginas.toFixed());
+	if(cantPaginas > indice)
+		indice++;
+
+	var html = "";
+
+	for (var i = 0; i < indice; i++) {
+		var numero = i + 1;
+		html += "<li><a href='#' onclick='cargarTablaPendientesCalificacion(" + i + ")'>" + numero +"</a></li>";
+	};
+	pagination.innerHTML = html;	
+}
+
+function cargarPaginadoMisContenidos(){
+
+	var pagination = document.getElementById('paginadoMisContenidos');
+
+	var cantPaginas = jsonProy.misContenidos.length / 10;
+	
+	var indice = parseInt(cantPaginas.toFixed());
+	if(cantPaginas > indice)
+		indice++;
+
+	var html = "";
+
+	for (var i = 0; i < indice; i++) {
+		var numero = i + 1;
+		html += "<li><a href='#' onclick='cargarTablaMisContenidos(" + i + ")'>" + numero +"</a></li>";
 	};
 	pagination.innerHTML = html;	
 }

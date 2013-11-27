@@ -686,6 +686,7 @@ function obtenerContenidosACalificar(){
 		jsonProy.contentidosACalificar = msg;
 
 		cargarTablaPendientesCalificacion();
+		cargarPaginadoPendientes();
 	})
 	.fail(function(msg) {
 		console.log("error" + msg);
@@ -711,6 +712,7 @@ function obtenerContenidosUsuario(){
 		jsonProy.misContenidos = msg;
 
 		cargarTablaMisContenidos();
+		cargarPaginadoMisContenidos();
 	})
 	.fail(function(msg) {
 		console.log("error: " + msg);
