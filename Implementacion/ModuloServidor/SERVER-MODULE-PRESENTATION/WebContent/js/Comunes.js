@@ -80,9 +80,13 @@ function cargarComboCategorias(idSelect){
 	idSelect || (idSelect = 'id_categoria');
 
 	var select = document.getElementById(idSelect);
+	var largo = select.options.length;
 
-	for (var i = 0; i < select.options.length; i++)
-		select.options.remove();
+	for (var i = 0; i < largo; i++){
+		//select.options.remove();
+		//Vaciado del select
+		select.options.remove(select.options.item())
+	}
 
 	for (var i = 0; i < jsonProy.categorias.length; i++) {
 		var option1 = document.createElement("option");
@@ -98,9 +102,13 @@ function cargarComboMultCategorias(idSelect){
 	idSelect || (idSelect = 'id_categoria');
 
 	var select = document.getElementById(idSelect);
+	var largo = select.options.length;
 
-	for (var i = 0; i < select.options.length; i++)
-		select.options.remove();
+	for (var i = 0; i < largo; i++){
+		//select.options.remove();
+		//Vaciado del select
+		select.options.remove(select.options.item())
+	}
 
 	for (var i = 0; i < jsonProy.categorias.length; i++) {
 		var option1 = document.createElement("option");
@@ -115,13 +123,15 @@ function cargarComboMultCategorias(idSelect){
 
 function cargarComboSubCategorias(elem){
 
-	fila = parseInt(elem.value);
+	var idCat = parseInt(elem.value);
+	var fila = jsonProy.categorias.obtenerPosicionPorID(idCat);
 	var subcategorias = jsonProy.categorias[fila].subcategorias;
 
 	var select = document.getElementById('id_subcategoria');
+	var largo = select.options.length;
 
-	for (var i = 0; i < select.options.length; i++)
-		select.options.remove();
+	for (var i = 0; i < largo; i++)
+		select.options.remove(select.options.item())
 
 	for (var i = 0; i < subcategorias.length; i++) {
 		var option1 = document.createElement("option");

@@ -45,17 +45,20 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
+
+		    alertify.success("Usuario creado con exito!");
 		}
 		else
-			alert(msg.respuesta);
+		    alertify.error(msg.respuesta);
 	})
 	.fail(function(msg){
-		console.log('Entro en fail: ' + msg);
-		alert(msg);
+		alertify.error('Ocurrio un error inesperado. Intene nuevamente.');
 	});
 };
 
 function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento,cel,sitioWeb){
+	
+	bloquearPantalla();
 	$.ajax({
 		url: ip + '/usuarios/registrarProveedor',
 		type: 'POST',
@@ -96,18 +99,23 @@ function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimien
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
 		    ocultarElemento('registroUsuario')
+			alertify.success('Usuario creado exitosamente!');
 		}
 		else
-			alert(msg.respuesta);
+			alertify.error(msg.respuesta);
 	})
 	.fail(function(msg){
-		console.log('Entro en fail: ' + msg);
-		alert(msg);
+		alertify.error('Ocurrio un error inesperado. Intene nuevamente.');
+	})
+	.always(function(msg) {
+		desbloquearPantalla();
 	});
 };
 
 function altaContenido(content){
 	
+	bloquearPantalla();
+
 	$.ajax({
 		url: ip + '/contenidos/altaContenido',
 		type: 'POST',
@@ -139,16 +147,18 @@ function altaContenido(content){
 		}),
 	})
 	.done(function(msg) {
-		console.log("success");
-		console.log(msg);
+		$('#con-tenedor').hide();
+		mostrarElemento('mensajeContenido');
+		alertify.success('Contenido creado exitosamente!!');
 	})
 	.fail(function(msg) {
-		console.log("error");
-		console.log(msg);
+		console.debug('FALLO AL CREAR CONTENIDO: ' + msg);
+		alertify.error('Error!');
 	})
 	.always(function(msg) {
-		console.log("complete");
-		console.log(msg);
+		desbloquearPantalla();
+		$('#con-tenedor').hide();
+		mostrarElemento('mensajeContenido');
 	});
 	
 }
@@ -169,11 +179,11 @@ function enviarReclamo(idDescarga, titulo, comentario){
 	})
 	.done(function(msg) {
 		console.log("success: " + msg);
-		alert('Reclamo enviado con exito, alguien del staff se comunicara con ud a la brevedad!');
+		alertify.success('Reclamo enviado con exito, alguien del staff se comunicara con ud a la brevedad!');
 	})
 	.fail(function(msg) {
 		console.log("error: " + msg);
-		alert('Ocurrio un error inesperado!');		
+		alertify.error('Ocurrio un error inesperado!');		
 	})
 	.always(function(msg) {
 	 	desbloquearPantalla();
@@ -220,17 +230,19 @@ function loginUsuario(usuario, contrasenia){
 
 			mostrarElementosSegunUsuario(msg.tipoUsuario);
 			
+			alertify.success('Bienvenido ' + varsProy.nick + '.');
+
 			if(msg.tipoUsuario === confProy.ROL_ADMINISTRADOR)
 				location.href = confProy.URL_ADMIN_HOME;
 		}
 		else{
 			var mensaje = msg.respuesta.split('|')
-			alert(mensaje[1]);
+			alertify.error(mensaje[1]);
 		}
 	})
 	.fail(function(msg) {
 		console.log(msg);
-		alert(msg);//'Nombre de usuario o contrasenia incorrectos!!');
+		alertify.error(msg);//'Nombre de usuario o contrasenia incorrectos!!');
 	})
 	.always(function(msg) {
 	 	desbloquearPantalla();
@@ -267,6 +279,8 @@ function logoutUsuario(){
 		    window.localStorage.removeItem(confProy.sessionStorageToken);
 
 		    window.location.href = confProy.IP_SERVICIOS;
+
+		    alertify.log('Regresa pronto ' + varsProy.nick);
 		}
 		else
 			alert(msg.resultadoOperacion);
@@ -328,10 +342,10 @@ function enviarCalificacion(idDescarga, puntaje, comentario){
 	})
 	.done(function(msg) {
 		obtenerContenidosUsuario();
-		alert('Calificacion enviada con exito!');
+		alert.success('Calificacion enviada con exito!');
 	})
 	.fail(function(msg) {
-		alert('Ocurrio un error inesperado!');
+		alertify.error('Ocurrio un error inesperado!');
 	})
 	.always(function(msg) {
 	 	desbloquearPantalla();
@@ -357,11 +371,11 @@ function enviarCambioPassword(nick,pass,newPass,newPass2){
 	.done(function(msg) {
 		console.log("success: " + msg);
 		if (msg.resultadoOperacion === 'OK'){
-			alert('Contraseña actualizada con exito');
+			alertify.success('Contraseña actualizada con exito');
 			ocultarElemento('password_modal')
 		}
 		else
-			alert(msg.mensajeOperacion);
+			alertify.error(msg.mensajeOperacion);
 	})
 	.fail(function() {
 		console.log("error");
@@ -477,8 +491,8 @@ function obtenerCategoriasySubcategorias(idSelect){
 		cargarCategoriasMemoria(msg);
 		if(idSelect === 'multiplesCat')
 			cargarComboMultCategorias(idSelect);
-		else
-			cargarComboCategorias(idSelect);
+
+		cargarComboCategorias('id_categoria');
 	})
 	.fail(function(msg) {
 		console.log("Fallo: " + msg);

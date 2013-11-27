@@ -52,6 +52,11 @@ function verModales(id){
 	$('#'+id).modal({show:true})
 }
 
+function getPosicionElementoPorId(id,arrElem){
+
+
+}
+
 function mostrarElemento(id,esmodal){
 	esmodal || (esmodal = false);
 

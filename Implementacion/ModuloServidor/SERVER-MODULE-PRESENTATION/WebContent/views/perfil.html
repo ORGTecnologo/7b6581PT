@@ -8,11 +8,17 @@
 
         <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="../css/bootstrap-glyphicons.css">
+        <link rel="stylesheet" href="../css/alertify.default.css"/>        
         <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
         <link rel="stylesheet" type="text/css" href="../css/themeProy.css">
         <link rel="stylesheet" type="text/css" href="../css/bootstrap-select.min.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="../css/market.css" media="screen"/>
         <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" media="screen"/>
+
+        <link rel="stylesheet" href="../css/alertify.default.css"/>
+        <link rel="stylesheet" href="../css/alertify.bootstrap.css"/>      
+        <link rel="stylesheet" href="../css/alertify.core.css"/>   
+
         <script src="../js/Plugins/jquery.min.js"></script>
     </head>
         
@@ -90,49 +96,23 @@
   <p class="lead text-center">Pendientes de Evaluacion</p>
   <table class="table table-hover">
     <thead><tr><th></th><th>Nombre</th><th>Tipo</th><th>Puntuacion</th></tr></thead>
-    <tbody id="tbody_pendientes">
-        <tr>
-            <td><img class="thumbnail" src="//placehold.it/50x50"></td>
-            <td><a href="confProy.URL_CONTENIDO + idCont">Android SDK</a></td>
-            <td>Software</td>
-            <td>
-                <div class="row">
-                    <div class="col-xs-5">
-                        <select id="valorCalificacion_1" class="form-control input-sm selectpicker"><option>-</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
-                    </div>
-                        <button id="confirmarCalificacion_1_3" onclick="agregarComentario(this)" class="btn btn-xs">Ok</button>
-                </div>
-            </td>
-      </tr>
-    </tbody>
+    <tbody id="tbody_pendientes"></tbody>
   </table>
 </div>
 
 <!-- DIV CONTENIDOS DE USUARIO -->
-      <div id="div_contenidosUsuario" class="col-md-7 hide">
-          <p class="lead text-center">Mis contenidos</p>
-          <table class="table table-hover">
-            <thead><tr><th></th><th>Nombre</th><th>Tipo</th><th>Puntacion</th></tr></thead>
-            <tbody id="tbody_contenidos">
-                <tr>
-                    <td><img src="//placehold.it/50x50"></td>
-                    <td><a>Android SDK</a></td>
-                    <td>Software</td>
-                    <td>
-                        <div class="row">
-                            <div class="col-xs-5">4/5</div>
-                            <button class="btn btn-xs"><i class="glyphicon glyphicon-question-sign"></i></button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-          </table>            
-        </div>
+<div id="div_contenidosUsuario" class="col-md-7 hide">
+  <p class="lead text-center">Mis contenidos</p>
+  <table class="table table-hover">
+    <thead><tr><th></th><th>Nombre</th><th>Tipo</th><th>Puntacion</th></tr></thead>
+    <tbody id="tbody_contenidos"></tbody>
+  </table>            
+</div>
 
 <!-- ACA VAN LOS DIVS RESTANTES-->
-        <div id="btnGuardar" class="btn-group btn-group-horizontal col-md-2 pull-rigth hide">
-           <button class="btn btn-default" onclick="editarPerfil()">Guardar</button>
-        </div>  
+<div id="btnGuardar" class="btn-group btn-group-horizontal col-md-2 pull-rigth hide">
+   <button class="btn btn-default" onclick="editarPerfil()">Guardar</button>
+</div>
 
     </div>
 </div>
@@ -370,13 +350,15 @@
 </div>
 
     <script src="../js/Plugins/jquery-ui.js"></script>
+    <script src="../js/Plugins/holder.js"></script>
+    <script src="../js/Plugins/bootstrap.js"></script>
+    <script src="../js/Plugins/bootstrap-select.min.js"></script>
+    <script src="../js/Plugins/alertify.min.js"></script>  
+
     <script src="../js/globalesProyecto.js"></script>
     <script src="../js/Prototipos.js"></script>
     <script src="../js/Inicio.js"></script>
-    <script src="../js/Plugins/holder.js"></script>
     <script src="../js/blockUI.js"></script>
-    <script src="../js/Plugins/bootstrap.js"></script>
-    <script src="../js/Plugins/bootstrap-select.min.js"></script>
     <script src="../js/Objetos.js"></script>
     <script src="../js/LlamadasAjax.js"></script>
     <script src="../js/getSet.js"></script>

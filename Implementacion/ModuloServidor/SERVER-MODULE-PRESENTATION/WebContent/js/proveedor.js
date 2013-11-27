@@ -8,47 +8,7 @@ $(document).ready(function(){
 	      dateFormat: "dd-mm-yy",
 	      maxDate: 0
     });
-    $.when(
-   		obtenerCategoriasySubcategorias()
-    )
-    .then (function(){
-	    //cargarComboCategorias()
-    });
-
 });
-
-function cargarComboCategorias(){
-
-	var select = document.getElementById('id_categoria');
-
-	for (var i = 0; i < select.options.length; i++)
-		select.options.remove();
-
-	for (var i = 0; i < jsonProy.categorias.length; i++) {
-		var option1 = document.createElement("option");
-			option1.text = jsonProy.categorias[i].nombre;
-			option1.value = i;//jsonProy.categorias[i].id;
-		select.add(option1,select.options[null]);
-	};
-}
-
-function cargarComboSubCategorias(elem){
-
-	fila = parseInt(elem.value);
-	var subcategorias = jsonProy.categorias[fila].subcategorias;
-
-	var select = document.getElementById('id_subcategoria');
-
-	for (var i = 0; i < select.options.length; i++)
-		select.options.remove();
-
-	for (var i = 0; i < subcategorias.length; i++) {
-		var option1 = document.createElement("option");
-			option1.text = subcategorias[i].nombre;
-			option1.value = i;//jsonProy.categorias[i].id;
-		select.add(option1,select.options[null]);
-	};	
-}
 
 function verEspecificos(elem){
 
@@ -96,11 +56,11 @@ function verEspecificos(elem){
 			divApp.classList.remove('show');
 			divApp.classList.add('hide');
 
-			divVideo.classList.remove('show');
-			divVideo.classList.add('hide');
+			divVideo.classList.remove('hide');
+			divVideo.classList.add('show');
 		
-			divLibro.classList.remove('hide');
-			divLibro.classList.add('show');
+			divLibro.classList.remove('show');
+			divLibro.classList.add('hide');
 
 		break;
 		case confProy.TIPO_CONTENIDO_LIBRO:
@@ -163,26 +123,71 @@ function enviarAltaContenido(){
 	content.formatoVideo  = document.getElementById("id_formato").value;
 	content.calidadVideo  = document.getElementById("id_calidad").value;
 
-
-
-
-	//validaciones
-	validarDatos();
-	if (!Precio.isNumeric)
-		alert
-	duracionTema
-	duracionVideo
-	cantidadPaginas
-
+	if (!validacionesGralesAltaContenido(content.Precio,content.tipoContenido,content.Categoria,content.Subcategoria))
+		return false;
+	else 
+		if (!validarDatosEspecificos(content))
+			return false;
 
 	altaContenido(content);
 }
 
 function validacionesGralesAltaContenido(precio,tipo,cat,subcat){
 
-	if(precio == null || tipo == null || cat == null || subcat)
-		alert('Todos los campos son obligatorios!!');
-	else
-		if (!precio.isNumeric())
-			alert('El precio no es valido');
+	if(precio == null || tipo == null || cat == null || subcat == null){
+		alertify.error('Todos los campos son obligatorios!!');
+		return false;
+	}
+	else{
+		if (!precio.isNumeric()){
+			alertify.error('El precio no es valido');
+			return false;
+		}
+	}
+	return true;
+}
+
+function validarDatosEspecificos(content){
+
+	switch(content.tipoContenido){
+		case confProy.TIPO_CONTENIDO_MUSICA:
+			if (content.duracionTema == "" || content.artistaTema == "" || content.albumTema == ""){
+				alertify.error('Todos los campos son obligatorios!!');
+				return false;
+			}
+			else {
+				if(!content.duracionTema.isDuracion()){
+					alertify.error("El formato de la duracion es el siguiente: '00:00'");
+					return false;
+				}
+			}
+		break;
+		case confProy.TIPO_CONTENIDO_APP:
+			if (content.desarrollador == "" || content.requisitosMinimos == ""){
+				alertify.error('Todos los campos son obligatorios!!');
+				return false;
+			}
+		break;
+		case confProy.TIPO_CONTENIDO_VIDEO:		
+			if (content.duracionVideo == "" || content.formatoVideo == "" || content.calidadVideo == ""){
+				alertify.error('Todos los campos son obligatorios!!');
+				return false;
+			}
+			if(!content.duracionVideo.isDuracion()){
+				alertify.error("El formato de la duracion es el siguiente: '00:00'");
+				return false;
+			}
+		break;
+		case confProy.TIPO_CONTENIDO_LIBRO:
+			if (content.Paginas == "" || content.autor == "" || content.fechaPublicacion == ""){
+				alertify.error('Todos los campos son obligatorios!!');
+				return false;
+			}
+			if(!content.Paginas.isNumeric()){
+				alertify.error("El formato de la duracion es el siguiente: '00:00'");
+				return false;
+			}
+		break;
+	}
+	return true;
 }

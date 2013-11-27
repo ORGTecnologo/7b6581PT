@@ -17,6 +17,10 @@
     <link rel="stylesheet" type="text/css" href="../css/bootstrap-select.min.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="../css/market.css" media="screen"/>
     <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" media="screen"/>
+
+    <link rel="stylesheet" href="../css/alertify.bootstrap.css"/>    
+    <link rel="stylesheet" href="../css/alertify.core.css"/>
+
     <script src="../js/Plugins/jquery.min.js"></script>
 </head>
 
@@ -279,6 +283,13 @@
         {% } %}
     </script>
 
+
+<div id="mensajeContenido" class="container hide">
+  <span class="label label-success">Exito</span>
+    <p class="text-success">Contenido creado exitosamente y pendiente de revision.</p>
+</div>
+
+
 <!-- RESULTADOS DE BUSQUEDA -->
 <div id="resultadoBusqueda" class="container hide">
     <table class="table table-hover">
@@ -429,11 +440,12 @@
     </div>
 </div>
 
-
     <script src="../js/Plugins/jquery.min.js"></script>
     <script src="../js/Plugins/jquery-ui.js"></script>    
     <script src="../js/Plugins/bootstrap.js"></script>
     <script src="../js/Plugins/bootstrap-select.min.js"></script>    
+    <script src="../js/Plugins/alertify.min.js"></script>
+
     <script src="../js/proveedor.js"></script>    
     <script src="../js/globalesProyecto.js"></script> 
     <script src="../js/Objetos.js"></script>   
