@@ -38,6 +38,10 @@ function cargarHtmlTop(topAux,idElem,pag){
 
   var lengthFor = confProy.CANT_CONTENIDOS_INDEX;
   var html = "";
+  
+  if (topAux === undefined)
+    topAux = new Array();
+
   if (topAux.length < confProy.CANT_CONTENIDOS_INDEX)
     lengthFor = topAux.length;
 
@@ -51,15 +55,19 @@ function cargarHtmlTop(topAux,idElem,pag){
       var precio        = topAux[i].precio;
       var calificacion  = topAux[i].calificacion;      
       var foto          = '/SERVER-MODULE-PRESENTATION/Images?' + topAux[i].listaFotos[0];
-      var rutaDescarga  = "";
+      var rutaDescarga  = topAux[i].urlDescarga;
+
+      var formatPrice = "UYU " + precio;
+      if (precio == 0)
+        formatPrice = 'Gratis';
 
       html += "<div class='col-sm-5 col-md-3'><div class='thumbnail'>"
             + "<img src='" + foto + "' class='img-thumbnail miniatura img-responsive' style='width:200px;height:200px;'>"
-            + "<div class='caption'><h2>" + nombre + "</h2>"
-            + "<p>" + descripcion + "</p>"
+            + "<div class='caption'><h2 class='tituloTops'>" + nombre + "</h2>"
+            + "<p class='descripcionTops'>" + descripcion + "</p>"
             + "<p class='precio'><a href='" + confProy.URL_CONTENIDO + idContenido + "' class='btn btn-primary' role='button'>Ver</a>"
-            + "<a href='" + rutaDescarga + "' class='btn btn-default' role='button'>Comprar</a>"  
-            + "UYU " + precio + "</p></div></div></div>";
+            + "<a href='" + rutaDescarga + "' class='btn btn-default' role='button'>Descargar</a>"  
+            + formatPrice + "</p></div></div></div>";
     };
   };
   var container = document.getElementById(idElem);
@@ -68,6 +76,9 @@ function cargarHtmlTop(topAux,idElem,pag){
 }
 
 function cargarTopEnMemoria(tipo,msg){
+  
+  if (msg === undefined)
+    msg = new Array();
 
   switch(tipo){
     case confProy.TIPO_CONTENIDO_MUSICA:

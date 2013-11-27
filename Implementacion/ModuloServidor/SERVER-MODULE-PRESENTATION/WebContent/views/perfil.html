@@ -25,7 +25,7 @@
 <body>
 
 <!-- BARRA DE NAVEGACION -->
-<nav id='caca' class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse"
             data-target=".navbar-ex1-collapse">
@@ -34,21 +34,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="localhost:8080/SERVER-MODULE-PRESENTATION">Market Place Tecnologo</a>
+        <a class="navbar-brand" href="/SERVER-MODULE-PRESENTATION/index.html">Market Place Tecnologo</a>
     </div>
   <div class="collapse navbar-collapse navbar-ex1-collapse"> 
     <ul class="navbar-form navbar-left" role="search">
         <div class="form-group col-xs-6">
-            <input id="input-busqueda" type="search" class="form-control input-md" placeholder="Buscar" style="height: initial;">
+            <input id="input-busqueda" type="search" class="form-control input-md" placeholder="Buscar" style="height: initial;min-width: 25em;">
         </div>
         <ul class="btn-group">
             <button onclick="buscarContenidos();" class="btn btn-primary" style="margin-top: initial;">
                 <span class="glyphicon glyphicon-search"></span> Buscar</button>
-            <button class="btn btn-primary dropdown-toggle" type="button" onclick="verModales('configurarBusqueda');/*mostrarElemento('configurarBusqueda',true)*/"><span class="glyphicon glyphicon-cog"></span></button>
+            <button class="btn btn-primary dropdown-toggle" type="button" onclick="verModales('configurarBusqueda');"><span class="glyphicon glyphicon-cog"></span></button>
         </ul>
     </ul>
     <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
-        <a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
+        <a href="#" onclick="return confirmar();" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
         <ul class="dropdown-menu">
             <li><a href="#" onclick="setRegistroTipo('proveedor');verModales('registroUsuario')">Soy Proveedor</a></li>
             <li><a href="#" onclick="setRegistroTipo('cliente');verModales('registroUsuario')">Soy Cliente</a></li>
@@ -58,8 +58,9 @@
     <ul class="nav navbar-nav navbar-right" id="Nick-Logout-Div" style="display: none;margin-right: initial;margin-top: 0.7em;" hidden>
         <a class="nick dropdown-toggle" data-toggle="dropdown" role="button" href="#"><i class="glyphicon glyphicon-user"></i> nick <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li><a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/proveedor/AltaContenido.html">Crear Contenido</a></li>
-            <li><a id="dd_verPerfil" href="#">Ver Perfil</a></li>
+            <li id="opt_irAltaContenido"><a href="/SERVER-MODULE-PRESENTATION/index.html/proveedor/AltaContenido.html" onclick="return confirmar();"><i class="glyphicon glyphicon-cloud-upload"></i> Crear Contenido</a></li>
+            <li id="opt_irAdministracion"><a href="/SERVER-MODULE-PRESENTATION/admin/admin.xhtml"><i class="glyphicon glyphicon-wrench"></i> Administracion</a></li>
+            <li><a id="dd_verPerfil" href="#"><i class="glyphicon glyphicon-user"></i> Ver Perfil</a></li>
             <li class="divider"></li>
             <li><a href="#" onclick="logoutUsuario()"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
         </ul>
@@ -117,24 +118,6 @@
     </div>
 </div>
 
-<!-- RESULTADOS DE BUSQUEDA -->
-<div id="resultadoBusqueda" class="container hide">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Nombre</th>
-                <th>Descripcion</th>
-                <th>Precio</th>
-                <th>Calificacion</th>
-            </tr>
-        </thead>
-        <tbody id="cuerpoBusqueda"></tbody>
-    </table>
-    <div class="pagination pagination-mini" style="display: initial;">
-        <ul class="pager" id="paginadoBusqueda"></ul>
-    </div>
-</div>
 
 <!-- CALIFICAR CONTENIDO -->
 <div id="div_comentarContenido" class="modal fade" tabindex="-1" role="dialog">
@@ -182,9 +165,6 @@
     </div>
 </div>
 
-</body>
-
-
 <!-- CAMBIAR CONTRASENIA -->
 <div id="password_modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
@@ -220,6 +200,27 @@
         </div>
     </div>
 </div>
+
+<!-- RESULTADOS DE BUSQUEDA -->
+<div id="resultadoBusqueda" class="container hide">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Calificacion</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoBusqueda"></tbody>
+    </table>
+    <div class="pagination pagination-mini" style="display: initial;">
+        <ul class="pager" id="paginadoBusqueda"></ul>
+    </div>
+</div>
+
+</body>
 
 <!-- CONFIGURAR BUSQUEDA -->
 <div id="configurarBusqueda" class="modal fade" tabindex="-1" role="dialog">
@@ -264,8 +265,8 @@
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">×</button>
                 <h3>Registro de Usuario</h3>
-        </div>
-        <div class="modal-body">
+            </div>
+            <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6 col-xs-5">
                             <h4>Datos de Usuario</h4>
@@ -310,11 +311,11 @@
                         </p>
                     </div>
                 </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
-        </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
+            </div>
         </div>
     </div>
 </div>
@@ -342,7 +343,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal">Close</button>
+                <button class="btn" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" onclick="IniciarSesion()">Confirmar</button>
             </div>
         </div>

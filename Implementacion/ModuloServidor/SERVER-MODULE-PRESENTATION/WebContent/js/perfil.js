@@ -188,6 +188,10 @@ function cargarTablaPendientesCalificacion(pag){
 
   var lengthFor = 10;
   var html = "";
+
+  if (jsonProy.contentidosACalificar === undefined)
+    jsonProy.contentidosACalificar = new Array();
+
   if (jsonProy.contentidosACalificar.length < 10)
     lengthFor = jsonProy.contentidosACalificar.length;
 
@@ -223,6 +227,10 @@ function cargarTablaMisContenidos(pag){
 
   var lengthFor = 10;
   var html = "";
+
+  if (jsonProy.misContenidos === undefined)
+    jsonProy.misContenidos = new Array();
+
   if (jsonProy.misContenidos.length < 10)
     lengthFor = jsonProy.misContenidos.length;
 

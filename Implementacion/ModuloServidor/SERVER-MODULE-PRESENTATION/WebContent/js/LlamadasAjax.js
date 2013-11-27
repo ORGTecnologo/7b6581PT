@@ -159,7 +159,6 @@ function altaContenido(content){
 	.always(function(msg) {
 		desbloquearPantalla();
 		$('#con-tenedor').hide();
-
 	});
 	
 }

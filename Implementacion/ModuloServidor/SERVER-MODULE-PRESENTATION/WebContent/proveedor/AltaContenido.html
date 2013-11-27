@@ -36,8 +36,9 @@
 </script>
 
 <body>
+
 <!-- BARRA DE NAVEGACION -->
-<nav id='caca' class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse"
             data-target=".navbar-ex1-collapse">
@@ -46,7 +47,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="localhost:8080/SERVER-MODULE-PRESENTATION">Market Place Tecnologo</a>
+        <a class="navbar-brand" href="/SERVER-MODULE-PRESENTATION/index.html">Market Place Tecnologo</a>
     </div>
   <div class="collapse navbar-collapse navbar-ex1-collapse"> 
     <ul class="navbar-form navbar-left" role="search">
@@ -60,7 +61,7 @@
         </ul>
     </ul>
     <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
-        <a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
+        <a href="#" onclick="return confirmar();" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
         <ul class="dropdown-menu">
             <li><a href="#" onclick="setRegistroTipo('proveedor');verModales('registroUsuario')">Soy Proveedor</a></li>
             <li><a href="#" onclick="setRegistroTipo('cliente');verModales('registroUsuario')">Soy Cliente</a></li>
@@ -70,8 +71,8 @@
     <ul class="nav navbar-nav navbar-right" id="Nick-Logout-Div" style="display: none;margin-right: initial;margin-top: 0.7em;" hidden>
         <a class="nick dropdown-toggle" data-toggle="dropdown" role="button" href="#"><i class="glyphicon glyphicon-user"></i> nick <span class="caret"></span></a>
         <ul class="dropdown-menu">
-            <li id="opt_irAltaContenido"><a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/proveedor/AltaContenido.html"><i class="glyphicon glyphicon-cloud-upload"></i> Crear Contenido</a></li>
-            <li id="opt_irAdministracion"><a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/admin/admin.xhtml"><i class="glyphicon glyphicon-wrench"></i> Administracion</a></li>
+            <li id="opt_irAltaContenido"><a href="/SERVER-MODULE-PRESENTATION/index.html/proveedor/AltaContenido.html" onclick="return confirmar();"><i class="glyphicon glyphicon-cloud-upload"></i> Crear Contenido</a></li>
+            <li id="opt_irAdministracion"><a href="/SERVER-MODULE-PRESENTATION/admin/admin.xhtml"><i class="glyphicon glyphicon-wrench"></i> Administracion</a></li>
             <li><a id="dd_verPerfil" href="#"><i class="glyphicon glyphicon-user"></i> Ver Perfil</a></li>
             <li class="divider"></li>
             <li><a href="#" onclick="logoutUsuario()"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
@@ -145,8 +146,9 @@
 
         <div class="well">
             <p>A continuacion eliga el contenido seguido de las imagenes que van a ir asociadas al mismo.
-            En primer lugar debera subir el contenido, luego todas las imagenes asociadas al mismo.
-            Faltan Validaciones asique lea el manual, no sea nabo.
+            En primer lugar debera subir el contenido.
+            Luego debera incluir por lo menos una imagen asociada al mismo.
+            Y finalmente cree el contenido.
             </p>
         </div>
 
@@ -181,10 +183,10 @@
         <br>
 
         <div class="col-md-12">
-             <a class="btn btn-default modal-download" onclick="enviarAltaContenido()"><i class="glyphicon glyphicon-download"></i><span>Crear</span></a>
+             <a class="btn btn-primary modal-download" onclick="enviarAltaContenido()"><i class="glyphicon glyphicon-cloud-upload"></i><span>Crear</span></a>
         </div>
 
-        <div class="well">
+ <!--        <div class="well">
              <h3>Notas</h3>
             <ul>
                 <li>The maximum file size for uploads in this demo is <strong>5 MB</strong> (default
@@ -197,7 +199,7 @@
                     tu escritorio al navegador o desde el boton "Agregar..".</li>
             </ul>
         </div>
-    </div>
+    </div> -->
 
 <!-- Galeria de imagenes subidas al tmp -->
     <div id="modal-gallery" class="modal modal-gallery fade" data-filter=":odd">
@@ -316,7 +318,6 @@
 
 </body>
 
-
 <!-- CONFIGURAR BUSQUEDA -->
 <div id="configurarBusqueda" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog">
@@ -360,8 +361,8 @@
             <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">×</button>
                 <h3>Registro de Usuario</h3>
-        </div>
-        <div class="modal-body">
+            </div>
+            <div class="modal-body">
                 <div class="row">
                     <div class="col-md-6 col-xs-5">
                             <h4>Datos de Usuario</h4>
@@ -406,11 +407,11 @@
                         </p>
                     </div>
                 </div>
-        </div>
-        <div class="modal-footer">
-            <button class="btn" data-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
-        </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
+            </div>
         </div>
     </div>
 </div>
@@ -438,7 +439,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal">Close</button>
+                <button class="btn" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-primary" onclick="IniciarSesion()">Confirmar</button>
             </div>
         </div>

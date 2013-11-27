@@ -80,21 +80,22 @@ function cargarComboCategorias(idSelect){
 	idSelect || (idSelect = 'id_categoria');
 
 	var select = document.getElementById(idSelect);
-	var largo = select.options.length;
+	if (select != null){
+		var largo = select.options.length;
 
-	for (var i = 0; i < largo; i++){
-		//select.options.remove();
-		//Vaciado del select
-		select.options.remove(select.options.item())
+		for (var i = 0; i < largo; i++){
+			//select.options.remove();
+			//Vaciado del select
+			select.options.remove(select.options.item())
+		}
+
+		for (var i = 0; i < jsonProy.categorias.length; i++) {
+			var option1 = document.createElement("option");
+				option1.text = jsonProy.categorias[i].nombre;
+				option1.value = jsonProy.categorias[i].id;
+			select.add(option1,select.options[null]);
+		};
 	}
-
-	for (var i = 0; i < jsonProy.categorias.length; i++) {
-		var option1 = document.createElement("option");
-			option1.text = jsonProy.categorias[i].nombre;
-			option1.value = jsonProy.categorias[i].id;
-		select.add(option1,select.options[null]);
-	};
-
 	$('.selectpicker').selectpicker('refresh');
 }
 
@@ -102,21 +103,24 @@ function cargarComboMultCategorias(idSelect){
 	idSelect || (idSelect = 'id_categoria');
 
 	var select = document.getElementById(idSelect);
-	var largo = select.options.length;
+	
+	if (select != null){
+		var largo = select.options.length;
 
-	for (var i = 0; i < largo; i++){
-		//select.options.remove();
-		//Vaciado del select
-		select.options.remove(select.options.item())
+		for (var i = 0; i < largo; i++){
+			//select.options.remove();
+			//Vaciado del select
+			select.options.remove(select.options.item())
+		}
+
+		for (var i = 0; i < jsonProy.categorias.length; i++) {
+			var option1 = document.createElement("option");
+				option1.text = jsonProy.categorias[i].nombre;
+				option1.value = jsonProy.categorias[i].id;
+				option1.selected = true;
+			select.add(option1,select.options[null]);
+		};
 	}
-
-	for (var i = 0; i < jsonProy.categorias.length; i++) {
-		var option1 = document.createElement("option");
-			option1.text = jsonProy.categorias[i].nombre;
-			option1.value = jsonProy.categorias[i].id;
-			option1.selected = true;
-		select.add(option1,select.options[null]);
-	};
 
 	$('.selectpicker').selectpicker('refresh');
 }
@@ -128,17 +132,20 @@ function cargarComboSubCategorias(elem){
 	var subcategorias = jsonProy.categorias[fila].subcategorias;
 
 	var select = document.getElementById('id_subcategoria');
-	var largo = select.options.length;
+	if (select != null){
+		var largo = select.options.length;
 
-	for (var i = 0; i < largo; i++)
-		select.options.remove(select.options.item())
+		for (var i = 0; i < largo; i++)
+			select.options.remove(select.options.item())
 
-	for (var i = 0; i < subcategorias.length; i++) {
-		var option1 = document.createElement("option");
-			option1.text = subcategorias[i].nombre;
-			option1.value = jsonProy.categorias[i].id;
-		select.add(option1,select.options[null]);
-	};	
+		for (var i = 0; i < subcategorias.length; i++) {
+			var option1 = document.createElement("option");
+				option1.text = subcategorias[i].nombre;
+				option1.value = jsonProy.categorias[i].id;
+			select.add(option1,select.options[null]);
+		};
+	}	
+	$('.selectpicker').selectpicker('refresh');
 }
 
 function errorControlVaciosFormularioRegistro() {
@@ -372,13 +379,14 @@ function cargarResultadoBusqueda(pag){
 			var desc   = jsonProy.resultadoBusqueda[i].descripcionContenido;
 			var foto   = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.resultadoBusqueda[i].listaFotos[0];
 			var precio = jsonProy.resultadoBusqueda[i].precio;
+			var calificacion = jsonProy.resultadoBusqueda[i].calificacion;
 
 
 	        html += "<tr><td><img src='" + foto + "' alt='" + foto + "' class='img-responsive' style='width:50px;heigth:50px'></td>"
 						+ "<td><a href='" + confProy.URL_CONTENIDO + id + "'>" + nombre + "</a></td>"
 						+ "<td>" + desc + "</td>"
 						+ "<td>" + precio + "</td>"
-						+ "<td>" + 100 + "/5</td>"
+						+ "<td>" + calificacion + "/5</td>"
 		            + "</tr>";
 		};
 	};
