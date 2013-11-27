@@ -366,10 +366,12 @@ function cargarPuntuacion(puntuacion,origen){
 function cargarResultadoBusqueda(pag){
     pag || (pag = 0);
 
-	var lengthFor = 10;
 	var html = "";
-	if (jsonProy.resultadoBusqueda.length < 10)
-		lengthFor = jsonProy.resultadoBusqueda.length;
+	var aMostrar = jsonProy.resultadoBusqueda.length % 10;;
+	var expresion = jsonProy.resultadoBusqueda.length - aMostrar - (10 * pag);
+	var lengthFor = 10;
+	if (expresion < 0)
+		lengthFor = aMostrar;
 
 	for (var i = (pag*10 + 0); i < (pag*10 + 10); i++) {
 
@@ -399,6 +401,7 @@ function cargarPaginadoDinamico(){
 	var pagination = document.getElementById('paginadoBusqueda');
 
 	var cantPaginas = jsonProy.resultadoBusqueda.length / 10;
+	
 	var indice = parseInt(cantPaginas.toFixed());
 	if(cantPaginas > indice)
 		indice++;

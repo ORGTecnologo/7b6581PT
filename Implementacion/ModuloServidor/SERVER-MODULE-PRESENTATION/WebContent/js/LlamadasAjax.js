@@ -341,7 +341,6 @@ function enviarCalificacion(idDescarga, puntaje, comentario){
 		}),
 	})
 	.done(function(msg) {
-		obtenerContenidosUsuario();
 		alert.success('Calificacion enviada con exito!');
 	})
 	.fail(function(msg) {
@@ -349,6 +348,7 @@ function enviarCalificacion(idDescarga, puntaje, comentario){
 	})
 	.always(function(msg) {
 	 	desbloquearPantalla();
+		obtenerContenidosUsuario();
 	});
 }
 
