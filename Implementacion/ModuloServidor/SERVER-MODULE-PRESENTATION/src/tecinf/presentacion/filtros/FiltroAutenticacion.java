@@ -95,6 +95,7 @@ public class FiltroAutenticacion implements Filter {
 		adminURLs.add("/admin/partialReclamos.xhtml");
 		adminURLs.add("/views/perfil.html");
 		adminURLs.add("/admin/partialCambiarContrasenia.xhtml");
+		adminURLs.add("/admin/partialAdministrador.xhtml");
 		
 		// URLs de proveedores
 		supplierURLs = new ArrayList<String>(); 

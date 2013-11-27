@@ -7,6 +7,7 @@ import javax.ejb.Local;
 import tecinf.negocio.dtos.CambiarContraseniaDataType;
 import tecinf.negocio.dtos.EditarUsuarioDataType;
 import tecinf.negocio.dtos.LoginRespDataType;
+import tecinf.negocio.dtos.UsuarioAdministradorDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.dtos.UsuarioProveedorDataType;
@@ -23,6 +24,8 @@ public interface NegocioUsuario {
 	public LoginRespDataType registroUsuarioCliente(UsuarioClienteDataType dt) throws Exception;
 	
 	public LoginRespDataType registroUsuarioProveedor(UsuarioProveedorDataType dt) throws Exception;
+	
+	public void registroUsuarioAdministrador(UsuarioAdministradorDataType dt) throws Exception;
 	
 	public Boolean existeUsuario(String usr); 
 	

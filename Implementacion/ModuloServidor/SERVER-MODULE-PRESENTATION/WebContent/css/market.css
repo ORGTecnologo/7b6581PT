@@ -181,3 +181,11 @@
 		margin-right: auto;
 	}
 	
+	.adminModalPanelDiv {
+		overflow-y: auto;
+		display: block;
+		width: 26%;
+		min-width: 300px;
+		margin-right: auto;
+	}
+	

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.naming.NamingException;
 
 import org.jboss.logging.Logger;
@@ -16,10 +17,10 @@ import tecinf.negocio.dtos.CategoriaContenidoDataType;
 import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.negocio.utiles.ValidationUtil;
-import tecinf.presentacion.utiles.ErrorHelper;
+import tecinf.presentacion.utiles.JsfMessagesHelper;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class SubCategoriaMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;	
@@ -44,7 +45,7 @@ public class SubCategoriaMB implements Serializable {
 	@SuppressWarnings("rawtypes")
 	private Map filtros = new HashMap<String  , Object>();
 	
-	private ErrorHelper eH = new ErrorHelper();
+	private JsfMessagesHelper eH = new JsfMessagesHelper();
 	
 	public SubCategoriaMB() throws NamingException{
 		
@@ -127,6 +128,7 @@ public class SubCategoriaMB implements Serializable {
 			negocioCategoria.ingresarSubCategoria(this.nuevaSubCategoria);		
 			listaSubCategorias = negocioCategoria.obtenerSubCategoriasPorFiltros(filtros);
 			activoPanelIngreso = false;
+			nuevaSubCategoria = new SubCategoriaContenidoDataType();
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarIngreso", e.getMessage());
 		}
@@ -138,6 +140,7 @@ public class SubCategoriaMB implements Serializable {
 			negocioCategoria.modificarSubCategoria(this.currentSubCategoria);		
 			listaSubCategorias = negocioCategoria.obtenerSubCategoriasPorFiltros(filtros);
 			activoPanelEditar = false;
+			currentSubCategoria = new SubCategoriaContenidoDataType();
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarModificacion", e.getMessage());
 		}
@@ -148,6 +151,7 @@ public class SubCategoriaMB implements Serializable {
 			negocioCategoria.cambiarEstadoSubCategoria(this.currentSubCategoria);	
 			listaSubCategorias = negocioCategoria.obtenerSubCategoriasPorFiltros(filtros);
 			activoPanelEliminar = false;
+			currentSubCategoria = new SubCategoriaContenidoDataType();
 		} catch (Exception e) {
 			eH.setErrorMessage("", e.getMessage());
 		}		

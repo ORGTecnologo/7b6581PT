@@ -14,6 +14,7 @@ import org.jboss.logging.Logger;
 import tecinf.negocio.dtos.CambiarContraseniaDataType;
 import tecinf.negocio.dtos.EditarUsuarioDataType;
 import tecinf.negocio.dtos.LoginRespDataType;
+import tecinf.negocio.dtos.UsuarioAdministradorDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.dtos.UsuarioProveedorDataType;
@@ -36,6 +37,7 @@ import tecinf.persistencia.entities.EstadoUsuarioEntity;
 import tecinf.persistencia.entities.ParametroValorEntity;
 import tecinf.persistencia.entities.SessionEntity;
 import tecinf.persistencia.entities.TipoRegistroEntity;
+import tecinf.persistencia.entities.UsuarioAdministradorEntity;
 import tecinf.persistencia.entities.UsuarioClienteEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.entities.UsuarioProveedorEntity;
@@ -84,7 +86,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		String hashedPassword = Encriptacion.encriptarMD5(contrasenia);
 		UsuarioEntity ue = usuarioDao.findByEmailAndPassword(usuario,hashedPassword);
 		if (ue == null) {
-			resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA + "|" + "Usuario no registrado en el sistema");
+			resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA + "|" + "Usuario o contraseña inválidos");
 		} else {
 			
 			if (ue.getHabilitado()){
@@ -197,6 +199,47 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 				
 		usuarioDao.persist(ue);
 		return loginUsuario(dt.getCorreoElectronico(), dt.getContrasenia());
+	}
+	
+	public void registroUsuarioAdministrador(UsuarioAdministradorDataType dt) throws Exception {
+		UsuarioEntity uAdmin = new UsuarioAdministradorEntity();
+		
+		if (dt == null)
+			throw new Exception("Parametro invalido.");
+		if (ValidationUtil.isNullOrEmpty(dt.getCorreoElectronico()))
+			throw new Exception("Email obligatorio");
+		if (ValidationUtil.isNullOrEmpty(dt.getUsuario()))
+			throw new Exception("Usuario obligatorio");
+		if (ValidationUtil.isNullOrEmpty(dt.getContrasenia()) || ValidationUtil.isNullOrEmpty(dt.getContrasenia2()))
+			throw new Exception("Contraseñas obligatorias");
+		if (!dt.getContrasenia().equals(dt.getContrasenia2()))
+			throw new Exception("Las contraseñas no coinciden");
+		if (ValidationUtil.isNullOrEmpty(dt.getFechaNacimiento()))
+			throw new Exception("Fecha de nacimiento obligatoria");
+				
+		UsuarioEntity uAux = usuarioDao.findByID(dt.getUsuario());
+		if (uAux != null)
+			throw new Exception("Nick ya utilizado.");
+		uAux = usuarioDao.findByMail(dt.getCorreoElectronico());
+		if (uAux != null)
+			throw new Exception("Email ya utilizado.");
+				
+		uAdmin.setApellidos(dt.getApellidos());
+		String hashedPass = Encriptacion.encriptarMD5(dt.getContrasenia());
+		uAdmin.setContrasenia(hashedPass);
+		uAdmin.setCorreoElectronico(dt.getCorreoElectronico());
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		uAdmin.setFechaNacimiento( sdf.parse(dt.getFechaNacimiento()) );
+		EstadoUsuarioEntity estado = estadoUsuarioDao.findByID(EnumClavesEntidades.ESTADO_USUARIO_HABILITADO);
+		uAdmin.setEstadoUsuario(estado); 
+		uAdmin.setHabilitado(true);
+		uAdmin.setNombres(dt.getNombres());
+		uAdmin.setSexo(dt.getSexo());
+		uAdmin.setTelefonoMovil(dt.getTelefonoMovil());
+		uAdmin.setTipoUsuario(EnumTipoUsuario.USUARIO_ADMINISTRADOR);
+		uAdmin.setUsuario(dt.getUsuario());
+		
+		usuarioDao.persist(uAdmin); 
 	}
 
 	public Boolean existeUsuario(String usr) {

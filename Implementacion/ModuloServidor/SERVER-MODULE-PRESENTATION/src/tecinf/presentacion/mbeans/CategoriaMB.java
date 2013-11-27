@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.naming.NamingException;
 
 import org.jboss.logging.Logger;
@@ -15,15 +15,14 @@ import tecinf.negocio.NegocioCategoriaContenido;
 import tecinf.negocio.dtos.CategoriaContenidoDataType;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.negocio.utiles.ValidationUtil;
-import tecinf.presentacion.utiles.ErrorHelper;
+import tecinf.presentacion.utiles.JsfMessagesHelper;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class CategoriaMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;	
 	
-	@SuppressWarnings("unused")
 	private static Logger logger = Logger.getLogger(CategoriaMB.class);
 	
 	private NegocioCategoriaContenido negocioCategoria = null;
@@ -42,7 +41,7 @@ public class CategoriaMB implements Serializable {
 	@SuppressWarnings("rawtypes")
 	private Map filtros = new HashMap<String , Object>();
 	
-	private ErrorHelper eH = new ErrorHelper();
+	private JsfMessagesHelper eH = new JsfMessagesHelper();
 	
 	public CategoriaMB() throws NamingException{
 		
@@ -67,12 +66,8 @@ public class CategoriaMB implements Serializable {
 		this.currentCategoria = currentCategoria;
 	}
 	
-	public void mostrarPanelIngreso(){	
-		activoPanelIngreso = true; 
-		}
-	public void ocultarPanelIngreso(){	
-		activoPanelIngreso = false; 
-		}
+	public void mostrarPanelIngreso(){	activoPanelIngreso = true; }
+	public void ocultarPanelIngreso(){	activoPanelIngreso = false; }
 	
 	public void mostrarPanelEditar(){ activoPanelEditar = true; }
 	public void ocultarPanelEditar(){	activoPanelEditar = false; }
@@ -117,6 +112,7 @@ public class CategoriaMB implements Serializable {
 			negocioCategoria.ingresarCategoria(this.nuevaCategoria);		
 			listaCategorias = negocioCategoria.obtenerCategoriasPorFiltros(filtros);
 			activoPanelIngreso = false;
+			nuevaCategoria = new CategoriaContenidoDataType();
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarIngreso", e.getMessage());
 			logger.error(e.getMessage() , e);
@@ -129,6 +125,7 @@ public class CategoriaMB implements Serializable {
 			negocioCategoria.modificarCategoria(this.currentCategoria);		
 			listaCategorias = negocioCategoria.obtenerCategoriasPorFiltros(filtros);
 			activoPanelEditar = false;
+			currentCategoria = new CategoriaContenidoDataType();
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarModificacion", e.getMessage());
 		}		
@@ -139,6 +136,7 @@ public class CategoriaMB implements Serializable {
 			negocioCategoria.cambiarEstadoCategoria(this.currentCategoria);	
 			listaCategorias = negocioCategoria.obtenerCategoriasPorFiltros(filtros);
 			activoPanelEliminar = false;
+			currentCategoria = new CategoriaContenidoDataType();
 		} catch (Exception e) {
 			eH.setErrorMessage("", e.getMessage());
 		}		
@@ -174,7 +172,7 @@ public class CategoriaMB implements Serializable {
 		if (!ValidationUtil.isNullOrEmpty(filtroNombre))
 			filtros.put("nombre", filtroNombre);
 		if (!ValidationUtil.isNullOrEmpty(filtroDescripcion))
-			filtros.put("nombre", filtroDescripcion);
+			filtros.put("descripcion", filtroDescripcion);
 		if (!ValidationUtil.isNullOrEmpty(filtroEstado)){
 			if (filtroEstado.equals("H"))
 				filtros.put("habilitada", true);

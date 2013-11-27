@@ -15,7 +15,7 @@ import tecinf.negocio.dtos.CambiarContraseniaDataType;
 import tecinf.negocio.dtos.UserSession;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.presentacion.utiles.ConstantesSession;
-import tecinf.presentacion.utiles.ErrorHelper;
+import tecinf.presentacion.utiles.JsfMessagesHelper;
 
 @ManagedBean
 @ViewScoped
@@ -27,7 +27,7 @@ public class CambiarContraseniaMB implements Serializable {
 	private NegocioUsuario negocioUsuario = null;
 	private CambiarContraseniaDataType cambiarContraseniaDataType =  new CambiarContraseniaDataType();
 	
-	private ErrorHelper eH = new ErrorHelper();
+	private JsfMessagesHelper eH = new JsfMessagesHelper();
 	
 	public CambiarContraseniaMB() throws NamingException {
 		
