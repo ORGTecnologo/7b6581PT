@@ -103,6 +103,7 @@ function cargarComboCategorias(idSelect){
 			select.add(option1,select.options[null]);
 		};
 	}
+	cargarComboSubCategorias(select);
 	$('.selectpicker').selectpicker('refresh');
 }
 

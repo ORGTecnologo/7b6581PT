@@ -19,11 +19,6 @@
 	<link rel="stylesheet" href="css/alertify.core.css"/>	
 
 	<script src="js/Plugins/jquery.min.js"></script>
-	<script>
-		function confirmar(){
-			alertify.confirm('Message', function (e) {if (e) return true; else return false;});
-		}
-	</script>
 
 </head>
 
@@ -53,7 +48,7 @@
 		</ul>
 	</ul>
     <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
-		<a href="#" onclick="return confirmar();" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
+		<a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
 		<ul class="dropdown-menu">
 			<li><a href="#" onclick="setRegistroTipo('proveedor');verModales('registroUsuario')">Soy Proveedor</a></li>
 			<li><a href="#" onclick="setRegistroTipo('cliente');verModales('registroUsuario')">Soy Cliente</a></li>
@@ -63,7 +58,7 @@
 	<ul class="nav navbar-nav navbar-right" id="Nick-Logout-Div" style="display: none;margin-right: initial;margin-top: 0.7em;" hidden>
         <a class="nick dropdown-toggle" data-toggle="dropdown" role="button" href="#"><i class="glyphicon glyphicon-user"></i> nick <span class="caret"></span></a>
 		<ul class="dropdown-menu">
-		    <li id="opt_irAltaContenido"><a href="/SERVER-MODULE-PRESENTATION/proveedor/AltaContenido.html" onclick="return confirmar();"><i class="glyphicon glyphicon-cloud-upload"></i> Crear Contenido</a></li>
+		    <li id="opt_irAltaContenido"><a href="/SERVER-MODULE-PRESENTATION/proveedor/AltaContenido.html"><i class="glyphicon glyphicon-cloud-upload"></i> Crear Contenido</a></li>
 		    <li id="opt_irAdministracion"><a href="/SERVER-MODULE-PRESENTATION/admin/admin.xhtml"><i class="glyphicon glyphicon-wrench"></i> Administracion</a></li>
 		    <li><a id="dd_verPerfil" href="#"><i class="glyphicon glyphicon-user"></i> Ver Perfil</a></li>
 		    <li class="divider"></li>
