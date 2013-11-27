@@ -318,16 +318,16 @@ function validarNuevaContraseña(){
   else{
     if(newPass === newPass2){
       if(newPass.validarPassword()){
-        if(newPass2.validarPassword()){
+        if(newPass2.validarPassword())
           enviarCambioPassword(varsProy.nick,oldPass,newPass,newPass2);
-        }
-        alert('La nueva contraseña no es segura. Intente nuevamente!');
+        else
+          alertify.error('La nueva contraseña no es segura. Intente nuevamente!');
       }
       else
-        alert('La nueva contraseña no es segura. Intente nuevamente!');
+        alertify.error('La nueva contraseña no es segura. Intente nuevamente!');
     }
     else
-      alert('La nueva contraseña no conicide con la confirmacion de la misma. Intente nuevamente!');
+      alertify.error('La nueva contraseña no conicide con la confirmacion de la misma. Intente nuevamente!');
   }
 }
 

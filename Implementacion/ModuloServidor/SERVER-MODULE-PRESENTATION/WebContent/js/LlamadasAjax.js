@@ -283,11 +283,11 @@ function logoutUsuario(){
 		    alertify.log('Regresa pronto ' + varsProy.nick);
 		}
 		else
-			alert(msg.resultadoOperacion);
+			alertify.error(msg.resultadoOperacion);
 	})
 	.fail(function(msg) {
-		console.log(msg);
-		alert("Fallo del sistema, intente de nuevo o contacte con el administrador!!");
+//		console.log(msg);
+		alertify.error("Fallo del sistema, intente de nuevo o contacte con el administrador!!");
 	})
 	.always(function(msg) {
 	 	desbloquearPantalla();
@@ -314,11 +314,11 @@ function guardarCambiosPerfil(nombre,apellido,sexo,fechaNacimiento,tel,sitioWeb)
 	})
 	.done(function(msg){
 		console.log(msg);
-		alert("Perfil actualizado con exito!");
+		alertify.success("Perfil actualizado con exito!");
 	})
 	.fail(function(msg){
-		console.log(msg);
-		alert("Ocurrio un error inesperado al intentar actualizar el perfil.");		
+		//console.log(msg);
+		alertify.error("Ocurrio un error inesperado al intentar actualizar el perfil.");		
 	})
 	.always(function(msg) {
 	 	desbloquearPantalla();
