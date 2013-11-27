@@ -379,7 +379,7 @@ function cargarResultadoBusqueda(pag){
 	var aMostrar = jsonProy.resultadoBusqueda.length % 10;;
 	var expresion = jsonProy.resultadoBusqueda.length - aMostrar - (10 * pag);
 	var lengthFor = 10;
-	if (expresion < 0)
+	if (expresion <= 0)
 		lengthFor = aMostrar;
 
 	if((pag == aMostrar-1) && (pag > 0))

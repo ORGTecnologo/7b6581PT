@@ -44,7 +44,7 @@ function CTES_PROY(){
 	this.TIPO_CONTENIDO_LIBRO = "tipo_contenido_libro";
 
 //URLS...
-	this.HOST 		  = "http://localhost:8080";
+	this.HOST 		  = "";//"http://localhost:8080";
 	this.IP_SERVICIOS = this.HOST + "/SERVER-MODULE-PRESENTATION";
 	this.IP_WEBSERVICES = this.IP_SERVICIOS + "/restws";
 	this.URL_CONTENIDO = this.IP_SERVICIOS + '/views/content.html?id=';
