@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -28,6 +29,7 @@ import tecinf.negocio.dtos.IContenidoDataType;
 import tecinf.negocio.dtos.ReclamoDataType;
 import tecinf.negocio.dtos.UserSession;
 import tecinf.negocio.utiles.EnumRespuestas;
+import tecinf.negocio.utiles.EnumTipoUsuario;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.presentacion.utiles.ConstantesSession;
 import tecinf.presentacion.utiles.RightsChecker;
@@ -65,11 +67,14 @@ public class RWSContenidos {
 	@GET
 	@Path("/obtenerInfoContenido/{idContenido}")
 	@Produces("application/json")
-	public ContenidoDataType obtenerInfoContenido(@PathParam("idContenido") String idContenido) {
+	public ContenidoDataType obtenerInfoContenido(@Context HttpServletRequest req, @PathParam("idContenido") String idContenido) {
 		ContenidoDataType cont = null;
 		try {
 			
-			cont = negocioContenido.obtenerDatosContenido(Integer.valueOf(idContenido));
+			HttpSession session = req.getSession();
+			UserSession uSession = (UserSession)session.getAttribute(ConstantesSession.keyUsuarioSession);
+			Boolean fullPrivileges = (uSession != null && uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR));
+			cont = negocioContenido.obtenerDatosContenido(Integer.valueOf(idContenido) , fullPrivileges);
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e); 

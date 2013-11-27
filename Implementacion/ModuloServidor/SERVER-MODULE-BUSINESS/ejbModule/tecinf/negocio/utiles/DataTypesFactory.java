@@ -221,7 +221,7 @@ public class DataTypesFactory {
 		dt.setId(c.getId());
 		dt.setNombreContenido(c.getNombre());
 		dt.setDescripcionContenido(c.getDescripcion());
-		dt.setPrecio(c.getPrecio() == null || c.getPrecio() == Float.valueOf("0.0") ? "Gratis" : c.getPrecio().toString()); 
+		dt.setPrecio(c.getPrecio() == null || c.getPrecio() == Float.valueOf("0.0") ? "0" : c.getPrecio().toString()); 
 		if (c.getFotos() != null && c.getFotos().size() > 0){
 			for (ContenidoFotoEntity f : c.getFotos())
 				dt.getListaFotos().add(f.getUrlFoto());

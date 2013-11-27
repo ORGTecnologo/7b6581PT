@@ -46,6 +46,7 @@ function CTES_PROY(){
 //URLS...
 	this.HOST 		  = "http://localhost:8080";
 	this.IP_SERVICIOS = this.HOST + "/SERVER-MODULE-PRESENTATION";
+	this.IP_WEBSERVICES = this.IP_SERVICIOS + "/restws";
 	this.URL_CONTENIDO = this.IP_SERVICIOS + '/views/content.html?id=';
 	this.URL_PERFIL = this.IP_SERVICIOS + '/views/perfil.html?nick=';
 	this.URL_ADMIN_HOME = this.IP_SERVICIOS + '/admin/admin.xhtml';

@@ -89,7 +89,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		
 	}
 	
-	public ContenidoDataType obtenerDatosContenido(int idContenido) {
+	public ContenidoDataType obtenerDatosContenido(int idContenido, Boolean fullPrivileges) {
 		ContenidoDataType contenido = null;		
 		ContenidoEntity cont = contenidoDao.findByID(idContenido);
 		if (cont != null){
@@ -97,7 +97,7 @@ public class NegocioContenidoImpl implements NegocioContenido {
 			VersionContenidoEntity version = cont.obtenerVersionConEstado(EnumEstadosVersionContenido.APROBADA);
 			
 			/* muestro la informacion de contenidos que fueron aprobados */
-			if (version != null)
+			if (version != null || fullPrivileges)
 				contenido = DataTypesFactory.getContenidoDataType(cont);
 		}
 		return contenido;
@@ -176,8 +176,12 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		
 		List<ContenidoEntity> listaContE = contenidoDao.findTopContents(cantidad, tipo);
 		if (listaContE != null){
-			for (ContenidoEntity e : listaContE)
-				listaItemsContenido.add(DataTypesFactory.getContenidoMinimalDataType(e));
+			for (ContenidoEntity e : listaContE){
+				
+				VersionContenidoEntity version = e.obtenerVersionConEstado(EnumEstadosVersionContenido.APROBADA);
+				if (version != null)
+					listaItemsContenido.add(DataTypesFactory.getContenidoMinimalDataType(e));
+			}
 		}
 		
 		return listaItemsContenido;
@@ -282,7 +286,11 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		nC.setCantidadDescargas(0);
 		nC.setDescripcion(dt.getDescripcion());
 		nC.setNombre(dt.getNombre());
-		nC.setPrecio(Float.valueOf(/*dt.getPrecio()*/"5.0"));
+		
+		Integer precioInt = ( ValidationUtil.isNullOrEmpty(dt.getPrecio()) ? 0 : Integer.valueOf(dt.getPrecio()) );
+		
+		
+		nC.setPrecio(Float.valueOf(precioInt));
 		nC.setVersion("1.0");	
 		nC.setProveedorContenido(usuario);
 		
@@ -355,10 +363,10 @@ public class NegocioContenidoImpl implements NegocioContenido {
 		return nC.getId();
 	}
 	
-	public List<AprobarContenidoDataType> obtenerContenidosAAprobar(){
+	public List<AprobarContenidoDataType> obtenerContenidosAAprobar(@SuppressWarnings("rawtypes") Map filtros){
 		List<AprobarContenidoDataType> listaContenidos = new ArrayList<AprobarContenidoDataType>();
 		
-		List<ContenidoEntity> listaContenidosE = contenidoDao.findAll();
+		List<ContenidoEntity> listaContenidosE = contenidoDao.findAllByFiltros(filtros);
 		if (listaContenidosE != null){
 			for (ContenidoEntity c : listaContenidosE){
 				if (c.tieneVersionConEstado(EnumEstadosVersionContenido.PENDIENTE_REVISION))
