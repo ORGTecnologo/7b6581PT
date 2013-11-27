@@ -148,17 +148,18 @@ function altaContenido(content){
 	})
 	.done(function(msg) {
 		$('#con-tenedor').hide();
-		mostrarElemento('mensajeContenido');
+		mostrarElemento('mensajeContenidoExito');
 		alertify.success('Contenido creado exitosamente!!');
 	})
 	.fail(function(msg) {
 		console.debug('FALLO AL CREAR CONTENIDO: ' + msg);
-		alertify.error('Error!');
+		mostrarElemento('mensajeContenidoError');
+		alertify.success('Ocurrio un error inesperado!!');
 	})
 	.always(function(msg) {
 		desbloquearPantalla();
 		$('#con-tenedor').hide();
-		mostrarElemento('mensajeContenido');
+
 	});
 	
 }
