@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -34,7 +35,20 @@ public class ReclamoEntity implements Serializable {
 	
 	@Column(name="descripcion", nullable=false, length=1000)
 	private String descripcion;
-
+	
+	@Column(name="titulo", nullable=false, length=200)
+	private String titulo;
+	
+	@Column(name="estado", nullable=false, length=50)
+	private String estado;
+	
+	@Column(name="fecha_resulto", nullable=true)
+	private Date fechaResuelto;
+	
+	@OneToOne
+	@JoinColumn(name="id_descarga", nullable=false)
+	private UsuarioDescargaContenidoEntity descarga;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -65,6 +79,30 @@ public class ReclamoEntity implements Serializable {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
+	public UsuarioDescargaContenidoEntity getDescarga() {
+		return descarga;
+	}
+
+	public void setDescarga(UsuarioDescargaContenidoEntity descarga) {
+		this.descarga = descarga;
+	}
+
+	public String getEstado() {
+		return estado;
+	}
+
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	
 }

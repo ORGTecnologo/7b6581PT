@@ -1,9 +1,7 @@
 package tecinf.persistencia.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -73,26 +71,35 @@ public abstract class ContenidoEntity implements Serializable {
 	
 	@Column(name = "precio", nullable = true)
 	private Float precio;
+	
+	@Column(name = "video_web", length = 500, nullable = true)
+	private String videoWeb;
 
+	@Column(name = "video_movil", length = 500, nullable = true)
+	private String videoMovil;
+	
+	@Column(name = "proveedor_contenido", length = 500, nullable = true)
+	private String proveedorContenido;
+	
 	@OneToMany(targetEntity=ContenidoFotoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
 	private Set<ContenidoFotoEntity> fotos;
 	
 	@OneToMany(targetEntity=VersionContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
 	private Set<VersionContenidoEntity> versiones;
 	
-	@OneToMany(targetEntity=VersionContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
+	@OneToMany(targetEntity=UsuarioSubeContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
 	private Set<UsuarioSubeContenidoEntity> subidas;
 	
-	@OneToMany(targetEntity=VersionContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
-	private Set<UsuarioSubeContenidoEntity> bajadas;
+	@OneToMany(targetEntity=UsuarioDescargaContenidoEntity.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL, mappedBy="contenido")
+	private Set<UsuarioDescargaContenidoEntity> bajadas;
 	
 	public ContenidoEntity() {
 		fotos = new HashSet<ContenidoFotoEntity>();
 		versiones = new HashSet<VersionContenidoEntity>();
 		subidas = new HashSet<UsuarioSubeContenidoEntity>();
-		bajadas = new HashSet<UsuarioSubeContenidoEntity>();
+		bajadas = new HashSet<UsuarioDescargaContenidoEntity>();
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -103,6 +110,14 @@ public abstract class ContenidoEntity implements Serializable {
 
 	public String getDescripcion() {
 		return descripcion;
+	}
+	
+	public String getProveedorContenido() {
+		return proveedorContenido;
+	}
+
+	public void setProveedorContenido(String proveedorContenido) {
+		this.proveedorContenido = proveedorContenido;
 	}
 
 	public void setDescripcion(String descripcion) {
@@ -179,9 +194,7 @@ public abstract class ContenidoEntity implements Serializable {
 
 	public void setFotos(Set<ContenidoFotoEntity> fotos) {
 		this.fotos = fotos;
-	}
-
-	
+	}	
 	
 	public Set<VersionContenidoEntity> getVersiones() {
 		return versiones;
@@ -197,13 +210,13 @@ public abstract class ContenidoEntity implements Serializable {
 
 	public void setSubidas(Set<UsuarioSubeContenidoEntity> subidas) {
 		this.subidas = subidas;
-	}
+	}	
 
-	public Set<UsuarioSubeContenidoEntity> getBajadas() {
+	public Set<UsuarioDescargaContenidoEntity> getBajadas() {
 		return bajadas;
 	}
 
-	public void setBajadas(Set<UsuarioSubeContenidoEntity> bajadas) {
+	public void setBajadas(Set<UsuarioDescargaContenidoEntity> bajadas) {
 		this.bajadas = bajadas;
 	}
 
@@ -230,6 +243,21 @@ public abstract class ContenidoEntity implements Serializable {
 	public void setSubcategoria(SubCategoriaContenidoEntity subcategoria) {
 		this.subcategoria = subcategoria;
 	}
-	
-	
+
+	public String getVideoWeb() {
+		return videoWeb;
+	}
+
+	public void setVideoWeb(String videoWeb) {
+		this.videoWeb = videoWeb;
+	}
+
+	public String getVideoMovil() {
+		return videoMovil;
+	}
+
+	public void setVideoMovil(String videoMovil) {
+		this.videoMovil = videoMovil;
+	}
+		
 }

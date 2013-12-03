@@ -1,65 +1,107 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE  html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:ui="http://java.sun.com/jsf/facelets" 
       xmlns:h="http://java.sun.com/jsf/html" 
       xmlns:f="http://java.sun.com/jsf/core">
 
 <head>
-    <title>Administracion - MarketPlace</title>
-    <meta charset="utf-8"></meta>
+        <meta charset="utf-8"></meta>
+    <title>Administración - MarketPlace</title>    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" ></meta>
     <meta name="description" content="Pagina de administracion del marketplace."></meta>
-	
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="../css/Admin_Home.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="../css/bootstrap-select.min.css" media="screen" />
-	<link rel="stylesheet" type="text/css" href="../css/market.css" media="screen" />	
+        
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../css/Admin_Home.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap-select.min.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../css/market.css" media="screen" />        
+        <link rel="stylesheet" type="text/css" href="../css/css-popup.css" media="screen" />        
+        <link rel="stylesheet" type="text/css" href="../css/datepicker.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../css/alertify.core.css" media="screen" />
+        <link rel="stylesheet" type="text/css" href="../css/alertify.default.css" media="screen" />
+        
+        <script src="../js/globalesProyecto.js"></script>
+        <script src="../js/Plugins/jquery.min.js"></script>
+        <script src="../js/Plugins/jquery-ui.js"></script>
+        <script src="../js/Plugins/holder.js"></script>
+        <script src="../js/Plugins/bootstrap.js"></script>
+        <script src="../js/LlamadasAjax.js"></script>
+        <script src="../js/getSet.js"></script>
+        <script src="../js/Prototipos.js"></script>
+        <script src="../js/Plugins/bootstrap-select.min.js"></script>
+        <script src="../js/admin.js"></script>
+        <script src="../js/Plugins/css-popup.js"></script>
+        <script src="../js/Plugins/bootstrap-datepicker.js"></script>
+        <script src="../js/Plugins/alertify.min.js"></script>
+        
 </head>
 
 <body>
-	<div class="row-fluid">
-		<div class="navbar-wrapper">
-		    <div class="container">
-		        <div class="navbar navbar-inverse">
-		            <div class="navbar-inner ">
-		            	<center><h4 style="color: white; font-size: 26px; ">Modulo de Administrador</h4></center>
-		            </div>
-		    	</div>
-			</div>
-		</div>
-	</div>
-	<div class="col-md-12">
-		<div class="col-md-2" style="margin-left: auto; background-color: rgb(230, 230, 230)">
-			<ul class="nav nav-list">
-				<li class="nav-header">Administracion</li>
-				<li class="active"><a href="#">Inicio</a></li>
-				<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialContenidos.xhtml">Contenidos</a></li>				
-				<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialUsuarios.xhtml">Usuarios</a></li>
-				<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialAuditoria.xhtml">Registros de ingreso</a></li>
-				<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialComentarios.xhtml">Comentarios</a></li>
-				<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialCategorias.xhtml">Categorias</a></li>
-				<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialSubCategorias.xhtml">Subcategorias</a></li>
-				<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialParametros.xhtml">Parametros del sistema</a></li>
-			</ul>	
-		</div>
-		<div class="col-md-10">
-			<div class="container marketing" style="height: 75%">
-				<div class="row-fluid">
-					<ui:insert name="body"/>
-				</div>
-			</div>
-		</div>
-		</div>
-</body>
-<script src="../js/jquery.min.js"></script>
-<script src="../js/jquery-ui.js"></script>
-<script src="../js/holder.js"></script>
-<script src="../js/bootstrap.js"></script>
-<script src="../js/LlamadasAjax.js"></script>
-<script src="../js/getSet.js"></script>
-<script src="../js/Prototipos.js"></script>
-<script src="../js/bootstrap-select.min.js"></script>
-<script src="../js/admin.js"></script>
-</html>
+        <div class="row-fluid">
+                <div class="navbar-wrapper">
+                    <div class="container">
+                        <div class="navbar navbar-inverse">
+                            <div class="navbar-inner ">
+                                    <center><h4 style="color: white; font-size: 26px; ">Modulo de Administrador</h4></center>
+                            </div>
+                            </div>
+                        </div>
+                </div>
+        </div>
+        <div class="col-md-12">
+                <div class="col-md-2" style="margin-left: auto;">
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu" style="display: block; position: static; margin-bottom: 5px; *width: 180px;">
+	  			<li style="text-align: center;"><h3>Administración</h3></li>
+	  			<li role="presentation" class="divider"></li>
+	  			<li role="presentation">
+			  		<a role="menuitem" tabindex="-1" href="/SERVER-MODULE-PRESENTATION/index.html">Página de inicio</a>
+			  	</li>
+	  			<li role="presentation" class="divider"></li>
+	  			<li class="dropdown-submenu">
+	    			<a tabindex="-1" href="#">Gestion de usuarios</a>
+		    			<ul class="dropdown-menu">
+				      		<li><a tabindex="-1" href="/SERVER-MODULE-PRESENTATION/admin/partialUsuarios.xhtml">Usuarios</a></li>      
+					      	<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialAdministrador.xhtml">Registrar administrador</a></li>
+					      	<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialCambiarContrasenia.xhtml">Cambiar contraseña</a></li>
+					    </ul>
+				</li>
+	  			<li class="dropdown-submenu">
+	    			<a tabindex="-1" href="#">Gestión de contenidos</a>
+					    <ul class="dropdown-menu">
+				      		<li><a tabindex="-1" href="/SERVER-MODULE-PRESENTATION/admin/partialContenidos.xhtml">Contenidos</a></li>      
+					      	<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialComentarios.xhtml">Comentarios</a></li>
+					      	<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialReclamos.xhtml">Reclamos</a></li>
+					    </ul>
+				</li>
+	  			<li class="dropdown-submenu">
+				    <a tabindex="-1" href="#">Configuración</a>
+				    	<ul class="dropdown-menu">
+			      			<li><a tabindex="-1" href="/SERVER-MODULE-PRESENTATION/admin/partialCategorias.xhtml">Categorías</a></li>      
+				      		<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialSubCategorias.xhtml">Subcategorías</a></li>
+				      		<li><a href="/SERVER-MODULE-PRESENTATION/admin/partialParametros.xhtml">Parámetros</a></li>
+				    	</ul>
+			  	</li>
+				<li class="dropdown-submenu">
+	    			<a tabindex="-1" href="#">Auditoría</a>
+	    				<ul class="dropdown-menu">
+	      					<li><a tabindex="-1" href="/SERVER-MODULE-PRESENTATION/admin/partialAuditoria.xhtml">Registro de accesos</a></li>
+	    				</ul>
+	  				</li>
+	  			<li role="presentation" class="divider"></li>
+		  		<li role="presentation">
+			  		<a role="menuitem" tabindex="-1" href="#" onclick="logoutUsuario()">Salir del sistema</a>
+			  	</li>
+			</ul>  
+                </div>
+                <div class="col-md-10">
+                        <div class="container marketing" style="height: 75%">
+                                <div class="row-fluid">
+                                        <ui:insert name="body"/>
+                                </div>
+                        </div>
+                </div>
+                </div>
 
+</body>
+
+</html>

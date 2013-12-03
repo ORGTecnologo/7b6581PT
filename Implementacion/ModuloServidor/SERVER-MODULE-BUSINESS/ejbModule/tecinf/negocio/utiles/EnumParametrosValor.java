@@ -9,5 +9,6 @@ public class EnumParametrosValor {
 	public static final String LAPSO_EJECUCION_ACTUALIZACION_INFO_CONTENIDOS = "lapsoEjecucionActualizacionInfoContenidos";
 	public static final String LAPSO_EJECUCION_ACTUALIZACION_INFO_DESCARGAS = "lapsoEjecucionActualizacionInfoDescargas";
 	public static final String HORAS_VALORACION_NO_HABILITADA = "horasValoracionNoHabilitada";
+	public static final String CANTIDAD_TOP_CONTENIDOS = "cantidadTopContenidos";
 	
 }

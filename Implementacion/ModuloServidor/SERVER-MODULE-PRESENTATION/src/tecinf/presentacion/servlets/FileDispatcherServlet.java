@@ -5,15 +5,23 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javax.naming.NamingException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.jboss.logging.Logger;
 
+import tecinf.negocio.NegocioContenido;
+import tecinf.negocio.NegocioParametros;
+import tecinf.negocio.dtos.UserSession;
 import tecinf.negocio.utiles.CripterDecripter;
+import tecinf.negocio.utiles.EnumParametrosValor;
+import tecinf.negocio.utiles.NegocioFactory;
+import tecinf.presentacion.utiles.ConstantesSession;
  
 public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implements javax.servlet.Servlet {
 	
@@ -31,10 +39,30 @@ public class FileDispatcherServlet extends javax.servlet.http.HttpServlet implem
     	
     	
     	String idContenido = request.getParameter("idContenido");
-    	String qString = request.getQueryString();
-    	String qStringDecripted = CripterDecripter.decrypt(qString);
+    	String rutaContenido = request.getParameter("rutaContenido");
+    	rutaContenido = rutaContenido.replace(" ", "+");
+    	//String qString = request.getQueryString();
+    	String qStringDecripted = CripterDecripter.decrypt(rutaContenido);   	
     	
-    	File file = new File(qStringDecripted);
+    	HttpSession s = request.getSession();
+    	UserSession session = (UserSession) s.getAttribute(ConstantesSession.keyUsuarioSession);
+    	try {
+    		NegocioContenido negocioContenido = NegocioFactory.getNegocioContenido();
+			negocioContenido.registrarDescaraContenido(Integer.valueOf(idContenido), session.getUsuario());
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e);
+		}
+    	
+    	NegocioParametros negocioParametros = null;
+		try {
+			negocioParametros = NegocioFactory.getNegocioParametros();
+		} catch (NamingException e) {
+			logger.error(e.getMessage() , e); 
+		}
+    	String rutaBase = negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.RUTA_BASE_SISTEMA_ARCHIVOS);
+    	
+    	String rutaCompletaArchivo = rutaBase + qStringDecripted;
+    	File file = new File(rutaCompletaArchivo);
         
         int length = 0;
         ServletOutputStream outStream = response.getOutputStream();

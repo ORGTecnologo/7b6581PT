@@ -1,100 +1,99 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>SERVER-MODULE-PRESENTATION</display-name>
-  <context-param>
-    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
-    <param-value>resources.application</param-value>
-  </context-param>
-  <context-param>
-    <param-name>resteasy.scan</param-name>
-    <param-value>true</param-value>
-  </context-param>
-  <context-param>
-    <param-name>resteasy.servlet.mapping.prefix</param-name>
-    <param-value>/restws</param-value>
-  </context-param>
-  <filter>
-    <display-name>ServletAutenticacion</display-name>
-    <filter-name>ServletAutenticacion</filter-name>
-    <filter-class>tecinf.presentacion.filtros.FiltroAutenticacion</filter-class>
-  </filter>
-  <filter-mapping>
-    <filter-name>ServletAutenticacion</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-  <listener>
-    <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
-  </listener>
-  <listener>
-    <listener-class>tecinf.presentacion.procesos.InicioProcesos</listener-class>
-  </listener>
-  <listener>
-    <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
-  </listener>
-  <servlet>
-    <servlet-name>resteasy-servlet</servlet-name>
-    <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
-  </servlet>
-  <servlet>
-    <display-name>FileDispatcherServlet</display-name>
-    <servlet-name>FileDispatcherServlet</servlet-name>
-    <servlet-class>tecinf.presentacion.servlets.FileDispatcherServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <display-name>ImageDispatcherServlet</display-name>
-    <servlet-name>ImageDispatcherServlet</servlet-name>
-    <servlet-class>tecinf.presentacion.servlets.ImageDispatcherServlet</servlet-class>
-  </servlet>
-  <servlet>
-    <display-name>FileUploadServlet</display-name>
-    <servlet-name>FileUploadServlet</servlet-name>
-    <servlet-class>tecinf.presentacion.servlets.FileUploadServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>resteasy-servlet</servlet-name>
-    <url-pattern>/restws/*</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>FileDispatcherServlet</servlet-name>
-    <url-pattern>/FileDispatcherServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ImageDispatcherServlet</servlet-name>
-    <url-pattern>/Images</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>FileUploadServlet</servlet-name>
-    <url-pattern>/proveedor/upload</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>FileUploadServlet</servlet-name>
-    <url-pattern>/admin/upload</url-pattern>
-  </servlet-mapping>
-  <session-config>
-    <session-timeout>20</session-timeout>
-  </session-config>
-  
-  <context-param>  
-  <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>  
-  <param-value>true</param-value>  
-</context-param>  
-<servlet>  
-  <servlet-name>Faces Servlet</servlet-name>  
-  <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>  
-  <load-on-startup>1</load-on-startup>  
-</servlet>  
-  
-<servlet-mapping>  
-  <servlet-name>Faces Servlet</servlet-name>  
-  <url-pattern>*.xhtml</url-pattern>  
-</servlet-mapping>  
-  
-<context-param>  
-  <param-name>javax.faces.PROJECT_STAGE</param-name>  
-  <param-value>Development</param-value>  
-</context-param> 
-  
-  
-  
-  
+<?xml version="1.0" encoding="utf-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+    <display-name>SERVER-MODULE-PRESENTATION</display-name>
+    <context-param>
+        <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+        <param-value>resources.application</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.scan</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>resteasy.servlet.mapping.prefix</param-name>
+        <param-value>/restws</param-value>
+    </context-param>
+    <filter>
+        <display-name>ServletAutenticacion</display-name>
+        <filter-name>ServletAutenticacion</filter-name>
+        <filter-class>tecinf.presentacion.filtros.FiltroAutenticacion</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ServletAutenticacion</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>
+    </listener>
+    <listener>
+        <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
+    </listener>
+    <servlet>
+        <servlet-name>resteasy-servlet</servlet-name>
+        <servlet-class>org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher</servlet-class>
+    </servlet>
+    <servlet>
+        <display-name>FileDispatcherServlet</display-name>
+        <servlet-name>FileDispatcherServlet</servlet-name>
+        <servlet-class>tecinf.presentacion.servlets.FileDispatcherServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <display-name>ImageDispatcherServlet</display-name>
+        <servlet-name>ImageDispatcherServlet</servlet-name>
+        <servlet-class>tecinf.presentacion.servlets.ImageDispatcherServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <display-name>FileUploadServlet</display-name>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <servlet-class>tecinf.presentacion.servlets.FileUploadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>resteasy-servlet</servlet-name>
+        <url-pattern>/restws/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileDispatcherServlet</servlet-name>
+        <url-pattern>/FileDispatcherServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ImageDispatcherServlet</servlet-name>
+        <url-pattern>/Images</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <url-pattern>/proveedor/upload</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <url-pattern>/admin/upload</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>20</session-timeout>
+    </session-config>
+    <context-param>
+        <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    
+    
+    
+    <!-- LANZADO DE PROCESOS AUTOMATICOS -->
+    <listener>
+        <listener-class>tecinf.presentacion.procesos.InicioProcesos</listener-class>
+    </listener>
+    
 </web-app>

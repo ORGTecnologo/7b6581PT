@@ -1,9 +1,6 @@
 package tecinf.negocio.utiles;
 
 import java.text.SimpleDateFormat;
-import java.util.List;
-
-import org.jboss.logging.Logger;
 
 import tecinf.negocio.dtos.AprobarContenidoDataType;
 import tecinf.negocio.dtos.AuditoriaDataType;
@@ -15,7 +12,9 @@ import tecinf.negocio.dtos.ContenidoMinimalDataType;
 import tecinf.negocio.dtos.ContenidoSoftwareDataType;
 import tecinf.negocio.dtos.ContenidoTemaMusicalDataType;
 import tecinf.negocio.dtos.ContenidoVideoDataType;
+import tecinf.negocio.dtos.DescargaDataType;
 import tecinf.negocio.dtos.ParametroValorDataType;
+import tecinf.negocio.dtos.ReclamoDataType;
 import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.dtos.UsuarioAdministradorDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
@@ -31,16 +30,17 @@ import tecinf.persistencia.entities.ContenidoSoftwareEntity;
 import tecinf.persistencia.entities.ContenidoTemaMusicalEntity;
 import tecinf.persistencia.entities.ContenidoVideoEntity;
 import tecinf.persistencia.entities.ParametroValorEntity;
+import tecinf.persistencia.entities.ReclamoEntity;
 import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
-import tecinf.persistencia.entities.UsuarioAdministradorEntity;
 import tecinf.persistencia.entities.UsuarioDescargaContenidoEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
+import tecinf.persistencia.entities.UsuarioProveedorEntity;
 import tecinf.persistencia.entities.VersionContenidoEntity;
 import tecinf.persistencia.utiles.EnumTiposContenido;
 
 public class DataTypesFactory {
 	
-	private static Logger logger = Logger.getLogger(DataTypesFactory.class);
+	//private static Logger logger = Logger.getLogger(DataTypesFactory.class);
 	
 	public static ParametroValorDataType getParametroValorDataType(ParametroValorEntity e){
 		ParametroValorDataType dt = new ParametroValorDataType();
@@ -52,14 +52,13 @@ public class DataTypesFactory {
 	}
 	
 	public static UsuarioDataType getUsuarioDataType(UsuarioEntity u){
-		UsuarioDataType dt = null;
-		
-		
+		UsuarioDataType dt = null;	
 		
 		if (u.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE)){
 			dt = new UsuarioClienteDataType();
 		} else if (u.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR)){
-			dt = new UsuarioProveedorDataType();			
+			dt = new UsuarioProveedorDataType();
+			((UsuarioProveedorDataType)dt).setSitioWeb(((UsuarioProveedorEntity)u).getSitioWeb());
 		} else if (u.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR)){
 			dt = new UsuarioAdministradorDataType();
 		}
@@ -67,7 +66,7 @@ public class DataTypesFactory {
 		dt.setApellidos(u.getApellidos());
 		dt.setContrasenia(u.getContrasenia());
 		dt.setCorreoElectronico(u.getCorreoElectronico());
-		dt.setFechaNacimientoDate(u.getFechaNacimiento());
+		dt.setFechaNacimientoTimeStamp(u.getFechaNacimiento() == null ? 0 : u.getFechaNacimiento().getTime());
 		dt.setNombres(u.getNombres());
 		dt.setSexo(u.getSexo());
 		dt.setTelefonoMovil(u.getTelefonoMovil());	
@@ -140,6 +139,9 @@ public class DataTypesFactory {
 				dt.getVersiones().add(getVersionContenidoDataType(v));
 		}
 		
+		dt.setVideoMovil(c.getVideoMovil() == null ? "" : c.getVideoMovil());
+		dt.setVideoWeb(c.getVideoWeb() == null ? "" : c.getVideoWeb());
+		
 		dt.setTipoContenido(c.getTipoContenido());
 		dt.setPrecio(c.getPrecio() == null ? 0 : c.getPrecio());
 		dt.setCalificacion(c.getCalificacion() == null ? 0 : c.getCalificacion());
@@ -147,7 +149,7 @@ public class DataTypesFactory {
 		dt.setIdContenido(c.getId());
 		dt.setNombreContenido(c.getNombre());
 		dt.setTamanioContenido(c.getTamanio());
-		dt.setUrlArchivoContenido("/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?" + c.getRutaArchivoContenido());
+		dt.setUrlArchivoContenido("/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?idContenido=" + c.getId() + "&rutaContenido=" + c.getRutaArchivoContenido());
 		dt.setCantidadDescargas(c.getCantidadDescargas() == null ? 0 : c.getCantidadDescargas());
 		
 		return dt;
@@ -208,6 +210,7 @@ public class DataTypesFactory {
 		dt.setNombreContenido(c.getNombre());
 		dt.setVersion(v.getVersion());
 		dt.setIdVersion(v.getId());
+		dt.setProveedor(c.getProveedorContenido());
 		
 		return dt;
 	}
@@ -217,11 +220,49 @@ public class DataTypesFactory {
 		
 		dt.setId(c.getId());
 		dt.setNombreContenido(c.getNombre());
-		dt.setPrecio(c.getPrecio() == null || c.getPrecio() == Float.valueOf("0.0") ? "Gratis" : c.getPrecio().toString()); 
+		dt.setDescripcionContenido(c.getDescripcion());
+		dt.setPrecio(c.getPrecio() == null || c.getPrecio() == Float.valueOf("0.0") ? "0" : c.getPrecio().toString()); 
 		if (c.getFotos() != null && c.getFotos().size() > 0){
 			for (ContenidoFotoEntity f : c.getFotos())
 				dt.getListaFotos().add(f.getUrlFoto());
 		}
+		dt.setCalificacion(c.getCalificacion() == null ? 0 : c.getCalificacion());
+		dt.setUrlDescarga("/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?idContenido=" + c.getId() + "&rutaContenido=" + c.getRutaArchivoContenido());
+		
+		return dt;
+	}
+	
+	public static DescargaDataType getDescargaDataType(UsuarioDescargaContenidoEntity e){
+		DescargaDataType dt = new DescargaDataType();
+		
+		dt.setFechaDescarga(e.getFechaDescarga() == null ? "" : String.valueOf(e.getFechaDescarga().getTime())); 
+		dt.setIdContenido(e.getContenido().getId());
+		dt.setIdDescarga(e.getId());
+		dt.setNombreContenido(e.getContenido().getNombre());
+		if (e.getContenido().getFotos() != null){
+			for (ContenidoFotoEntity f : e.getContenido().getFotos()){
+				dt.setFoto(f.getUrlFoto());
+				break;
+			}
+		} else {
+			dt.setFoto("");
+		}
+		dt.setCalificacion(e.getContenido().getCalificacion());
+		dt.setTipoContenido(e.getContenido().getTipoContenido());
+		
+		return dt;
+	}
+
+	public static ReclamoDataType getReclamoDataType(ReclamoEntity e){
+		ReclamoDataType dt = new ReclamoDataType();
+		
+		dt.setDescripcion(e.getDescripcion());
+		dt.setFechaReclamo(e.getFechaReclamo());
+		dt.setId(e.getId());
+		dt.setTitulo(e.getTitulo());
+		dt.setIdContenido(e.getDescarga().getContenido().getId());
+		dt.setIdDescarga(e.getDescarga().getId());
+		dt.setAutor(e.getDescarga().getUsuarioCliente().getUsuario());
 		
 		return dt;
 	}

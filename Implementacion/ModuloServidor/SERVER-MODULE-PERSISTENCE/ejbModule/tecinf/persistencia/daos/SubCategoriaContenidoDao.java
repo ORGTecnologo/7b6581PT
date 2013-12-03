@@ -1,6 +1,7 @@
 package tecinf.persistencia.daos;
 
 import java.util.List;
+import java.util.Map;
 
 import tecinf.persistencia.entities.SubCategoriaContenidoEntity;
 
@@ -12,4 +13,5 @@ public interface SubCategoriaContenidoDao extends Dao<Integer, SubCategoriaConte
 	
 	public List<SubCategoriaContenidoEntity> findAllByState(Boolean estado);
 	
+	public List<SubCategoriaContenidoEntity> findAllByFiltros(Map filtros);
 }

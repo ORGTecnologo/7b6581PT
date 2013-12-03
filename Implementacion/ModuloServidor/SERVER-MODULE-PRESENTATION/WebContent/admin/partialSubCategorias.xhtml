@@ -12,80 +12,119 @@
 		<h:form>
 			<div class="row">
 				<div class="col-md-12">
-					<h2>Gestion de sub categorias</h2>
+					<h2>Gestion de sub categorías</h2>
 					
-					<h:commandButton style="float:right" class="btn" action="#{subCategoriaMB.mostrarPanelIngreso}" value="Nuevo">
-						<!--  <h:graphicImage library="images" class="btnNuevo" value="../img/agregarServicio.jpeg" />  -->
+					<h:commandButton action="#{subCategoriaMB.mostrarPanelIngreso}" style="float:right" class="btn" value="Nuevo">				
 					</h:commandButton>
-				</div>
+				</div>			
+			</div>
+			<div class="row">
 				<div class="col-md-12">
-				<div class="wrapperTablasAdministracion">
-					<h:dataTable value="#{subCategoriaMB.listaSubCategorias}" var="o"
-						styleClass="order-table" headerClass="order-table-header"
-						rowClasses="order-table-odd-row,order-table-even-row"
-						class="table table-striped">
-		
-						<h:column>
-							<f:facet name="header">Nombre</f:facet>
-							#{o.nombre}
-						</h:column>
-		
-						<h:column>
-							<f:facet name="header">Descripcion</f:facet>
-							#{o.descripcion}
-						</h:column>
+					<fieldset>
+						<legend>Filtros</legend>
+						<div class="row">						
+							<div class="col-md-3">
+								Nombre
+						  		<h:inputText value="#{subCategoriaMB.filtroNombre}" class="col-md-10 form-control"/>							
+							</div>
+							<div class="col-md-3">
+								Descripción
+								<h:inputText value="#{subCategoriaMB.filtroDescripcion}" class="col-md-10 form-control"/>
+							</div>
+							<div class="col-md-3">
+								Estado
+								<h:selectOneMenu value="#{subCategoriaMB.filtroEstado}" class="selectpicker">
+									<f:selectItem itemLabel="Todas" itemValue="T" />
+									<f:selectItem itemLabel="Habilitadas" itemValue="H" />
+									<f:selectItem itemLabel="Deshabilitadas"	itemValue="D" />
+								</h:selectOneMenu>
+							</div>
 						
-						<h:column>
-							<f:facet name="header">Categoria</f:facet>
-							#{o.categoria.nombre}	
-						</h:column>
-						
-						<!-- column header -->
-						<!-- row record -->
-						<h:column>
-							<f:facet name="header">Habilitado</f:facet>
-							#{o.habilitadaStr}
-						</h:column>
-		
-						<h:column>
-							<h:commandButton class="btn" value="Editar" action="#{subCategoriaMB.mostrarPanelEditar}" >
-								<f:setPropertyActionListener target="#{subCategoriaMB.currentSubCategoria}" value="#{o}" />
-							</h:commandButton>
-						</h:column>
-						<h:column>
-							<h:commandButton class="btn" action="#{subCategoriaMB.mostrarPanelEliminar}" value="#{o.captionBtnHabilitarDeshabilitar}">
-								<f:setPropertyActionListener target="#{subCategoriaMB.currentSubCategoria}" value="#{o}" />
-							</h:commandButton>
-						</h:column>
-					</h:dataTable>
+							<div class="row">
+								<div class="col-md-12 ">
+									<h:commandButton action="#{subCategoriaMB.filtrar}" value="Filtrar" class="btn pull-right">
+									</h:commandButton>
+								</div>
+							</div>	
+						</div>				
+					</fieldset>
 				</div>
 			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="wrapperTablasAdministracion">
+						<h:dataTable value="#{subCategoriaMB.listaSubCategorias}" var="o"
+							styleClass="order-table" headerClass="order-table-header"
+							rowClasses="order-table-odd-row,order-table-even-row"
+							class="table table-striped">
+			
+							<h:column>
+								<f:facet name="header">Nombre</f:facet>
+								#{o.nombre}
+							</h:column>
+			
+							<h:column>
+								<f:facet name="header">Descripcion</f:facet>
+								#{o.descripcion}
+							</h:column>
+							
+							<h:column>
+								<f:facet name="header">Categoria</f:facet>
+								#{o.categoria.nombre}	
+							</h:column>
+							
+							<!-- column header -->
+							<!-- row record -->
+							<h:column>
+								<f:facet name="header">Habilitado</f:facet>
+								#{o.habilitadaStr}
+							</h:column>
+			
+							<h:column>
+								<h:commandButton class="btn" value="Editar" action="#{subCategoriaMB.mostrarPanelEditar}" >
+									<f:setPropertyActionListener target="#{subCategoriaMB.currentSubCategoria}" value="#{o}" />
+								</h:commandButton>
+							</h:column>
+							<h:column>
+								<h:commandButton class="btn" action="#{subCategoriaMB.mostrarPanelEliminar}" value="#{o.captionBtnHabilitarDeshabilitar}">
+									<f:setPropertyActionListener target="#{subCategoriaMB.currentSubCategoria}" value="#{o}" />
+								</h:commandButton>
+							</h:column>
+						</h:dataTable>
+					</div>
+				</div>
 			</div>
 		</h:form>
 		
 
-		<h:panelGroup id="panelModificar" rendered="#{subCategoriaMB.activoPanelEditar}">
+		<h:panelGroup id="panelModificar" rendered="#{subCategoriaMB.activoPanelEditar}" >
+		
 			<h:form>
 				<div class="modal loginDiv modal-dialog"
 					style="width: 300px">
 					<div class="modal-content">
-						<div class="modal-header">Modificar sub categoria</div>
+						<div class="modal-header">Modificar sub categoría</div>
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12 col-xs-10">
 									<h4>Datos de sub categoría</h4>
 									<p>
-										Nombre <h:inputText value="#{subCategoriaMB.currentSubCategoria.nombre}" type="text" class="col-xs-7 form-control" />
+										Nombre 
+										<h:inputText id="nombreMod" value="#{subCategoriaMB.currentSubCategoria.nombre}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatorio)" />
+										<h:message for="nombreMod" style="color:red" />
 									</p>
 									<p>
-										Descripcion <h:inputText value="#{subCategoriaMB.currentSubCategoria.descripcion}" type="text" class="col-xs-7 form-control" />
+										Descripción 
+										<h:inputText id="descripcionMod" value="#{subCategoriaMB.currentSubCategoria.descripcion}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatorio)" />
+										<h:message for="descripcionMod" style="color:red" />
 									</p>
 									<p>
-										Habilitada <h:selectBooleanCheckbox value="#{subCategoriaMB.currentSubCategoria.habilitada}" type="checkbox"/>
+										Habilitada 
+										<h:selectBooleanCheckbox value="#{subCategoriaMB.currentSubCategoria.habilitada}" type="checkbox"/>
 									</p> 
 									<p>
-										Categoria
-										<h:selectOneMenu value="#{subCategoriaMB.currentSubCategoria.categoria.id}">
+										Categoría
+										<h:selectOneMenu value="#{subCategoriaMB.currentSubCategoria.categoria.id}" class="selectpicker">
 								   			<f:selectItems value="#{subCategoriaMB.listaCategorias}" var="c"
 								   			itemLabel="#{c.nombre}" itemValue="#{c.id}" />
 								   		</h:selectOneMenu>
@@ -96,7 +135,7 @@
 						<div class="modal-footer">
 								<h:message for="btnConfirmarModificacion" class="error" />
 								<h:commandButton class="btn" id="btnConfirmarModificacion" value="Confirmar" action="#{subCategoriaMB.editarSubCategoria}" />
-								<h:commandButton class="btn" value="Cancelar" action="#{subCategoriaMB.ocultarPanelEditar}" />
+								<h:commandButton immediate="true" class="btn" value="Cancelar" action="#{subCategoriaMB.ocultarPanelEditar}" />
 						</div>
 					</div>
 				</div>
@@ -114,19 +153,23 @@
 								<div class="col-md-12 col-xs-10">
 									<h4>Datos de sub categoría</h4>
 									<p>
-										Nombre <h:inputText value="#{subCategoriaMB.nuevaSubCategoria.nombre}" type="text" class="col-xs-7 form-control" />
+										Nombre 
+										<h:inputText id="nombreIng" value="#{subCategoriaMB.nuevaSubCategoria.nombre}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatorio)"/>
+										<h:message for="nombreIng" style="color:red" />
 									</p>
 									<p>
-										Descripcion <h:inputText value="#{subCategoriaMB.nuevaSubCategoria.descripcion}" type="text" class="col-xs-7 form-control" />
+										Descripción 
+										<h:inputText id="descripcionIng" value="#{subCategoriaMB.nuevaSubCategoria.descripcion}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatorio)" />
+										<h:message for="descripcionIng" style="color:red" />
 									</p>
 									<p>
-										Habilitada <h:selectBooleanCheckbox value="#{subCategoriaMB.nuevaSubCategoria.habilitada}" type="checkbox"/>
+										Habilitada 
+										<h:selectBooleanCheckbox value="#{subCategoriaMB.nuevaSubCategoria.habilitada}" type="checkbox" required="true" requiredMessage="(obligatorio)" />
 									</p>
 									<p>
-										Categoria
-										<h:selectOneMenu value="#{subCategoriaMB.nuevaSubCategoria.categoria.id}">
-								   			<f:selectItems value="#{subCategoriaMB.listaCategorias}" var="c"
-								   			itemLabel="#{c.nombre}" itemValue="#{c.id}" />
+										Categoría
+										<h:selectOneMenu value="#{subCategoriaMB.nuevaSubCategoria.categoria.id}" class="selectpicker" >
+								   			<f:selectItems value="#{subCategoriaMB.listaCategorias}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.id}" />
 								   		</h:selectOneMenu>
 									</p>
 								</div>
@@ -135,12 +178,13 @@
 						<div class="modal-footer">
 							<h:message for="btnConfirmarIngreso" class="error" />
 							<h:commandButton class="btn" id="btnConfirmarIngreso" value="Confirmar" action="#{subCategoriaMB.crearSubCategoria}" />
-							<h:commandButton class="btn" value="Cancelar" action="#{subCategoriaMB.ocultarPanelIngreso}" />
+							<h:commandButton immediate="true" class="btn" value="Cancelar" action="#{subCategoriaMB.ocultarPanelIngreso}" />
 						</div>
 					</div>
 				</div>
 			</h:form>
 		</h:panelGroup>
+
 
 		<h:panelGroup id="panelEliminar" rendered="#{subCategoriaMB.activoPanelEliminar}">
 			<h:form>
@@ -151,7 +195,7 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12 col-xs-10">
-									<h4>¿Seguro que desea cambiar el estado de la sub categoria?</h4>
+									<h4>¿Seguro que desea cambiar el estado de la sub categoría?</h4>
 								</div>
 							</div>
 						</div>
@@ -164,7 +208,9 @@
 			</h:form>
 		</h:panelGroup>
 
-
+		<script>		
+		$('.selectpicker').selectpicker();
+		</script>
 	</ui:define>
 </ui:composition>
 </html>

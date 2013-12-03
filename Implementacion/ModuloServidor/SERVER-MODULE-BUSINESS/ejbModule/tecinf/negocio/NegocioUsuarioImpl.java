@@ -1,5 +1,6 @@
 package tecinf.negocio;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,7 +11,10 @@ import javax.naming.NamingException;
 
 import org.jboss.logging.Logger;
 
+import tecinf.negocio.dtos.CambiarContraseniaDataType;
+import tecinf.negocio.dtos.EditarUsuarioDataType;
 import tecinf.negocio.dtos.LoginRespDataType;
+import tecinf.negocio.dtos.UsuarioAdministradorDataType;
 import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.dtos.UsuarioProveedorDataType;
@@ -23,6 +27,7 @@ import tecinf.negocio.utiles.EnumTipoUsuario;
 import tecinf.negocio.utiles.FileSystemUtils;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.negocio.utiles.RandomString;
+import tecinf.negocio.utiles.ValidationUtil;
 import tecinf.persistencia.daos.EstadoUsuarioDao;
 import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.SessionDao;
@@ -32,6 +37,7 @@ import tecinf.persistencia.entities.EstadoUsuarioEntity;
 import tecinf.persistencia.entities.ParametroValorEntity;
 import tecinf.persistencia.entities.SessionEntity;
 import tecinf.persistencia.entities.TipoRegistroEntity;
+import tecinf.persistencia.entities.UsuarioAdministradorEntity;
 import tecinf.persistencia.entities.UsuarioClienteEntity;
 import tecinf.persistencia.entities.UsuarioEntity;
 import tecinf.persistencia.entities.UsuarioProveedorEntity;
@@ -74,45 +80,41 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 
 	}
 
-	public void modificarUsuario(UsuarioDataType u) throws Exception {
-		
-		 UsuarioEntity ue = usuarioDao.findByID(u.getUsuario()); 
-		 if (ue == null) 
-			 throw new Exception("El usuario no existe");
-		 ue.setApellidos(u.getApellidos());
-		 ue.setContrasenia(u.getContrasenia()); ue.setNombres(u.getNombres());		 
-		 usuarioDao.merge(ue);
-	}
-
 	public LoginRespDataType loginUsuario(String usuario, String contrasenia) {
 
 		LoginRespDataType resp = new LoginRespDataType();
 		String hashedPassword = Encriptacion.encriptarMD5(contrasenia);
 		UsuarioEntity ue = usuarioDao.findByEmailAndPassword(usuario,hashedPassword);
 		if (ue == null) {
-			resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA);
+			resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA + "|" + "Usuario o contraseña inválidos");
 		} else {
 			
-			//Auditoria
-			negocioAuditoria.registrarAuditoria(ue.getUsuario(), new Date(), ConstantesAuditoria.ID_OBJETO_USUARIO, ConstantesAuditoria.ID_OPERACION_LOGIN, ue.getUsuario());
-					
-			//Respuesta
-			resp.setRespuesta(EnumRespuestas.RESPUESTA_OK);
-			String tkn = (new RandomString(50).nextString()); /* token de 50 caracteres */
-			resp.setToken(tkn);
-			resp.setUsuario(ue.getUsuario());
-			resp.setTipoUsuario(ue.getTipoUsuario());
+			if (ue.getHabilitado()){
 			
-			//Session
-			/*
-			SessionEntity session = new SessionEntity();
-			session.setUsuario(ue.getUsuario()); 
-			session.setTimeStamp(new Date());
-			session.setTipoUsuario(ue.getTipoUsuario());
-			session.setToken(tkn);
-			session.setTimeStamp(updateTimeStamp(new Date())); 
-			sessionDao.persist(session);
-			*/
+				//Auditoria
+				negocioAuditoria.registrarAuditoria(ue.getUsuario(), new Date(), ConstantesAuditoria.ID_OBJETO_USUARIO, ConstantesAuditoria.ID_OPERACION_LOGIN, ue.getUsuario());
+				
+				//Respuesta
+				resp.setRespuesta(EnumRespuestas.RESPUESTA_OK);
+				String tkn = (new RandomString(50).nextString()); /* token de 50 caracteres */
+				resp.setToken(tkn);
+				resp.setUsuario(ue.getUsuario());
+				resp.setTipoUsuario(ue.getTipoUsuario());
+				
+				//Session
+				/*
+				SessionEntity session = new SessionEntity();
+				session.setUsuario(ue.getUsuario()); 
+				session.setTimeStamp(new Date());
+				session.setTipoUsuario(ue.getTipoUsuario());
+				session.setToken(tkn);
+				session.setTimeStamp(updateTimeStamp(new Date())); 
+				sessionDao.persist(session);
+				*/
+			
+			} else {
+				resp.setRespuesta(EnumRespuestas.RESPUESTA_FALLA + "|" + "Usuario no habilitado");
+			}
 		}
 		return resp;
 	}
@@ -125,6 +127,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 
 	public LoginRespDataType registroUsuarioCliente(UsuarioClienteDataType dt) throws Exception {
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		UsuarioEntity ue;
 
 		if (existeUsuario(dt.getUsuario()))
@@ -140,7 +143,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		ue.setCorreoElectronico(dt.getCorreoElectronico());
 		EstadoUsuarioEntity estado = estadoUsuarioDao.findByID(EnumClavesEntidades.ESTADO_USUARIO_HABILITADO);
 		ue.setEstadoUsuario(estado);
-		ue.setFechaNacimiento(dt.getFechaNacimientoDate());
+		ue.setFechaNacimiento(sdf.parse(dt.getFechaNacimiento()));
 		ue.setNombres(dt.getNombres());
 		ue.setSexo(dt.getSexo());
 		ue.setTelefonoMovil(dt.getTelefonoMovil());
@@ -154,7 +157,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		//Creo la estructura de directorios para los usuarios cliente
 		if (!(new FileSystemUtils()).crearEstructuraDirectorioUsuarioCliente(ue.getUsuario()))
 			throw new Exception("Error al crear directorio de usuario");
-		negocioAuditoria.registrarAuditoria(ue.getUsuario(), new Date(), ConstantesAuditoria.ID_OBJETO_USUARIO, ConstantesAuditoria.ID_OPERACION_ALTA, ue.getUsuario());
+		//negocioAuditoria.registrarAuditoria(ue.getUsuario(), new Date(), ConstantesAuditoria.ID_OBJETO_USUARIO, ConstantesAuditoria.ID_OPERACION_ALTA, ue.getUsuario());
 		usuarioDao.persist(ue);
 		
 		return loginUsuario(dt.getCorreoElectronico(), dt.getContrasenia());
@@ -162,6 +165,7 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 	
 	public LoginRespDataType registroUsuarioProveedor(UsuarioProveedorDataType dt) throws Exception {
 		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		UsuarioEntity ue;
 
 		if (existeUsuario(dt.getUsuario()))
@@ -179,8 +183,8 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 		ue.setContrasenia(pwdHash);
 		ue.setCorreoElectronico(dt.getCorreoElectronico());
 		EstadoUsuarioEntity estado = estadoUsuarioDao.findByID(EnumClavesEntidades.ESTADO_USUARIO_HABILITADO);
-		ue.setEstadoUsuario(estado);
-		ue.setFechaNacimiento(dt.getFechaNacimientoDate());
+		ue.setEstadoUsuario(estado);		
+		ue.setFechaNacimiento(sdf.parse(dt.getFechaNacimiento()));
 		ue.setNombres(dt.getNombres());
 		ue.setSexo(dt.getSexo());
 		ue.setTelefonoMovil(dt.getTelefonoMovil());
@@ -195,6 +199,47 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 				
 		usuarioDao.persist(ue);
 		return loginUsuario(dt.getCorreoElectronico(), dt.getContrasenia());
+	}
+	
+	public void registroUsuarioAdministrador(UsuarioAdministradorDataType dt) throws Exception {
+		UsuarioEntity uAdmin = new UsuarioAdministradorEntity();
+		
+		if (dt == null)
+			throw new Exception("Parametro invalido.");
+		if (ValidationUtil.isNullOrEmpty(dt.getCorreoElectronico()))
+			throw new Exception("Email obligatorio");
+		if (ValidationUtil.isNullOrEmpty(dt.getUsuario()))
+			throw new Exception("Usuario obligatorio");
+		if (ValidationUtil.isNullOrEmpty(dt.getContrasenia()) || ValidationUtil.isNullOrEmpty(dt.getContrasenia2()))
+			throw new Exception("Contraseñas obligatorias");
+		if (!dt.getContrasenia().equals(dt.getContrasenia2()))
+			throw new Exception("Las contraseñas no coinciden");
+		if (ValidationUtil.isNullOrEmpty(dt.getFechaNacimiento()))
+			throw new Exception("Fecha de nacimiento obligatoria");
+				
+		UsuarioEntity uAux = usuarioDao.findByID(dt.getUsuario());
+		if (uAux != null)
+			throw new Exception("Nick ya utilizado.");
+		uAux = usuarioDao.findByMail(dt.getCorreoElectronico());
+		if (uAux != null)
+			throw new Exception("Email ya utilizado.");
+				
+		uAdmin.setApellidos(dt.getApellidos());
+		String hashedPass = Encriptacion.encriptarMD5(dt.getContrasenia());
+		uAdmin.setContrasenia(hashedPass);
+		uAdmin.setCorreoElectronico(dt.getCorreoElectronico());
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		uAdmin.setFechaNacimiento( sdf.parse(dt.getFechaNacimiento()) );
+		EstadoUsuarioEntity estado = estadoUsuarioDao.findByID(EnumClavesEntidades.ESTADO_USUARIO_HABILITADO);
+		uAdmin.setEstadoUsuario(estado); 
+		uAdmin.setHabilitado(true);
+		uAdmin.setNombres(dt.getNombres());
+		uAdmin.setSexo(dt.getSexo());
+		uAdmin.setTelefonoMovil(dt.getTelefonoMovil());
+		uAdmin.setTipoUsuario(EnumTipoUsuario.USUARIO_ADMINISTRADOR);
+		uAdmin.setUsuario(dt.getUsuario());
+		
+		usuarioDao.persist(uAdmin); 
 	}
 
 	public Boolean existeUsuario(String usr) {
@@ -283,6 +328,67 @@ public class NegocioUsuarioImpl implements NegocioUsuario {
 			throw new Exception("Usuario no encontrado en la base de datos");
 		ue.setHabilitado(u.getHabilitado() == null || !u.getHabilitado() ? true : false);
 		usuarioDao.merge(ue);		
+	}
+	
+	public UsuarioDataType verInfoUsuario(String nick) throws Exception {
+		if (ValidationUtil.isNullOrEmpty(nick))
+			throw new Exception("PARAMETRO_NO_VALIDO");
+		UsuarioEntity usrE = usuarioDao.findByID(nick);
+		if (usrE == null )
+			throw new Exception("USUARIO_NO_ENCONTRADO");
+		return DataTypesFactory.getUsuarioDataType(usrE);
+	}
+	
+	public void editarPerfilUsuario(String nick, EditarUsuarioDataType datos) throws Exception {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+		
+		if (ValidationUtil.isNullOrEmpty(nick))
+			throw new Exception("PARAMETRO_NO_VALIDO");
+		
+		UsuarioEntity usrE = usuarioDao.findByID(nick);
+		if (usrE == null )
+			throw new Exception("USUARIO_NO_ENCONTRADO");
+			
+		if (datos.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE)){
+			
+		} else if (datos.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR)){
+			((UsuarioProveedorEntity)usrE).setSitioWeb(ValidationUtil.isNullOrEmpty(datos.getSitioWeb()) ? "Sin definir" : datos.getSitioWeb());
+		}
+		
+		usrE.setApellidos(ValidationUtil.isNullOrEmpty(datos.getApellidos()) ? "" : datos.getApellidos());
+		usrE.setNombres(ValidationUtil.isNullOrEmpty(datos.getNombres()) ? "" : datos.getNombres());
+		usrE.setSexo(ValidationUtil.isNullOrEmpty(datos.getSexo()) ? "" : datos.getSexo()); 
+		usrE.setTelefonoMovil(ValidationUtil.isNullOrEmpty(datos.getTelefonoMovil()) ? "Sin definir" : datos.getTelefonoMovil()); 
+		usrE.setFechaNacimiento(ValidationUtil.isNullOrEmpty(datos.getFechaNacimiento()) ? new Date() : sdf.parse(datos.getFechaNacimiento())); 
+
+		usuarioDao.merge(usrE);
+	}
+	
+	public void cambiarContrasenia(String nick, CambiarContraseniaDataType dt) throws Exception {
+		
+		if (dt == null)
+			throw new Exception("PARAMETRO_INVALIDO");
+		
+		if (ValidationUtil.isNullOrEmpty(dt.getConfirmacionContraseniaNueva()) ||
+			ValidationUtil.isNullOrEmpty(dt.getContraseniaNueva()) ||
+			ValidationUtil.isNullOrEmpty(dt.getConfirmacionContraseniaNueva()))
+				throw new Exception("Contraseña anterior, nueva y confirmacion obligatorias");
+			
+		UsuarioEntity usuario = usuarioDao.findByID(nick);
+		if (usuario == null)
+			throw new Exception("Usuario no encontrado");
+		
+		String hashedPwd = Encriptacion.encriptarMD5(dt.getContraseniaAnterior());
+		if (!usuario.getContrasenia().equals(hashedPwd))
+			throw new Exception("Contrasña anterior inválida");
+		if (!dt.getConfirmacionContraseniaNueva().equals(dt.getContraseniaNueva()))
+			throw new Exception("Las nuevas contraseñas no coinciden.");
+		
+		hashedPwd = Encriptacion.encriptarMD5(dt.getContraseniaNueva());
+		usuario.setContrasenia(hashedPwd);
+		
+		usuarioDao.merge(usuario);
 	}
 	
 }

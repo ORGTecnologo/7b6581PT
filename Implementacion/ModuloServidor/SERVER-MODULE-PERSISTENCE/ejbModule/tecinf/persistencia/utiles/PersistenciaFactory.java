@@ -10,6 +10,8 @@ import tecinf.persistencia.daos.AuditoriaOperacionDao;
 import tecinf.persistencia.daos.AuditoriaOperacionDaoImpl;
 import tecinf.persistencia.daos.CategoriaContenidoDao;
 import tecinf.persistencia.daos.CategoriaContenidoDaoImpl;
+import tecinf.persistencia.daos.CategoriaReclamoDao;
+import tecinf.persistencia.daos.CategoriaReclamoDaoImpl;
 import tecinf.persistencia.daos.ContenidoDao;
 import tecinf.persistencia.daos.ContenidoDaoImpl;
 import tecinf.persistencia.daos.ContenidoFotoDao;
@@ -20,6 +22,8 @@ import tecinf.persistencia.daos.ParametroValorDao;
 import tecinf.persistencia.daos.ParametroValorDaoImpl;
 import tecinf.persistencia.daos.PromocionDao;
 import tecinf.persistencia.daos.PromocionDaoImpl;
+import tecinf.persistencia.daos.ReclamoDao;
+import tecinf.persistencia.daos.ReclamoDaoImpl;
 import tecinf.persistencia.daos.SessionDao;
 import tecinf.persistencia.daos.SessionDaoImpl;
 import tecinf.persistencia.daos.SubCategoriaContenidoDao;
@@ -104,6 +108,14 @@ public class PersistenciaFactory {
 	
 	public static VersionContenidoDao getVersionContenidoDao() throws NamingException{
 		return (VersionContenidoDao) lookup(VersionContenidoDaoImpl.class.getSimpleName(),VersionContenidoDao.class.getName());
+	}
+	
+	public static ReclamoDao getReclamoDao() throws NamingException{
+		return (ReclamoDao) lookup(ReclamoDaoImpl.class.getSimpleName(),ReclamoDao.class.getName());
+	}
+	
+	public static CategoriaReclamoDao getCategoriaReclamoDao() throws NamingException{
+		return (CategoriaReclamoDao) lookup(CategoriaReclamoDaoImpl.class.getSimpleName(),CategoriaReclamoDao.class.getName());
 	}
 	
 	@SuppressWarnings({ "unchecked", "rawtypes" })

@@ -11,8 +11,13 @@
 	<link rel="stylesheet" type="text/css" href="../css/bootstrap-glyphicons.css">
 	<!--[if lt IE 9]><script src="../js/html5.js"></script><![endif]-->
 	<link rel="stylesheet" type="text/css" href="../css/themeProy.css">
+
+    <link rel="stylesheet" href="../css/alertify.default.css"/>
+    <link rel="stylesheet" href="../css/alertify.bootstrap.css"/>      
+
+    <link rel="stylesheet" href="../css/alertify.core.css"/>   	
 	
-	<script src="../js/jquery.min.js"></script>
+	<script src="../js/Plugins/jquery.min.js"></script>
 </head>
 
 <body style="background-color: whitesmoke;">
@@ -33,7 +38,7 @@
 	</script>
 
 <!-- BARRA DE NAVEGACION -->
-<nav id='caca' class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse"
 			data-target=".navbar-ex1-collapse">
@@ -42,12 +47,12 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="#">Market Place Tecnologo</a>
+		<a class="navbar-brand" href="/SERVER-MODULE-PRESENTATION/index.html">Market Place Tecnologo</a>
 	</div>
   <div class="collapse navbar-collapse navbar-ex1-collapse"> 
     <ul class="navbar-form navbar-left" role="search">
 		<div class="form-group col-xs-6">
-			<input id="input-busqueda" type="search" class="form-control input-md" placeholder="Buscar" style="height: initial;">
+			<input id="input-busqueda" type="search" class="form-control input-md" placeholder="Buscar" style="height: initial;min-width: 25em;">
 		</div>
 		<ul class="btn-group">
 			<button onclick="buscarContenidos();" class="btn btn-primary" style="margin-top: initial;">
@@ -63,18 +68,26 @@
 		</ul>
 		<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
     </ul>
-	<ul class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
-		<a href="#" class="nick">nick</a>
-		<a href="#" onclick="logoutUsuario()">(Logout)</a>
+	<ul class="nav navbar-nav navbar-right" id="Nick-Logout-Div" style="display: none;margin-right: initial;margin-top: 0.7em;" hidden>
+        <a class="nick dropdown-toggle" data-toggle="dropdown" role="button" href="#"><i class="glyphicon glyphicon-user"></i> nick <span class="caret"></span></a>
+		<ul class="dropdown-menu">
+		    <li id="opt_irAltaContenido"><a href="/SERVER-MODULE-PRESENTATION/proveedor/AltaContenido.html"><i class="glyphicon glyphicon-cloud-upload"></i> Crear Contenido</a></li>
+		    <li id="opt_irAdministracion"><a href="/SERVER-MODULE-PRESENTATION/admin/admin.xhtml"><i class="glyphicon glyphicon-wrench"></i> Administracion</a></li>
+		    <li><a id="dd_verPerfil" href="#"><i class="glyphicon glyphicon-user"></i> Ver Perfil</a></li>
+		    <li class="divider"></li>
+		    <li><a href="#" onclick="logoutUsuario()"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+		</ul>
 	</ul>
 </nav>
 
+<div class="col-md-12" style="height:100px;"></div>
+
 <!-- CONTENIDO / CUERPO DE LA VISTA -->
-	<div class="col-md-16" style="min-height: 395px;width: 100%;">
+	<div id="con-tenedor" class="col-md-16 container" style="min-height: 395px;width: 100%;">
 		<div id="MP_Content" class="col-md-4" style="text-align: center;">
 		</div>
 		<div id="MP_Canvas" class="col-md-8">
-			<h4 id="MP_Descripcion"></h4>
+			<h4 id="MP_Descripcion" class="descripcionContenido"></h4>
 			<div id="EspecificosTipoContenido" class="col-md-12 Especificos">
 				<div id="espMusica" style="display:none">
 					<p></p><p></p><p></p>
@@ -99,18 +112,18 @@
 			<img id="star4" src="../img/estrellaAct.png" alt="../img/estrellaAct.png">
 			<img id="star5" src="../img/estrellaNoAct.png" alt="../img/estrellaNoAct.png">
 			</p>
-			<a href="#" id="comprarBtn" class="btn btn-info" role="button">Comprar</a>	
+			<a href="#" onclick="return confirmar();" id="comprarBtn" class="btn btn-info" role="button">Descargar</a>	
 			<p id="MP_Precio" class="precioContenido"></p>
 		</div>
 	</div>
-	<div class="col-md-16" style="text-align: center">
+	<div class="col-md-16 hide" style="text-align: center">
 		<h2>Opiniones de los Usuarios</h2>
 		------------------------------------
 		<h4>Me gusta mucho este contenido :D</h4>
 	</div>
-	<div class="facebookLike">	
+	<div class="facebookLike show">	
 	<a href="https://twitter.com/share" class="twitter-share-button" data-lang="es" data-count="none" data-dnt="true">Twittear</a>
-	<div class="fb-like" data-href="http://127.0.0.1:8080/SERVER-MODULE-PRESENTATION/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>
+	<div class="fb-like" data-href="http://localhost:8080/SERVER-MODULE-PRESENTATION/" data-layout="box_count" data-action="like" data-show-faces="true" data-share="true"></div>
 	</div>
 
 <!-- RESULTADOS DE BUSQUEDA -->
@@ -125,120 +138,13 @@
                 <th>Calificacion</th>
             </tr>
         </thead>
-        <tbody>
-            <tr href="views/content.html?id=1" id="datosContenido1">
-                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>Nullam sapien massa, aliquam in cursus ut, ullamcorper in tortor. Aliquam
-                    mauris arcu, tristique a lobortis vitae, condimentum feugiat justo.</td>
-                <td>4.0</td>
-                <td>2/5</td>
-            </tr>
-            <tr id="datosContenido2">
-                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>Gratis</td>
-                <td>4/5</td>
-            </tr>
-            <tr id="datosContenido3">
-				<td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-            <tr id="datosContenido4">
-                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-            <tr id="datosContenido5">
-                <td>
-                    <img src="//placehold.it/50x50" class="img-responsive">
-                </td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-            <tr id="datosContenido6" onclick="verContenido()">
-                <td>
-                    <img src="//placehold.it/50x50" class="img-responsive">
-                </td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr href="views/content.html?id=1" id="datosContenido7" onclick="verContenido()">
-                <td>
-                    <img src="//placehold.it/50x50" class="img-responsive">
-                </td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>4.0</td>
-                <td>2/5</td>
-            </tr>
-            <tr id="datosContenido6" onclick="verContenido()">
-                <td>
-                    <img src="//placehold.it/50x50" class="img-responsive">
-                </td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>Gratis</td>
-                <td>4/5</td>
-            </tr>
-            <tr id="datosContenido6" onclick="verContenido()">
-                <td>
-                    <img src="//placehold.it/50x50" class="img-responsive">
-                </td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-            <tr id="datosContenido6" onclick="verContenido()">
-                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-            <tr id="datosContenido6" onclick="verContenido()">
-                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-        </tbody>
+        <tbody id="cuerpoBusqueda"></tbody>
     </table>
     <div class="pagination pagination-mini" style="display: initial;">
-        <ul class="pager">
-            <li><a href="#">1</a>
-            </li>
-            <li><a href="#">2</a>
-            </li>
-            <li><a href="#">3</a>
-            </li>
-        </ul>
+        <ul class="pager" id="paginadoBusqueda"></ul>
     </div>
 </div>
+
 </body>
 
 <!-- CONFIGURAR BUSQUEDA -->
@@ -271,7 +177,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal">Close</button>
-		        <button onclick="actualizarParametrosBusqueda()" type="button" class="btn btn-primary">Guardar Cambios</button>	
+		        <button onclick="actualizarParametrosBusqueda()" data-dismiss="modal" type="button" class="btn btn-primary">Guardar Cambios</button>	
 			</div>
 		</div>
 	</div>
@@ -284,8 +190,8 @@
 			<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 				<h3>Registro de Usuario</h3>
-		</div>
-		<div class="modal-body">
+			</div>
+			<div class="modal-body">
 	            <div class="row">
 	                <div class="col-md-6 col-xs-5">
 	                    	<h4>Datos de Usuario</h4>
@@ -330,11 +236,11 @@
 	                    </p>
 	                </div>
 	            </div>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal">Cerrar</button>
-	        <button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
-		</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		        <button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -362,22 +268,24 @@
 	            </div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal">Close</button>
+				<button class="btn" data-dismiss="modal">Cerrar</button>
 				<button type="button" class="btn btn-primary" onclick="IniciarSesion()">Confirmar</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-<script src="../js/jquery-ui.js"></script>
-<script src="../js/globalesProyecto.js"></script>
-<script src="../js/Prototipos.js"></script>
-<script src="../js/Objetos.js"></script>
-<script src="../js/holder.js"></script>
-<script src="../js/blockUI.js"></script>
-<script src="../js/bootstrap.js"></script>
-<script src="../js/LlamadasAjax.js"></script>
-<script src="../js/getSet.js"></script>
-<script src="../js/eventos.js"></script>
-<script src="../js/Comunes.js"></script>
-<script src="../js/contenido.js"></script>
+	<script src="../js/Plugins/jquery-ui.js"></script>
+    <script src="../js/Plugins/alertify.min.js"></script>  
+	<script src="../js/Plugins/holder.js"></script>
+	<script src="../js/Plugins/bootstrap.js"></script>
+	
+	<script src="../js/globalesProyecto.js"></script>
+	<script src="../js/Prototipos.js"></script>
+	<script src="../js/Objetos.js"></script>
+	<script src="../js/blockUI.js"></script>
+	<script src="../js/LlamadasAjax.js"></script>
+	<script src="../js/getSet.js"></script>
+	<script src="../js/eventos.js"></script>
+	<script src="../js/Comunes.js"></script>
+	<script src="../js/contenido.js"></script>

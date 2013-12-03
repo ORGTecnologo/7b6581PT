@@ -61,7 +61,7 @@ public class RWSCategoriasContenido {
 			*/
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
-			resp.setMensageOperacion(e.getMessage());
+			resp.setMensajeOperacion(e.getMessage());
 			logger.error(e.getMessage() , e); 
 		}
 		return resp;
@@ -80,7 +80,7 @@ public class RWSCategoriasContenido {
 			*/
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
-			resp.setMensageOperacion(e.getMessage());
+			resp.setMensajeOperacion(e.getMessage());
 			logger.error(e.getMessage() , e); 
 		}
 		return resp;
@@ -99,7 +99,7 @@ public class RWSCategoriasContenido {
 			*/
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
-			resp.setMensageOperacion(e.getMessage());
+			resp.setMensajeOperacion(e.getMessage());
 			logger.error(e.getMessage() , e); 
 		}
 		return resp;
@@ -118,7 +118,7 @@ public class RWSCategoriasContenido {
 			*/
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
-			resp.setMensageOperacion(e.getMessage());
+			resp.setMensajeOperacion(e.getMessage());
 			logger.error(e.getMessage() , e); 
 		}
 		return resp;

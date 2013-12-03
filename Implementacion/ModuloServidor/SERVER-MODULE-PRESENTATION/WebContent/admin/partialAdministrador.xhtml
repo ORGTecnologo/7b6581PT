@@ -1,0 +1,94 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="admin.xhtml">
+	<ui:define name="body">
+
+			<h:form>
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Registrar administrador</h2>
+				</div>
+				<div class="col-md-12">
+				<div class="wrapperTablasAdministracion">
+					<div id="panelCambioContrasenia">
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12 col-xs-10">
+									<p>
+										Usuario 
+										<h:inputText id="nickUsuario" value="#{administradorMB.adminActual.usuario}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatorio)"/>
+										<h:message for="nickUsuario" style="color:red" />
+									</p>
+									<p>
+										Email 
+										<h:inputText id="email" value="#{administradorMB.adminActual.correoElectronico}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatorio)" />
+										<h:message for="email" style="color:red" />
+									</p>
+									<p>
+										Contraseña 
+										<h:inputSecret id="passw1" value="#{administradorMB.adminActual.contrasenia}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatorio)" />
+										<h:message for="passw1" style="color:red" />
+									</p>
+									<p>
+										Confirmar contraseña 
+										<h:inputSecret id="passw2" value="#{administradorMB.adminActual.contrasenia2}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatorio)" />
+										<h:message for="passw2" style="color:red" />
+									</p>
+									<p>
+										Nombres
+										<h:inputText id="nombre" value="#{administradorMB.adminActual.nombres}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatorio)" />
+										<h:message for="nombre" style="color:red" />
+									</p>
+									<p>
+										Apellidos
+										<h:inputText id="apellidos" value="#{administradorMB.adminActual.apellidos}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(obligatorio)" />
+										<h:message for="apellidos" style="color:red" />
+									</p>
+									<div>
+										Fecha nacimiento
+										<div class="input-append date">
+											<h:inputText id="fechNac" value="#{administradorMB.adminActual.fechaNacimiento}" class="col-md-10 form-control" required="true" requiredMessage="(obligatorio)" />
+											<span class="add-on"><i class="icon-th"></i></span>
+										</div>
+										<h:message for="fechNac" style="color:red" />
+									</div>
+									<div>
+										<p>Sexo</p>
+										<h:selectOneMenu value="#{administradorMB.adminActual.sexo}" class="selectpicker">
+											<f:selectItem itemLabel="Masculino" itemValue="Masculino" />
+											<f:selectItem itemLabel="Femenino" itemValue="Femenino" />
+											<f:selectItem itemLabel="Otro" itemValue="Otro" />
+										</h:selectOneMenu>
+									</div>
+									<div>
+										Teléfono de contacto
+										<h:inputText id="telMov" value="#{administradorMB.adminActual.telefonoMovil}" type="text" class="col-xs-7 form-control"  required="true" requiredMessage="(obligatorio)" />
+										<h:message for="telMov" style="color:red" />
+									</div>
+								</div>
+							</div>
+						</div>						
+						<div class="modal-footer">
+							<h:message for="btnConfirmar" class="error" />
+							<h:commandButton class="btn" id="btnConfirmar" value="Confirmar" action="#{administradorMB.registrar}" />
+						</div>
+					</div>
+				</div>
+			</div>
+			</div>
+		</h:form>
+		<script>
+			$('.input-append.date').datepicker({
+				format: "dd/mm/yyyy"
+			});
+			$('.selectpicker').selectpicker();
+		</script>
+	</ui:define>
+</ui:composition>
+</html>

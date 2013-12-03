@@ -37,22 +37,28 @@ function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento
 
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.href = confProy.URL_PERFIL+varsProy.nick;
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
+			var btnVerPerfil = document.getElementById("dd_verPerfil");
+				btnVerPerfil.href = confProy.URL_PERFIL + varsProy.nick;
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
+
+		    alertify.success("Usuario creado con exito!");
 		}
 		else
-			alert(msg.respuesta);
+		    alertify.error(msg.respuesta);
 	})
 	.fail(function(msg){
-		console.log('Entro en fail: ' + msg);
-		alert(msg);
+		alertify.error('Ocurrio un error inesperado. Intene nuevamente.');
 	});
 };
 
 function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento,cel,sitioWeb){
+	
+	bloquearPantalla();
 	$.ajax({
 		url: ip + '/usuarios/registrarProveedor',
 		type: 'POST',
@@ -84,27 +90,36 @@ function registroProveedor(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimien
 
 			ocultarElemento('registroUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.href = confProy.URL_PERFIL+varsProy.nick;
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
+
+			var btnVerPerfil = document.getElementById("dd_verPerfil");
+				btnVerPerfil.href = confProy.URL_PERFIL + varsProy.nick;;
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
 		    ocultarElemento('registroUsuario')
+			alertify.success('Usuario creado exitosamente!');
 		}
 		else
-			alert(msg.respuesta);
+			alertify.error(msg.respuesta);
 	})
 	.fail(function(msg){
-		console.log('Entro en fail: ' + msg);
-		alert(msg);
+		alertify.error('Ocurrio un error inesperado. Intene nuevamente.');
+	})
+	.always(function(msg) {
+		desbloquearPantalla();
 	});
 };
 
 function altaContenido(content){
 	
+	bloquearPantalla();
+
 	$.ajax({
 		url: ip + '/contenidos/altaContenido',
 		type: 'POST',
-		dataType: 'application/json',
+		dataType: 'json',
 		contentType: 'application/json',
 		
 		data: JSON.stringify({
@@ -132,19 +147,49 @@ function altaContenido(content){
 		}),
 	})
 	.done(function(msg) {
-		console.log("success");
-		console.log(msg);
+		$('#con-tenedor').hide();
+		mostrarElemento('mensajeContenidoExito');
+		alertify.success('Contenido creado exitosamente!!');
 	})
 	.fail(function(msg) {
-		console.log("error");
-		console.log(msg);
+		console.debug('FALLO AL CREAR CONTENIDO: ' + msg);
+		$('#con-tenedor').hide();
+		mostrarElemento('mensajeContenidoError');
+		alertify.success('Ocurrio un error inesperado!!');
 	})
 	.always(function(msg) {
-		console.log("complete");
-		console.log(msg);
+		desbloquearPantalla();
 	});
 	
 }
+
+function enviarReclamo(idDescarga, titulo, comentario){
+ 
+ 	bloquearPantalla();
+	$.ajax({
+		url: ip + '/contenidos/registrarReclamoContenido',
+		type: 'POST',
+		dataType: 'json',
+        contentType: "application/json",
+		data: JSON.stringify({
+			'idDescarga' : idDescarga,
+			'titulo' 	 : titulo,
+			'descripcion' : comentario
+		}),
+	})
+	.done(function(msg) {
+		console.log("success: " + msg);
+		alertify.success('Reclamo enviado con exito, alguien del staff se comunicara con ud a la brevedad!');
+	})
+	.fail(function(msg) {
+		console.log("error: " + msg);
+		alertify.error('Ocurrio un error inesperado!');		
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
+	});
+}
+
 
 //PUT__________PUT__________PUT
 function loginUsuario(usuario, contrasenia){
@@ -174,28 +219,40 @@ function loginUsuario(usuario, contrasenia){
 				
 			ocultarElemento('loginUsuario');
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.href = confProy.URL_PERFIL+varsProy.nick;
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
+
+			var btnVerPerfil = document.getElementById("dd_verPerfil");
+				btnVerPerfil.href = confProy.URL_PERFIL + varsProy.nick;;
 
 		    mostrarElemento('Nick-Logout-Div',false);
 		    ocultarElemento('Login-Registro-Div');
+
+			mostrarElementosSegunUsuario(msg.tipoUsuario);
 			
+			alertify.success('Bienvenido ' + varsProy.nick + '.');
+
 			if(msg.tipoUsuario === confProy.ROL_ADMINISTRADOR)
 				location.href = confProy.URL_ADMIN_HOME;
-				
-			//redireccion javascript confProy.URL_ADMIN_HOME
-
 		}
-		else
-			alert(msg.respuesta);
+		else{
+			var mensaje = msg.respuesta.split('|')
+			alertify.error(mensaje[1]);
+		}
 	})
 	.fail(function(msg) {
 		console.log(msg);
-		alert('Nombre de usuario o contrasenia incorrectos!!');
+		alertify.error(msg);//'Nombre de usuario o contrasenia incorrectos!!');
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
 	});
-	desbloquearPantalla();
 }
 
 function logoutUsuario(){
+
+	bloquearPantalla();
+
 	$.ajax({
 	   url: ip + '/usuarios/logout',
 	   type: 'PUT',
@@ -220,36 +277,114 @@ function logoutUsuario(){
 
 		    window.localStorage.removeItem(confProy.sessionStorageUser);
 		    window.localStorage.removeItem(confProy.sessionStorageToken);
+
+		    window.location.href = confProy.IP_SERVICIOS;
+
+		    alertify.log('Regresa pronto ' + varsProy.nick);
 		}
 		else
-			alert(msg.resultadoOperacion);
+			alertify.error(msg.resultadoOperacion);
 	})
 	.fail(function(msg) {
-		console.log(msg);
-		alert("Fallo del sistema, intente de nuevo o contacte con el administrador!!");
+//		console.log(msg);
+		alertify.error("Fallo del sistema, intente de nuevo o contacte con el administrador!!");
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
 	});
+
 }
 
-function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
+function guardarCambiosPerfil(nombre,apellido,sexo,fechaNacimiento,tel,sitioWeb){
+
+	bloquearPantalla();
 	$.ajax({
-		url: ip + '/usuarios/modificarUsuario',
+		url: ip + '/usuarios/editarUsuario',
 		type: 'PUT',
 		data:JSON.stringify({
-			'usuario'	  : usuario,
-			'contrasenia' : contrasenia,
-			'nombres'     : nombre,
-			'apellidos'   : apellido,
-			'rol'		  : rol
+			'nombres'     	 : nombre,
+			'apellidos'   	 : apellido,
+			'sitioWeb'		 : sitioWeb,
+			'telefonoMovil'	 : tel,
+			'sexo'			 : sexo,
+			'fechaNacimiento': fechaNacimiento,
 		}),
 		datatype: "json",
 		contentType: "application/json",
 	})
 	.done(function(msg){
 		console.log(msg);
+		alertify.success("Perfil actualizado con exito!");
 	})
-	.fail(function(){
-		console.log(msg);
+	.fail(function(msg){
+		//console.log(msg);
+		alertify.error("Ocurrio un error inesperado al intentar actualizar el perfil.");		
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
 	});
+}
+
+function enviarCalificacion(idDescarga, puntaje, comentario){
+ 
+ 	bloquearPantalla();
+
+	$.ajax({
+		url: ip + '/contenidos/calificarDescarga',
+		type: 'PUT',
+		dataType: 'json',
+		contentType : 'application/json',
+		data: JSON.stringify({
+			'idDescarga'   : idDescarga, 
+			'calificacion' : puntaje,
+			'comentario'   : comentario
+		}),
+	})
+	.done(function(msg) {
+		alert.success('Calificacion enviada con exito!');
+	})
+	.fail(function(msg) {
+		alertify.error('Ocurrio un error inesperado!');
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
+		obtenerContenidosUsuario();
+	});
+}
+
+function enviarCambioPassword(nick,pass,newPass,newPass2){
+
+	bloquearPantalla();
+
+	$.ajax({
+		url: ip + '/usuarios/cambiarContrasenia',
+		type: 'PUT',
+		dataType: 'json',
+		contentType : 'application/json',		
+		data: JSON.stringify({
+				'usuario' 					  : nick,
+				'contraseniaAnterior' 		  : pass,
+				'contraseniaNueva' 			  : newPass,
+				'confirmacionContraseniaNueva': newPass2,
+			}),
+	})
+	.done(function(msg) {
+		console.log("success: " + msg);
+		if (msg.resultadoOperacion === 'OK'){
+			alertify.success('Contraseña actualizada con exito');
+			ocultarElemento('password_modal')
+		}
+		else
+			alertify.error(msg.mensajeOperacion);
+	})
+	.fail(function() {
+		console.log("error");
+	})
+	.always(function() {
+		console.log("complete");
+		desbloquearPantalla();
+	});
+	
 }
 
 //GET___________GET_____________GET
@@ -257,9 +392,8 @@ function modificarUsuarioX(usuario,nombre,contrasenia,apellido,rol){
 function buscarContenidos(){
 
 	bloquearPantalla();
-	var JSONstring = new ParametrosBusqueda();
 
-	this.preventDefault;
+	var JSONstring = new ParametrosBusqueda();
 
 	JSONstring.libros = varsProy.PARAM_BUSQ_LIBROS;
 	JSONstring.musica = varsProy.PARAM_BUSQ_MUSICA;
@@ -282,6 +416,10 @@ function buscarContenidos(){
 
 		//Cargo los resultados en memoria
 		jsonProy.resultadoBusqueda = msg;
+		
+		cargarResultadoBusqueda();
+		cargarPaginadoDinamico();
+		
 		ocultarElemento('con-tenedor');
 		mostrarElemento('resultadoBusqueda');
 	})
@@ -293,12 +431,51 @@ function buscarContenidos(){
 		mostrarElemento('resultadoBusqueda');
 	})
 	.always(function(msg) {
+	 	desbloquearPantalla();
+	});
+}
+
+function obtenerTopContenidos(tipo){
+
+	bloquearPantalla();
+
+	$.ajax({
+		url: ip + "/contenidos/obtenerTopContenidos?cantidad="+ confProy.CANT_CONTENIDOS_INDEX +"&tipo=" + tipo,
+		type: 'GET',
+		dataType: 'json',
+	})
+	.done(function(msg) {
+		cargarTopEnMemoria(tipo,msg);
+		cargarIndexTop(tipo);
+	})
+	.fail(function(msg) {
+		console.log("error");
+	})
+	.always(function(msg) {
 		console.log("complete");
-		console.log(msg);
 		desbloquearPantalla();
 	});
 }
 
+function obtenerDatosdeUsuario(nick){
+	bloquearPantalla();
+
+	$.ajax({
+		url: ip + '/usuarios/verUsuario/' + nick,
+		type: 'GET',
+		dataType: 'json',
+	})
+	.done(function(msg) {
+		console.log(msg);
+		cargarHtmlDatosdeUsuario(msg);
+	})
+	.fail(function(msg) {
+		console.log("error");
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
+	});
+}
 
 function obtenerCategoriasySubcategorias(idSelect){
 	idSelect || (idSelect = 'id_categoria');
@@ -312,7 +489,10 @@ function obtenerCategoriasySubcategorias(idSelect){
 	.done(function(msg) {
 		console.log("Estas son las categorias: " + msg);
 		cargarCategoriasMemoria(msg);
-		cargarComboCategorias(idSelect);
+		if(idSelect === 'multiplesCat')
+			cargarComboMultCategorias(idSelect);
+
+		cargarComboCategorias('id_categoria');
 	})
 	.fail(function(msg) {
 		console.log("Fallo: " + msg);
@@ -320,6 +500,8 @@ function obtenerCategoriasySubcategorias(idSelect){
 }
 
 function existeSesionServ(user){
+
+	bloquearPantalla();
 
 	$.ajax({
 		url: ip + '/usuarios/checkSession/' + user,
@@ -329,16 +511,22 @@ function existeSesionServ(user){
 		async: false,
 	})
 	.done(function(msg) {
-		console.log("success" + msg);
-		if(msg != "FALLA"){
-			
+		console.log("success = " + msg);
+		if(msg === undefined)
+			window.localStorage.clear();
+		else if (msg != "FALLA"){
 			var nick = document.getElementById("Nick-Logout-Div").getElementsByClassName("nick")[0];
+				nick.href = confProy.URL_PERFIL+varsProy.nick;
 				nick.innerHTML = "<i class='glyphicon glyphicon-user'></i>" + varsProy.nick;
 
-
+			var btnVerPerfil = document.getElementById("dd_verPerfil");
+				btnVerPerfil.href = confProy.URL_PERFIL + varsProy.nick;;
+	    	
 	    	mostrarElemento('Nick-Logout-Div');
 	    	ocultarElemento('Login-Registro-Div');
 			window.localStorage.setItem(confProy.sessionStorageRol,msg.tipoUsuario);
+
+			mostrarElementosSegunUsuario(msg.tipoUsuario);
 		}
 		else{
 			window.localStorage.clear();
@@ -351,16 +539,14 @@ function existeSesionServ(user){
 		return false;
 	})
 	.always(function(msg) {
-		console.log("complete");
-		console.log(msg);
-	});	
+	 	desbloquearPantalla();
+	});
 }
 
 function obtenerUsuariosServ(){
 	$.ajax({
 	   url: ip + '/usuarios/listarUsuarios',
 	   type: 'GET',
-	   data: '',
 	   datatype: "json",
 	   contentType: "application/json",
 	})
@@ -397,7 +583,7 @@ function esUnicoNick(nick){
 	$.ajax({
 	   url: ip + '/usuarios/',
 	   type: 'GET',
-	   data: {'usuario' : nick,},
+	   data: JSON.stringify({'usuario' : nick,}),
 	   datatype: "json",
 	   contentType: "application/json",
 	})
@@ -409,14 +595,11 @@ function esUnicoNick(nick){
 	});
 }
 
-
-
 function respuestaPares(){
 
 	this.filtro = "";
 	this.valor = "";
 }
-
 
 /*var respuesta = new respuestaPares();
 	respuesta.filtro = "categoria"
@@ -429,11 +612,13 @@ function respuestaPares(){
 
 function obtenerContenidoPorId(idContenido){
 
+	bloquearPantalla();
+
 	$.ajax({
 	  url: ip + '/contenidos/obtenerInfoContenido/'+idContenido,
 	  type: 'GET',
 	  dataType: 'json',
-	  data: '',
+	  contentType: 'application/json',
 	})
 	.done(function(msg) {
 		console.log(msg);
@@ -480,5 +665,60 @@ function obtenerContenidoPorId(idContenido){
 	})
 	.fail(function(msg) {
 		console.log("Fallo el pedido " + msg);
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
 	});
+}
+
+function obtenerContenidosACalificar(){
+
+	bloquearPantalla();
+
+	$.ajax({
+		url: ip + '/contenidos/obtenerDescargasACalificar',
+		type: 'GET',
+		dataType: 'json',
+		contentType: 'application/json',
+	})
+	.done(function(msg) {
+		console.log("success " + msg);
+		jsonProy.contentidosACalificar = msg;
+
+		cargarTablaPendientesCalificacion();
+		cargarPaginadoPendientes();
+	})
+	.fail(function(msg) {
+		console.log("error" + msg);
+	})
+	.always(function(msg) {
+		desbloquearPantalla();
+	});
+	
+}
+
+function obtenerContenidosUsuario(){
+
+	bloquearPantalla();
+
+	$.ajax({
+		url: ip + '/contenidos/obtenerTodasLasDescargas',
+		type: 'GET',
+		dataType: 'json',
+		contentType: 'application/json',
+	})
+	.done(function(msg) {
+		console.log("success: " + msg);
+		jsonProy.misContenidos = msg;
+
+		cargarTablaMisContenidos();
+		cargarPaginadoMisContenidos();
+	})
+	.fail(function(msg) {
+		console.log("error: " + msg);
+	})
+	.always(function(msg) {
+	 	desbloquearPantalla();
+	});
+	
 }

@@ -27,7 +27,7 @@ public class DemonioActualizacionDatosContenidos {
         	try {
         		
         		negocioParametros = NegocioFactory.getNegocioParametros();        		
-        		logger.info("Ejecucion de demonio de actualizacion de datos de contenidos");  
+        		//logger.info("Ejecucion de demonio de actualizacion de datos de contenidos");  
         		NegocioContenido negocioContenido = NegocioFactory.getNegocioContenido();
         		negocioContenido.actualizarDatosContenidos();
                 

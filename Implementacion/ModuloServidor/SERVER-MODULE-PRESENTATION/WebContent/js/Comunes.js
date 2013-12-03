@@ -11,6 +11,24 @@ function checkearSesionAbierta(){
 	existeSesionServ(varsProy.nick);
 }
 
+function mostrarElementosSegunUsuario(tipoUsuario){
+
+	switch(tipoUsuario){
+		case confProy.ROL_ADMINISTRADOR:
+			$('#opt_irAltaContenido').show();
+			$('#opt_irAdministracion').show();
+		break;
+		case confProy.ROL_PROVEEDOR:
+			$('#opt_irAltaContenido').show();
+			$('#opt_irAdministracion').hide();				
+		break;
+		case confProy.ROL_CLIENTE:
+			$('#opt_irAltaContenido').hide();
+			$('#opt_irAdministracion').hide();				
+		break;
+	}
+}
+
 function bloquearPantalla(){
     'use strict';
     $.blockUI({ message: '<p><img src="../img/busy.gif" /> Cargando...</p>' ,
@@ -31,6 +49,12 @@ function desbloquearPantalla(){
     $.unblockUI();
 }
 
+function confirmar(){
+	if(confirm('Estas a punto de descargar este contenido, deseas continuar?'))
+		return true;
+	else
+		return false;
+}
 
 function cargarConfigBusqueda(idSelect){
 	obtenerCategoriasySubcategorias('multiplesCat');
@@ -55,44 +79,82 @@ function actualizarParametrosBusqueda(){
 	}
 
 	varsProy.PARAM_BUSQ_CATEGORIAS = categorias;
-
-	ocultarElemento('configurarBusqueda');
+	alertify.success('Parametros de busqueda actualizados');
+	//ocultarElemento('configurarBusqueda');
 }
 
 function cargarComboCategorias(idSelect){
 	idSelect || (idSelect = 'id_categoria');
 
 	var select = document.getElementById(idSelect);
+	if (select != null){
+		var largo = select.options.length;
 
-	for (var i = 0; i < select.options.length; i++)
-		select.options.remove();
+		for (var i = 0; i < largo; i++){
+			//select.options.remove();
+			//Vaciado del select
+			select.options.remove(select.options.item())
+		}
 
-	for (var i = 0; i < jsonProy.categorias.length; i++) {
-		var option1 = document.createElement("option");
-			option1.text = jsonProy.categorias[i].nombre;
-			option1.value = i;//jsonProy.categorias[i].id;
-		select.add(option1,select.options[null]);
-	};
+		for (var i = 0; i < jsonProy.categorias.length; i++) {
+			var option1 = document.createElement("option");
+				option1.text = jsonProy.categorias[i].nombre;
+				option1.value = jsonProy.categorias[i].id;
+			select.add(option1,select.options[null]);
+		};
+	}
+	cargarComboSubCategorias(select);
+	$('.selectpicker').selectpicker('refresh');
+}
+
+function cargarComboMultCategorias(idSelect){
+	idSelect || (idSelect = 'id_categoria');
+
+	var select = document.getElementById(idSelect);
+	
+	if (select != null){
+		var largo = select.options.length;
+
+		for (var i = 0; i < largo; i++){
+			//select.options.remove();
+			//Vaciado del select
+			select.options.remove(select.options.item())
+		}
+
+		for (var i = 0; i < jsonProy.categorias.length; i++) {
+			var option1 = document.createElement("option");
+				option1.text = jsonProy.categorias[i].nombre;
+				option1.value = jsonProy.categorias[i].id;
+				option1.selected = true;
+			select.add(option1,select.options[null]);
+		};
+	}
 
 	$('.selectpicker').selectpicker('refresh');
 }
 
 function cargarComboSubCategorias(elem){
 
-	fila = parseInt(elem.value);
-	var subcategorias = jsonProy.categorias[fila].subcategorias;
-
 	var select = document.getElementById('id_subcategoria');
+	if (select != null){
 
-	for (var i = 0; i < select.options.length; i++)
-		select.options.remove();
+		var idCat = parseInt(elem.value);
+		var fila = jsonProy.categorias.obtenerPosicionPorID(idCat);
+		var subcategorias = jsonProy.categorias[fila].subcategorias;
 
-	for (var i = 0; i < subcategorias.length; i++) {
-		var option1 = document.createElement("option");
-			option1.text = subcategorias[i].nombre;
-			option1.value = i;//jsonProy.categorias[i].id;
-		select.add(option1,select.options[null]);
-	};	
+		var largo = select.options.length;
+
+		for (var i = 0; i < largo; i++)
+			select.options.remove(select.options.item())
+
+		for (var i = 0; i < subcategorias.length; i++) {
+			var option1 = document.createElement("option");
+				option1.text = subcategorias[i].nombre;
+				option1.value = jsonProy.categorias[i].id;
+			select.add(option1,select.options[null]);
+		};
+	}	
+	$('.selectpicker').selectpicker('refresh');
 }
 
 function errorControlVaciosFormularioRegistro() {
@@ -112,7 +174,7 @@ function errorControlVaciosFormularioRegistro() {
 		error9 = Pintar_hasError(document.getElementById('inputWeb'));
 	
 	if(error0 || error1 || error2 || error3 || error4 || error5 || error6 || error7 || error8 || error9){
-		alert('Ha dejado campos sin completar!!!');
+		alertify.error('Ha dejado campos sin completar!!!');
 		return true;
 	}
 	else
@@ -148,23 +210,22 @@ function crearUsuario(){
 		if(mail.validarMail()){
 			if(contrasenia===contrasenia2){
 				if (!contrasenia.validarPassword()) console.warn('Desactive esta validacion!!!!');
-//				if (contrasenia.validarPassword())
+				if (contrasenia.validarPassword())
 					registroUsuario(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel);
-//				else
-//					alert("La contraseña no es segura. La misma debe tener un largo de entre 8 y 15 caracteres;"
-//						+ " debe contener por lo menos 1 numero, 1 caracter especial y 1 mayuscula");
-
+				else
+					alertify.error("La contraseña no es segura. La misma debe tener un largo de entre 8 y 15 caracteres;"
+						+ " debe contener por lo menos 1 numero, 1 caracter especial y 1 mayuscula");
 			}
 			else{
 				document.getElementById('inputPass').value = "";
 				document.getElementById('inputPass2').value = "";
-				alert('Las contrasenas no coinciden, intentelo nuevamente!!');
+				alertify.error('Las contrasenas no coinciden, intentelo nuevamente!!');
 			}
 		}
 		else{
 			var email = document.getElementById('inputCorreo');
 			email.parentElement.setAttribute('class','has-error');
-			alert('El correo no es valido!!');
+			alertify.error('El correo no es valido!!');
 		}
 	}
 }
@@ -187,22 +248,22 @@ function crearProveedor(){
 		if(mail.validarMail()){
 			if(contrasenia===contrasenia2){
 				if (!contrasenia.validarPassword()) console.warn('Desactive esta validacion!!!!');
-//				if (contrasenia.validarPassword())
+				if (contrasenia.validarPassword())
 					registroProveedor(usuario,contrasenia,contrasenia2,mail,nombre,apellido,sexo,nacimiento,cel,sitioWeb);
-				// else
-				// 	alert("La contraseña no es segura. La misma debe tener un largo de entre 8 y 15 caracteres;"
-				// 		+ " debe contener por lo menos 1 numero, 1 caracter especial y 1 mayuscula");
+				else
+				 	alertify.error("La contraseña no es segura. La misma debe tener un largo de entre 8 y 15 caracteres;"
+				 		+ " debe contener por lo menos 1 numero, 1 caracter especial y 1 mayuscula");
 			}
 			else{
 				document.getElementById('inputPass').value = "";
 				document.getElementById('inputPass2').value = "";
-				alert('Las contrasenas no coinciden, intentelo nuevamente!!');
+				alertify.error('Las contrasenas no coinciden, intentelo nuevamente!!');
 			}
 		}
 		else{
 			var email = document.getElementById('inputCorreo');
 			email.parentElement.setAttribute('class','has-error');
-			alert('El correo no es valido!!');
+			alertify.error('El correo no es valido!!');
 		}
 	}
 }
@@ -215,7 +276,7 @@ function IniciarSesion(){
 	if (correo.validarMail())
 		loginUsuario(correo,pass);
 	else
-		alert("Correo Invalido");
+		alertify.error("Correo Invalido");
 }
 
 function cargarPuntuacion(puntuacion,origen){
@@ -309,4 +370,97 @@ function cargarPuntuacion(puntuacion,origen){
 			star5.setAttribute('alt',origen + 'img/estrellaNoAct.png');			
 		break;
 	}
+}
+
+function cargarResultadoBusqueda(pag){
+    pag || (pag = 0);
+
+	var html = "";
+	var aMostrar = jsonProy.resultadoBusqueda.length % 10;;
+	var expresion = jsonProy.resultadoBusqueda.length - aMostrar - (10 * pag);
+	var lengthFor = 10;
+	if (expresion <= 0)
+		lengthFor = aMostrar;
+
+	if((pag == aMostrar-1) && (pag > 0))
+		lengthFor = aMostrar;
+
+	for (var i = (pag*10 + 0); i < (pag*10 + 10); i++) {
+
+		if (!(i >= (pag*10 + lengthFor))) {
+			var id     = jsonProy.resultadoBusqueda[i].id;
+			var nombre = jsonProy.resultadoBusqueda[i].nombreContenido;
+			var desc   = jsonProy.resultadoBusqueda[i].descripcionContenido;
+			var foto   = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.resultadoBusqueda[i].listaFotos[0];
+			var precio = jsonProy.resultadoBusqueda[i].precio;
+			var calificacion = jsonProy.resultadoBusqueda[i].calificacion;
+
+
+	        html += "<tr><td><img src='" + foto + "' alt='" + foto + "' class='img-responsive' style='width:50px;heigth:50px'></td>"
+						+ "<td><a href='" + confProy.URL_CONTENIDO + id + "'>" + nombre + "</a></td>"
+						+ "<td>" + desc + "</td>"
+						+ "<td>" + precio + "</td>"
+						+ "<td>" + calificacion + "/5</td>"
+		            + "</tr>";
+		};
+	};
+	var tbody = document.getElementById('cuerpoBusqueda');
+		tbody.innerHTML = html;
+}
+
+function cargarPaginadoDinamico(){
+
+	var pagination = document.getElementById('paginadoBusqueda');
+
+	var cantPaginas = jsonProy.resultadoBusqueda.length / 10;
+	
+	var indice = parseInt(cantPaginas.toFixed());
+	if(cantPaginas > indice)
+		indice++;
+
+	var html = "";
+
+	for (var i = 0; i < indice; i++) {
+		var numero = i + 1;
+		html += "<li><a href='#' onclick='cargarResultadoBusqueda(" + i + ")'>" + numero +"</a></li>";
+	};
+	pagination.innerHTML = html;	
+}
+
+function cargarPaginadoPendientes(){
+
+	var pagination = document.getElementById('paginadoPendientes');
+
+	var cantPaginas = jsonProy.contentidosACalificar.length / 10;
+	
+	var indice = parseInt(cantPaginas.toFixed());
+	if(cantPaginas > indice)
+		indice++;
+
+	var html = "";
+
+	for (var i = 0; i < indice; i++) {
+		var numero = i + 1;
+		html += "<li><a href='#' onclick='cargarTablaPendientesCalificacion(" + i + ")'>" + numero +"</a></li>";
+	};
+	pagination.innerHTML = html;	
+}
+
+function cargarPaginadoMisContenidos(){
+
+	var pagination = document.getElementById('paginadoMisContenidos');
+
+	var cantPaginas = jsonProy.misContenidos.length / 10;
+	
+	var indice = parseInt(cantPaginas.toFixed());
+	if(cantPaginas > indice)
+		indice++;
+
+	var html = "";
+
+	for (var i = 0; i < indice; i++) {
+		var numero = i + 1;
+		html += "<li><a href='#' onclick='cargarTablaMisContenidos(" + i + ")'>" + numero +"</a></li>";
+	};
+	pagination.innerHTML = html;	
 }

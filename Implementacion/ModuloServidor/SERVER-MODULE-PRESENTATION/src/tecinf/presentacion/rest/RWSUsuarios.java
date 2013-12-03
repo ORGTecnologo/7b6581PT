@@ -17,6 +17,8 @@ import javax.ws.rs.core.Context;
 import org.jboss.logging.Logger;
 
 import tecinf.negocio.NegocioUsuario;
+import tecinf.negocio.dtos.CambiarContraseniaDataType;
+import tecinf.negocio.dtos.EditarUsuarioDataType;
 import tecinf.negocio.dtos.GenericJsonResponse;
 import tecinf.negocio.dtos.LoginDataType;
 import tecinf.negocio.dtos.LoginRespDataType;
@@ -26,9 +28,11 @@ import tecinf.negocio.dtos.UsuarioClienteDataType;
 import tecinf.negocio.dtos.UsuarioDataType;
 import tecinf.negocio.dtos.UsuarioProveedorDataType;
 import tecinf.negocio.utiles.EnumRespuestas;
+import tecinf.negocio.utiles.EnumTipoUsuario;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.presentacion.utiles.ConstantesSession;
 import tecinf.presentacion.utiles.JSonUtils;
+import tecinf.presentacion.utiles.RightsChecker;
 
 
 @Path("/usuarios")
@@ -148,26 +152,6 @@ public class RWSUsuarios {
 		return resp;
 	}
 	
-	@PUT
-	@Path("/modificarUsuario")
-	@Produces("application/json")
-	@Consumes("application/json")
-	public GenericJsonResponse modificarUsuario(UsuarioDataType ud){
-		GenericJsonResponse resp = new GenericJsonResponse();
-		try {
-			
-			negocioUsuario = NegocioFactory.getNegocioUsuario();
-			negocioUsuario.modificarUsuario(ud); 
-			
-			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_EXITO);
-		} catch (Exception e) {
-			logger.error(e.getMessage() , e); 
-			resp.setResultadoOperacion(JSonUtils.RESULTADO_OPERACION_FALLA);
-			resp.setMensageOperacion(e.getMessage());
-		}				
-		return resp;
-	}
-	
 	@POST
 	@Path("/registrarUsuario")
 	@Produces("application/json")
@@ -230,6 +214,75 @@ public class RWSUsuarios {
 			logger.error(e.getMessage() , e); 
 		}				
 		return session;
+	}
+	
+	@GET
+	@Path("/verUsuario/{usuario}")
+	@Produces("application/json")
+	public UsuarioDataType verUsuario(@Context HttpServletRequest req, @PathParam("usuario") String usuario) {
+		UsuarioDataType usr = null;
+		try {			
+			HttpSession s = req.getSession();
+			UserSession session = (UserSession) s.getAttribute(ConstantesSession.keyUsuarioSession);
+			if ( (session.getUsuario().equals(usuario)) || session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) ){
+				negocioUsuario = NegocioFactory.getNegocioUsuario();
+				usr = negocioUsuario.verInfoUsuario(usuario); 		
+			}
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}				
+		return usr;
+	}
+	
+	@PUT
+	@Path("/editarUsuario")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public GenericJsonResponse editarUsuario(@Context HttpServletRequest req, EditarUsuarioDataType datosUsuario) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {
+			
+			HttpSession s = req.getSession();
+			UserSession session = (UserSession) s.getAttribute(ConstantesSession.keyUsuarioSession);
+			RightsChecker rc = new RightsChecker();
+			rc.checkCustomerRights(session);
+			if (session == null || (!session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE) && !session.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR)) )
+				throw new Exception("OPERACION_NO_PERMITIDA");
+		
+			datosUsuario.setTipoUsuario(session.getTipoUsuario());
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario.editarPerfilUsuario(session.getUsuario(), datosUsuario);
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
+		} catch (Exception e) {
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+			resp.setMensajeOperacion(e.getMessage());
+			logger.error(e.getMessage() , e); 
+		}
+		return resp;
+	}
+	
+	@PUT
+	@Path("/cambiarContrasenia")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public GenericJsonResponse cambiarContrasenia(@Context HttpServletRequest req, CambiarContraseniaDataType datos) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {
+			
+			HttpSession s = req.getSession();
+			UserSession session = (UserSession) s.getAttribute(ConstantesSession.keyUsuarioSession);
+			if (session == null || !session.getUsuario().equals(datos.getUsuario()))
+				throw new Exception("OPERACION_NO_PERMITIDA");
+		
+			negocioUsuario = NegocioFactory.getNegocioUsuario();
+			negocioUsuario.cambiarContrasenia(session.getUsuario(), datos);
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
+		} catch (Exception e) {
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+			resp.setMensajeOperacion(e.getMessage());
+			logger.error(e.getMessage() , e); 
+		}
+		return resp;
 	}
 	
 }

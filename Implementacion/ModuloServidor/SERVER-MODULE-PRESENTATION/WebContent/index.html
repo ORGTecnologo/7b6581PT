@@ -12,13 +12,20 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="css/market.css" media="screen"/>
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" media="screen"/>
-	<script src="js/jquery.min.js"></script>
+	
+    <link rel="stylesheet" href="css/alertify.default.css"/>
+    <link rel="stylesheet" href="css/alertify.bootstrap.css"/>      
+	
+	<link rel="stylesheet" href="css/alertify.core.css"/>	
+
+	<script src="js/Plugins/jquery.min.js"></script>
+
 </head>
 
 <body id="cuerpo" class="overlay" style="background-color: whitesmoke;">
 
 <!-- BARRA DE NAVEGACION -->
-<nav id='caca' class="navbar navbar-default navbar-fixed-top" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="navbar-header">
 		<button type="button" class="navbar-toggle" data-toggle="collapse"
 			data-target=".navbar-ex1-collapse">
@@ -27,17 +34,17 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		</button>
-		<a class="navbar-brand" href="#">Market Place Tecnologo</a>
+		<a class="navbar-brand" href="/SERVER-MODULE-PRESENTATION/index.html">Market Place Tecnologo</a>
 	</div>
   <div class="collapse navbar-collapse navbar-ex1-collapse"> 
     <ul class="navbar-form navbar-left" role="search">
 		<div class="form-group col-xs-6">
-			<input id="input-busqueda" type="search" class="form-control input-md" placeholder="Buscar" style="height: initial;">
+			<input id="input-busqueda" type="search" class="form-control input-md" placeholder="Buscar" style="height: initial;min-width: 25em;">
 		</div>
 		<ul class="btn-group">
 			<button onclick="buscarContenidos();" class="btn btn-primary" style="margin-top: initial;">
 				<span class="glyphicon glyphicon-search"></span> Buscar</button>
-			<button class="btn btn-primary dropdown-toggle"	type="button" onclick="verModales('configurarBusqueda');/*mostrarElemento('configurarBusqueda',true)*/"><span class="glyphicon glyphicon-cog"></span></button>
+			<button class="btn btn-primary dropdown-toggle"	type="button" onclick="verModales('configurarBusqueda');"><span class="glyphicon glyphicon-cog"></span></button>
 		</ul>
 	</ul>
     <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
@@ -49,288 +56,51 @@
 		<button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
     </ul>
 	<ul class="nav navbar-nav navbar-right" id="Nick-Logout-Div" style="display: none;margin-right: initial;margin-top: 0.7em;" hidden>
-        <a class="nick" role="button" href="#"><i class="glyphicon glyphicon-user"></i> nick </a>
-		<a href="#" onclick="logoutUsuario()"><i class="glyphicon glyphicon-lock"></i> Logout</a>
+        <a class="nick dropdown-toggle" data-toggle="dropdown" role="button" href="#"><i class="glyphicon glyphicon-user"></i> nick <span class="caret"></span></a>
+		<ul class="dropdown-menu">
+		    <li id="opt_irAltaContenido"><a href="/SERVER-MODULE-PRESENTATION/proveedor/AltaContenido.html"><i class="glyphicon glyphicon-cloud-upload"></i> Crear Contenido</a></li>
+		    <li id="opt_irAdministracion"><a href="/SERVER-MODULE-PRESENTATION/admin/admin.xhtml"><i class="glyphicon glyphicon-wrench"></i> Administracion</a></li>
+		    <li><a id="dd_verPerfil" href="#"><i class="glyphicon glyphicon-user"></i> Ver Perfil</a></li>
+		    <li class="divider"></li>
+		    <li><a href="#" onclick="logoutUsuario()"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+		</ul>
 	</ul>
 </nav>
 
-	<div class="col-md-12" style="height:50px;"></div>
+<div class="col-md-12" style="height:50px;"></div>
 
 <div id="con-tenedor" class="row">
 
 <!-- APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS APPS -->	
-	<div class="col-md-12 divContenidosInicial color1Inicio" style="background-image: url(img/appsProy.png);">
-		<h2 class="col-md-12 pull-right styleTits" style="color:black; text-align: left;">Aplicaciones</h2>
+	<div class="col-md-12 divContenidosInicial color1Inicio thumbnail" style="background-image: url(img/appsProy.png);">
+		<h2 class="col-md-12 styleTits" style="color:black; text-align: left; margin-left:1em">Aplicaciones</h2>
 	</div>
 	<div class="col-md-12 separador"></div>
-	<div class="container">
-		<div id="aplicacion1"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h3>Aplicacion 4</h3>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=3" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-	  
-		<div id="aplicacion2"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/mu2.jpg" alt="img/mu2.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h3>Aplicacion 3</h3>
-					<p>Descripcion</p>
-					<p class="precio">
-						<a href="views/content.html?id=3" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-
-		<div id="aplicacion3"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/mu3.jpg" alt="img/mu3.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h3>Aplicacion 2</h3>
-					<p>Descripcion</p>
-					<p class="precio">
-						<a href="views/content.html?id=3" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>	
-
-		<div id="aplicacion4" class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/mu4.jpg" alt="img/mu4.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h3>Aplicacion 1</h3>
-					<p>Descripcion</p>
-					<p class="precio">
-						<a href="views/content.html?id=3" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="container" id="containerApp"></div>
 	<div class="col-md-12 separador"></div>
 
 <!--LIBROS LIBROS LIBROS LIBROS  LIBROS  LIBROS  LIBROS  LIBROS -->	
-	<div class="col-md-12 divContenidosInicial color2Inicio" style="background-image: url(img/olivier.jpg);">
+	<div class="col-md-12 divContenidosInicial color2Inicio thumbnail" style="background-image: url(img/olivier.jpg);">
 		<h2 class="col-md-12 pull-right styleTits" style="color:white; text-align: right;">Libros</h2>
 	</div>
 	<div class="col-md-12 separador"></div>
-	<div class="container">
-		<div id="libro1"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/li1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h3>Libro 1</h3>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=2" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<div id="libro2"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/li2.jpg" alt="img/mu2.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h3>Libro 1</h3>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=2" class="btn btn-primary" role="button">Ver</a>
-						<a href="http://localhost:8080/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<div id="libro3"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/li3.jpg" alt="img/mu3.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h3>Libro 1</h3>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=2" class="btn btn-primary" role="button">Ver</a>
-						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<div id="libro4"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/li4.png" alt="img/mu4.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h3>Libro 1</h3>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=2" class="btn btn-primary" role="button">Ver</a>
-						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>
+	<div class="container" id="containerLibro"></div>
 	<div class="col-md-12 separador"></div>
 
 <!-- VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS VIDEOS -->
-	<div class="col-md-12 divContenidosInicial color1Inicio" style="background-image: url(img/candy.png);">
-		<h2 class="col-md-12 pull-right styleTits" style="color:black; text-align: left;">Videos</h2>
+	<div class="col-md-12 divContenidosInicial color1Inicio thumbnail" style="background-image: url(img/candy.png);">
+		<h2 class="col-md-12 styleTits" style="color:black;text-align:left;margin-left:1em">Videos</h2>
 	</div>
 	<div class="col-md-12 separador"></div>
-	
-	<div class="container">
-		<div id="video1"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h2>Video 1</h2>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=4" class="btn btn-primary" role="button">Ver</a>
-						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<div id="video2"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h2>Video 2</h2>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=4" class="btn btn-primary" role="button">Ver</a>
-						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<div id="video3"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h2>Video 3</h2>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=4" class="btn btn-primary" role="button">Ver</a>
-						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<div id="video4"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h2>Video 4</h2>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=4" class="btn btn-primary" role="button">Ver</a>
-						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-	</div>		
-
+	<div class="container" id="containerVideo"></div>		
 	<div class="col-md-12 separador"></div>
 
 <!-- MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA MUSICA-->
-	<div class="col-md-12 divContenidosInicial color2Inicio" style="background-image: url(img/music.png);">
-		<h2 class="col-md-12 pull-right styleTits" style="text-align: right;">Musica</h2>
+	<div class="col-md-12 divContenidosInicial color2Inicio thumbnail" style="background-image: url(img/music.png);">
+		<h2 class="col-md-12 pull-right styleTits" style="color:black;text-align: right;">Musica</h2>
 	</div>
 	<div class="col-md-12 separador"></div>
-	<div class="container">
-		<div id="musica1"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/mu1.jpg" alt="img/mu1.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h2>Musica 1</h2>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
-						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<div id="musica2"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/mu2.jpg" alt="img/mu2.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h2>Musica 2</h2>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
-						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<div id="musica3"  class="col-sm-5 col-md-3">
-			<div class="thumbnail">
-				<img src="img/mu3.jpg" alt="img/mu3.jpg" class="img-thumbnail miniatura img-responsive">
-				<div class="caption">
-					<h2>Musica 3</h2>
-					<p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-					<p class="precio">
-						<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
-						<a href="FileDispatcherServlet?usr=pedro&tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&file=contenido_no_porno" class="btn btn-default" role="button">Comprar</a>	
-						USD 2.0
-					</p>
-				</div>
-			</div>
-		</div>
-		
-		<div id="musica4" class="col-sm-5 col-md-3">
-		    <div class="thumbnail">
-		        <img src="img/mu4.jpg" alt="img/mu4.jpg" class="img-thumbnail miniatura img-responsive"
-		        />
-		        <div class="caption">
-		            	<h2>Musica 4</h2>
-		            <p>Laslasdkamskldn dkla sjdklasd aklsjdkl ajskldjaskl djklasjd</p>
-		            <p class="precio">	<a href="views/content.html?id=1" class="btn btn-primary" role="button">Ver</a>
-		                <a
-		                href="FileDispatcherServlet?usr=pedro&amp;tkn=asdetljkahsdlgasbcxmgaksdgaksdhbcx&amp;file=contenido_no_porno"
-		                class="btn btn-default" role="button">Comprar</a>USD 2.0</p>
-		        </div>
-		    </div>
-		</div>
-	</div>
-
+	<div class="container" id="containerMusica"></div>
 	<div class="col-md-12 separador"></div>
 
 </div>
@@ -347,123 +117,14 @@
                 <th>Calificacion</th>
             </tr>
         </thead>
-        <tbody>
-            <tr href="views/content.html?id=1" id="datosContenido1">
-                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>Nullam sapien massa, aliquam in cursus ut, ullamcorper in tortor. Aliquam
-                    mauris arcu, tristique a lobortis vitae, condimentum feugiat justo.</td>
-                <td>4.0</td>
-                <td>2/5</td>
-            </tr>
-            <tr id="datosContenido2">
-                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>Gratis</td>
-                <td>4/5</td>
-            </tr>
-            <tr id="datosContenido3">
-				<td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-            <tr id="datosContenido4">
-                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-            <tr id="datosContenido5">
-                <td>
-                    <img src="//placehold.it/50x50" class="img-responsive">
-                </td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-            <tr id="datosContenido6" onclick="verContenido()">
-                <td>
-                    <img src="//placehold.it/50x50" class="img-responsive">
-                </td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr href="views/content.html?id=1" id="datosContenido7" onclick="verContenido()">
-                <td>
-                    <img src="//placehold.it/50x50" class="img-responsive">
-                </td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>4.0</td>
-                <td>2/5</td>
-            </tr>
-            <tr id="datosContenido6" onclick="verContenido()">
-                <td>
-                    <img src="//placehold.it/50x50" class="img-responsive">
-                </td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>Gratis</td>
-                <td>4/5</td>
-            </tr>
-            <tr id="datosContenido6" onclick="verContenido()">
-                <td>
-                    <img src="//placehold.it/50x50" class="img-responsive">
-                </td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-            <tr id="datosContenido6" onclick="verContenido()">
-                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-            <tr id="datosContenido6" onclick="verContenido()">
-                <td><img src="//placehold.it/50x50" class="img-responsive"></td>
-                <td><a href="views/content.html?id=1">Nombre</a></td>
-                <td>jdhjskhd asjhdjk ashjkd jkshdjksh jkhjk dhjkashdjkhasjkdhajkshdjkadjksh
-                    jkasd</td>
-                <td>12.0</td>
-                <td>5/5</td>
-            </tr>
-        </tbody>
+        <tbody id="cuerpoBusqueda"></tbody>
     </table>
     <div class="pagination pagination-mini" style="display: initial;">
-        <ul class="pager">
-            <li><a href="#">1</a>
-            </li>
-            <li><a href="#">2</a>
-            </li>
-            <li><a href="#">3</a>
-            </li>
-        </ul>
+        <ul class="pager" id="paginadoBusqueda"></ul>
     </div>
 </div>
 
 </body>
-
 
 <!-- CONFIGURAR BUSQUEDA -->
 <div id="configurarBusqueda" class="modal fade" tabindex="-1" role="dialog">
@@ -495,7 +156,7 @@
 			</div>
 			<div class="modal-footer">
 				<button class="btn" data-dismiss="modal">Close</button>
-		        <button onclick="actualizarParametrosBusqueda()" type="button" class="btn btn-primary">Guardar Cambios</button>	
+		        <button onclick="actualizarParametrosBusqueda()" data-dismiss="modal" type="button" class="btn btn-primary">Guardar Cambios</button>	
 			</div>
 		</div>
 	</div>
@@ -508,8 +169,8 @@
 			<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal">×</button>
 				<h3>Registro de Usuario</h3>
-		</div>
-		<div class="modal-body">
+			</div>
+			<div class="modal-body">
 	            <div class="row">
 	                <div class="col-md-6 col-xs-5">
 	                    	<h4>Datos de Usuario</h4>
@@ -554,11 +215,11 @@
 	                    </p>
 	                </div>
 	            </div>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal">Cerrar</button>
-	        <button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
-		</div>
+			</div>
+			<div class="modal-footer">
+				<button class="btn" data-dismiss="modal">Cerrar</button>
+		        <button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -586,21 +247,24 @@
 	            </div>
 			</div>
 			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal">Close</button>
+				<button class="btn" data-dismiss="modal">Cerrar</button>
 				<button type="button" class="btn btn-primary" onclick="IniciarSesion()">Confirmar</button>
 			</div>
 		</div>
 	</div>
 </div>
 
-<script src="js/jquery-ui.js"></script>
+<script src="js/Plugins/jquery-ui.js"></script>
+<script src="js/Plugins/holder.js"></script>
+<script src="js/Plugins/bootstrap.js"></script>
+<script src="js/Plugins/alertify.min.js"></script>
+<script src="js/Plugins/bootstrap-select.min.js"></script>
+
 <script src="js/globalesProyecto.js"></script>
 <script src="js/Prototipos.js"></script>
 <script src="js/Inicio.js"></script>
-<script src="js/holder.js"></script>
+<script src="js/main.js"></script>
 <script src="js/blockUI.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="js/bootstrap-select.min.js"></script>
 <script src="js/Objetos.js"></script>
 <script src="js/LlamadasAjax.js"></script>
 <script src="js/getSet.js"></script>

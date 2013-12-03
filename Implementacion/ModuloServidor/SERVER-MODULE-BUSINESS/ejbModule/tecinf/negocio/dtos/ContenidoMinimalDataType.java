@@ -10,9 +10,37 @@ public class ContenidoMinimalDataType implements Serializable {
 	
 	private Integer id;
 	private String nombreContenido;
+	private String descripcionContenido;
 	private List<String> listaFotos;
 	private String precio;
+	private Integer calificacion;	
+	private String urlDescarga;	
 	
+	
+	public String getUrlDescarga() {
+		return urlDescarga;
+	}
+
+	public void setUrlDescarga(String urlDescarga) {
+		this.urlDescarga = urlDescarga;
+	}
+
+	public Integer getCalificacion() {
+		return calificacion;
+	}
+
+	public void setCalificacion(Integer calificacion) {
+		this.calificacion = calificacion;
+	}
+
+	public String getDescripcionContenido() {
+		return descripcionContenido;
+	}
+
+	public void setDescripcionContenido(String descripcionContenido) {
+		this.descripcionContenido = descripcionContenido;
+	}
+
 	public ContenidoMinimalDataType(){
 		listaFotos = new ArrayList<String>();
 	}

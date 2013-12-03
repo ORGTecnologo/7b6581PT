@@ -15,19 +15,12 @@ public abstract class UsuarioDataType implements Serializable {
 	protected String apellidos;
 	protected String sexo;
 	protected String fechaNacimiento;
-	protected Date fechaNacimientoDate;
+	protected Long fechaNacimientoTimeStamp;
 	protected String telefonoMovil;
 	protected String correoElectronico;
 	protected Boolean habilitado;
 	
 	
-	
-	public Boolean getHabilitado() {
-		return habilitado;
-	}
-	public void setHabilitado(Boolean habilitado) {
-		this.habilitado = habilitado;
-	}
 	public String getUsuario() {
 		return usuario;
 	}
@@ -39,6 +32,12 @@ public abstract class UsuarioDataType implements Serializable {
 	}
 	public void setContrasenia(String contrasenia) {
 		this.contrasenia = contrasenia;
+	}
+	public String getContrasenia2() {
+		return contrasenia2;
+	}
+	public void setContrasenia2(String contrasenia2) {
+		this.contrasenia2 = contrasenia2;
 	}
 	public String getNombres() {
 		return nombres;
@@ -57,6 +56,18 @@ public abstract class UsuarioDataType implements Serializable {
 	}
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}	
+	public String getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(String fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+	public Long getFechaNacimientoTimeStamp() {
+		return fechaNacimientoTimeStamp;
+	}
+	public void setFechaNacimientoTimeStamp(Long fechaNacimientoTimeStamp) {
+		this.fechaNacimientoTimeStamp = fechaNacimientoTimeStamp;
 	}
 	public String getTelefonoMovil() {
 		return telefonoMovil;
@@ -70,26 +81,13 @@ public abstract class UsuarioDataType implements Serializable {
 	public void setCorreoElectronico(String correoElectronico) {
 		this.correoElectronico = correoElectronico;
 	}
-	public String getFechaNacimiento() {
-		return fechaNacimiento;
+	public Boolean getHabilitado() {
+		return habilitado;
 	}
-	public void setFechaNacimiento(String fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setHabilitado(Boolean habilitado) {
+		this.habilitado = habilitado;
 	}
-	public Date getFechaNacimientoDate() throws Exception {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-		return (this.fechaNacimiento == null ? null : sdf.parse(this.fechaNacimiento) ); 
-	}
-	public void setFechaNacimientoDate(Date fechaNacimientoDate) {
-		this.fechaNacimientoDate = fechaNacimientoDate;
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-		this.setFechaNacimiento(fechaNacimientoDate == null ? "null" : sdf.format(fechaNacimientoDate));
-	}
-	public String getContrasenia2() {
-		return contrasenia2;
-	}
-	public void setContrasenia2(String contrasenia2) {
-		this.contrasenia2 = contrasenia2;
-	}	
+	
+	
 	
 }

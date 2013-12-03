@@ -1,12 +1,15 @@
 package tecinf.presentacion.rest;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -24,8 +27,10 @@ import tecinf.negocio.dtos.DescargaDataType;
 import tecinf.negocio.dtos.FiltrosContenidoDataType;
 import tecinf.negocio.dtos.GenericJsonResponse;
 import tecinf.negocio.dtos.IContenidoDataType;
+import tecinf.negocio.dtos.ReclamoDataType;
 import tecinf.negocio.dtos.UserSession;
 import tecinf.negocio.utiles.EnumRespuestas;
+import tecinf.negocio.utiles.EnumTipoUsuario;
 import tecinf.negocio.utiles.NegocioFactory;
 import tecinf.presentacion.utiles.ConstantesSession;
 import tecinf.presentacion.utiles.RightsChecker;
@@ -63,11 +68,14 @@ public class RWSContenidos {
 	@GET
 	@Path("/obtenerInfoContenido/{idContenido}")
 	@Produces("application/json")
-	public ContenidoDataType obtenerInfoContenido(@PathParam("idContenido") String idContenido) {
+	public ContenidoDataType obtenerInfoContenido(@Context HttpServletRequest req, @PathParam("idContenido") String idContenido) {
 		ContenidoDataType cont = null;
 		try {
 			
-			cont = negocioContenido.obtenerDatosContenido(Integer.valueOf(idContenido));
+			HttpSession session = req.getSession();
+			UserSession uSession = (UserSession)session.getAttribute(ConstantesSession.keyUsuarioSession);
+			Boolean fullPrivileges = (uSession != null && uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR));
+			cont = negocioContenido.obtenerDatosContenido(Integer.valueOf(idContenido) , fullPrivileges);
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e); 
@@ -85,6 +93,21 @@ public class RWSContenidos {
 			ObjectMapper mapper = new ObjectMapper();			
 			FiltrosContenidoDataType filtrosDt = mapper.readValue(filtros, FiltrosContenidoDataType.class); 			
 			listaContenidos = negocioContenido.filtrarContenidos(filtrosDt);
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}
+		return listaContenidos;
+	}
+	
+	@GET
+	@Path("/obtenerTopContenidos")
+	@Produces("application/json")
+	public List<ContenidoMinimalDataType> obtenerTopContenidos(@QueryParam("cantidad") String cantidadContenidos, @QueryParam("tipo") String tipoContenido) {
+		List<ContenidoMinimalDataType> listaContenidos = null;
+		try {
+					
+			listaContenidos = negocioContenido.obtenerTopContenidos(Integer.valueOf(cantidadContenidos), tipoContenido);
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e); 
@@ -127,16 +150,54 @@ public class RWSContenidos {
 	@Path("/obtenerDescargasACalificar")
 	@Produces("application/json")
 	public List<DescargaDataType> obtenerDescargasACalificar(@Context HttpServletRequest req) {
-		List<DescargaDataType> listaDescargas = null;
+		List<DescargaDataType> listaDescargas = new ArrayList<DescargaDataType>();
 		try {
-			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
-			(new RightsChecker()).checkCustomerRights(uSession);
-			listaDescargas = negocioContenido.obtenerDescargasACalificar(uSession.getUsuario()); 
+			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);			
+			if (uSession != null && (uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE) || uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR)) )
+				listaDescargas = negocioContenido.obtenerDescargasACalificar(uSession.getUsuario()); 
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e); 
 		}
 		return listaDescargas;
+	}
+	
+	@GET
+	@Path("/obtenerTodasLasDescargas")
+	@Produces("application/json")
+	public List<DescargaDataType> obtenerTodasLasDescargas(@Context HttpServletRequest req) {
+		List<DescargaDataType> listaDescargas = new ArrayList<DescargaDataType>();
+		try {
+			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
+			if (uSession == null || uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) )
+				throw new Exception("Operacion no permitida");
+			listaDescargas = negocioContenido.obtenerTodasLasDescargas(uSession.getUsuario()); 
+			
+		} catch (Exception e) {
+			logger.error(e.getMessage() , e); 
+		}
+		return listaDescargas;
+	}
+	
+	@PUT
+	@Path("/calificarDescarga")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public GenericJsonResponse calificarDescarga(@Context HttpServletRequest req, DescargaDataType dt) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {
+			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
+			if (uSession == null || uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) )
+				throw new Exception("Operacion no permitida");
+			negocioContenido.calificarDescaraContenido(dt, uSession.getUsuario());	
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
+			resp.setIdObjeto(String.valueOf(dt.getIdDescarga()));
+		} catch (Exception e) {
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+			resp.setMensajeOperacion(e.getMessage());
+			logger.error(e.getMessage() , e); 
+		}
+		return resp;
 	}
 	
 	@POST
@@ -153,7 +214,27 @@ public class RWSContenidos {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
 		} catch (Exception e) {
 			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
-			resp.setMensageOperacion(e.getMessage()); 
+			resp.setMensajeOperacion(e.getMessage()); 
+			logger.error(e.getMessage() , e); 
+		}
+		return resp;
+	}
+	
+	@POST
+	@Path("/registrarReclamoContenido")
+	@Consumes("application/json")
+	@Produces("application/json")
+	public GenericJsonResponse registrarReclamoContenido(@Context HttpServletRequest req, ReclamoDataType dt) {
+		GenericJsonResponse resp = new GenericJsonResponse();
+		try {
+			UserSession uSession = (UserSession)req.getSession().getAttribute(ConstantesSession.keyUsuarioSession);
+			if (uSession == null || uSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) )
+				throw new Exception("Operacion no permitida");
+			negocioContenido.registrarReclamo(dt); 
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_OK);
+		} catch (Exception e) {
+			resp.setResultadoOperacion(EnumRespuestas.RESPUESTA_FALLA);
+			resp.setMensajeOperacion(e.getMessage()); 
 			logger.error(e.getMessage() , e); 
 		}
 		return resp;

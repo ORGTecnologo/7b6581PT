@@ -1,6 +1,7 @@
 package tecinf.negocio;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Local;
 
@@ -16,7 +17,11 @@ public interface NegocioCategoriaContenido {
 	
 	public List<SubCategoriaContenidoDataType> obtenerSubCategorias();
 	
-	public List<CategoriaContenidoDataType> obtenerCategorias();	
+	public List<SubCategoriaContenidoDataType> obtenerSubCategoriasPorFiltros(Map filtros);
+	
+	public List<CategoriaContenidoDataType> obtenerCategorias();
+	
+	public List<CategoriaContenidoDataType> obtenerCategoriasPorFiltros(Map filtros);
 	
 	public Integer ingresarCategoria(CategoriaContenidoDataType dt) throws Exception;
 	

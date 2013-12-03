@@ -54,11 +54,11 @@ public class CripterDecripter {
 	 public static void main(String[] args){	 
 		 try {
 			 
-			 String ruta= "/usuarios_proveedores/importantix/contenido_video/4/foto_2.jpg";  
-			 System.out.println("original: " + ruta);
-			 String encRuta = encrypt(ruta);
-			 System.out.println("cifrada: " + encRuta);
-			 System.out.println("decifrada: " + decrypt(encRuta));
+			 //String ruta= "/usuarios_proveedores/importantix/contenido_video/4/foto_2.jpg";  
+			 //System.out.println("original: " + ruta);
+			 //String encRuta = encrypt(ruta);
+			 //System.out.println("cifrada: " + encRuta);
+			 System.out.println("decifrada: " + decrypt("kSKUI5IuGtwBlIcWWQQNZTjF0zTOyGVeCIPnWQyoyahqqaeLYZkSnXtbApx9PdMdJnG1Gri2FzwqMQHxVfbqqpaMBtJihywrlNGfjg57S8aoFmn/fAN0Bg=="));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

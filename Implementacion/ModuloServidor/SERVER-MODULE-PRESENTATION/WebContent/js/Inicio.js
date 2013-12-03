@@ -15,7 +15,7 @@ $(document).ready(function(){
 	      dateFormat: "dd-mm-yy",
 	      maxDate: 0
     });
-
+    
     $( "#registroUsuario").hide();
     $( "#loginUsuario").hide();
     $( "#Nick-Logout-Div").hide();

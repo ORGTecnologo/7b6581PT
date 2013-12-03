@@ -55,8 +55,8 @@ public class FiltroAutenticacion implements Filter {
 			} else if (userSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR) && !isSupplierRestricted(url)){
 				resp.sendRedirect("/SERVER-MODULE-PRESENTATION/index.html");
 				return;			
-			} else if (userSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) ){
-				resp.sendRedirect("/SERVER-MODULE-PRESENTATION/admin/admin.html");
+			} else if (userSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) && !isAdminRestricted(url)) {
+				resp.sendRedirect("/SERVER-MODULE-PRESENTATION/admin/admin.xhtml");
 				return;	
 			}			
 		}
@@ -78,24 +78,24 @@ public class FiltroAutenticacion implements Filter {
 		publicURLs.add("/restws");
 		publicURLs.add("/views/content.html");
 		publicURLs.add("/Images");
-		publicURLs.add("/ImageDispatcherServlet");
-		
-		//Pendientes a pasar a restringidas para admin
-		publicURLs.add("/admin/admin.xhtml");
-		publicURLs.add("/admin/partialCategorias.xhtml");
-		publicURLs.add("/admin/partialSubCategorias.xhtml");
-		publicURLs.add("/admin/partialSubComentarios.xhtml");
-		publicURLs.add("/admin/partialContenidos.xhtml");
-		publicURLs.add("/admin/partialAuditoria.xhtml");
-		publicURLs.add("/admin/partialParametros.xhtml");
-		publicURLs.add("/admin/partialUsuarios.xhtml");
-		
+		publicURLs.add("/ImageDispatcherServlet");	
 		
 		// URLs de administradores
 		adminURLs = new ArrayList<String>(); 
-		adminURLs.add("/admin/admin.html");
 		adminURLs.add("/admin/upload");
 		adminURLs.add("/admin/FileUploadServlet");
+		adminURLs.add("/admin/admin.xhtml");
+		adminURLs.add("/admin/partialCategorias.xhtml");
+		adminURLs.add("/admin/partialSubCategorias.xhtml");
+		adminURLs.add("/admin/partialSubComentarios.xhtml");
+		adminURLs.add("/admin/partialContenidos.xhtml");
+		adminURLs.add("/admin/partialAuditoria.xhtml");
+		adminURLs.add("/admin/partialParametros.xhtml");
+		adminURLs.add("/admin/partialUsuarios.xhtml");
+		adminURLs.add("/admin/partialReclamos.xhtml");
+		adminURLs.add("/views/perfil.html");
+		adminURLs.add("/admin/partialCambiarContrasenia.xhtml");
+		adminURLs.add("/admin/partialAdministrador.xhtml");
 		
 		// URLs de proveedores
 		supplierURLs = new ArrayList<String>(); 
@@ -104,10 +104,13 @@ public class FiltroAutenticacion implements Filter {
 		supplierURLs.add("/FileDispatcherServlet");
 		supplierURLs.add("/proveedor/upload");
 		supplierURLs.add("/proveedor/FileUploadServlet");
+		supplierURLs.add("/views/perfil.html");
 					
 		// URLs de clientes
 		clientURLs = new ArrayList<String>();
 		clientURLs.add("/FileDispatcherServlet");
+		clientURLs.add("/views/perfil.html");
+		
 		
 	}
 	

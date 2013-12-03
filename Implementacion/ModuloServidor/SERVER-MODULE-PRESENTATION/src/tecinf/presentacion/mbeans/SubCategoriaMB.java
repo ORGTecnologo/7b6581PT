@@ -1,10 +1,13 @@
 package tecinf.presentacion.mbeans;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.naming.NamingException;
 
 import org.jboss.logging.Logger;
@@ -13,14 +16,16 @@ import tecinf.negocio.NegocioCategoriaContenido;
 import tecinf.negocio.dtos.CategoriaContenidoDataType;
 import tecinf.negocio.dtos.SubCategoriaContenidoDataType;
 import tecinf.negocio.utiles.NegocioFactory;
-import tecinf.presentacion.utiles.ErrorHelper;
+import tecinf.negocio.utiles.ValidationUtil;
+import tecinf.presentacion.utiles.JsfMessagesHelper;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class SubCategoriaMB implements Serializable {
 
 	private static final long serialVersionUID = 1L;	
 	
+	@SuppressWarnings("unused")
 	private static Logger logger = Logger.getLogger(CategoriaMB.class);
 	
 	private NegocioCategoriaContenido negocioCategoria = null;
@@ -33,12 +38,19 @@ public class SubCategoriaMB implements Serializable {
 	private Boolean activoPanelEditar = false;
 	private Boolean activoPanelEliminar = false;
 	
-	private ErrorHelper eH = new ErrorHelper();
+	private String filtroNombre;
+	private String filtroDescripcion;
+	private String filtroEstado;
+	
+	@SuppressWarnings("rawtypes")
+	private Map filtros = new HashMap<String  , Object>();
+	
+	private JsfMessagesHelper eH = new JsfMessagesHelper();
 	
 	public SubCategoriaMB() throws NamingException{
 		
 		negocioCategoria = NegocioFactory.getNegocioCategoriaContenido();		
-		listaSubCategorias = negocioCategoria.obtenerSubCategorias();
+		listaSubCategorias = negocioCategoria.obtenerSubCategoriasPorFiltros(filtros);
 		listaCategorias = negocioCategoria.obtenerCategorias();
 		
 	}
@@ -114,8 +126,9 @@ public class SubCategoriaMB implements Serializable {
 	public void crearSubCategoria(){
 		try {			
 			negocioCategoria.ingresarSubCategoria(this.nuevaSubCategoria);		
-			listaSubCategorias = negocioCategoria.obtenerSubCategorias();
+			listaSubCategorias = negocioCategoria.obtenerSubCategoriasPorFiltros(filtros);
 			activoPanelIngreso = false;
+			nuevaSubCategoria = new SubCategoriaContenidoDataType();
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarIngreso", e.getMessage());
 		}
@@ -125,8 +138,9 @@ public class SubCategoriaMB implements Serializable {
 	public void editarSubCategoria(){
 		try {			
 			negocioCategoria.modificarSubCategoria(this.currentSubCategoria);		
-			listaSubCategorias = negocioCategoria.obtenerSubCategorias();	
+			listaSubCategorias = negocioCategoria.obtenerSubCategoriasPorFiltros(filtros);
 			activoPanelEditar = false;
+			currentSubCategoria = new SubCategoriaContenidoDataType();
 		} catch (Exception e) {
 			eH.setErrorMessage("btnConfirmarModificacion", e.getMessage());
 		}
@@ -135,10 +149,53 @@ public class SubCategoriaMB implements Serializable {
 	public void eliminarSubCategoria(){
 		try {			
 			negocioCategoria.cambiarEstadoSubCategoria(this.currentSubCategoria);	
-			listaSubCategorias = negocioCategoria.obtenerSubCategorias();
+			listaSubCategorias = negocioCategoria.obtenerSubCategoriasPorFiltros(filtros);
 			activoPanelEliminar = false;
+			currentSubCategoria = new SubCategoriaContenidoDataType();
 		} catch (Exception e) {
 			eH.setErrorMessage("", e.getMessage());
 		}		
 	}
+	
+	@SuppressWarnings("unchecked")
+	public void filtrar(){
+		filtros.clear();
+		if (!ValidationUtil.isNullOrEmpty(filtroNombre))
+			filtros.put("nombre", filtroNombre);
+		if (!ValidationUtil.isNullOrEmpty(filtroDescripcion))
+			filtros.put("nombre", filtroDescripcion);
+		if (!ValidationUtil.isNullOrEmpty(filtroEstado)){
+			if (filtroEstado.equals("H"))
+				filtros.put("habilitada", true);
+			else if (filtroEstado.equals("D"))
+				filtros.put("habilitada", false);
+		}
+		listaSubCategorias = negocioCategoria.obtenerSubCategoriasPorFiltros(filtros);
+	}
+
+	public String getFiltroNombre() {
+		return filtroNombre;
+	}
+
+	public void setFiltroNombre(String filtroNombre) {
+		this.filtroNombre = filtroNombre;
+	}
+
+	public String getFiltroDescripcion() {
+		return filtroDescripcion;
+	}
+
+	public void setFiltroDescripcion(String filtroDescripcion) {
+		this.filtroDescripcion = filtroDescripcion;
+	}
+
+	public String getFiltroEstado() {
+		return filtroEstado;
+	}
+
+	public void setFiltroEstado(String filtroEstado) {
+		this.filtroEstado = filtroEstado;
+	}
+	
+	
 }

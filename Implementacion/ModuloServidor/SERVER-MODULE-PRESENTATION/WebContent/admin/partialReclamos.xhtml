@@ -1,0 +1,89 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<ui:composition template="admin.xhtml">
+	<ui:define name="body">
+
+			<h:form>
+			<div class="row">
+				<div class="col-md-12">
+					<h2>Gestión de reclamos</h2>
+				</div>
+				<div class="col-md-12">
+				<div class="wrapperTablasAdministracion">
+					<h:dataTable value="#{reclamoMB.listaReclamos}" var="o"
+						styleClass="order-table" headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row"
+						class="table table-striped">
+		
+						<h:column>
+							<f:facet name="header">Título</f:facet>
+							#{o.titulo}
+						</h:column>
+		
+						<h:column>
+							<f:facet name="header">Autor</f:facet>
+							<a target="_blank" href="/SERVER-MODULE-PRESENTATION/views/perfil.html?nick=#{o.autor}">#{o.autor}</a>							
+						</h:column>
+						
+						<h:column>
+							<f:facet name="header">Fecha y hora</f:facet>
+							<h:outputText value="#{o.fechaReclamo}">
+								<f:convertDateTime timeZone="GMT-02:00" type="date" pattern="dd-MM-yyyy HH:mm"/>
+							</h:outputText>
+						</h:column>							
+						
+						<h:column>
+							<f:facet name="header">Contenido</f:facet>
+							<a target="_blank" href="/SERVER-MODULE-PRESENTATION/views/content.html?id=#{o.idContenido}">Ver</a>
+						</h:column>
+						
+						<h:column>
+							<h:commandButton class="btn" action="#{reclamoMB.mostrarPanelResolver}" value="Detalle"> 
+								<f:setPropertyActionListener target="#{reclamoMB.reclamoActual}" value="#{o}" />
+							</h:commandButton>
+						</h:column>
+						
+					</h:dataTable>
+				</div>
+			</div>
+			</div>
+		</h:form>
+	
+		<h:panelGroup id="panelDetalle" rendered="#{reclamoMB.activoPanelResolver}">
+			<h:form>
+				<div class="modal loginDiv modal-dialog" style="width: 500px">
+					<div class="modal-content">
+						<div class="modal-header">Detalle del reclamo</div>
+						<div class="modal-body">
+							<div class="row">
+								<div class="col-md-12 col-xs-10">
+									<p>
+										Título 
+										<h:outputText value="#{reclamoMB.reclamoActual.titulo}" type="text" class="col-xs-7 form-control" />
+									</p>
+									<p>
+										Descripción 
+										<h:inputTextarea style="resize: none;height: 150px;" disabled="true" value="#{reclamoMB.reclamoActual.descripcion}" type="text" class="col-xs-7 form-control" />
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<h:commandButton class="btn" id="btnConfirmarResolucion" value="Resolver" action="#{reclamoMB.resolverReclamo}" />
+							<h:commandButton class="btn" value="Cancelar" action="#{reclamoMB.ocultarPanelResolver}" />
+						</div>
+					</div>
+				</div>
+			</h:form>
+		</h:panelGroup>
+	
+	
+	</ui:define>
+</ui:composition>
+</html>

@@ -44,7 +44,6 @@ function inicializarPrototipos() {
 		return x1;
 	}
 	
-
 	String.prototype.validarMail = function(){
 	//Regresa TRUE si el mail esta bien formado, FALSE en caso contrario	
 		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
@@ -104,7 +103,21 @@ function inicializarPrototipos() {
 		}
 		return true;
 	}
-	
+
+	String.prototype.isDuracion = function( ){
+
+		if (this == undefined)
+			return false
+
+		var validChars = '0123456789:';
+
+		for(var i = 0; i < this.length; i++) {
+			if(validChars.indexOf(this.charAt(i)) == -1)
+				return false;
+		}
+		return true;
+	}
+
 	String.prototype.esSimboloMatematico = function( ){
 
 		if (this == undefined)
@@ -168,6 +181,16 @@ function inicializarPrototipos() {
 		return true;
 	};
 	
+	Array.prototype.obtenerPosicionPorID = function(id) {
+	//Devuelve la posicion del elemento con id = id si existe
+	//en caso contrario retorna -1
+		for (var i = 0; i < this.length; i++) {
+			if (this[i].id == id)
+				return i;
+		};
+		return -1;
+	};
+
 	Array.prototype.clear = function() {
 	
 		while (this.length > 0) {

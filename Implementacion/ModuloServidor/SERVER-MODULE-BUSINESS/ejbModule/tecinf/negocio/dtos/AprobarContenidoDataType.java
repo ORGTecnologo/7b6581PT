@@ -11,8 +11,15 @@ public class AprobarContenidoDataType implements Serializable {
 	private String nombreContenido;
 	private String descripcionVersion;
 	private String version;
+	private String proveedor;
+
 	
-	
+	public String getProveedor() {
+		return proveedor;
+	}
+	public void setProveedor(String proveedor) {
+		this.proveedor = proveedor;
+	}
 	public Integer getIdContenido() {
 		return idContenido;
 	}

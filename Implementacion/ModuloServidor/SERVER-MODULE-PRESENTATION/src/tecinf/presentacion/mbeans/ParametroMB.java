@@ -1,7 +1,9 @@
 package tecinf.presentacion.mbeans;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -12,6 +14,7 @@ import org.jboss.logging.Logger;
 import tecinf.negocio.NegocioParametros;
 import tecinf.negocio.dtos.ParametroValorDataType;
 import tecinf.negocio.utiles.NegocioFactory;
+import tecinf.negocio.utiles.ValidationUtil;
 
 @ManagedBean
 @ViewScoped
@@ -24,6 +27,8 @@ public class ParametroMB implements Serializable {
 	private NegocioParametros negocioParametros = null;
 	private List<ParametroValorDataType> listaParametros = null;
 	
+	private String filtroNombre;
+	
 	public void mostrarPanelModificar(){ activoPanelModificar = true; }
 	public void ocultarPanelModificar(){	activoPanelModificar = false; }
 	
@@ -31,17 +36,21 @@ public class ParametroMB implements Serializable {
 	
 	private ParametroValorDataType parametroActual = null;
 	
+	@SuppressWarnings("rawtypes")
+	private Map filtros = new HashMap<String , Object>();
+	
 	public ParametroMB() throws NamingException{
 		
 		negocioParametros = NegocioFactory.getNegocioParametros();
-		listaParametros = negocioParametros.obtenerTodos();
+		listaParametros = negocioParametros.obtenerTodosPorFiltros(filtros);
 		
 	}
 	
 	public void modificar(){
 		try {
 			negocioParametros.actualizarParametro(parametroActual);
-			listaParametros = negocioParametros.obtenerTodos();
+			listaParametros = negocioParametros.obtenerTodosPorFiltros(filtros);
+			activoPanelModificar = false;
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e);
 		}		
@@ -64,6 +73,20 @@ public class ParametroMB implements Serializable {
 	}
 	public void setParametroActual(ParametroValorDataType parametroActual) {
 		this.parametroActual = parametroActual;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public void filtrar(){
+		filtros.clear();
+		if (!ValidationUtil.isNullOrEmpty(filtroNombre))
+			filtros.put("nombre", filtroNombre);
+		listaParametros = negocioParametros.obtenerTodosPorFiltros(filtros);
+	}
+	public String getFiltroNombre() {
+		return filtroNombre;
+	}
+	public void setFiltroNombre(String filtroNombre) {
+		this.filtroNombre = filtroNombre;
 	}
 	
 }

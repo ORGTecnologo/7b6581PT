@@ -19,11 +19,11 @@ public class InicioProcesos implements ServletContextListener {
 		{			
 			logger.info("Inicio de tareas automaticas");         
 			NegocioParametros negocioParametros = NegocioFactory.getNegocioParametros();
-			/*
+			
 			new DemonioSesion(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_CHEQUEO_SESIONES)));
 			new DemonioActualizacionDatosContenidos(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_ACTUALIZACION_INFO_CONTENIDOS)));
 			new DemonioActualizacionDatosDescargas(Integer.valueOf(negocioParametros.obtenerParametroPorNombre(EnumParametrosValor.LAPSO_EJECUCION_ACTUALIZACION_INFO_DESCARGAS)));
-			*/
+			
 		}
 		catch (Exception e) 
 		{

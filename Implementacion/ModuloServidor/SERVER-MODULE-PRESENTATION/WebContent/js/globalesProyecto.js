@@ -12,6 +12,7 @@ function VARS_PROY(){
 //CONTENIDO
 	this.contenidoActual = "";
 	this.idContenido = "";
+	this.idDescargaContenido = "";
 
 //PARAMETROS DE BUSCQUEDA
 	this.PARAM_BUSQ_APPS = true;
@@ -29,6 +30,8 @@ function CTES_PROY(){
 	this.sessionStorageToken  = 'token_proyMPTecnologo';
 	this.sessionStorageRol    = 'rol_proyMPTecnologo';
 
+	this.CANT_CONTENIDOS_INDEX = 4;
+	
 //ROLES
 	this.ROL_ADMINISTRADOR	= 'usuario_administrador';
 	this.ROL_PROVEEDOR 		= 'usuario_proveedor';
@@ -41,8 +44,11 @@ function CTES_PROY(){
 	this.TIPO_CONTENIDO_LIBRO = "tipo_contenido_libro";
 
 //URLS...
-	this.HOST 		  = "http://127.0.0.1:8080";
+	this.HOST 		  = "";//"http://localhost:8080";
 	this.IP_SERVICIOS = this.HOST + "/SERVER-MODULE-PRESENTATION";
+	this.IP_WEBSERVICES = this.IP_SERVICIOS + "/restws";
+	this.URL_CONTENIDO = this.IP_SERVICIOS + '/views/content.html?id=';
+	this.URL_PERFIL = this.IP_SERVICIOS + '/views/perfil.html?nick=';
 	this.URL_ADMIN_HOME = this.IP_SERVICIOS + '/admin/admin.xhtml';
 }
 
@@ -50,6 +56,14 @@ function JSON_PROY(){
 
 	this.categorias = new Array();
 	this.resultadoBusqueda  = new Array();
+	this.contentidosACalificar = new Array();
+	this.misContenidos = new Array();
+
+	//TOPS POR TIPO
+	this.top_musica = new Array();
+	this.top_video = new Array();
+	this.top_software = new Array();
+	this.top_libros = new Array();
 }
 
 var varsProy = new VARS_PROY();

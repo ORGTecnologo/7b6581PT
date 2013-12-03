@@ -4,7 +4,7 @@ public class GenericJsonResponse {
 	
 	private String resultadoOperacion;
 	private String idObjeto;
-	private String mensageOperacion;
+	private String mensajeOperacion;
 	
 	public String getResultadoOperacion() {
 		return resultadoOperacion;
@@ -18,11 +18,12 @@ public class GenericJsonResponse {
 	public void setIdObjeto(String idObjeto) {
 		this.idObjeto = idObjeto;
 	}
-	public String getMensageOperacion() {
-		return mensageOperacion;
+	public String getMensajeOperacion() {
+		return mensajeOperacion;
 	}
-	public void setMensageOperacion(String mensageOperacion) {
-		this.mensageOperacion = mensageOperacion;
+	public void setMensajeOperacion(String mensajeOperacion) {
+		this.mensajeOperacion = mensajeOperacion;
 	}
+	
 	
 }

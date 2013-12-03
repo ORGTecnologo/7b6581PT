@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="../css/FU_style.css">
     <link rel="stylesheet" href="../css/bootstrap.css" media="screen"/>
     <link rel="stylesheet" href="../css/FU_jquery.fileupload-ui.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" media="screen"/>
+    <link href="../css/bootstrap-glyphicons.css" type="text/css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
+    <link href="../css/themeProy.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-select.min.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../css/market.css" media="screen"/>
+    <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" media="screen"/>
+
+    <link rel="stylesheet" href="../css/alertify.bootstrap.css"/>    
+    <link rel="stylesheet" href="../css/alertify.core.css"/>
+
+    <script src="../js/Plugins/jquery.min.js"></script>
 </head>
 
 <script>
@@ -24,185 +36,194 @@
 </script>
 
 <body>
+
 <!-- BARRA DE NAVEGACION -->
-    <nav id='caca' class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Desplegar navegación</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Market Place Tecnologo</a>
-        </div>
-<!-- Agrupar los enlaces de navegación, los formularios y cualquier
-       otro elemento que se pueda ocultar al minimizar la barra -->
-      <div class="collapse navbar-collapse navbar-ex1-collapse"> 
-        <ul class="navbar-form navbar-left" role="search">
-            <div class="form-group col-xs-6">
-                <input id="input-busqueda" type="search" class="form-control" placeholder="Buscar">
-            </div>
-            <ul class="btn-group">
-                <button onclick="buscarContenidos();" class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
-                    <span class="glyphicon glyphicon-search"></span> Buscar</button>
-                <button class="btn btn-primary dropdown-toggle" type="button" onclick="mostrarElemento('configurarBusqueda',true)"><span class="glyphicon glyphicon-cog"></span></button>
-            </ul>
-        </ul>
-        <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
-            <a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
-            <ul class="dropdown-menu">
-                <li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario',true)">Soy Proveedor</a></li>
-                <li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario',true)">Soy Cliente</a></li>
-            </ul>
-            <button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
-        </ul>
-        <ul class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
-            <a href="#" class="nick">nick</a>
-            <a href="#" onclick="logoutUsuario()">(Logout)</a>
-        </ul>
-    </nav>
-
-<div class="container">
-    <div class="page-header"><h1>Subir Nuevo Contenido</h1></div>
-
-    <blockquote>
-        <p>Para crear un nuevo contenido, debera llenar el formulario y seleccionar
-            la ubicacion del contenido a subir.</p>
-    </blockquote>
-
-    <div class="col-md-12 row">
-        <div class="col-md-3">
-            <p>Tipo de contenido 
-                <select id="id_tipoContenido" class="form-control" onchange="verEspecificos(this);">
-                  <option value="tipo_contenido_software">App</option>
-                  <option value="tipo_contenido_tema">Musica</option>
-                  <option value="tipo_contenido_video">Video</option>
-                  <option value="tipo_contenido_libro">Libro</option>
-                </select>
-            </p>
-            <p>Categoria 
-                <select id="id_categoria" class="form-control" onchange="cargarComboSubCategorias(this);">
-                </select>
-            </p>
-            <p>Subcategorias 
-                <select id="id_subcategoria" class="form-control" >
-                </select>
-            </p>
-            <p>Precio<input id="id_precio" class="form-control" type="tel"></input></p>
-        </div>        
-        <div class="col-md-6">
-            <p>Nombre <input id="id_nombre" type="text" class="form-control col-lg-3"></input></p>
-            <p>Descripcion: <textarea id="id_descripcion" class="form-control" rows="3"></textarea></p>             
-        </div>
-        <!-- Especificos -->
-            <!-- Libros -->
-        <div id="esp_libro" class="col-md-6 hide">    
-            <p>Fecha Publicacion <input id="id_fechaPublicacion" type="text" class="form-control col-lg-1"></input></p>
-            <p>Autor <input id="id_autor" type="text" class="form-control col-lg-1"></input></p>
-            <p>Cantidad de Paginas <input id="id_cantPag" type="text" class="form-control col-lg-1"></input></p>
-        </div>
-            <!-- App -->
-        <div id="esp_app" class="col-md-6">
-            <p>Desarrollador <input id="id_desarrollador" type="text" class="form-control col-lg-1"></input></p>
-            <p>Es Trial <input id="id_trial" type="checkbox" class="form-control col-lg-1"></input></p>
-            <p>Req. Minimos <textarea id="id_req" rows="3" class="form-control col-lg-1"></textarea></p>
-        </div>
-            <!-- Video -->
-        <div id="esp_video" class="col-md-6 hide">
-            <p>Duracion <input id="id_duracion" type="text" class="form-control col-lg-1"></input></p>
-            <p>Formato <input id="id_formato" type="text" class="form-control col-lg-1"></input></p>
-            <p>Calidad <input id="id_calidad" type="text" class="form-control col-lg-1"></input></p>
-        </div>            
-            <!-- Musica -->
-        <div id="esp_musica" class="col-md-6 hide">
-            <p>Duracion<input id="id_duracionMusica" type="text" class="form-control col-lg-1"></input></p>
-            <p>Artista <input id="id_artista" type="text" class="form-control col-lg-1"></input></p>
-            <p>Album<input id="id_album" type="text" class="form-control col-lg-1"></input></p>
-        </div>        
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Desplegar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/SERVER-MODULE-PRESENTATION/index.html">Market Place Tecnologo</a>
     </div>
+  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+    <ul class="navbar-form navbar-left" role="search">
+        <div class="form-group col-xs-6">
+            <input id="input-busqueda" type="search" class="form-control input-md" placeholder="Buscar" style="height: initial;min-width: 25em;">
+        </div>
+        <ul class="btn-group">
+            <button onclick="buscarContenidos();" class="btn btn-primary" style="margin-top: initial;">
+                <span class="glyphicon glyphicon-search"></span> Buscar</button>
+            <button class="btn btn-primary dropdown-toggle" type="button" onclick="verModales('configurarBusqueda');"><span class="glyphicon glyphicon-cog"></span></button>
+        </ul>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
+        <a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
+        <ul class="dropdown-menu">
+            <li><a href="#" onclick="setRegistroTipo('proveedor');verModales('registroUsuario')">Soy Proveedor</a></li>
+            <li><a href="#" onclick="setRegistroTipo('cliente');verModales('registroUsuario')">Soy Cliente</a></li>
+        </ul>
+        <button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" id="Nick-Logout-Div" style="display: none;margin-right: initial;margin-top: 0.7em;" hidden>
+        <a class="nick dropdown-toggle" data-toggle="dropdown" role="button" href="#"><i class="glyphicon glyphicon-user"></i> nick <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li id="opt_irAltaContenido"><a href="/SERVER-MODULE-PRESENTATION/proveedor/AltaContenido.html" ><i class="glyphicon glyphicon-cloud-upload"></i> Crear Contenido</a></li>
+            <li id="opt_irAdministracion"><a href="/SERVER-MODULE-PRESENTATION/admin/admin.xhtml"><i class="glyphicon glyphicon-wrench"></i> Administracion</a></li>
+            <li><a id="dd_verPerfil" href="#"><i class="glyphicon glyphicon-user"></i> Ver Perfil</a></li>
+            <li class="divider"></li>
+            <li><a href="#" onclick="logoutUsuario()"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+        </ul>
+    </ul>
+</nav>
 
-    <br></br>
+<div class="col-md-12" style="height:50px;"></div>
 
-    <div class="well">
-        <p>A continuacion eliga el contenido seguido de las imagenes que van a ir asociadas al mismo.
-        En primer lugar debera subir el contenido, luego todas las imagenes asociadas al mismo.
-        Faltan Validaciones asique lea el manual, no sea nabo.
-        </p>
-    </div>
+<!-- ALTA CONTENIDO -->
+    <div id="con-tenedor" class="container">
+        <div class="page-header"><h1>Subir Nuevo Contenido</h1></div>
 
-    <form id="fileupload" action="upload" method="POST" enctype="multipart/form-data">
-        <div class="row fileupload-buttonbar">
-            <div class="col-md-7"> 
-                <span class="btn btn-success fileinput-button"><i class="glyphicon glyphicon-plus icon-white"></i><span>Agregar..</span>
-                <input type="file" name="files[]" multiple="multiple" />
-                </span>
-                <button type="submit" class="btn btn-primary start"> <i class="glyphicon glyphicon-upload icon-white"></i><span>Subir</span>
-                </button>
-                <button type="reset" class="btn btn-warning cancel"> <i class="glyphicon glyphicon-ban-circle icon-white"></i><span>Cancelar</span>
-                </button>
-                <button type="button" class="btn btn-danger delete"> <i class="glyphicon glyphicon-trash icon-white"></i><span>Borrar</span>
-                </button>
-                <input type="checkbox" class="toggle" />
+        <blockquote>
+            <p>Para crear un nuevo contenido, debera llenar el formulario y seleccionar
+                la ubicacion del contenido a subir.</p>
+        </blockquote>
+
+        <div class="col-md-12 row">
+            <div class="col-md-3">
+                <p>Tipo de contenido 
+                    <select id="id_tipoContenido" class="form-control" onchange="verEspecificos(this);">
+                      <option value="tipo_contenido_software">App</option>
+                      <option value="tipo_contenido_tema">Musica</option>
+                      <option value="tipo_contenido_video">Video</option>
+                      <option value="tipo_contenido_libro">Libro</option>
+                    </select>
+                </p>
+                <p>Categoria 
+                    <select id="id_categoria" class="form-control" onchange="cargarComboSubCategorias(this);">
+                    </select>
+                </p>
+                <p>Subcategorias 
+                    <select id="id_subcategoria" class="form-control" >
+                    </select>
+                </p>
+                <p>Precio<input id="id_precio" class="form-control" type="tel" onkeypress="return onlyPrice(event)"></input></p>
+            </div>        
+            <div class="col-md-6">
+                <p>Nombre <input id="id_nombre" type="text" class="form-control col-lg-3"></input></p>
+                <p>Descripcion: <textarea id="id_descripcion" class="form-control" rows="3"></textarea></p>             
             </div>
-            <div class="col-md-5 fileupload-progress fade">
-                <div class="progress progress-success progress-striped active" role="progressbar"
-                aria-valuemin="0" aria-valuemax="100">
-                    <div class="bar" style="width: 0%;"></div>
+            <!-- Especificos -->
+                <!-- Libros -->
+            <div id="esp_libro" class="col-md-6 hide">    
+                <p>Fecha Publicacion <input id="id_fechaPublicacion" type="text" class="form-control col-lg-1"></input></p>
+                <p>Autor <input id="id_autor" type="text" class="form-control col-lg-1"></input></p>
+                <p>Cantidad de Paginas <input id="id_cantPag" type="text" class="form-control col-lg-1" onkeypress="return onlyNumbersDano(event)"></input></p>
+            </div>
+                <!-- App -->
+            <div id="esp_app" class="col-md-6">
+                <p>Desarrollador <input id="id_desarrollador" type="text" class="form-control col-lg-1"></input></p>
+                <p>Es Trial <input id="id_trial" type="checkbox" class="form-control col-lg-1"></input></p>
+                <p>Req. Minimos <textarea id="id_req" rows="3" class="form-control col-lg-1"></textarea></p>
+            </div>
+                <!-- Video -->
+            <div id="esp_video" class="col-md-6 hide">
+                <p>Duracion <input id="id_duracion" type="text" class="form-control col-lg-1" onkeypress="return onlyDesc(event)"></input></p>
+                <p>Formato <input id="id_formato" type="text" class="form-control col-lg-1"></input></p>
+                <p>Calidad <input id="id_calidad" type="text" class="form-control col-lg-1"></input></p>
+            </div>            
+                <!-- Musica -->
+            <div id="esp_musica" class="col-md-6 hide">
+                <p>Duracion<input id="id_duracionMusica" type="text" class="form-control col-lg-1" onkeypress="return onlyDesc(event)"></input></p>
+                <p>Artista <input id="id_artista" type="text" class="form-control col-lg-1"></input></p>
+                <p>Album<input id="id_album" type="text" class="form-control col-lg-1"></input></p>
+            </div>        
+        </div>
+
+        <br></br>
+
+        <div class="well">
+            <p>A continuacion eliga el contenido seguido de las imagenes que van a ir asociadas al mismo.
+            En primer lugar debera subir el contenido.
+            Luego debera incluir por lo menos una imagen asociada al mismo.
+            Y finalmente cree el contenido.
+            </p>
+        </div>
+
+        <form id="fileupload" action="upload" method="POST" enctype="multipart/form-data">
+            <div class="row fileupload-buttonbar">
+                <div class="col-md-7"> 
+                    <span class="btn btn-success fileinput-button"><i class="glyphicon glyphicon-plus icon-white"></i><span>Agregar..</span>
+                    <input type="file" name="files[]" multiple="multiple" />
+                    </span>
+                    <button type="submit" class="btn btn-primary start"> <i class="glyphicon glyphicon-upload icon-white"></i><span>Subir</span>
+                    </button>
+                    <button type="reset" class="btn btn-warning cancel"> <i class="glyphicon glyphicon-ban-circle icon-white"></i><span>Cancelar</span>
+                    </button>
+                    <button type="button" class="btn btn-danger delete"> <i class="glyphicon glyphicon-trash icon-white"></i><span>Borrar</span>
+                    </button>
+                    <input type="checkbox" class="toggle" />
                 </div>
-                <div class="progress-extended">&nbsp;</div>
+                <div class="col-md-5 fileupload-progress fade">
+                    <div class="progress progress-success progress-striped active" role="progressbar"
+                    aria-valuemin="0" aria-valuemax="100">
+                        <div class="bar" style="width: 0%;"></div>
+                    </div>
+                    <div class="progress-extended">&nbsp;</div>
+                </div>
             </div>
+            <div class="fileupload-loading"></div>
+            <br />
+            <table role="presentation" class="table table-striped">
+                <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
+            </table>
+        </form>
+        <br>
+
+        <div class="col-md-12">
+             <a class="btn btn-primary modal-download" onclick="enviarAltaContenido()"><i class="glyphicon glyphicon-cloud-upload"></i><span>Crear</span></a>
         </div>
-        <div class="fileupload-loading"></div>
-        <br />
-        <table role="presentation" class="table table-striped">
-            <tbody class="files" data-toggle="modal-gallery" data-target="#modal-gallery"></tbody>
-        </table>
-    </form>
-    <br>
 
-    <div class="col-md-12">
-         <a class="btn btn-default modal-download" onclick="enviarAltaContenido()"><i class="glyphicon glyphicon-download"></i><span>Crear</span></a>
-    </div>
-
-    <div class="well">
-         <h3>Notas</h3>
-        <ul>
-            <li>The maximum file size for uploads in this demo is <strong>5 MB</strong> (default
-                file size is unlimited).</li>
-            <li>Only image files (<strong>JPG, GIF, PNG</strong>) are allowed in this
-                demo (by default there is no file type restriction).</li>
-            <li>Uploaded files will be deleted automatically after <strong>5 minutes</strong> (demo
-                setting).</li>
-            <li>Puedes subir archivos directamente haciendo <strong>drag &amp; drop</strong> desde
-                tu escritorio al navegador o desde el boton "Agregar..".</li>
-        </ul>
-    </div>
-</div>
+ <!--        <div class="well">
+             <h3>Notas</h3>
+            <ul>
+                <li>The maximum file size for uploads in this demo is <strong>5 MB</strong> (default
+                    file size is unlimited).</li>
+                <li>Only image files (<strong>JPG, GIF, PNG</strong>) are allowed in this
+                    demo (by default there is no file type restriction).</li>
+                <li>Uploaded files will be deleted automatically after <strong>5 minutes</strong> (demo
+                    setting).</li>
+                <li>Puedes subir archivos directamente haciendo <strong>drag &amp; drop</strong> desde
+                    tu escritorio al navegador o desde el boton "Agregar..".</li>
+            </ul>
+        </div>
+    </div> -->
 
 <!-- Galeria de imagenes subidas al tmp -->
-<div id="modal-gallery" class="modal modal-gallery fade" data-filter=":odd">
-    <div class="modal-dialog" style="position: fixed;left: 34em;top: inherit;width: initial;">
-        <div class="modal-content">
-            <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
-                <h3 class="modal-title"></h3>
-            </div>
-            <div class="modal-body">
-                <div class="modal-image"></div>
-            </div>
-            <div class="modal-footer"> <a class="btn btn-default modal-download" target="_blank"><i class="glyphicon glyphicon-download"></i><span>Descargar</span></a>
-                <a
-                class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"> <i class="glyphicon glyphicon-play icon-white"></i><span>Play</span>
-                    </a> <a class="btn btn-info modal-prev"><i class="glyphicon glyphicon-arrow-left icon-white"></i><span>Anterior</span></a>
+    <div id="modal-gallery" class="modal modal-gallery fade" data-filter=":odd">
+        <div class="modal-dialog" style="position: fixed;left: 34em;top: inherit;width: initial;">
+            <div class="modal-content">
+                <div class="modal-header"> <a class="close" data-dismiss="modal">×</a>
+                    <h3 class="modal-title"></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-image"></div>
+                </div>
+                <div class="modal-footer"> <a class="btn btn-default modal-download" target="_blank"><i class="glyphicon glyphicon-download"></i><span>Descargar</span></a>
                     <a
-                    class="btn btn-primary modal-next"><span>Siguiente</span><i class="glyphicon glyphicon-arrow-right icon-white"></i>
-                        </a>
+                    class="btn btn-success modal-play modal-slideshow" data-slideshow="5000"> <i class="glyphicon glyphicon-play icon-white"></i><span>Play</span>
+                        </a> <a class="btn btn-info modal-prev"><i class="glyphicon glyphicon-arrow-left icon-white"></i><span>Anterior</span></a>
+                        <a
+                        class="btn btn-primary modal-next"><span>Siguiente</span><i class="glyphicon glyphicon-arrow-right icon-white"></i>
+                            </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-    <!-- The template to display files available for upload -->
+<!-- Template de muestra de los archivos pendientes de subida -->
     <script id="template-upload" type="text/x-tmpl">
        {% for (var i=0, file; file=o.files[i]; i++) { %}
         <tr class="template-upload fade">
@@ -264,14 +285,181 @@
         {% } %}
     </script>
 
-    <script src="../js/jquery.min.js"></script>
-    <script src="../js/jquery-ui.js"></script>    
-    <script src="../js/bootstrap.js"></script>    
+<!-- RESULTADOS DE BUSQUEDA -->
+<div id="resultadoBusqueda" class="container hide">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Calificacion</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoBusqueda"></tbody>
+    </table>
+    <div class="pagination pagination-mini" style="display: initial;">
+        <ul class="pager" id="paginadoBusqueda"></ul>
+    </div>
+</div>
+
+</body>
+
+<div id="mensajeContenidoExito" class="container hide">
+  <span class="label label-success">Exito</span>
+    <p class="text-success text-center" style="font-size: xx-large;font-weight: lighter;">Contenido creado exitosamente y pendiente de revision.</p>
+</div>
+
+<div id="mensajeContenidoError" class="container hide">
+  <span class="label label-error">ERROR</span>
+    <p class="text-error text-center" style="font-size: xx-large;font-weight: lighter;">Ocurrio un error inesperado contactese con el administrador para mas informacion.</p>
+</div>
+
+<!-- CONFIGURAR BUSQUEDA -->
+<div id="configurarBusqueda" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Configurar Busqueda</h3>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="col-md-12 row" style="margin-right: auto;margin-left: auto;">
+                        <h4>Tipos</h4>
+                        <div class="col-md-6">
+                            <p><label><input id="id_search-Libros" type="checkbox" checked="true">_Libros</label></p>
+                            <p><label><input id="id_search-Musica" type="checkbox" checked="true">_Musica</label></p>
+                            <p><label><input id="id_search-Apps" type="checkbox" checked="true">_Apps</label></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><label><input id="id_search-Video" type="checkbox" checked="true">_Video</label></p>
+                            <p><label><input id="id_search-Pagas" type="checkbox" checked="true">_Pagas</label></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <h4>Categorias</h4>
+                        <select class="selectpicker show-tick form-control" multiple="" data-live-search="true" id="multiplesCat" data-container="body"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal">Close</button>
+                <button onclick="actualizarParametrosBusqueda()" data-dismiss="modal" type="button" class="btn btn-primary">Guardar Cambios</button> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- REGISTRO DE USUARIO -->
+<div id="registroUsuario" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Registro de Usuario</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-xs-5">
+                            <h4>Datos de Usuario</h4>
+                        <p>Correo
+                            <input type="email" class="col-xs-10 form-control" id="inputCorreo"
+                            autocomplete="on"/>
+                        </p>
+                        <p>Contraseña
+                            <input type="password" class="col-xs-10 form-control" id="inputPass"/>
+                        </p>
+                        <p>Contraseña
+                            <input type="password" class="col-xs-10 form-control" id="inputPass2"/>
+                        </p>
+                        <p>Nombre Usuario
+                            <input type="text" class="col-xs-10 form-control" id="inputNick"
+                            autocomplete="autocomplete"/>
+                        </p>
+                        <p id="sitioWeb_p">Sitio Web
+                            <input type="text" class="col-xs-10 form-control" id="inputWeb"/>
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-xs-5">
+                            <h4>Datos Personales</h4>
+                        <p>Nombres
+                            <input type="text" class="form-control col-xs-10" id="inputNombre"/>
+                        </p>
+                        <p>Apellidos
+                            <input type="text" class="form-control col-xs-10" id="inputApellido"/>
+                        </p>
+                        <p>Orientacion Sexual
+                            <select id="inputSexo" class="selectpicker form-control col-xs-10">
+                                <option value="masculino" selected="selected">Hombre</option>
+                                <option value="femenino">Mujer</option>
+                            </select>
+                        </p>
+                        <p>Fecha de Nacimiento
+                            <input type="text" class="col-xs-10 form-control" id="inputFecha"/>
+                        </p>
+                        <p>Telefono Movil
+                            <input type="tel" class="col-xs-10 form-control" id="inputTel"
+                            onkeypress="return onlyNumbersDano(event)" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LOGIN DE USUARIO -->
+<div id="loginUsuario" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Login de Usuario</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-xs-10">
+                            <h4>Datos de Usuario</h4>
+                        <p>Correo
+                            <input type="text" class="col-xs-7 form-control" id="loginCorreo"
+                            autocomplete="on"/>
+                        </p>
+                        <p>Contraseña
+                            <input type="password" class="col-xs-7 form-control" id="loginPass"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="IniciarSesion()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="../js/Plugins/jquery.min.js"></script>
+    <script src="../js/Plugins/jquery-ui.js"></script>    
+    <script src="../js/Plugins/bootstrap.js"></script>
+    <script src="../js/Plugins/bootstrap-select.min.js"></script>    
+    <script src="../js/Plugins/alertify.min.js"></script>
+
     <script src="../js/proveedor.js"></script>    
     <script src="../js/globalesProyecto.js"></script> 
     <script src="../js/Objetos.js"></script>   
     <script src="../js/Prototipos.js"></script>
     <script src="../js/LlamadasAjax.js"></script>
+    <script src="../js/getSet.js"></script>
+    <script src="../js/Inicio.js"></script>
+    <script src="../js/Comunes.js"></script>
+    <script src="../js/blockUI.js"></script>    
+
     <script src="../js/FU_vendor/jquery.ui.widget.js"></script>
     <script src="../js/FU_vendor/FU_tmpl.min.js"></script>
     <script src="../js/FU_vendor/FU_load-image.min.js"></script>
@@ -283,5 +471,5 @@
     <script src="../js/FU_vendor/FU_jquery.fileupload-ui.js"></script>
     <script src="../js/FU_vendor/FU_locale.js"></script>
     <script src="../js/FU_vendor/FU_main.js"></script>
-</body> 
+
 </html>

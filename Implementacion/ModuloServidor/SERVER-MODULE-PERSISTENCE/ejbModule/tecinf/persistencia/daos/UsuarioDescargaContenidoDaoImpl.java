@@ -50,5 +50,21 @@ public class UsuarioDescargaContenidoDaoImpl  extends DaoImpl<Integer, UsuarioDe
 		namedQuery.setParameter("usuario", usuario);
 		return (List<UsuarioDescargaContenidoEntity>)namedQuery.getResultList();		
 	}
+	
+	public UsuarioDescargaContenidoEntity getDownloadByUserAndContent(String usuario, Integer idContenido) {
+		Query namedQuery = em.createNamedQuery("UsuarioDescargaContenidoEntity.findByUsuarioAndContenido");
+		namedQuery.setParameter("idContenido", idContenido);
+		namedQuery.setParameter("usuario", usuario);
+		if (namedQuery.getResultList().size() > 0)			
+			return (UsuarioDescargaContenidoEntity)namedQuery.getSingleResult();	
+		return null;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<UsuarioDescargaContenidoEntity> getDonwloadsByUser(String usuario) {
+		Query query = em.createQuery("SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.usuarioCliente.usuario = :usuario");
+		query.setParameter("usuario", usuario);
+		return (List<UsuarioDescargaContenidoEntity>)query.getResultList();
+	}
 
 }

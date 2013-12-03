@@ -30,7 +30,7 @@ public class RWSAuditoria {
 		List<AuditoriaDataType> listaIngresos = null;
 		try {
 			
-			listaIngresos = negocioAuditoria.obtenerRegistroDeIngresos();
+			//listaIngresos = negocioAuditoria.obtenerRegistroDeIngresos();
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage() , e); 

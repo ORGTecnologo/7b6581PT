@@ -13,34 +13,64 @@
 					<h2>Gestion de versiones de contenidos</h2>
 				</div>
 				<div class="col-md-12">
+					<fieldset>
+						<legend>Filtros</legend>
+						<div class="row">						
+							<div class="col-md-3">
+								Nombre
+								<h:inputText value="#{contenidoMB.filtroNombre}" class="col-md-10 form-control"/>
+							</div>
+							<div class="col-md-3">
+								Usuario
+								<h:inputText value="#{contenidoMB.filtroUsuario}" class="col-md-10 form-control"/>
+							</div>
+							<div class="col-md-2">
+								Tipo de contenido 
+								<h:selectOneMenu value="#{contenidoMB.filtroTipo}" class="selectpicker">
+								<f:selectItem itemLabel="Todos" itemValue="" />
+									<f:selectItem itemLabel="Libros" itemValue="tipo_contenido_libro" />
+									<f:selectItem itemLabel="Musica" itemValue="tipo_contenido_tema" />
+									<f:selectItem itemLabel="Software" itemValue="tipo_contenido_software" />
+									<f:selectItem itemLabel="Videos" itemValue="tipo_contenido_video" />
+								</h:selectOneMenu>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 ">
+								<h:commandButton action="#{contenidoMB.filtrar}" value="Filtrar" class="btn pull-right">
+								</h:commandButton>
+							</div>
+						</div>					
+					</fieldset>
+				</div>
+				<div class="col-md-12">
 					<div class="wrapperTablasAdministracion">
 						<h:dataTable value="#{contenidoMB.listaVersionesPendientes}"
-							var="o" styleClass="order-table" headerClass="order-table-header"
-							rowClasses="order-table-odd-row,order-table-even-row"
-							class="table table-striped">
+						var="o" styleClass="order-table" headerClass="order-table-header"
+						rowClasses="order-table-odd-row,order-table-even-row"
+						class="table table-striped" width="300">
 
 							<h:column>
 								<f:facet name="header">Nombre</f:facet>
-                                                        #{o.nombreContenido}
-                                                </h:column>
+								<a href="/SERVER-MODULE-PRESENTATION/views/content.html?id=#{o.idContenido}" target="_blank">
+	                           		#{o.nombreContenido}
+	                           	</a>
+		                   	</h:column>
 
 							<h:column>
-								<f:facet name="header"></f:facet>
-								<a
-									href="/SERVER-MODULE-PRESENTATION/views/content.html?id=#{o.idContenido}">Ver</a>
+								<f:facet name="header">Proveedor</f:facet>
+								<a target="_blank" href="/SERVER-MODULE-PRESENTATION/views/perfil.html?nick=#{o.proveedor}">#{o.proveedor}</a>
 							</h:column>
-							<h:column>
-								<h:commandButton class="btn"
-									action="#{contenidoMB.mostrarPanelAprobar}" value="Aprobar">
-									<f:setPropertyActionListener
-										target="#{contenidoMB.versionActual}" value="#{o}" />
+							
+							<h:column >
+								<h:commandButton class="btn" action="#{contenidoMB.mostrarPanelAprobar}" value="Aprobar">
+									<f:setPropertyActionListener target="#{contenidoMB.versionActual}" value="#{o}" />
 								</h:commandButton>
 							</h:column>
+							
 							<h:column>
-								<h:commandButton class="btn"
-									action="#{contenidoMB.mostrarPanelRechazar}" value="Rechazar">
-									<f:setPropertyActionListener
-										target="#{contenidoMB.versionActual}" value="#{o}" />
+								<h:commandButton class="btn" action="#{contenidoMB.mostrarPanelRechazar}" value="Rechazar">
+									<f:setPropertyActionListener target="#{contenidoMB.versionActual}" value="#{o}" />
 								</h:commandButton>
 							</h:column>
 						</h:dataTable>
@@ -65,10 +95,8 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-							<h:commandButton class="btn" value="Confirmar"
-								action="#{contenidoMB.aprobar}" />
-							<h:commandButton class="btn" value="Cancelar"
-								action="#{contenidoMB.ocultarPanelAprobar}" />
+							<h:commandButton class="btn" value="Confirmar" action="#{contenidoMB.aprobar}" />
+							<h:commandButton class="btn" value="Cancelar" action="#{contenidoMB.ocultarPanelAprobar}" />
 						</div>
 					</div>
 				</div>
@@ -99,7 +127,9 @@
 			</h:form>
 		</h:panelGroup>
 
-
+		<script>
+			$('.selectpicker').selectpicker();
+		</script>
 	</ui:define>
 </ui:composition>
 </html>

@@ -4,43 +4,70 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
 
 <ui:composition template="admin.xhtml">
 	<ui:define name="body">
 
-			<h:form>
+		<h:form>
 			<div class="row">
 				<div class="col-md-12">
-					<h2>Gestion de parametros del sistema</h2>
-				</div>
-				<div class="col-md-12">
-				<div class="wrapperTablasAdministracion">
-					<h:dataTable value="#{parametroMB.listaParametros}" var="o"
-						styleClass="order-table" headerClass="order-table-header"
-						rowClasses="order-table-odd-row,order-table-even-row"
-						class="table table-striped">
-		
-						<h:column>
-							<f:facet name="header">Nombre</f:facet>
-							<a href="#">#{o.nombre}</a>
-						</h:column>
-		
-						<h:column>
-							<f:facet name="header">Valor</f:facet>
-							#{o.valor}
-						</h:column>
-						
-						<h:column>
-							<h:commandButton class="btn"
-								action="#{parametroMB.mostrarPanelModificar}" value="Editar">
-								<f:setPropertyActionListener target="#{parametroMB.parametroActual}" value="#{o}" />
-							</h:commandButton>
-						</h:column>
-						
-					</h:dataTable>
+					<h2>Gestión de parámetros del sistema</h2>
 				</div>
 			</div>
+			<div class="col-md-12">
+					<fieldset>
+						<legend>Filtros</legend>
+						<div class="row">						
+							<div class="col-md-3">
+								Nombre
+								<div class="input-append date">
+							  		<h:inputText value="#{parametroMB.filtroNombre}" class="col-md-10 form-control"/>
+							  		<span class="add-on"><i class="icon-th"></i></span>
+								</div>								
+							</div>
+							<div class="col-md-3">								
+							</div>
+							<div class="col-md-3">								
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 ">
+								<h:commandButton action="#{parametroMB.filtrar}" value="Filtrar" class="btn pull-right">
+								</h:commandButton>
+							</div>
+						</div>					
+					</fieldset>
+				</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="wrapperTablasAdministracion">					
+						<h:dataTable value="#{parametroMB.listaParametros}" var="o"
+							styleClass="order-table" headerClass="order-table-header"
+							rowClasses="order-table-odd-row,order-table-even-row"
+							class="table table-striped">
+			
+							<h:column>
+								<f:facet name="header">Nombre</f:facet>
+								#{o.nombre}
+							</h:column>
+			
+							<h:column>
+								<f:facet name="header">Valor</f:facet>
+								#{o.valor}
+							</h:column>
+							
+							<h:column>
+								<h:commandButton class="btn" action="#{parametroMB.mostrarPanelModificar}" value="Editar">
+									<f:setPropertyActionListener target="#{parametroMB.parametroActual}" value="#{o}" />
+								</h:commandButton>
+							</h:column>
+							
+						</h:dataTable>
+					</div>
+				</div>
 			</div>
 		</h:form>
 	
@@ -53,25 +80,27 @@
 						<div class="modal-body">
 							<div class="row">
 								<div class="col-md-12 col-xs-10">
-									<h4>Datos de Parametro</h4>
+									<h4>Datos de Parámetro</h4>
 									<p>
-										Nombre <h:inputText disabled="true" value="#{parametroMB.parametroActual.nombre}" type="text" class="col-xs-7 form-control" />
+										Nombre
+										<h:inputText disabled="true" value="#{parametroMB.parametroActual.nombre}" type="text" class="col-xs-7 form-control" />
 									</p>
 									<p>
-										Valor <h:inputText value="#{parametroMB.parametroActual.valor}" type="text" class="col-xs-7 form-control" />
+										Valor
+										<h:inputText id="valor" value="#{parametroMB.parametroActual.valor}" type="text" class="col-xs-7 form-control" required="true" requiredMessage="(valor obligatorio)" />
+										<h:message for="valor" style="color:red" />
 									</p>
 								</div>
 							</div>
 						</div>
 						<div class="modal-footer">
-								<h:commandButton class="btn" id="btnConfirmarModificacion" value="Confirmar" action="#{parametroMB.modificar()}" />
+								<h:commandButton oncomplete="showDialog()" class="btn" id="btnConfirmarModificacion" value="Confirmar" action="#{parametroMB.modificar()}" />
 								<h:commandButton class="btn" value="Cancelar" action="#{parametroMB.ocultarPanelModificar}" />
 						</div>
 					</div>
 				</div>
 			</h:form>
-		</h:panelGroup>
-	
+		</h:panelGroup>		
 	
 	</ui:define>
 </ui:composition>

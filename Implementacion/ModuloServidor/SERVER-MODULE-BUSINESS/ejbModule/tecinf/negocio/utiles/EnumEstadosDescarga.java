@@ -7,5 +7,6 @@ public class EnumEstadosDescarga {
 	public static final String PENDIENTE_VALIDACION = "pendiente_validacion";
 	public static final String VALIDADO_OK = "validado_ok";
 	public static final String VALIDADO_INADECUADO = "validado_inadecuado";
+	public static final String FINALIZADO = "finalizado";
 	
 }

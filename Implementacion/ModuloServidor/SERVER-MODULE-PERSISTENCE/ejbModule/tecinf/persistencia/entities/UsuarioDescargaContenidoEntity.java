@@ -32,7 +32,9 @@ import javax.persistence.Table;
 	
 	@NamedQuery(name = "UsuarioDescargaContenidoEntity.findAllByUsuarioAndEstado", 
 		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.estadoDescarga = :estado and e.usuarioCliente.usuario = :usuario") ,	
-		
+	
+	@NamedQuery(name = "UsuarioDescargaContenidoEntity.findByUsuarioAndContenido", 
+		query = "SELECT e FROM UsuarioDescargaContenidoEntity e WHERE e.usuarioCliente.usuario = :usuario and e.contenido.id = :idContenido") ,
 		
 })
 
@@ -51,7 +53,7 @@ public class UsuarioDescargaContenidoEntity implements Serializable {
 	@JoinColumn(name="usuario", nullable=false)
 	private UsuarioEntity usuarioCliente;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade=CascadeType.MERGE)
 	@JoinColumn(name="contenido", nullable=false)
 	private ContenidoEntity contenido;
 	

@@ -5,105 +5,372 @@
         <meta charset="utf-8">
         <title>Perfil</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" media="screen"/>
-    <link href="css/bootstrap-glyphicons.css" type="text/css" rel="stylesheet">
-    <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
-    <link href="css/themeProy.css" type="text/css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-select.min.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="css/market.css" media="screen"/>
-    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css" media="screen"/>
-    <script src="js/jquery.min.js"></script>
 
-        <!-- CSS code from Bootply.com editor -->
-        
-        <style type="text/css">
-            
-        </style>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap-glyphicons.css">
+        <link rel="stylesheet" href="../css/alertify.default.css"/>        
+        <!--[if lt IE 9]><script src="js/html5.js"></script><![endif]-->
+        <link rel="stylesheet" type="text/css" href="../css/themeProy.css">
+        <link rel="stylesheet" type="text/css" href="../css/bootstrap-select.min.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../css/market.css" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="../css/jquery-ui.css" media="screen"/>
+
+        <link rel="stylesheet" href="../css/alertify.default.css"/>
+        <link rel="stylesheet" href="../css/alertify.bootstrap.css"/>      
+        <link rel="stylesheet" href="../css/alertify.core.css"/>   
+
+        <script src="../js/Plugins/jquery.min.js"></script>
     </head>
-    
-    <!-- HTML code from Bootply.com editor -->
-    
-    <body  >
-<!-- BARRA DE NAVEGACION -->
-    <nav id='caca' class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Desplegar navegación</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Market Place Tecnologo</a>
-        </div>
-<!-- Agrupar los enlaces de navegación, los formularios y cualquier
-       otro elemento que se pueda ocultar al minimizar la barra -->
-      <div class="collapse navbar-collapse navbar-ex1-collapse"> 
-        <ul class="navbar-form navbar-left" role="search">
-            <div class="form-group col-xs-6">
-                <input id="input-busqueda" type="search" class="form-control" placeholder="Buscar">
-            </div>
-            <ul class="btn-group">
-                <button onclick="buscarContenidos();" class="btn btn-primary barraBusquedaHome" style="margin-top: initial;">
-                    <span class="glyphicon glyphicon-search"></span> Buscar</button>
-                <button class="btn btn-primary dropdown-toggle" type="button" onclick="mostrarElemento('configurarBusqueda',true)"><span class="glyphicon glyphicon-cog"></span></button>
-            </ul>
-        </ul>
-        <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
-            <a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
-            <ul class="dropdown-menu">
-                <li><a href="#" onclick="setRegistroTipo('proveedor');mostrarElemento('registroUsuario',true)">Soy Proveedor</a></li>
-                <li><a href="#" onclick="setRegistroTipo('cliente');mostrarElemento('registroUsuario',true)">Soy Cliente</a></li>
-            </ul>
-            <button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
-        </ul>
-        <ul class="col-md-2 pull-right" id="Nick-Logout-Div" hidden>
-            <a href="#" class="nick">nick</a>
-            <a href="#" onclick="logoutUsuario()">(Logout)</a>
-        </ul>
-    </nav>        
-
-
         
-        <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <img src="http://placehold.it/200X150" class="img-polaroid thumbnail img-responsive">
-            <p class="lead text-center">Pelotinelli</p>
+<body>
+
+<!-- BARRA DE NAVEGACION -->
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+            <span class="sr-only">Desplegar navegación</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/SERVER-MODULE-PRESENTATION/index.html">Market Place Tecnologo</a>
+    </div>
+  <div class="collapse navbar-collapse navbar-ex1-collapse"> 
+    <ul class="navbar-form navbar-left" role="search">
+        <div class="form-group col-xs-6">
+            <input id="input-busqueda" type="search" class="form-control input-md" placeholder="Buscar" style="height: initial;min-width: 25em;">
         </div>
-        <div class="col-md-9">
-            <div class="col-md-7">
-              <p>Nombre<input type="text" class="form-control input-md " placeholder="Nombre"></p><br>
-                <p>Apellido<input class="form-control" id="appendedInput" type="text" placeholder="Apellido"></p><br>
-                <p>Sexo<select class="form-control"><option>Hombre</option><option>Mujer</option><option>Otro</option></select></p><br>
-              <p>Mail<input type="email" class="form-control input-md " placeholder="Mail"></p><br>
-                <p>Telefono<input class="form-control" id="appendedInput" type="tel" placeholder="Telefono"></p><br>
-                <p>Sitio Web<input class="form-control" id="appendedInput" type="text" placeholder="Sitio Web"></p><br>
-                <p>Fecha de Nacimiento<input class="form-control" id="appendedInput" type="date" placeholder="Fecha de Nacimiento"></p><br>              
-          </div>
+        <ul class="btn-group">
+            <button onclick="buscarContenidos();" class="btn btn-primary" style="margin-top: initial;">
+                <span class="glyphicon glyphicon-search"></span> Buscar</button>
+            <button class="btn btn-primary dropdown-toggle" type="button" onclick="verModales('configurarBusqueda');"><span class="glyphicon glyphicon-cog"></span></button>
+        </ul>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" id="Login-Registro-Div">
+        <a href="#" class="btn btn-primary barraBusquedaHome" role="button" data-toggle="dropdown">Registrarse</a>
+        <ul class="dropdown-menu">
+            <li><a href="#" onclick="setRegistroTipo('proveedor');verModales('registroUsuario')">Soy Proveedor</a></li>
+            <li><a href="#" onclick="setRegistroTipo('cliente');verModales('registroUsuario')">Soy Cliente</a></li>
+        </ul>
+        <button class="btn btn-primary barraBusquedaHome" onclick="mostrarElemento('loginUsuario',true)">Login</button>
+    </ul>
+    <ul class="nav navbar-nav navbar-right" id="Nick-Logout-Div" style="display: none;margin-right: initial;margin-top: 0.7em;" hidden>
+        <a class="nick dropdown-toggle" data-toggle="dropdown" role="button" href="#"><i class="glyphicon glyphicon-user"></i> nick <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li id="opt_irAltaContenido"><a href="/SERVER-MODULE-PRESENTATION/proveedor/AltaContenido.html"><i class="glyphicon glyphicon-cloud-upload"></i> Crear Contenido</a></li>
+            <li id="opt_irAdministracion"><a href="/SERVER-MODULE-PRESENTATION/admin/admin.xhtml"><i class="glyphicon glyphicon-wrench"></i> Administracion</a></li>
+            <li><a id="dd_verPerfil" href="#"><i class="glyphicon glyphicon-user"></i> Ver Perfil</a></li>
+            <li class="divider"></li>
+            <li><a href="#" onclick="logoutUsuario()"><i class="glyphicon glyphicon-lock"></i> Logout</a></li>
+        </ul>
+    </ul>
+</nav>
+
+
+<div class="col-md-12" style="height:100px;"></div>
+
+<div id="con-tenedor" class="container">
+  <div class="row">
+        <div class="col-md-3">
+          <p><img id="id_img_perfil" src="//placehold.it/200x200" class="img-polaroid thumbnail img-responsive" style="width: 200px;height: 200px;"></p>
+            <p id="id_nick_perfil" class="lead text-center">Pelotinelli</p>
+            <ul class="list-group col-md-10" style="cursor: pointer;">
+                <li id="btn_verPerfil" onclick="mostrarVerPerfil()" class="list-group-item">Ver Perfil</li>
+                <li id="btn_Editar" onclick="habilitarEdicion()" class="list-group-item">Editar Perfil</li>
+                <li id="btn_EditPass" onclick="cambiarPassword()" class="list-group-item">Cambiar Contraseña</li>
+                <li id="btn_misContenidos" onclick="verContenidosUsuario()" class="list-group-item">Mis Contenidos</li> 
+                <li id="btn_misContenidos" onclick="verCalificacionesPendientes()" class="list-group-item">Calificaciones Pendientes</li>
+            </ul>            
+        </div>   
+        <div id="div_datosUsuario" class="col-md-7">
+            <p>Nombre<input id="id_nombre_perfil" type="text" class="form-control input-md" placeholder="Nombre" disabled="true"></p><br>
+            <p>Apellido<input id="id_apellido_perfil" class="form-control" type="text" placeholder="Apellido" disabled="true"></p><br>
+            <p>Mail<input id="id_mail_perfil" type="email" class="form-control input-md " placeholder="Mail" disabled="true"></p><br>
+            <p id="id_sw_title">Sitio Web<input id="id_sitioWeb_perfil" class="form-control" id="appendedInput" type="text" placeholder="Sitio Web" disabled="true"></p><br>
+            <p>Sexo<select id="id_sexo_perfil" class="form-control selectpicker" disabled="true"><option>Hombre</option><option selected>Mujer</option><option>Otro</option></select></p><br>
+            <p>Telefono<input id="id_telefono_perfil" class="form-control" id="appendedInput" type="tel" placeholder="Telefono" disabled="true"></p><br>
+            <p>Fecha de Nacimiento<input id="id_fechaNac_perfil" class="form-control" id="appendedInput" placeholder="Fecha de Nacimiento" disabled="true"></p><br>                               
+        </div>
+
+<!-- CONTENIDOS PENDIENTES DE CALIFICACION -->
+<div id="div_contenidosPendientes" class="col-md-7 hide">
+    <p class="lead text-center">Pendientes de Evaluacion</p>
+    <table class="table table-hover">
+        <thead><tr><th></th><th>Nombre</th><th>Tipo</th><th>Puntuacion</th></tr></thead>
+        <tbody id="tbody_pendientes"></tbody>
+    </table>
+    <div class="pagination pagination-mini" style="display: initial;">
+        <ul class="pager" id="paginadoPendientes"></ul>
+    </div>
+</div>
+
+<!-- DIV CONTENIDOS DE USUARIO -->
+<div id="div_contenidosUsuario" class="col-md-7 hide">
+    <p class="lead text-center">Mis contenidos</p>
+    <table class="table table-hover">
+        <thead><tr><th></th><th>Nombre</th><th>Tipo</th><th>Puntacion</th></tr></thead>
+        <tbody id="tbody_contenidos"></tbody>
+    </table>
+    <div class="pagination pagination-mini" style="display: initial;">
+        <ul class="pager" id="paginadoMisContenidos"></ul>
+    </div>
+</div>
+
+<!-- ACA VAN LOS DIVS RESTANTES-->
+<div id="btnGuardar" class="btn-group btn-group-horizontal col-md-2 pull-rigth hide">
+   <button class="btn btn-default" onclick="editarPerfil()">Guardar</button>
+</div>
+
+    </div>
+</div>
+
+
+<!-- CALIFICAR CONTENIDO -->
+<div id="div_comentarContenido" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Calificar contenido</h3>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+              <p>Que piensas sobre esta aplicacion?</p>
+              <textarea id="id_comentario_asociado" type='text' class="form-control" rows='5'></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary" onclick="confirmarCalificacion()">Confirmar</button>
+        </div>
         </div>
     </div>
 </div>
-        
-        <script type='text/javascript' src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+<!-- GENERAR NUEVO RECLAMO -->
+<div id="div_nuevoReclamo" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Reclamos</h3>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <p>Titulo</p>
+                <input id="id_reclamo_titulo" type='text' class="form-control"></input>
+                <p>Plantee su problema aqui.</p>
+                <textarea id="id_reclamo_asociado" type='text' class="form-control" rows='5'></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal">Cancelar</button>
+          <button class="btn btn-primary" onclick="confirmarAltaReclamo()">Confirmar</button>
+        </div>
+        </div>
+    </div>
+</div>
 
-        <script type='text/javascript' src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<!-- CAMBIAR CONTRASENIA -->
+<div id="password_modal" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Cambiar contraseña<span class="extra-title muted"></span></h3>
+            </div>
+            <div class="modal-body form-horizontal">
+                <div class="container">
+                    <p>Contraseña actual
+                        <input type="password" placeholder="contraseña actual" class="col-xs-7 form-control" id="oldPass"
+                        autocomplete="on"/>
+                    </p>
+                    <br>
+                    <br>
+                    <p>Nueva contraseña
+                        <input type="password" placeholder="nueva contraseña" class="col-xs-7 form-control" id="newPass"/>
+                    </p>
+                    <br>
+                    <br>
+                    <p>Repita la nueva contraseña
+                        <input type="password" placeholder="nueva contraseña" class="col-xs-7 form-control" id="reTypePass"/>
+                    </p>
+                    <br>
+                    <br>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                <button class="btn btn-primary" onclick="validarNuevaContraseña()" aria-hidden="true">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
 
-<script type='text/javascript' src="http://maps.googleapis.com/maps/api/js?sensor=false&extension=.js&output=embed"></script>
+<!-- RESULTADOS DE BUSQUEDA -->
+<div id="resultadoBusqueda" class="container hide">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Calificacion</th>
+            </tr>
+        </thead>
+        <tbody id="cuerpoBusqueda"></tbody>
+    </table>
+    <div class="pagination pagination-mini" style="display: initial;">
+        <ul class="pager" id="paginadoBusqueda"></ul>
+    </div>
+</div>
 
-        
-        <!-- JavaScript jQuery code from Bootply.com editor -->
-        
-        <script type='text/javascript'>
-        
-        $(document).ready(function() {
-        
-            
-        
-        });
-        
-        </script>
-        
-    </body>
+</body>
+
+<!-- CONFIGURAR BUSQUEDA -->
+<div id="configurarBusqueda" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Configurar Busqueda</h3>
+            </div>
+            <div class="modal-body">
+                <div class="col-md-12">
+                    <div class="col-md-12 row" style="margin-right: auto;margin-left: auto;">
+                        <h4>Tipos</h4>
+                        <div class="col-md-6">
+                            <p><label><input id="id_search-Libros" type="checkbox" checked="true">_Libros</label></p>
+                            <p><label><input id="id_search-Musica" type="checkbox" checked="true">_Musica</label></p>
+                            <p><label><input id="id_search-Apps" type="checkbox" checked="true">_Apps</label></p>
+                        </div>
+                        <div class="col-md-6">
+                            <p><label><input id="id_search-Video" type="checkbox" checked="true">_Video</label></p>
+                            <p><label><input id="id_search-Pagas" type="checkbox" checked="true">_Pagas</label></p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <h4>Categorias</h4>
+                        <select class="selectpicker show-tick form-control" multiple="" data-live-search="true" id="multiplesCat" data-container="body"></select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal">Close</button>
+                <button onclick="actualizarParametrosBusqueda()" data-dismiss="modal" type="button" class="btn btn-primary">Guardar Cambios</button> 
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- REGISTRO DE USUARIO -->
+<div id="registroUsuario" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Registro de Usuario</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6 col-xs-5">
+                            <h4>Datos de Usuario</h4>
+                        <p>Correo
+                            <input type="email" class="col-xs-10 form-control" id="inputCorreo"
+                            autocomplete="on"/>
+                        </p>
+                        <p>Contraseña
+                            <input type="password" class="col-xs-10 form-control" id="inputPass"/>
+                        </p>
+                        <p>Contraseña
+                            <input type="password" class="col-xs-10 form-control" id="inputPass2"/>
+                        </p>
+                        <p>Nombre Usuario
+                            <input type="text" class="col-xs-10 form-control" id="inputNick"
+                            autocomplete="autocomplete"/>
+                        </p>
+                        <p id="sitioWeb_p">Sitio Web
+                            <input type="text" class="col-xs-10 form-control" id="inputWeb"/>
+                        </p>
+                    </div>
+                    <div class="col-md-6 col-xs-5">
+                            <h4>Datos Personales</h4>
+                        <p>Nombres
+                            <input type="text" class="form-control col-xs-10" id="inputNombre"/>
+                        </p>
+                        <p>Apellidos
+                            <input type="text" class="form-control col-xs-10" id="inputApellido"/>
+                        </p>
+                        <p>Orientacion Sexual
+                            <select id="inputSexo" class="selectpicker form-control col-xs-10">
+                                <option value="masculino" selected="selected">Hombre</option>
+                                <option value="femenino">Mujer</option>
+                            </select>
+                        </p>
+                        <p>Fecha de Nacimiento
+                            <input type="text" class="col-xs-10 form-control" id="inputFecha"/>
+                        </p>
+                        <p>Telefono Movil
+                            <input type="tel" class="col-xs-10 form-control" id="inputTel"
+                            onkeypress="return onlyNumbersDano(event)" />
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="crearMiembro()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LOGIN DE USUARIO -->
+<div id="loginUsuario" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3>Login de Usuario</h3>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12 col-xs-10">
+                            <h4>Datos de Usuario</h4>
+                        <p>Correo
+                            <input type="text" class="col-xs-7 form-control" id="loginCorreo"
+                            autocomplete="on"/>
+                        </p>
+                        <p>Contraseña
+                            <input type="password" class="col-xs-7 form-control" id="loginPass"/>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" onclick="IniciarSesion()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="../js/Plugins/jquery-ui.js"></script>
+    <script src="../js/Plugins/holder.js"></script>
+    <script src="../js/Plugins/bootstrap.js"></script>
+    <script src="../js/Plugins/bootstrap-select.min.js"></script>
+    <script src="../js/Plugins/alertify.min.js"></script>  
+
+    <script src="../js/globalesProyecto.js"></script>
+    <script src="../js/Prototipos.js"></script>
+    <script src="../js/Inicio.js"></script>
+    <script src="../js/blockUI.js"></script>
+    <script src="../js/Objetos.js"></script>
+    <script src="../js/LlamadasAjax.js"></script>
+    <script src="../js/getSet.js"></script>
+    <script src="../js/eventos.js"></script>
+    <script src="../js/Comunes.js"></script>
+    <script src="../js/perfil.js"></script>
 </html>
