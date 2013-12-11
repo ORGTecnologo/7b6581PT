@@ -1,0 +1,23 @@
+CORRECCIONES A REALIZAR
+#######################
+
+
+TODOS
+
+- Letra tamaño 12
+- Justificado
+- Imagenes con Graficas, ponerle como titulo "Grafica X"
+- Todo en tercera persona
+- Titulos en todas las imagenes.
+
+[ALDAO]
+
+[PELO]
+- Pasar a anexos restricciones y atrbutos de modelo de dominio.
+- En seccion de analisis dejar solo casos de uso criticos, el resto para anexos
+- Interfaces con software (seccion analisis especificacion de req) para anexo (sacarla)
+- Cambiar "sacar a produccion" en seccion Trabajos a futuro
+
+
+[CHILE]
+- 
