@@ -4,11 +4,12 @@ CORRECCIONES A REALIZAR
 
 TODOS
 
-- Letra tamaño 12
+- Letra tamaño 12 (Fuente Calibri)
 - Justificado
 - Imagenes con Graficas, ponerle como titulo "Grafica X"
 - Todo en tercera persona
-- Titulos en todas las imagenes.
+- Titulos en todas las imagenes
+- Cambiar ETC por ENTRE OTROS
 
 [ALDAO]
 
