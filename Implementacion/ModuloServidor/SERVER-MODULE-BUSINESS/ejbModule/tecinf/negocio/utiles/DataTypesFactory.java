@@ -131,7 +131,7 @@ public class DataTypesFactory {
 		
 		if (c.getFotos() != null && c.getFotos().size() > 0) {
 			for (ContenidoFotoEntity f : c.getFotos())
-				dt.getFotos().add("/SERVER-MODULE-PRESENTATION/Images?" + f.getUrlFoto());
+				dt.getFotos().add("/Images?" + f.getUrlFoto());
 		}
 		
 		if (c.getVersiones() != null && c.getVersiones().size() > 0) {
@@ -149,7 +149,7 @@ public class DataTypesFactory {
 		dt.setIdContenido(c.getId());
 		dt.setNombreContenido(c.getNombre());
 		dt.setTamanioContenido(c.getTamanio());
-		dt.setUrlArchivoContenido("/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?idContenido=" + c.getId() + "&rutaContenido=" + c.getRutaArchivoContenido());
+		dt.setUrlArchivoContenido("/FileDispatcherServlet?idContenido=" + c.getId() + "&rutaContenido=" + c.getRutaArchivoContenido());
 		dt.setCantidadDescargas(c.getCantidadDescargas() == null ? 0 : c.getCantidadDescargas());
 		
 		return dt;
@@ -227,7 +227,7 @@ public class DataTypesFactory {
 				dt.getListaFotos().add(f.getUrlFoto());
 		}
 		dt.setCalificacion(c.getCalificacion() == null ? 0 : c.getCalificacion());
-		dt.setUrlDescarga("/SERVER-MODULE-PRESENTATION/FileDispatcherServlet?idContenido=" + c.getId() + "&rutaContenido=" + c.getRutaArchivoContenido());
+		dt.setUrlDescarga("/FileDispatcherServlet?idContenido=" + c.getId() + "&rutaContenido=" + c.getRutaArchivoContenido());
 		
 		return dt;
 	}
