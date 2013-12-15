@@ -32,7 +32,7 @@ function Contenido(){
 	this.Imagen = "";
 	this.Calificacion = 0;
 	this.Source = "";
-	this.Moneda = "UYU";
+	this.Moneda = "USD";
 	this.Tamanio = 0;
 	this.Descargas = 0;
 	this.Precio = 0.0;
