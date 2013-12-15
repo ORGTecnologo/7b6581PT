@@ -46,17 +46,17 @@ public class FiltroAutenticacion implements Filter {
 		if (!isPublic(url)){
 			
 			if (userSession == null){
-				resp.sendRedirect("/SERVER-MODULE-PRESENTATION/index.html");
+				resp.sendRedirect("/index.html");
 				return;			
 			}			
 			if (userSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_CLIENTE) && !isClientRestricted(url)){				
-				resp.sendRedirect("/SERVER-MODULE-PRESENTATION/index.html");
+				resp.sendRedirect("/index.html");
 				return;	
 			} else if (userSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_PROVEEDOR) && !isSupplierRestricted(url)){
-				resp.sendRedirect("/SERVER-MODULE-PRESENTATION/index.html");
+				resp.sendRedirect("/index.html");
 				return;			
 			} else if (userSession.getTipoUsuario().equals(EnumTipoUsuario.USUARIO_ADMINISTRADOR) && !isAdminRestricted(url)) {
-				resp.sendRedirect("/SERVER-MODULE-PRESENTATION/admin/admin.xhtml");
+				resp.sendRedirect("/admin/admin.xhtml");
 				return;	
 			}			
 		}

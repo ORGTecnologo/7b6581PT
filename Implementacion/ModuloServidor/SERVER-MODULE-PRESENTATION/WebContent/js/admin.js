@@ -22,7 +22,7 @@ function logoutUsuario(){
 		alert("Fallo del sistema, intente de nuevo o contacte con el administrador!!");
 	})
 	.always(function(msg) {
-		window.location.href = "/SERVER-MODULE-PRESENTATION/index.html";
+		window.location.href = "/index.html";
 	});
 
 }

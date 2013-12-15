@@ -207,7 +207,7 @@ function cargarTablaPendientesCalificacion(pag){
       var idDescarga    = jsonProy.contentidosACalificar[i].idDescarga;
       var nombre        = jsonProy.contentidosACalificar[i].nombreContenido;
       var fechaDescarga = jsonProy.contentidosACalificar[i].fechaDescarga;
-      var foto          = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.contentidosACalificar[i].foto;
+      var foto          = '/Images?' + jsonProy.contentidosACalificar[i].foto;
       var tipoContenido = jsonProy.contentidosACalificar[i].tipoContenido;
           tipoContenido = getStringTipoContenido(tipoContenido);
 
@@ -251,7 +251,7 @@ function cargarTablaMisContenidos(pag){
       var nombre        = jsonProy.misContenidos[i].nombreContenido;
       var fechaDescarga = jsonProy.misContenidos[i].fechaDescarga;
       var calificacion  = jsonProy.misContenidos[i].calificacion;      
-      var foto          = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.misContenidos[i].foto;
+      var foto          = '/Images?' + jsonProy.misContenidos[i].foto;
       var tipoContenido = jsonProy.misContenidos[i].tipoContenido;
           tipoContenido = getStringTipoContenido(tipoContenido);
 
