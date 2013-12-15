@@ -54,7 +54,7 @@ function cargarHtmlTop(topAux,idElem,pag){
       var nombre        = topAux[i].nombreContenido;
       var precio        = topAux[i].precio;
       var calificacion  = topAux[i].calificacion;      
-      var foto          = '/SERVER-MODULE-PRESENTATION/Images?' + topAux[i].listaFotos[0];
+      var foto          = '/Images?' + topAux[i].listaFotos[0];
       var rutaDescarga  = topAux[i].urlDescarga;
 
       var formatPrice = "UYU " + precio;
