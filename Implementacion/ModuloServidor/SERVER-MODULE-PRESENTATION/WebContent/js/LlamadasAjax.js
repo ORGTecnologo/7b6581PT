@@ -341,7 +341,7 @@ function enviarCalificacion(idDescarga, puntaje, comentario){
 		}),
 	})
 	.done(function(msg) {
-		alert.success('Calificacion enviada con exito!');
+		alertify.success('Calificacion enviada con exito!');
 	})
 	.fail(function(msg) {
 		alertify.error('Ocurrio un error inesperado!');
