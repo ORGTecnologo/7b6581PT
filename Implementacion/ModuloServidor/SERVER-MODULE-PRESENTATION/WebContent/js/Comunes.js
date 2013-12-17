@@ -391,7 +391,7 @@ function cargarResultadoBusqueda(pag){
 			var id     = jsonProy.resultadoBusqueda[i].id;
 			var nombre = jsonProy.resultadoBusqueda[i].nombreContenido;
 			var desc   = jsonProy.resultadoBusqueda[i].descripcionContenido;
-			var foto   = '/SERVER-MODULE-PRESENTATION/Images?' + jsonProy.resultadoBusqueda[i].listaFotos[0];
+			var foto   = '/Images?' + jsonProy.resultadoBusqueda[i].listaFotos[0];
 			var precio = jsonProy.resultadoBusqueda[i].precio;
 			var calificacion = jsonProy.resultadoBusqueda[i].calificacion;
 

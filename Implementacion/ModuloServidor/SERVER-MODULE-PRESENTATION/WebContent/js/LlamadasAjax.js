@@ -2,7 +2,7 @@
  * Llamadas Ajax de la aplicacion.
  */
 
-var ip = "/SERVER-MODULE-PRESENTATION/restws";
+var ip = "/restws";
 
 //POST__________POST__________POST
 function registroUsuario(usuario,pass,pass2,mail,nombre,apellido,sexo,nacimiento,cel){
@@ -341,7 +341,7 @@ function enviarCalificacion(idDescarga, puntaje, comentario){
 		}),
 	})
 	.done(function(msg) {
-		alert.success('Calificacion enviada con exito!');
+		alertify.success('Calificacion enviada con exito!');
 	})
 	.fail(function(msg) {
 		alertify.error('Ocurrio un error inesperado!');

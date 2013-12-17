@@ -10,7 +10,7 @@
   <module>
     <web>
       <web-uri>SERVER-MODULE-PRESENTATION.war</web-uri>
-      <context-root>SERVER-MODULE-PRESENTATION</context-root>
+      <context-root>/</context-root>
     </web>
   </module>
   <library-directory>/libs</library-directory>

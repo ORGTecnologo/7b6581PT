@@ -123,9 +123,11 @@ function armarContenidoHTML(){
 	//CARGA LA PARTE VISUAL DEL CONTENT.HTML
 	var Content = varsProy.contenidoActual;
 
+	var divCanvas = document.getElementById('MP_Canvas');
 	var divContent = document.getElementById('MP_Content');
 	var DescContent = document.getElementById('MP_Descripcion');
 	var PrecioContent = document.getElementById('MP_Precio');
+	var html;
 
 	var thumbnailContent = document.createElement('div')
 	var imgContent = document.createElement('img')
@@ -170,4 +172,41 @@ function armarContenidoHTML(){
 	cargarPuntuacion(Content.Calificacion,"../");
 	esconderEspecificosOtros(Content.tipoContenido);
 	setearEspecificos(Content);
+
+	if (Content.Precio.toString() != 'gratis'){
+		comprarBtn.hidden = true
+        var valor = getCodePayPal(Content.Precio);
+		divCanvas.innerHTML += "<form action='https://www.paypal.com/cgi-bin/webscr' method='post' target='_top'>"
+              + "<input type='hidden' name='cmd' value='_s-xclick'>"
+              + "<input type='hidden' name='hosted_button_id' value='" + valor + "'>"
+              + "<input type='image' src='https://www.paypalobjects.com/en_US/i/btn/btn_buynow_SM.gif' border='0' name='submit' alt='PayPal - The safer, easier way to pay online!'>"
+              + "<img alt='' border='0' src='https://www.paypalobjects.com/en_US/i/scr/pixel.gif' width='1' height='1'>"
+              + "</form>"
+	}
+}
+
+function getCodePayPal(precio){
+  switch(precio){
+    case 50:
+      return confProy.PAYPAL_50;
+    break;
+    case 20:
+      return confProy.PAYPAL_20;    
+    break;
+    case 10:
+      return confProy.PAYPAL_10;    
+    break;
+    case 5:
+      return confProy.PAYPAL_5;    
+    break;
+    case 2:
+      return confProy.PAYPAL_2;    
+    break;
+    case 1:
+      return confProy.PAYPAL_1;    
+    break;
+    default:
+      return confProy.PAYPAL_10;
+    break; 
+  }
 }

@@ -45,11 +45,20 @@ function CTES_PROY(){
 
 //URLS...
 	this.HOST 		  = "";//"http://localhost:8080";
-	this.IP_SERVICIOS = this.HOST + "/SERVER-MODULE-PRESENTATION";
+	this.IP_SERVICIOS = this.HOST; //+ "/SERVER-MODULE-PRESENTATION";
 	this.IP_WEBSERVICES = this.IP_SERVICIOS + "/restws";
 	this.URL_CONTENIDO = this.IP_SERVICIOS + '/views/content.html?id=';
 	this.URL_PERFIL = this.IP_SERVICIOS + '/views/perfil.html?nick=';
 	this.URL_ADMIN_HOME = this.IP_SERVICIOS + '/admin/admin.xhtml';
+
+	//PayPal
+	this.PAYPAL_50 = "L2L9BRMZW9DC";
+	this.PAYPAL_20 = "CRWGGH5C3CUT2";
+	this.PAYPAL_10 = "KVE6BG4QASFKC";
+	this.PAYPAL_5 = "8R226D3PEJH82";
+	this.PAYPAL_2 = "A8MDVULPSBZKA";
+	this.PAYPAL_1 = "CHPGCUDTRPCJ8";
+
 }
 
 function JSON_PROY(){
