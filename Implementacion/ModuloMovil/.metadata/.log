@@ -1,0 +1,10 @@
+!SESSION 2013-12-18 14:31:16.488 -----------------------------------------------
+eclipse.buildId=v22.0.5-757759
+java.version=1.7.0_21
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=es_ES
+Framework arguments:  -product com.android.ide.eclipse.adt.package.product
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product com.android.ide.eclipse.adt.package.product
+
+!ENTRY org.eclipse.update.configurator 4 0 2013-12-18 14:31:28.101
+!MESSAGE Unable to access file "plugins/org.eclipse.cdt.codan.core_2.1.0.201302132326.jar!META-INF/MANIFEST.MF".
